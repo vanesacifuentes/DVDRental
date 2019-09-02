@@ -45,16 +45,16 @@ public class ClienteDAO {
             
             pstm = con.prepareStatement(sql);
             
-            pstm.setInt(1, consecutivoID+1);
-            pstm.setInt(2, 1);
-            pstm.setString(3, "dkdod");
-            pstm.setString(4, "jdkddk");
-            pstm.setString(5, "adsda@dkdk"); 
-            pstm.setInt(6, 5);
-            pstm.setBoolean(7,true);
-            pstm.setDate(8,Fecha.crearFechaDate());
-            pstm.setTimestamp(9,Fecha.crearFechaTimeStamp());
-            pstm.setInt(10, 1);                  
+            pstm.setInt(1, c.getClienteID());
+            pstm.setInt(2, c.getTiendaIDCliente());
+            pstm.setString(3, c.getNombreCliente());
+            pstm.setString(4, c.getApellidoCliente());
+            pstm.setString(5, c.getCorreoCliente());
+            pstm.setInt(6, c.getDireccionCliente());
+            pstm.setBoolean(7, c.getCuentActivoBool());
+            pstm.setDate(8,c.getFechaCreacion());
+            pstm.setTimestamp(9,c.getUltimaActualizacionCliente());
+            pstm.setInt(10, c.getActivo());                
             
             rtdo = pstm.executeUpdate();
             

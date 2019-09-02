@@ -69,33 +69,28 @@ public class ControllerCliente {
                    vista.gestionMensajes("Seleccione un nivel",
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
             } else {
-                Cliente cliente = new Cliente();
-                cliente.setClienteID(601);//revisar el ingreso null
-                //System.out.println("id Cliente "+vista.getjTClienteID().getText());
+            Cliente cliente = new Cliente();
+                
+            cliente.setClienteID(Integer.parseInt(vista.getjTClienteID().getText()));
 
-            cliente.setTiendaIDCliente(1);
-            //System.out.println("id Tienda" +vista.getjTiendaID().getText());
+            cliente.setTiendaIDCliente(vista.getjComboBoxTienda().getSelectedIndex()+1);
             
             cliente.setNombreCliente(vista.getjTnombreCliente().getText());
-            //System.out.println("nombre cliente "+vista.getjTnombreCliente().getText());
             
             cliente.setApellidoCliente(vista.getjTApellidos().getText());
-            //System.out.println("apellido "+vista.getjTApellidos().getText());
             
             cliente.setCorreoCliente(vista.getjTCorreoCliente().getText());
-            //System.out.println("correo "+vista.getjTCorreoCliente().getText());
             
             cliente.setDireccionCliente(Integer.parseInt(vista.getjTDireccion().getText()));
-            //System.out.println("dir "+vista.getjTDireccion().getText());
             
             cliente.setCuenta_activo(true);
+            
             cliente.setFechaCreacion(Fecha.crearFechaDate());
             
             cliente.setUltimaActualizacionCliente(Fecha.crearFechaTimeStamp());
-            //System.out.println("fecha "+Fecha.crearFechaTimeStamp());
             
             cliente.setActivo(1);
-            //System.out.println("Activo "+vista.getjTActivoInt().getText());
+           
             
 ///dd
                 //if (tamaño == 0) {

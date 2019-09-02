@@ -343,10 +343,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFechaCreacionActionPerformed
 
-    private void jTActivoIntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTActivoIntActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTActivoIntActionPerformed
-
     private void jBTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTiendaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBTiendaActionPerformed
@@ -364,6 +360,10 @@ public class iFcliente extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_jTableClienteMouseClicked
+
+    private void jTActivoIntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTActivoIntActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTActivoIntActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,8 +6,8 @@
 package Controlador;
 
 import InternalFrame.iFcliente;
-import Modelo.ClienteDAO;
-import Modelo.Cliente;
+import Modelo.*;
+import Modelo.Tienda;
 import Servicios.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,13 +27,18 @@ public class ControllerCliente {
     iFcliente vista;
     ClienteDAO modelo;
     ArrayList<Cliente> ListaCliente;
+    ArrayList<Tienda> listaTiendas;
 
     public ControllerCliente(iFcliente vista, ClienteDAO modelo) {
 
         this.vista = vista;
         this.modelo = modelo;
+        
+        TiendaDAO modeltienda = new TiendaDAO();
 
         this.vista.cargarClientesTabla(ListaCliente = modelo.listadoCliente());
+        
+        this.vista.cargarTiendasCombo(listaTiendas = modeltienda.listadoTiendas());
         
         //Escuchas de los componentes
         ListenerCliente escuchador = new ListenerCliente();

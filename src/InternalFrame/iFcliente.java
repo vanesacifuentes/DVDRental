@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -55,10 +56,11 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jTActivoInt = new javax.swing.JTextField();
         jLCorreo = new javax.swing.JLabel();
         jLDireccion = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jBTienda = new javax.swing.JButton();
         jLApellidos = new javax.swing.JLabel();
         jTApellidos = new javax.swing.JTextField();
-        jTTiendaID = new javax.swing.JTextField();
+        jComboBoxTienda = new javax.swing.JComboBox<>();
+        jBIngresoDireccion = new javax.swing.JButton();
         jPtabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCliente = new javax.swing.JTable();
@@ -145,7 +147,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
                 jTDireccionActionPerformed(evt);
             }
         });
-        jPingreso.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 240, 20));
+        jPingreso.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 140, 20));
 
         jLCuentaActivoBool.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLCuentaActivoBool.setText("Cuenta Activo:");
@@ -186,12 +188,13 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jLDireccion.setText("Direccion:");
         jPingreso.add(jLDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
 
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBTienda.setText("Ingresar");
+        jBTienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBTiendaActionPerformed(evt);
             }
         });
-        jPingreso.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 20, 20));
+        jPingreso.add(jBTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 80, 30));
 
         jLApellidos.setBackground(new java.awt.Color(238, 112, 82));
         jLApellidos.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
@@ -209,12 +212,11 @@ public class iFcliente extends javax.swing.JInternalFrame {
         });
         jPingreso.add(jTApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 240, -1));
 
-        jTTiendaID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTTiendaIDActionPerformed(evt);
-            }
-        });
-        jPingreso.add(jTTiendaID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 170, -1));
+        jComboBoxTienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPingreso.add(jComboBoxTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 140, 30));
+
+        jBIngresoDireccion.setText("Ingresar");
+        jPingreso.add(jBIngresoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 73, -1, 30));
 
         jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 660, 390));
 
@@ -345,9 +347,9 @@ public class iFcliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTActivoIntActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTiendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBTiendaActionPerformed
 
     private void jTApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTApellidosActionPerformed
         // TODO add your handling code here:
@@ -357,10 +359,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBnuevoActionPerformed
 
-    private void jTTiendaIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTTiendaIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTTiendaIDActionPerformed
-
     private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
         //Se llama a este Metodo cuando se selecciona un elemento de la tabla
         
@@ -369,10 +367,12 @@ public class iFcliente extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBIngresoDireccion;
+    private javax.swing.JButton jBTienda;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBoxTienda;
     private javax.swing.JLabel jLApellidos;
     private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLCorreo;
@@ -394,7 +394,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTCuentaActivoBool;
     private javax.swing.JTextField jTDireccion;
     private javax.swing.JTextField jTFechaCreacion;
-    private javax.swing.JTextField jTTiendaID;
     private javax.swing.JTable jTableCliente;
     private javax.swing.JTextField jTnombreCliente;
     // End of variables declaration//GEN-END:variables
@@ -412,7 +411,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
     }
 
     public JButton getjButton2() {
-        return jButton2;
+        return jBTienda;
     }
 
     public JTable getjTableCliente() {
@@ -451,8 +450,12 @@ public class iFcliente extends javax.swing.JInternalFrame {
         return jTClienteID;
     }
 
-    public JTextField getjTiendaID() {
-        return jTTiendaID;
+    public JButton getjBTienda() {
+        return jBTienda;
+    }
+
+    public JComboBox<String> getjComboBoxTienda() {
+        return jComboBoxTienda;
     }
 
     public void addListenerBtnNuevo(ActionListener listenCliente) {
@@ -486,6 +489,26 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jTClienteID.setText(""+valor);
         jTClienteID.setEnabled(false);
     }
+    
+    //Carga el listado de tiendas al combobox Tienda
+    public void cargarTiendasCombo(ArrayList<Tienda> listadoTienda)
+     {
+         DefaultComboBoxModel model;
+         
+         String[] arregloTiendas = new String[listadoTienda.size()];
+         //ArrayList <Integer> arreglotiendas; 
+         
+         for(int a=0; a < listadoTienda.size();a++)
+         {
+             arregloTiendas[a] = "Sede no. " +listadoTienda.get(a).getTiendaID();
+             
+         }
+         
+         model = new DefaultComboBoxModel(arregloTiendas);
+         
+         jComboBoxTienda.setModel(model);
+     }
+    
 
     private void limpiarListadoTabla() {
         DefaultTableModel modelo;

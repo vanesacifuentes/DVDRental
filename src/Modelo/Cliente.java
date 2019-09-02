@@ -51,7 +51,7 @@ public class Cliente {
         return direccionCliente;
     }
 
-    public boolean isCuenta_activo() {
+    public boolean getCuentActivoBool() {
         return cuenta_activo;
     }
 

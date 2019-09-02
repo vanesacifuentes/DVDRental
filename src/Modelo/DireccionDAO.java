@@ -11,28 +11,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import Servicios.Fachada;
-import Servicios.Fecha;
 /**
  *
  * @author vanes
  */
-public class ClienteDAO {
-     /* 
-     * @param a Objeto de la clase Cliente a grabar
+public class DireccionDAO {
+    
+    /* 
+     * @param a Objeto de la clase Direccion a grabar
      * @return rtdo resultado de la operación grabar
-     */
-    int consecutivoID;
-
-    public ClienteDAO() {
-        
-        
-    }
-    
-    
-    public int grabarCliente (Cliente c)
+     */    
+    public int grabarDireccion (Direccion d)
     {
-        
-        
         Connection con = null;
         PreparedStatement pstm;
         pstm= null;
@@ -41,28 +31,26 @@ public class ClienteDAO {
         
         try{
             con =Fachada.getConnection();
-            String sql = "INSERT INTO customer values(?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO address VALUES(?,?,?,?,?,?,?,?)";
             
             pstm = con.prepareStatement(sql);
             
-            pstm.setInt(1, c.getClienteID());
-            pstm.setInt(2, c.getTiendaIDCliente());
-            pstm.setString(3, c.getNombreCliente());
-            pstm.setString(4, c.getApellidoCliente());
-            pstm.setString(5, c.getCorreoCliente());
-            pstm.setInt(6, c.getDireccionCliente());
-            pstm.setBoolean(7, c.getCuentActivoBool());
-            pstm.setDate(8,c.getFechaCreacion());
-            pstm.setTimestamp(9,c.getUltimaActualizacionCliente());
-            pstm.setInt(10, c.getActivo());                
-            
+            pstm.setInt(1, d.getDireccionID());
+            pstm.setString(2, d.getDireccion());
+            pstm.setString(3, d.getDireccion2());
+            pstm.setString(4, d.getDistrito());
+            pstm.setInt(5, d.getCiudadID_direccion());
+            pstm.setString(6, d.getCodigoPostal());
+            pstm.setString(7, d.getTelefono());
+            pstm.setTimestamp(8, d.getUltimaActualizacionDireccion());         
+                                                         
             rtdo = pstm.executeUpdate();
             
-            
-        }catch(SQLException ex){
-            System.err.println(rtdo);
+        }
+        
+        catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Código "+
-                    ex.getErrorCode() + "\n Error +++++" + ex.getMessage());
+                    ex.getErrorCode() + "\n Error" + ex.getMessage());
         }
         
         finally{
@@ -72,7 +60,7 @@ public class ClienteDAO {
             catch(SQLException ex)
             {
                 JOptionPane.showMessageDialog(null, " Código : "+ 
-                        ex.getErrorCode() + " \n Error ++++++: " + ex.getMessage());
+                        ex.getErrorCode() + " \n Error : " + ex.getMessage());
             }
         }
         return rtdo;
@@ -81,10 +69,10 @@ public class ClienteDAO {
  
      /**
      * 
-     * @param l Objeto de la clase Cliente a modificar
+     * @param l Objeto de la clase Direccion a modificar
      * @return rtdo resultado de la operación modificar
      */
-    public int modificarCliente(Cliente c){      
+    public int modificarDireccion(Direccion d){      
         Connection con = null;
         PreparedStatement pstm;
         pstm = null;
@@ -92,23 +80,21 @@ public class ClienteDAO {
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "UPDATE customer " +
-                         "SET customer_id = ?, store_id= ?, first_name= ?, last_name = ?,email=?"
-                    + "address_id=?, activebool=?, create_date=?,last_update=?, active=?"
-                    +    "WHERE customer_id =?";
+            String sql = "UPDATE address " +
+                         "SET address_id = ?, address= ?, address2= ?, district = ?, city_id=?"
+                    + "postal_code=?, phone=?, last_update=?"
+                    +    "WHERE address_id =?";
 
             pstm = con.prepareStatement(sql);   
 
-            pstm.setInt(1, c.getClienteID());
-            pstm.setInt(2, c.getTiendaIDCliente());
-            pstm.setString(3, c.getNombreCliente());
-            pstm.setString(4, c.getApellidoCliente());
-            pstm.setString(5, c.getCorreoCliente());
-            pstm.setInt(6, c.getDireccionCliente());
-            pstm.setBoolean(7, c.getCuentActivoBool());
-            pstm.setDate(8,c.getFechaCreacion());
-            pstm.setTimestamp(9,c.getUltimaActualizacionCliente());
-            pstm.setInt(10, c.getActivo());
+            pstm.setInt(1, d.getDireccionID());
+            pstm.setString(2, d.getDireccion());
+            pstm.setString(3, d.getDireccion2());
+            pstm.setString(4, d.getDistrito());
+            pstm.setInt(5, d.getCiudadID_direccion());
+            pstm.setString(6, d.getCodigoPostal());
+            pstm.setString(7, d.getTelefono());
+            pstm.setTimestamp(8, d.getUltimaActualizacionDireccion());
 
             rtdo = pstm.executeUpdate();  
         }
@@ -130,19 +116,19 @@ public class ClienteDAO {
             
     /**
      * 
-     * @param customer_id  código del cliente a borrar
+     * @param address_id  código de la direccion a borrar
      * @return rtdo resultado de la operación borrar
      */
-    public int borrarCliente(int customer_id){      
+    public int borrarDireccion (int address_id){      
         Connection con = null;
         PreparedStatement pstm = null;
         int rtdo;
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "DELETE FROM customer WHERE customer_id = ? ";
+            String sql = "DELETE FROM address WHERE address_id = ? ";
             pstm = con.prepareStatement(sql);
-            pstm.setInt(1, customer_id);
+            pstm.setInt(1, address_id);
             rtdo = pstm.executeUpdate(); 
             return rtdo;
         }
@@ -165,43 +151,41 @@ public class ClienteDAO {
     
     /**
      * 
-     * @param customer_id id del cliente a listar, 0 se listaran todos
-     * @return ArrayList, lista de objetos Cliente
+     * @param address_id de direcciones a listar, 0 se listaran todos
+     * @return ArrayList, lista de objetos Direccion
      */
-    public ArrayList <Cliente> listadoCliente(){   
+    public ArrayList <Direccion> listadoDireccion(){   
         
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
         
-        ArrayList<Cliente> listadoCliente = new ArrayList<>();
+        ArrayList <Direccion> listadoDireccion = new ArrayList<>();
         try{
             con = Fachada.getConnection();
             String sql="";
-            
-                sql = "SELECT * FROM customer ORDER BY customer_id";            
+                  
+                sql = "SELECT * FROM customer where address_id = ? "
+                    + "ORDER BY address_id";      
                                    
             pstm = con.prepareStatement(sql);
-            
-            
+ 
             rs = pstm.executeQuery();
                         
-            Cliente cliente = null;
+            Direccion direccion = null;
             while(rs.next()){
-                cliente= new Cliente();
+                direccion= new Direccion();
                 
-            cliente.setClienteID(rs.getInt("customer_id"));
-            cliente.setTiendaIDCliente(rs.getInt("store_id"));
-            cliente.setNombreCliente(rs.getString("first_name"));
-            cliente.setApellidoCliente(rs.getString("last_name"));
-            cliente.setCorreoCliente(rs.getString("email"));
-            cliente.setDireccionCliente(rs.getInt("address_id"));
-            cliente.setCuenta_activo(rs.getBoolean("activebool"));
-            cliente.setFechaCreacion(rs.getDate("create_date"));
-            cliente.setUltimaActualizacionCliente(rs.getTimestamp("last_update"));
-            cliente.setActivo(rs.getInt("active"));
-            
-                listadoCliente.add(cliente);
+            direccion.setDireccionID(rs.getInt("address_id"));
+            direccion.setDireccion(rs.getString("address"));
+            direccion.setDireccion2(rs.getString("address2"));
+            direccion.setDistrito(rs.getString("district"));
+            direccion.setCiudadID_direccion(rs.getInt("city_id"));
+            direccion.setCodigoPostal(rs.getString("postal_code"));
+            direccion.setTelefono(rs.getString("phone"));
+            direccion.setUltimaActualizacionDireccion(rs.getTimestamp("last_update"));
+                    
+                listadoDireccion.add(direccion);
             }
         }
         
@@ -219,7 +203,7 @@ public class ClienteDAO {
                         ex.getErrorCode() + "\nError :" + ex.getMessage());
             }
         }
-        consecutivoID = listadoCliente.size();
-        return listadoCliente;
-    }  
+        return listadoDireccion;
+    } 
+    
 }

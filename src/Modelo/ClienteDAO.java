@@ -105,7 +105,7 @@ public class ClienteDAO {
             pstm.setString(4, c.getApellidoCliente());
             pstm.setString(5, c.getCorreoCliente());
             pstm.setInt(6, c.getDireccionCliente());
-            pstm.setBoolean(7, c.isCuenta_activo());
+            pstm.setBoolean(7, c.getCuentActivoBool());
             pstm.setDate(8,c.getFechaCreacion());
             pstm.setTimestamp(9,c.getUltimaActualizacionCliente());
             pstm.setInt(10, c.getActivo());

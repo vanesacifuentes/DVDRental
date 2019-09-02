@@ -12,8 +12,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author nicol
@@ -242,6 +244,11 @@ public class iFcliente extends javax.swing.JInternalFrame {
             }
         });
         jTableCliente.setColumnSelectionAllowed(true);
+        jTableCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClienteMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableCliente);
         jTableCliente.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
@@ -354,6 +361,12 @@ public class iFcliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTTiendaIDActionPerformed
 
+    private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
+        //Se llama a este Metodo cuando se selecciona un elemento de la tabla
+        
+        
+    }//GEN-LAST:event_jTableClienteMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBeliminar;
@@ -422,7 +435,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
         return jTActivoInt;
     }
 
-
     public JTextField getjTCuentaActivoBool() {
         return jTCuentaActivoBool;
     }
@@ -438,42 +450,52 @@ public class iFcliente extends javax.swing.JInternalFrame {
     public JTextField getjTClienteID() {
         return jTClienteID;
     }
-    
+
     public JTextField getjTiendaID() {
         return jTTiendaID;
     }
-    
-    public void addListenerBtnNuevo(ActionListener listenCliente){
-        jBnuevo.addActionListener(listenCliente);       
-    }
-    
-    public void gestionMensajes(String mensaje, String titulo, int icono){
-         JOptionPane.showMessageDialog(this,mensaje, titulo, icono);
+
+    public void addListenerBtnNuevo(ActionListener listenCliente) {
+        jBnuevo.addActionListener(listenCliente);
     }
 
-public void cargarClientesTabla(ArrayList<Cliente> listadoCliente){
-        DefaultTableModel modelo;
-        modelo = (DefaultTableModel) jTableCliente.getModel();        
+    public void gestionMensajes(String mensaje, String titulo, int icono) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
+    }
+    
+    public void addListenerTabla(MouseListener listener)
+    {
+        jTableCliente.addMouseListener(listener);
+        
+    }
+
+    public void cargarClientesTabla(ArrayList<Cliente> listadoCliente) {
+        DefaultTableModel defaultCombo;
+        defaultCombo = (DefaultTableModel) jTableCliente.getModel();
         limpiarListadoTabla();
-        for(int i= 0; i < listadoCliente.size(); i++){
-              modelo.addRow(new Object[]{
-              listadoCliente.get(i).getClienteID(),
-              listadoCliente.get(i).getNombreCliente()+ " "+listadoCliente.get(i).getApellidoCliente(),
-              listadoCliente.get(i).getCorreoCliente(),
-              listadoCliente.get(i).getDireccionCliente(),     
-     
-        });}
-                      
+        for (int i = 0; i < listadoCliente.size(); i++) {
+            defaultCombo.addRow(new Object[]{
+                listadoCliente.get(i).getClienteID(),
+                listadoCliente.get(i).getNombreCliente() + " " + listadoCliente.get(i).getApellidoCliente(),
+                listadoCliente.get(i).getCorreoCliente(),
+                listadoCliente.get(i).getDireccionCliente(),});
+        }
+        
+        //Muestra en el campo de texto de la Interfaz el ID cliente Consecutivo
+        int valor = Integer.parseInt(""+defaultCombo.getValueAt(defaultCombo.getRowCount()-1, 0))+1;
+        jTClienteID.setText(""+valor);
+        jTClienteID.setEnabled(false);
     }
 
-  private void limpiarListadoTabla(){
+    private void limpiarListadoTabla() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jTableCliente.getModel();
-        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
+        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
 
-
+   
+    
 
 }

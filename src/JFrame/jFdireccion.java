@@ -5,6 +5,11 @@
  */
 package JFrame;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author nicol
@@ -42,18 +47,16 @@ public class jFdireccion extends javax.swing.JFrame {
         jTDireccion2 = new javax.swing.JTextField();
         jLCodigoPostal = new javax.swing.JLabel();
         jTCodigoPostal = new javax.swing.JTextField();
-        jComboCiudad = new javax.swing.JComboBox<String>();
+        jComboCiudad = new javax.swing.JComboBox<>();
         jButtonIngresoCiudad = new javax.swing.JButton();
         jButtonIngresoCiudad1 = new javax.swing.JButton();
         jButtonIngresoCiudad2 = new javax.swing.JButton();
         jButtonIngresoCiudad3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jBeliminar = new javax.swing.JButton();
+        jBmodificar = new javax.swing.JButton();
+        jBnuevo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(269, 195));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -160,7 +163,7 @@ public class jFdireccion extends javax.swing.JFrame {
         });
         jPingreso.add(jTCodigoPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 160, 20));
 
-        jComboCiudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPingreso.add(jComboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 160, 20));
 
         jButtonIngresoCiudad.setText("CRUD");
@@ -180,35 +183,32 @@ public class jFdireccion extends javax.swing.JFrame {
         });
         jPingreso.add(jButtonIngresoCiudad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 20, 20));
 
-        jTextField1.setText("jTextField1");
-        jPingreso.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
-
         jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 300));
 
-        jButton9.setBackground(new java.awt.Color(238, 112, 82));
-        jButton9.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(238, 112, 82));
-        jButton9.setText("Eliminar");
-        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jButton9.setContentAreaFilled(false);
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 70, 30));
+        jBeliminar.setBackground(new java.awt.Color(238, 112, 82));
+        jBeliminar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBeliminar.setForeground(new java.awt.Color(238, 112, 82));
+        jBeliminar.setText("Eliminar");
+        jBeliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBeliminar.setContentAreaFilled(false);
+        jPanel1.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 70, 30));
 
-        jButton7.setBackground(new java.awt.Color(238, 112, 82));
-        jButton7.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(238, 112, 82));
-        jButton7.setText("Modificar");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jButton7.setContentAreaFilled(false);
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 80, 30));
+        jBmodificar.setBackground(new java.awt.Color(238, 112, 82));
+        jBmodificar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBmodificar.setForeground(new java.awt.Color(238, 112, 82));
+        jBmodificar.setText("Modificar");
+        jBmodificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBmodificar.setContentAreaFilled(false);
+        jPanel1.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 80, 30));
 
-        jButton5.setBackground(new java.awt.Color(238, 112, 82));
-        jButton5.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(238, 112, 82));
-        jButton5.setText("Nuevo");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jButton5.setContentAreaFilled(false);
-        jButton5.setDefaultCapable(false);
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 60, 30));
+        jBnuevo.setBackground(new java.awt.Color(238, 112, 82));
+        jBnuevo.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBnuevo.setForeground(new java.awt.Color(238, 112, 82));
+        jBnuevo.setText("Nuevo");
+        jBnuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBnuevo.setContentAreaFilled(false);
+        jBnuevo.setDefaultCapable(false);
+        jPanel1.add(jBnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 60, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 380));
 
@@ -243,6 +243,52 @@ public class jFdireccion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonIngresoCiudad3ActionPerformed
 
+    public JButton getjBeliminar() {
+        return jBeliminar;
+    }
+
+    public JButton getjBmodificar() {
+        return jBmodificar;
+    }
+
+    public JButton getjBnuevo() {
+        return jBnuevo;
+    }
+
+    public JComboBox<String> getjComboCiudad() {
+        return jComboCiudad;
+    }
+
+    public JLabel getjLDireccion2() {
+        return jLDireccion2;
+    }
+
+    public JTextField getjTCodigoPostal() {
+        return jTCodigoPostal;
+    }
+
+    public JTextField getjTDireccion1() {
+        return jTDireccion1;
+    }
+
+    public JTextField getjTDireccion2() {
+        return jTDireccion2;
+    }
+
+    public JTextField getjTDistrito() {
+        return jTDistrito;
+    }
+
+    public JTextField getjTtelefono() {
+        return jTtelefono;
+    }
+
+    public JTextField getjTDireccionID() {
+        return jTDireccionID;
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -279,9 +325,9 @@ public class jFdireccion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton jBeliminar;
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JButton jBnuevo;
     private javax.swing.JButton jButtonIngresoCiudad;
     private javax.swing.JButton jButtonIngresoCiudad1;
     private javax.swing.JButton jButtonIngresoCiudad2;
@@ -301,7 +347,6 @@ public class jFdireccion extends javax.swing.JFrame {
     private javax.swing.JTextField jTDireccion2;
     private javax.swing.JTextField jTDireccionID;
     private javax.swing.JTextField jTDistrito;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTtelefono;
     // End of variables declaration//GEN-END:variables
 }

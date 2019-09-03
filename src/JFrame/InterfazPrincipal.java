@@ -251,9 +251,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         
         EmpleadoDAO empleadoModel = new EmpleadoDAO();
         ControllerEmpleado empleadoControl = new ControllerEmpleado(empleadoView,empleadoModel);
-        iFempleado empleado = new iFempleado();
-        jDesktopPane.add(empleado);
-        empleado.setVisible(true); 
+        
+        jDesktopPane.add(empleadoView);
+        empleadoView.setVisible(true); 
     }//GEN-LAST:event_jMempladosActionPerformed
 
     /**

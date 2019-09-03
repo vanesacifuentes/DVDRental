@@ -31,7 +31,7 @@ public class ControllerEmpleado {
         TiendaDAO modelTienda = new TiendaDAO();
         
         this.vista.cargarTiendasCombo(listaTienda = modelTienda.listadoTiendas());
-        
+        this.vista.cargarEmpleadosTabla(this.modelo.listadoEmpleado());
         
     }
     
@@ -74,8 +74,7 @@ public class ControllerEmpleado {
             //empleado.setUltimaActualizacion(Fecha.crearFecha());
             //empleado-imagen
 
-            int tamaño = 0;
-            tamaño = modelo.listadoEmpleado(tamaño).size();
+            
 
             //if (tamaño == 0) {
                 int resultado = 0;
@@ -88,7 +87,7 @@ public class ControllerEmpleado {
                             "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
                     ArrayList<Empleado> listaEmpleados;
-                    listaEmpleados = modelo.listadoEmpleado(tamaño);
+                    listaEmpleados = modelo.listadoEmpleado();
                    vista.cargarEmpleadosTabla(listaEmpleados);
 
                     //vista.activarControles(false); 

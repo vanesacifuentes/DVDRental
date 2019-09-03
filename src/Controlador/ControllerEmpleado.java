@@ -64,23 +64,19 @@ public class ControllerEmpleado {
                     JOptionPane.showMessageDialog(null, "Seleccione una fila");
                 }
             } else {
-                
+                //Imprime en los campos de la interfaz los valores correspondientes al empleado de la fila seleccionado en la tabla
                 int indiceTabla = vista.getjTableCliente().getSelectedRow();
                 vista.getjTEmpleadoID().setText("" + listaEmpleado.get(indiceTabla).getEmpleadoID());
+                vista.getjTnombreEmpleado().setText(""+listaEmpleado.get(indiceTabla).getNombreEmpleado());
                 vista.getjTApellidosEmpleado().setText(""+listaEmpleado.get(indiceTabla).getApellidoEmpleado());
                 vista.getjTCorreoEmpleado().setText(""+listaEmpleado.get(indiceTabla).getCorreoEmpleado());
                 vista.getjPassContrasena().setText(""+listaEmpleado.get(indiceTabla).getContrasenaEmpleado());
                 vista.getjTNombreUsuario().setText(""+listaEmpleado.get(indiceTabla).getNombreUsuarioEmpleado());
                 vista.getjLUltimaActualizacion().setText(""+listaEmpleado.get(indiceTabla).getUltima_Actualizacion_Empleado());
-                //vista.getjCActivoInt().setsSelectedItem(""+ListaCliente.get(indiceTabla).getActivo());
+                //vista.getjTDireccion().setText(retornaDirecion(listaEmpleado.get(indiceTabla).getEmpleadoID()).getDireccion());
+                vista.getjCBTiendaID().setSelectedItem("Sede no. "+listaEmpleado.get(indiceTabla).getEmpleadoID());
                 //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
-                
-                
-                
-                
-
             }
-            
             
         }
 
@@ -103,6 +99,16 @@ public class ControllerEmpleado {
     }
     
     
+//    public Direccion retornaDirecion(int id_direccion)
+//    {//retorna una direccion de acuerdo a su ID
+//        
+//        for(int a =0;a < listaDireccion.size();a++)
+//        {
+//            
+//        }
+//    }
+    
+    
     public void registrar(){
                 if (vista.getjTEmpleadoID().equals("")) {
             vista.gestionMensajes("Ingrese el código",
@@ -122,7 +128,7 @@ public class ControllerEmpleado {
             //empleado.setActivo(vista.getjTCuentaActivo1().get());
             empleado.setNombreUsuarioEmpleado(vista.getjTNombreUsuario().getText());
             empleado.setContrasenaEmpleado(vista.getjPassContrasena().getName());
-            //empleado.setUltimaActualizacion(Fecha.crearFecha());
+            
             //empleado-imagen
 
             

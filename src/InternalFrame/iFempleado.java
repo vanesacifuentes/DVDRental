@@ -64,6 +64,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLUltimaActualizacion = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jPtabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableEmpleado = new javax.swing.JTable();
@@ -134,7 +135,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
                 jTDireccionActionPerformed(evt);
             }
         });
-        jPingreso.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 240, 20));
+        jPingreso.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 130, 20));
 
         jLContrasena.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLContrasena.setForeground(new java.awt.Color(51, 51, 51));
@@ -203,7 +204,15 @@ public class iFempleado extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Ultima Actualización:");
         jPingreso.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
-        jPingreso.add(jLUltimaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 324, 150, 30));
+        jPingreso.add(jLUltimaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 250, 20));
+
+        jButton3.setText("ingresar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPingreso.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 343, -1, 30));
 
         jPanelEmpleado.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 660, 390));
 
@@ -352,6 +361,10 @@ public class iFempleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     public void cargarTiendasCombo(ArrayList<Tienda> listadoTiendas){ 
        DefaultComboBoxModel model; 
          
@@ -412,6 +425,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBnuevo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jCBTiendaID;
     private javax.swing.JLabel jLApellidos;
     private javax.swing.JLabel jLContrasena;

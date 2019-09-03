@@ -47,6 +47,7 @@ public class jFdireccion extends javax.swing.JFrame {
         jButtonIngresoCiudad1 = new javax.swing.JButton();
         jButtonIngresoCiudad2 = new javax.swing.JButton();
         jButtonIngresoCiudad3 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -179,6 +180,9 @@ public class jFdireccion extends javax.swing.JFrame {
         });
         jPingreso.add(jButtonIngresoCiudad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 20, 20));
 
+        jTextField1.setText("jTextField1");
+        jPingreso.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
+
         jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 300));
 
         jButton9.setBackground(new java.awt.Color(238, 112, 82));
@@ -297,6 +301,7 @@ public class jFdireccion extends javax.swing.JFrame {
     private javax.swing.JTextField jTDireccion2;
     private javax.swing.JTextField jTDireccionID;
     private javax.swing.JTextField jTDistrito;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTtelefono;
     // End of variables declaration//GEN-END:variables
 }

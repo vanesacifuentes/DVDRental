@@ -141,7 +141,7 @@ public class ControllerCliente {
                 vista.getjTDireccion().setText(""+ListaCliente.get(indiceTabla).getDireccionCliente());
                 vista.getjTApellidos().setText(""+ListaCliente.get(indiceTabla).getApellidoCliente());
                 vista.getjTFechaCreacion().setText(""+ListaCliente.get(indiceTabla).getFechaCreacion());
-                vista.getjCActivoInt().setsSelectedItem(""+ListaCliente.get(indiceTabla).getActivo());
+                //vista.getjCActivoInt().setsSelectedItem(""+ListaCliente.get(indiceTabla).getActivo());
                 //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
                 
                 

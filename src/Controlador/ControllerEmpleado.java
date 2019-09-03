@@ -73,7 +73,7 @@ public class ControllerEmpleado {
                 vista.getjPassContrasena().setText(""+listaEmpleado.get(indiceTabla).getContrasenaEmpleado());
                 vista.getjTNombreUsuario().setText(""+listaEmpleado.get(indiceTabla).getNombreUsuarioEmpleado());
                 vista.getjLUltimaActualizacion().setText(""+listaEmpleado.get(indiceTabla).getUltima_Actualizacion_Empleado());
-                //vista.getjTDireccion().setText(retornaDirecion(listaEmpleado.get(indiceTabla).getEmpleadoID()).getDireccion());
+                vista.getjTDireccion().setText(""+listaEmpleado.get(indiceTabla).getEmpleadoID());
                 vista.getjCBTiendaID().setSelectedItem("Sede no. "+listaEmpleado.get(indiceTabla).getEmpleadoID());
                 //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
             }

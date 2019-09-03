@@ -5,6 +5,8 @@
  */
 package InternalFrame;
 
+import Controlador.ControllerDireccion;
+import JFrame.jFdireccion;
 import Modelo.*;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -184,6 +186,11 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jPingreso.add(jComboBoxTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 200, 20));
 
         jBIngresoDireccion.setText("Ingresar");
+        jBIngresoDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBIngresoDireccionActionPerformed(evt);
+            }
+        });
         jPingreso.add(jBIngresoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, -1, 30));
 
         jCActivoInt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -345,6 +352,17 @@ public class iFcliente extends javax.swing.JInternalFrame {
     private void jTFechaCreacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFechaCreacion1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFechaCreacion1ActionPerformed
+
+    private void jBIngresoDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresoDireccionActionPerformed
+        // TODO add your handling code here:
+        
+        DireccionDAO modeloDireccion = new DireccionDAO();
+        jFdireccion DireccionView = new jFdireccion();
+        ControllerDireccion controldor = new ControllerDireccion(DireccionView, modeloDireccion);
+        
+        DireccionView.setVisible(true);
+        
+    }//GEN-LAST:event_jBIngresoDireccionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

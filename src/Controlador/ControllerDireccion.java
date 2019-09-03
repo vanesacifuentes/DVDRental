@@ -70,6 +70,8 @@ public class ControllerDireccion {
             direccion.setTelefono(vista.getjTtelefono().getText());
             direccion.setCiudadID_direccion(vista.getjComboCiudad().getSelectedIndex());
             direccion.setCodigoPostal(vista.getjTCodigoPostal().getText());
+            direccion.setUltimaActualizacionDireccion(Fecha.crearFechaTimeStamp());
+            
             
             
             //if (tamaño == 0) {

@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Controlador.ControllerCliente.ListenerCliente;
 import JFrame.jFdireccion;
 import Modelo.Cliente;
 import Modelo.Direccion;
@@ -29,7 +30,10 @@ public class ControllerDireccion {
         this.vista = vista;
         this.modelo = modelo;
         
+        //Escuchas de los componentes
+        ListenerDireccion escuchador = new ListenerDireccion();
         
+        this.vista.addListenerBtnNuevo(escuchador);
         
         
     }
@@ -47,11 +51,11 @@ public class ControllerDireccion {
         }
     }
 
-        public void registrar() {
+        public void registrar() { //
 
             if (vista.getjTDireccionID().equals("")) {
-              //  vista.gestionMensajes("Ingrese el código",
-                    //    "Error de Entrada", JOptionPane.ERROR_MESSAGE);
+                vista.gestionMensajes("Ingrese el código",
+                        "Error de Entrada", JOptionPane.ERROR_MESSAGE);
                 /*else if (vista.getNivel().trim().
                            equals("Seleccionar ...")){
                    vista.gestionMensajes("Seleccione un nivel",
@@ -64,56 +68,43 @@ public class ControllerDireccion {
             direccion.setDireccion(vista.getjTDireccion2().getText());
             direccion.setDistrito(vista.getjTDistrito().getText());
             direccion.setTelefono(vista.getjTtelefono().getText());
-           // direccion.setCiudadID_direccion(vista.getjComboCiudad().getSelectedIndex());
+            direccion.setCiudadID_direccion(vista.getjComboCiudad().getSelectedIndex());
+            direccion.setCodigoPostal(vista.getjTCodigoPostal().getText());
+            
+            
+            //if (tamaño == 0) {
+                int resultado = 0;
+                //int resultado2 = 0;
+                resultado = modelo.grabarDireccion(direccion);
+
+               if (resultado == 1) {
+                    vista.gestionMensajes("Registro Grabado con éxito",
+                            "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+
+                    //Se carga 
+//                    ArrayList<Cliente> listaClientes;
+//                    listaClientes = modelo.listadoCliente();
+//                    vista.cargarClientesTabla(ListaCliente = listaClientes);
+
+                    //vista.activarControles(false); 
+                    //vista.nuevoAction();
+                } else {
+                    vista.gestionMensajes("Error al grabar",
+                            "Confirmación", JOptionPane.ERROR_MESSAGE);
+                }
+                //} else {
+                vista.gestionMensajes("Codigo ya está registrado",
+                        "Confirmación",
+                        JOptionPane.ERROR_MESSAGE);
+           
+           
  }}}           
             
-//            cliente.setTiendaIDCliente(vista.getjComboBoxTienda().getSelectedIndex()+1);
-//            direccion.setCorreoCliente(vista.getjTCorreoCliente().getText());
-//            
-//            direccion.setDireccionCliente(Integer.parseInt(vista.getjTDireccion().getText()));
-//            
-//            direccion.setCuenta_activo(true);
-//            
-//            direccion.setFechaCreacion(Fecha.crearFechaDate());
-//            
-//            direccion.setUltimaActualizacionCliente(Fecha.crearFechaTimeStamp());
-//            
-//            direccion.setActivo(1);
            
             
-/////dd
-//                //if (tamaño == 0) {
-//                int resultado = 0;
-//                //int resultado2 = 0;
-//                resultado = modelo.grabarCliente(direccion);
-//
-//                if (resultado == 1) {
-//                    vista.gestionMensajes("Registro Grabado con éxito",
-//                            "Confirmación", JOptionPane.INFORMATION_MESSAGE);
-//
-//                    //Se carga 
-////                    ArrayList<Cliente> listaClientes;
-////                    listaClientes = modelo.listadoCliente();
-////                    vista.cargarClientesTabla(ListaCliente = listaClientes);
-//
-//                    //vista.activarControles(false); 
-//                    //vista.nuevoAction();
-//                } else {
-//                    vista.gestionMensajes("Error al grabar",
-//                            "Confirmación", JOptionPane.ERROR_MESSAGE);
-//                }
-//                //} else {
-//                vista.gestionMensajes("Codigo ya está registrado",
-//                        "Confirmación",
-//                        JOptionPane.ERROR_MESSAGE);
-//            }
-//
-//        }
-//
-//    
-//    
-//
-//}
+
+                
+
     
 
 

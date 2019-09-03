@@ -5,9 +5,11 @@
  */
 package JFrame;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -287,6 +289,13 @@ public class jFdireccion extends javax.swing.JFrame {
         return jTDireccionID;
     }
     
+    public void gestionMensajes(String mensaje, String titulo, int icono) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
+    }
+    
+    public void addListenerBtnNuevo(ActionListener listenCliente) {
+        jBnuevo.addActionListener(listenCliente);
+    }
     
     
     /**

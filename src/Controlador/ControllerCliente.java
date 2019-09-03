@@ -104,7 +104,7 @@ public class ControllerCliente {
 
                     ArrayList<Cliente> listaClientes;
                     listaClientes = modelo.listadoCliente();
-                    vista.cargarClientesTabla(listaClientes);
+                    vista.cargarClientesTabla(ListaCliente = listaClientes);
 
                     //vista.activarControles(false); 
                     //vista.nuevoAction();
@@ -141,8 +141,8 @@ public class ControllerCliente {
                 vista.getjTDireccion().setText(""+ListaCliente.get(indiceTabla).getDireccionCliente());
                 vista.getjTApellidos().setText(""+ListaCliente.get(indiceTabla).getApellidoCliente());
                 vista.getjTFechaCreacion().setText(""+ListaCliente.get(indiceTabla).getFechaCreacion());
-                vista.getjTCuentaActivoBool().setText(""+ListaCliente.get(indiceTabla).getCuentActivoBool());
-                vista.getjTActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
+                //vista.getjCActivoInt().setsSelectedItem(""+ListaCliente.get(indiceTabla).getActivo());
+                //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
                 
                 
                 

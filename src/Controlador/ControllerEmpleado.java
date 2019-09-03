@@ -10,6 +10,8 @@ import Modelo.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -23,6 +25,7 @@ public class ControllerEmpleado {
     EmpleadoDAO modelo;
     iFempleado vista;
     private ArrayList<Tienda> listaTienda;
+    private ArrayList<Empleado> listaEmpleado;
 
     public ControllerEmpleado(iFempleado vista,EmpleadoDAO modelo){
         this.modelo = modelo;
@@ -31,12 +34,15 @@ public class ControllerEmpleado {
         TiendaDAO modelTienda = new TiendaDAO();
         
         this.vista.cargarTiendasCombo(listaTienda = modelTienda.listadoTiendas());
+        this.vista.cargarEmpleadosTabla(listaEmpleado = this.modelo.listadoEmpleado());
         
-        
+        //Escucha de los Componentes manejador en el controlador
+        EmpleadoListener escucha = new EmpleadoListener();
+        this.vista.AddListenerTabala(escucha);
     }
     
     
-    public class PeliculaListener implements ActionListener {
+    public class EmpleadoListener implements ActionListener, MouseListener{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -49,7 +55,58 @@ public class ControllerEmpleado {
             }
         }
 
+        @Override
+        public void mouseClicked(MouseEvent me) {
+            if (vista.getjTableCliente().getSelectedRow() == -1) {
+                if (vista.getjTableCliente().getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "No hay registros");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
+                }
+            } else {
+                //Imprime en los campos de la interfaz los valores correspondientes al empleado de la fila seleccionado en la tabla
+                int indiceTabla = vista.getjTableCliente().getSelectedRow();
+                vista.getjTEmpleadoID().setText("" + listaEmpleado.get(indiceTabla).getEmpleadoID());
+                vista.getjTnombreEmpleado().setText(""+listaEmpleado.get(indiceTabla).getNombreEmpleado());
+                vista.getjTApellidosEmpleado().setText(""+listaEmpleado.get(indiceTabla).getApellidoEmpleado());
+                vista.getjTCorreoEmpleado().setText(""+listaEmpleado.get(indiceTabla).getCorreoEmpleado());
+                vista.getjPassContrasena().setText(""+listaEmpleado.get(indiceTabla).getContrasenaEmpleado());
+                vista.getjTNombreUsuario().setText(""+listaEmpleado.get(indiceTabla).getNombreUsuarioEmpleado());
+                vista.getjLUltimaActualizacion().setText(""+listaEmpleado.get(indiceTabla).getUltima_Actualizacion_Empleado());
+                //vista.getjTDireccion().setText(retornaDirecion(listaEmpleado.get(indiceTabla).getEmpleadoID()).getDireccion());
+                vista.getjCBTiendaID().setSelectedItem("Sede no. "+listaEmpleado.get(indiceTabla).getEmpleadoID());
+                //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
+            }
+            
+        }
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent me) {
+        }
+
     }
+    
+    
+//    public Direccion retornaDirecion(int id_direccion)
+//    {//retorna una direccion de acuerdo a su ID
+//        
+//        for(int a =0;a < listaDireccion.size();a++)
+//        {
+//            
+//        }
+//    }
     
     
     public void registrar(){
@@ -71,11 +128,10 @@ public class ControllerEmpleado {
             //empleado.setActivo(vista.getjTCuentaActivo1().get());
             empleado.setNombreUsuarioEmpleado(vista.getjTNombreUsuario().getText());
             empleado.setContrasenaEmpleado(vista.getjPassContrasena().getName());
-            //empleado.setUltimaActualizacion(Fecha.crearFecha());
+            
             //empleado-imagen
 
-            int tamaño = 0;
-            tamaño = modelo.listadoEmpleado(tamaño).size();
+            
 
             //if (tamaño == 0) {
                 int resultado = 0;
@@ -88,7 +144,7 @@ public class ControllerEmpleado {
                             "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
                     ArrayList<Empleado> listaEmpleados;
-                    listaEmpleados = modelo.listadoEmpleado(tamaño);
+                    listaEmpleados = modelo.listadoEmpleado();
                    vista.cargarEmpleadosTabla(listaEmpleados);
 
                     //vista.activarControles(false); 

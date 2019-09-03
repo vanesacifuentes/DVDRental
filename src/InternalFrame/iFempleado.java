@@ -15,7 +15,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import Modelo.*;
+import java.awt.event.MouseListener;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -60,8 +62,8 @@ public class iFempleado extends javax.swing.JInternalFrame {
         jTEmpleadoID = new javax.swing.JTextField();
         jLTienda1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLUltimaActualizacion = new javax.swing.JLabel();
         jPtabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableEmpleado = new javax.swing.JTable();
@@ -199,11 +201,9 @@ public class iFempleado extends javax.swing.JInternalFrame {
         });
         jPingreso.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 80, -1));
 
-        jLabel1.setText("Activo");
-        jPingreso.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 314, -1, 20));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPingreso.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, -1));
+        jLabel2.setText("Ultima Actualización:");
+        jPingreso.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
+        jPingreso.add(jLUltimaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 324, 150, 30));
 
         jPanelEmpleado.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 660, 390));
 
@@ -372,26 +372,22 @@ public class iFempleado extends javax.swing.JInternalFrame {
     public void cargarEmpleadosTabla(ArrayList<Empleado> listadoEmpleado)
     {
         //System.err.println(listadoEmpleado.get(3).getContrasenaEmpleado());
-         DefaultTableModel modelo;
-        modelo = (DefaultTableModel) jTableEmpleado.getModel();        
+         DefaultTableModel defaultcombo;
+        defaultcombo = (DefaultTableModel) jTableEmpleado.getModel();        
         limpiarListadoTabla();
         for(int i= 0; i < listadoEmpleado.size(); i++){
-              modelo.addRow(new Object[]{
+              defaultcombo.addRow(new Object[]{
               listadoEmpleado.get(i).getEmpleadoID(),
               listadoEmpleado.get(i).getNombreEmpleado(),
-              //listadoPelicula.get(i).getDescripcion(),
               listadoEmpleado.get(i).getNombreUsuarioEmpleado(),
-              //listadoPelicula.get(i).getLenguajeID(),
-              //listadoPelicula.get(i).getDuracionRenta(),
-             // listadoPelicula.get(i).getTarifaRenta(),
               listadoEmpleado.get(i).getDireccionID_Empleado(),
-              //listadoPelicula.get(i).getCostoReemplazo(),
-              //listadoPelicula.get(i).getClasificacion(),
-              //listadoPelicula.get(i).getUltimaActualizacion(),
-              //listadoPelicula.get(i).getCaracteristicasEspeciales(),
-              //listadoPelicula.get(i).getTextoCompleto()});      
-     
         });}
+        
+        
+        //Muestra en el campo de texto de la Interfaz el ID cliente Consecutivo
+        int valor = Integer.parseInt(""+defaultcombo.getValueAt(defaultcombo.getRowCount()-1, 0))+1;
+        jTEmpleadoID.setText(""+valor);
+        jTEmpleadoID.setEnabled(false);
         
     }
     
@@ -417,7 +413,6 @@ public class iFempleado extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jCBTiendaID;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLApellidos;
     private javax.swing.JLabel jLContrasena;
     private javax.swing.JLabel jLCorreo;
@@ -425,7 +420,8 @@ public class iFempleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLEmpleadoID;
     private javax.swing.JLabel jLNombreEmpleado;
     private javax.swing.JLabel jLTienda1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLUltimaActualizacion;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLactivo;
     private javax.swing.JPanel jPanelEmpleado;
     private javax.swing.JPasswordField jPassContrasena;
@@ -442,6 +438,11 @@ public class iFempleado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTnombreEmpleado;
     // End of variables declaration//GEN-END:variables
 
+    
+    public void AddListenerTabala(MouseListener ml){
+        jTableEmpleado.addMouseListener(ml);
+    }
+    
     public JButton getjBeliminar() {
         return jBeliminar;
     }
@@ -472,6 +473,10 @@ public class iFempleado extends javax.swing.JInternalFrame {
 
     public JTextField getjTCorreoEmpleado() {
         return jTCorreoEmpleado;
+    }
+
+    public JLabel getjLUltimaActualizacion() {
+        return jLUltimaActualizacion;
     }
 
     

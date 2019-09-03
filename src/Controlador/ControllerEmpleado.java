@@ -10,6 +10,8 @@ import Modelo.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -23,6 +25,7 @@ public class ControllerEmpleado {
     EmpleadoDAO modelo;
     iFempleado vista;
     private ArrayList<Tienda> listaTienda;
+    private ArrayList<Empleado> listaEmpleado;
 
     public ControllerEmpleado(iFempleado vista,EmpleadoDAO modelo){
         this.modelo = modelo;
@@ -31,12 +34,15 @@ public class ControllerEmpleado {
         TiendaDAO modelTienda = new TiendaDAO();
         
         this.vista.cargarTiendasCombo(listaTienda = modelTienda.listadoTiendas());
-        this.vista.cargarEmpleadosTabla(this.modelo.listadoEmpleado());
+        this.vista.cargarEmpleadosTabla(listaEmpleado = this.modelo.listadoEmpleado());
         
+        //Escucha de los Componentes
+        EmpleadoListener escucha = new EmpleadoListener();
+        this.vista.AddListenerTabala(escucha);
     }
     
     
-    public class PeliculaListener implements ActionListener {
+    public class EmpleadoListener implements ActionListener, MouseListener{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -47,6 +53,51 @@ public class ControllerEmpleado {
             } else if (ae.getSource() == vista.getjBmodificar()) {
                 actualizar();
             }
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent me) {
+            if (vista.getjTableCliente().getSelectedRow() == -1) {
+                if (vista.getjTableCliente().getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "No hay registros");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
+                }
+            } else {
+                
+                int indiceTabla = vista.getjTableCliente().getSelectedRow();
+                vista.getjTEmpleadoID().setText("" + listaEmpleado.get(indiceTabla).getEmpleadoID());
+                vista.getjTApellidosEmpleado().setText(""+listaEmpleado.get(indiceTabla).getApellidoEmpleado());
+                vista.getjTCorreoEmpleado().setText(""+listaEmpleado.get(indiceTabla).getCorreoEmpleado());
+                vista.getjPassContrasena().setText(""+listaEmpleado.get(indiceTabla).getContrasenaEmpleado());
+                vista.getjTNombreUsuario().setText(""+listaEmpleado.get(indiceTabla).getNombreUsuarioEmpleado());
+                vista.getjLUltimaActualizacion().setText(""+listaEmpleado.get(indiceTabla).getUltima_Actualizacion_Empleado());
+                //vista.getjCActivoInt().setsSelectedItem(""+ListaCliente.get(indiceTabla).getActivo());
+                //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
+                
+                
+                
+                
+
+            }
+            
+            
+        }
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent me) {
         }
 
     }

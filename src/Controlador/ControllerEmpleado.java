@@ -36,7 +36,7 @@ public class ControllerEmpleado {
         this.vista.cargarTiendasCombo(listaTienda = modelTienda.listadoTiendas());
         this.vista.cargarEmpleadosTabla(listaEmpleado = this.modelo.listadoEmpleado());
         
-        //Escucha de los Componentes
+        //Escucha de los Componentes manejador en el controlador
         EmpleadoListener escucha = new EmpleadoListener();
         this.vista.AddListenerTabala(escucha);
     }

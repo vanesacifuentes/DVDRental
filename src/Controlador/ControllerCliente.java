@@ -46,7 +46,7 @@ public class ControllerCliente {
         ListenerCliente escuchador = new ListenerCliente();
         
         this.vista.addListenerBtnNuevo(escuchador);
-        this.vista.addMouseListenerTabla(escuchador);
+        this.vista.addMouseListener(escuchador);
             
     }
 
@@ -125,7 +125,6 @@ public class ControllerCliente {
         }
 
         public void Actualizar() {
-
         }
 
         @Override

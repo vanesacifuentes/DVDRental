@@ -345,8 +345,8 @@ public class iFcliente extends javax.swing.JInternalFrame {
 
     private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
         //Se llama a este Metodo cuando se selecciona un elemento de la tabla
-        
-        
+
+
     }//GEN-LAST:event_jTableClienteMouseClicked
 
     private void jTFechaCreacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFechaCreacion1ActionPerformed
@@ -355,13 +355,13 @@ public class iFcliente extends javax.swing.JInternalFrame {
 
     private void jBIngresoDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresoDireccionActionPerformed
         // TODO add your handling code here:
-        
+
         DireccionDAO modeloDireccion = new DireccionDAO();
         jFdireccion DireccionView = new jFdireccion();
         ControllerDireccion controldor = new ControllerDireccion(DireccionView, modeloDireccion);
-        
+
         DireccionView.setVisible(true);
-        
+
     }//GEN-LAST:event_jBIngresoDireccionActionPerformed
 
 
@@ -429,8 +429,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
         return jCActivoInt;
     }
 
-  
-
     public JTextField getjTApellidos() {
         return jTApellidos;
     }
@@ -446,7 +444,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
     public JComboBox<String> getjComboBoxTienda() {
         return jComboBoxTienda;
     }
-    
 
     public void addListenerBtnNuevo(ActionListener listenCliente) {
         jBnuevo.addActionListener(listenCliente);
@@ -454,12 +451,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
 
     public void gestionMensajes(String mensaje, String titulo, int icono) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
-    }
-    
-    public void addMouseListenerTabla(MouseListener listener)
-    {
-        jTableCliente.addMouseListener(listener);
-        
     }
 
     public void cargarClientesTabla(ArrayList<Cliente> listadoCliente) {
@@ -473,48 +464,44 @@ public class iFcliente extends javax.swing.JInternalFrame {
                 listadoCliente.get(i).getCorreoCliente(),
                 listadoCliente.get(i).getDireccionCliente(),});
         }
-        
+
         //Muestra en el campo de texto de la Interfaz el ID cliente Consecutivo
-        int valor = Integer.parseInt(""+defaultCombo.getValueAt(defaultCombo.getRowCount()-1, 0))+1;
-        jTClienteID.setText(""+valor);
+        int valor = Integer.parseInt("" + defaultCombo.getValueAt(defaultCombo.getRowCount() - 1, 0)) + 1;
+        jTClienteID.setText("" + valor);
         jTClienteID.setEnabled(false);
     }
-    
+
     //Carga el listado de tiendas al combobox Tienda
-    public void cargarTiendasCombo(ArrayList<Tienda> listadoTienda)
-     {
-         DefaultComboBoxModel model;
-         
-         String[] arregloTiendas = new String[listadoTienda.size()]; 
-         
-         for(int a=0; a < listadoTienda.size();a++)
-         {
-             arregloTiendas[a] = "Tienda " +listadoTienda.get(a).getTiendaID();
-             
-         }
-         
-         model = new DefaultComboBoxModel(arregloTiendas);
-         
-         jComboBoxTienda.setModel(model);
-     }
-    
+    public void cargarTiendasCombo(ArrayList<Tienda> listadoTienda) {
+        DefaultComboBoxModel model;
+
+        String[] arregloTiendas = new String[listadoTienda.size()];
+
+        for (int a = 0; a < listadoTienda.size(); a++) {
+            arregloTiendas[a] = "Tienda " + listadoTienda.get(a).getTiendaID();
+
+        }
+
+        model = new DefaultComboBoxModel(arregloTiendas);
+
+        jComboBoxTienda.setModel(model);
+    }
+
     //Carga el listado del campo activo en entero 0 para activo y 1 para inactivo
-    public void cargarActivoIntCombo(ArrayList<Cliente> listadoCliente)
-     {
-         DefaultComboBoxModel model;
-         
-         String[] arregloCliente = new String[listadoCliente.size()]; 
-         
-         for(int a=0; a < listadoCliente.size();a++)
-         {
-             arregloCliente [a] = "Activo: " +listadoCliente.get(a).getActivo();
-             
-         }
-         
-         model = new DefaultComboBoxModel();
-         
-         jCActivoInt.setModel(model);
-     }
+    public void cargarActivoIntCombo(ArrayList<Cliente> listadoCliente) {
+        DefaultComboBoxModel model;
+
+        String[] arregloCliente = new String[listadoCliente.size()];
+
+        for (int a = 0; a < listadoCliente.size(); a++) {
+            arregloCliente[a] = "Activo: " + listadoCliente.get(a).getActivo();
+
+        }
+
+        model = new DefaultComboBoxModel();
+
+        jCActivoInt.setModel(model);
+    }
 
     private void limpiarListadoTabla() {
         DefaultTableModel modelo;
@@ -523,8 +510,5 @@ public class iFcliente extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
-
-   
-    
 
 }

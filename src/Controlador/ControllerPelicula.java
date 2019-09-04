@@ -54,7 +54,7 @@ public class ControllerPelicula {
         PeliculaListener listen = new PeliculaListener();
         this.vista.addListenerBtnNuevo(listen);
         this.vista.getjBmodificar().addActionListener(listen);
-        this.vista.addMouseListener(listen);
+        this.vista.addMouseListenerTabla(listen);
 
     }
 
@@ -85,16 +85,21 @@ public class ControllerPelicula {
                 }
             } else {
 
-//                int indiceTabla = vista.getjTable2().getSelectedRow();
-//
-//                vista.getjTid_peli().setText("" + ListaCliente.get(indiceTabla).getClienteID());
-//                vista.getjTnombreCliente().setText("" + ListaCliente.get(indiceTabla).getNombreCliente());
-//                vista.getjTCorreoCliente().setText("" + ListaCliente.get(indiceTabla).getCorreoCliente());
-//                vista.getjTDireccion().setText("" + ListaCliente.get(indiceTabla).getDireccionCliente());
-//                vista.getjTApellidos().setText("" + ListaCliente.get(indiceTabla).getApellidoCliente());
-//                vista.getjTFechaCreacion().setText("" + ListaCliente.get(indiceTabla).getFechaCreacion());
-//                //vista.getjCActivoInt().setsSelectedItem(""+ListaCliente.get(indiceTabla).getActivo());
-//                //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
+                int indiceTabla = vista.getjTable2().getSelectedRow();
+                
+                ArrayList<Pelicula> ListaPeliculas = modelo.listadoPeliculas();
+                vista.getjTid_peli().setText("" + ListaPeliculas.get(indiceTabla).getPeliculaId());
+                vista.getjTtitulo().setText("" + ListaPeliculas.get(indiceTabla).getTitulo());
+                vista.getjTaño().setText("" + ListaPeliculas.get(indiceTabla).getAnhoLanzamiento());
+                vista.getjTtarifa().setText("" + ListaPeliculas.get(indiceTabla).getTarifaRenta());
+                vista.getjTDuracionAlquiler().setText("" + ListaPeliculas.get(indiceTabla).getDuracionRenta());
+                vista.getjTcostoRe().setText("" + ListaPeliculas.get(indiceTabla).getCostoReemplazo());
+                vista.getjTduracion().setText("" + ListaPeliculas.get(indiceTabla).getLongitud());
+                vista.getjTcarateristicas().setText(""+ListaPeliculas.get(indiceTabla).getCaracteristicasEspeciales());
+                vista.getjTtextoCompleto().setText(""+ListaPeliculas.get(indiceTabla).getTextoCompleto());
+                vista.gettAsinopsis().setText(""+ListaPeliculas.get(indiceTabla).getDescripcion());
+                vista.getjCBClasificacion().setSelectedItem(ListaPeliculas.get(indiceTabla).getClasificacion());
+                //vista.getjCBactor().setSelectedIndex(listaActores.get(indiceTabla));
 
             }
         }

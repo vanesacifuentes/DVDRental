@@ -46,6 +46,7 @@ public class ControllerCliente {
         ListenerCliente escuchador = new ListenerCliente();
         
         this.vista.addListenerBtnNuevo(escuchador);
+        this.vista.addListenerBtnModificar(escuchador);
         this.vista.addMouseListenerTabla(escuchador);
             
     }
@@ -58,7 +59,8 @@ public class ControllerCliente {
                 JOptionPane.showMessageDialog(null, "Prueba");
                 registrar();
             } else if (ae.getSource() == vista.getjBmodificar()) {
-                //actualizar();
+                JOptionPane.showMessageDialog(null, "Prueba");
+                actualizar();
             }
         }
 
@@ -124,7 +126,46 @@ public class ControllerCliente {
 
         }
 
-        public void Actualizar() {
+        public void actualizar() {
+            
+            Cliente cliente = new Cliente();
+             
+            //Se configura los datos en el objeto cliente de la clase
+            //Cliente
+            cliente.setClienteID(Integer.parseInt(vista.getjTClienteID().toString()));
+            cliente.setNombreCliente(vista.getjTnombreCliente().toString());
+            cliente.setApellidoCliente(vista.getjTApellidos().toString());
+            cliente.setDireccionCliente(Integer.parseInt(vista.getjTDireccion().toString()));
+            cliente.setCorreoCliente(vista.getjTCorreoCliente().toString()); 
+            //cliente.setTiendaIDCliente(Integer.parseInt(vista.getjComboBoxTienda().toString()));
+            //cliente.setActivo(Integer.parseInt(vista.getjCActivoInt().toString()));
+            
+                
+                         
+            if(modelo.modificarCliente(cliente) == 1){
+                vista.gestionMensajes(
+                        "Actualización exitosa",
+                        "Confirmación ", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                                        
+//                vista.activarControles(false); 
+//                vista.nuevoAction();
+                ArrayList<Cliente> listadoiClientes; 
+                listadoiClientes = modelo.listadoCliente();
+                vista.cargarClientesTabla(listadoiClientes);           
+            } else {
+                vista.gestionMensajes(
+                        "Actualización Falida jajaja",
+                        "Confirmación ", 
+                        JOptionPane.ERROR_MESSAGE);                 
+            }  
+            
+            
+            
+            
+            
+            
+            
 
         }
 
@@ -148,7 +189,7 @@ public class ControllerCliente {
                 vista.getjTFechaCreacion().setText(""+ListaClientes.get(indiceTabla).getFechaCreacion());
                 //vista.getjCActivoInt().setsSelectedItem(""+ListaCliente.get(indiceTabla).getActivo());
                 //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
-                
+                //vista.getjComboBoxTienda().setSelectedIndex(indiceTabla);
  
 
             }

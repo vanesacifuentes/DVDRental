@@ -10,12 +10,14 @@ import JFrame.jFcategoria;
 import JFrame.jFlenguaje;
 import java.awt.TextArea;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -506,13 +508,19 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jBnuevo.addActionListener(listenPelicula);       
     }
     
+    public void addMouseListenerTabla(MouseListener listener)
+    {
+        jTable2.addMouseListener(listener);
+        
+    }
+    
     
     public void cargarPeliculasTabla(ArrayList<Pelicula> listadoPelicula){
-        DefaultTableModel modelo;
-        modelo = (DefaultTableModel) jTable2.getModel();        
+        DefaultTableModel defaultCombo;
+        defaultCombo = (DefaultTableModel) jTable2.getModel();        
         limpiarListadoTabla();
         for(int i= 0; i < listadoPelicula.size(); i++){
-              modelo.addRow(new Object[]{
+              defaultCombo.addRow(new Object[]{
               listadoPelicula.get(i).getPeliculaId(),
               listadoPelicula.get(i).getTitulo(),
               //listadoPelicula.get(i).getDescripcion(),
@@ -528,6 +536,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
               //listadoPelicula.get(i).getTextoCompleto()});      
      
         });}
+        
+        //Muestra en el campo de texto de la Interfaz el ID cliente Consecutivo
+        int valor = Integer.parseInt(""+defaultCombo.getValueAt(defaultCombo.getRowCount()-1, 0))+1;
+        jTid_peli.setText(""+valor);
+        jTid_peli.setEnabled(false);
                       
     }
     
@@ -649,6 +662,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     public JTextField getjTcostoRe() {
         return jTcostoRe;
     }
+
+    public JTable getjTable2() {
+        return jTable2;
+    }
+    
 
     public JTextField getjTduracion() {
         return jTduracion;

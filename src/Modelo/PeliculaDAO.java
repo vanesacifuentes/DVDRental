@@ -33,19 +33,19 @@ public class PeliculaDAO {
             
             pstm = con.prepareStatement(sql);
             
-            pstm.setInt(1,p.getPeliculaId());
-            pstm.setString(2,p.getTitulo());
-            pstm.setString(3,p.getDescripcion());
-            pstm.setInt(4,p.getAnhoLanzamiento());
-            pstm.setInt(5,p.getLenguajeID());
-            pstm.setInt(6,p.getDuracionRenta());
-            pstm.setInt(7,p.getTarifaRenta());
-            pstm.setInt(8,p.getLongitud());
-            pstm.setDouble(9,p.getCostoReemplazo());
-            //pstm.setN(10,'G');
-            pstm.setTimestamp(11, p.getUltimaActualizacion());
-            pstm.setString(12, p.getCaracteristicasEspeciales().toString());
-            pstm.setString(13, p.getTextoCompleto());
+            pstm.setInt(1,1004);
+            pstm.setString(2,"GS");
+            pstm.setString(3,"FXZJSZ");
+            pstm.setInt(4,2006);
+            pstm.setInt(5,5);
+            pstm.setInt(6,5);
+            pstm.setInt(7,5);
+            pstm.setInt(8,5);
+            pstm.setDouble(9,5);
+            pstm.setNull(10,Types.NULL);
+            pstm.setTimestamp(11, Fecha.crearFechaTimeStamp());
+            pstm.setNull(12,Types.NULL);
+            pstm.setNull(13,Types.NULL);
             
             rtdo = pstm.executeUpdate();  
         }

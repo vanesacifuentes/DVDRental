@@ -15,7 +15,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import Modelo.*;
+import java.awt.event.MouseListener;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -55,15 +57,17 @@ public class iFempleado extends javax.swing.JInternalFrame {
         jLApellidos = new javax.swing.JLabel();
         jTApellidosEmpleado = new javax.swing.JTextField();
         jCBTiendaID = new javax.swing.JComboBox<>();
-        jLactivoEmpleado = new javax.swing.JLabel();
-        jTCuentaActivo1 = new javax.swing.JTextField();
         jPassContrasena = new javax.swing.JPasswordField();
         jBFoto = new javax.swing.JButton();
         jTEmpleadoID = new javax.swing.JTextField();
         jLTienda1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLUltimaActualizacion = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jPtabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableCliente = new javax.swing.JTable();
+        jTableEmpleado = new javax.swing.JTable();
         jPbotones = new javax.swing.JPanel();
         jBnuevo = new javax.swing.JButton();
         jBmodificar = new javax.swing.JButton();
@@ -90,13 +94,13 @@ public class iFempleado extends javax.swing.JInternalFrame {
         jLEmpleadoID.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLEmpleadoID.setForeground(new java.awt.Color(51, 51, 51));
         jLEmpleadoID.setText("Empleado ID:");
-        jPingreso.add(jLEmpleadoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, 20));
+        jPingreso.add(jLEmpleadoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, 20));
 
         jLNombreEmpleado.setBackground(new java.awt.Color(238, 112, 82));
         jLNombreEmpleado.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLNombreEmpleado.setForeground(new java.awt.Color(51, 51, 51));
         jLNombreEmpleado.setText("Nombres:");
-        jPingreso.add(jLNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, 30));
+        jPingreso.add(jLNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, 20));
 
         jLactivo.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLactivo.setForeground(new java.awt.Color(51, 51, 51));
@@ -111,7 +115,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
                 jTnombreEmpleadoActionPerformed(evt);
             }
         });
-        jPingreso.add(jTnombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 240, 20));
+        jPingreso.add(jTnombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 240, 20));
 
         jTCorreoEmpleado.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTCorreoEmpleado.setForeground(new java.awt.Color(102, 102, 102));
@@ -131,12 +135,12 @@ public class iFempleado extends javax.swing.JInternalFrame {
                 jTDireccionActionPerformed(evt);
             }
         });
-        jPingreso.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 240, 20));
+        jPingreso.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 130, 20));
 
         jLContrasena.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLContrasena.setForeground(new java.awt.Color(51, 51, 51));
         jLContrasena.setText("Contraseña:");
-        jPingreso.add(jLContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, -1, -1));
+        jPingreso.add(jLContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
 
         jLCorreo.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLCorreo.setForeground(new java.awt.Color(51, 51, 51));
@@ -146,20 +150,20 @@ public class iFempleado extends javax.swing.JInternalFrame {
         jLDireccion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLDireccion.setForeground(new java.awt.Color(51, 51, 51));
         jLDireccion.setText("Direccion:");
-        jPingreso.add(jLDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
+        jPingreso.add(jLDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
 
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPingreso.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 20, 20));
+        jPingreso.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 20, 20));
 
         jLApellidos.setBackground(new java.awt.Color(238, 112, 82));
         jLApellidos.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLApellidos.setForeground(new java.awt.Color(51, 51, 51));
         jLApellidos.setText("Apellidos:");
-        jPingreso.add(jLApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, 20));
+        jPingreso.add(jLApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, 20));
 
         jTApellidosEmpleado.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTApellidosEmpleado.setForeground(new java.awt.Color(102, 102, 102));
@@ -169,26 +173,11 @@ public class iFempleado extends javax.swing.JInternalFrame {
                 jTApellidosEmpleadoActionPerformed(evt);
             }
         });
-        jPingreso.add(jTApellidosEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 240, -1));
+        jPingreso.add(jTApellidosEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 240, -1));
 
         jCBTiendaID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPingreso.add(jCBTiendaID, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 190, -1));
-
-        jLactivoEmpleado.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
-        jLactivoEmpleado.setForeground(new java.awt.Color(51, 51, 51));
-        jLactivoEmpleado.setText("Activo:");
-        jPingreso.add(jLactivoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
-
-        jTCuentaActivo1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTCuentaActivo1.setForeground(new java.awt.Color(102, 102, 102));
-        jTCuentaActivo1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTCuentaActivo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCuentaActivo1ActionPerformed(evt);
-            }
-        });
-        jPingreso.add(jTCuentaActivo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 250, 20));
-        jPingreso.add(jPassContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 250, 20));
+        jPingreso.add(jCBTiendaID, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 190, -1));
+        jPingreso.add(jPassContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 250, 20));
 
         jBFoto.setText("Picture");
         jBFoto.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +186,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
             }
         });
         jPingreso.add(jBFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 100, 120));
-        jPingreso.add(jTEmpleadoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 110, -1));
+        jPingreso.add(jTEmpleadoID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 110, -1));
 
         jLTienda1.setBackground(new java.awt.Color(238, 112, 82));
         jLTienda1.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
@@ -205,15 +194,35 @@ public class iFempleado extends javax.swing.JInternalFrame {
         jLTienda1.setText("Tienda:");
         jPingreso.add(jLTienda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, 20));
 
+        jButton1.setText("Select");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPingreso.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 80, -1));
+
+        jLabel2.setText("Ultima Actualización:");
+        jPingreso.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
+        jPingreso.add(jLUltimaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 250, 20));
+
+        jButton3.setText("ingresar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPingreso.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 343, -1, 30));
+
         jPanelEmpleado.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 660, 390));
 
         jPtabla.setBackground(new java.awt.Color(255, 255, 255));
         jPtabla.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(153, 153, 153))); // NOI18N
         jPtabla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTableCliente.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTableCliente.setForeground(new java.awt.Color(51, 51, 51));
-        jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEmpleado.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTableEmpleado.setForeground(new java.awt.Color(51, 51, 51));
+        jTableEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -232,9 +241,9 @@ public class iFempleado extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jTableCliente.setColumnSelectionAllowed(true);
-        jScrollPane2.setViewportView(jTableCliente);
-        jTableCliente.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        jTableEmpleado.setColumnSelectionAllowed(true);
+        jScrollPane2.setViewportView(jTableEmpleado);
+        jTableEmpleado.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jPtabla.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 660, 140));
 
@@ -290,7 +299,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
+            .addGap(0, 655, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -332,10 +341,6 @@ public class iFempleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBnuevoActionPerformed
 
-    private void jTCuentaActivo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCuentaActivo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTCuentaActivo1ActionPerformed
-
     private void jBFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFotoActionPerformed
         // TODO add your handling code here:
        JFileChooser fileChooser = new JFileChooser();
@@ -352,6 +357,14 @@ public class iFempleado extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jBFotoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     public void cargarTiendasCombo(ArrayList<Tienda> listadoTiendas){ 
        DefaultComboBoxModel model; 
          
@@ -359,41 +372,41 @@ public class iFempleado extends javax.swing.JInternalFrame {
          
          for(int a = 0; a < listadoTiendas.size(); a++)
          {
-             arregloActores[a] = ""+listadoTiendas.get(a).getTiendaID();
+             arregloActores[a] = "Sede no. "+listadoTiendas.get(a).getTiendaID();
          }
          model = new DefaultComboBoxModel(arregloActores);
          
          jCBTiendaID.setModel(model); 
     }
     
+    
+    
+    
     public void cargarEmpleadosTabla(ArrayList<Empleado> listadoEmpleado)
     {
-         DefaultTableModel modelo;
-        modelo = (DefaultTableModel) jTableCliente.getModel();        
+        //System.err.println(listadoEmpleado.get(3).getContrasenaEmpleado());
+         DefaultTableModel defaultcombo;
+        defaultcombo = (DefaultTableModel) jTableEmpleado.getModel();        
         limpiarListadoTabla();
         for(int i= 0; i < listadoEmpleado.size(); i++){
-              modelo.addRow(new Object[]{
+              defaultcombo.addRow(new Object[]{
               listadoEmpleado.get(i).getEmpleadoID(),
               listadoEmpleado.get(i).getNombreEmpleado(),
-              //listadoPelicula.get(i).getDescripcion(),
               listadoEmpleado.get(i).getNombreUsuarioEmpleado(),
-              //listadoPelicula.get(i).getLenguajeID(),
-              //listadoPelicula.get(i).getDuracionRenta(),
-             // listadoPelicula.get(i).getTarifaRenta(),
               listadoEmpleado.get(i).getDireccionID_Empleado(),
-              //listadoPelicula.get(i).getCostoReemplazo(),
-              //listadoPelicula.get(i).getClasificacion(),
-              //listadoPelicula.get(i).getUltimaActualizacion(),
-              //listadoPelicula.get(i).getCaracteristicasEspeciales(),
-              //listadoPelicula.get(i).getTextoCompleto()});      
-     
         });}
+        
+        
+        //Muestra en el campo de texto de la Interfaz el ID cliente Consecutivo
+        int valor = Integer.parseInt(""+defaultcombo.getValueAt(defaultcombo.getRowCount()-1, 0))+1;
+        jTEmpleadoID.setText(""+valor);
+        jTEmpleadoID.setEnabled(false);
         
     }
     
     private void limpiarListadoTabla(){
         DefaultTableModel modelo;
-        modelo = (DefaultTableModel) jTableCliente.getModel();
+        modelo = (DefaultTableModel) jTableEmpleado.getModel();
         for(int i=modelo.getRowCount()-1; i>=0 ; i--){
             modelo.removeRow(i);
         }
@@ -410,7 +423,9 @@ public class iFempleado extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jCBTiendaID;
     private javax.swing.JLabel jLApellidos;
     private javax.swing.JLabel jLContrasena;
@@ -419,8 +434,9 @@ public class iFempleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLEmpleadoID;
     private javax.swing.JLabel jLNombreEmpleado;
     private javax.swing.JLabel jLTienda1;
+    private javax.swing.JLabel jLUltimaActualizacion;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLactivo;
-    private javax.swing.JLabel jLactivoEmpleado;
     private javax.swing.JPanel jPanelEmpleado;
     private javax.swing.JPasswordField jPassContrasena;
     private javax.swing.JPanel jPbotones;
@@ -429,14 +445,18 @@ public class iFempleado extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTApellidosEmpleado;
     private javax.swing.JTextField jTCorreoEmpleado;
-    private javax.swing.JTextField jTCuentaActivo1;
     private javax.swing.JTextField jTDireccion;
     private javax.swing.JTextField jTEmpleadoID;
     private javax.swing.JTextField jTNombreUsuario;
-    private javax.swing.JTable jTableCliente;
+    private javax.swing.JTable jTableEmpleado;
     private javax.swing.JTextField jTnombreEmpleado;
     // End of variables declaration//GEN-END:variables
 
+    
+    public void AddListenerTabala(MouseListener ml){
+        jTableEmpleado.addMouseListener(ml);
+    }
+    
     public JButton getjBeliminar() {
         return jBeliminar;
     }
@@ -469,9 +489,11 @@ public class iFempleado extends javax.swing.JInternalFrame {
         return jTCorreoEmpleado;
     }
 
-    public JTextField getjTCuentaActivo1() {
-        return jTCuentaActivo1;
+    public JLabel getjLUltimaActualizacion() {
+        return jLUltimaActualizacion;
     }
+
+    
 
     public JTextField getjTDireccion() {
         return jTDireccion;
@@ -482,7 +504,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
     }
 
     public JTable getjTableCliente() {
-        return jTableCliente;
+        return jTableEmpleado;
     }
 
     public JTextField getjTnombreEmpleado() {

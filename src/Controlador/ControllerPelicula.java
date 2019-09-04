@@ -14,6 +14,8 @@ import Modelo.PeliculaDAO;
 import Modelo.CategoriaDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -36,26 +38,28 @@ public class ControllerPelicula {
         CategoriaDAO modelCat = new CategoriaDAO();
         LenguajeDAO modelLenguaje = new LenguajeDAO();
         ActorDAO modelActor = new ActorDAO();
-        
+
         //Se carga en la Tabla la informacion proveniente de la base de datos
         this.vista.cargarPeliculasTabla(this.modelo.listadoPeliculas());
-        
+
         //Se carga en los ComboBox de la interfaz la informacion proveniente de las tablas 
         this.vista.cargarCategoriasCombo(listaCategorias = modelCat.listadoCateogoria());
         this.vista.cargarLenguajesCombo(listaLenguajes = modelLenguaje.listadoLenguajes());
-        this.vista.cargarActorCombo(listaActores = modelActor.listadoActores());        
-       
+        this.vista.cargarActorCombo(listaActores = modelActor.listadoActores());
+
         ///Se carga en el ComboBox de Clasificacion la info de clasificacion
         this.vista.cargarClasificacionCombo();
-        
+
         //Se añade las escuchas a los botones
         PeliculaListener listen = new PeliculaListener();
-        this.vista.getjBnuevo().addActionListener(listen);
+        this.vista.addListenerBtnNuevo(listen);
         this.vista.getjBmodificar().addActionListener(listen);
+        this.vista.addMouseListener(listen);
+
     }
 
-    
-    public class PeliculaListener implements ActionListener{
+    public class PeliculaListener implements ActionListener, MouseListener {
+
         //Clase manejadora de los eventos del IFpelicula
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -65,16 +69,53 @@ public class ControllerPelicula {
                 registrar();
             } else if (ae.getSource() == vista.getjBmodificar()) {
                 actualizar();
-            }else if(ae.getSource()==vista.getjBeliminar())
-            {
+            } else if (ae.getSource() == vista.getjBeliminar()) {
                 delete();
             }
-            
+
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent me) {
+            if (vista.getjTable2().getSelectedRow() == -1) {
+                if (vista.getjTable2().getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "No hay registros");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
+                }
+            } else {
+
+//                int indiceTabla = vista.getjTable2().getSelectedRow();
+//
+//                vista.getjTid_peli().setText("" + ListaCliente.get(indiceTabla).getClienteID());
+//                vista.getjTnombreCliente().setText("" + ListaCliente.get(indiceTabla).getNombreCliente());
+//                vista.getjTCorreoCliente().setText("" + ListaCliente.get(indiceTabla).getCorreoCliente());
+//                vista.getjTDireccion().setText("" + ListaCliente.get(indiceTabla).getDireccionCliente());
+//                vista.getjTApellidos().setText("" + ListaCliente.get(indiceTabla).getApellidoCliente());
+//                vista.getjTFechaCreacion().setText("" + ListaCliente.get(indiceTabla).getFechaCreacion());
+//                //vista.getjCActivoInt().setsSelectedItem(""+ListaCliente.get(indiceTabla).getActivo());
+//                //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent me) {
         }
 
     }
-
-   
 
     public void registrar() {
 
@@ -87,27 +128,25 @@ public class ControllerPelicula {
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
         } else {
             Pelicula pelicula = new Pelicula();
-            pelicula.setPeliculaId(2000);//revisar el ingreso null
-            pelicula.setTitulo(vista.getjTtitulo().getText());
-            pelicula.setDescripcion(vista.gettAsinopsis().getText());
-            pelicula.setAnhoLanzamiento(Integer.parseInt(vista.getjTaño().getText()));
+//            pelicula.setPeliculaId(2000);//revisar el ingreso null
+//            pelicula.setTitulo(vista.getjTtitulo().getText());
+//            pelicula.setDescripcion(vista.gettAsinopsis().getText());
+//            pelicula.setAnhoLanzamiento(Integer.parseInt(vista.getjTaño().getText()));
+//
+//            int indiceLenguaje = 0;
+//            indiceLenguaje = vista.getjCBlenguaje().getSelectedIndex();
+//            pelicula.setLenguajeID(listaLenguajes.get(indiceLenguaje).getLenguageID());
+//            pelicula.setDuracionRenta(Integer.parseInt(vista.getjTDuracionAlquiler().getText()));
+//            pelicula.setTarifaRenta(Integer.parseInt(vista.getjTtarifa().getText()));
+//            pelicula.setLongitud(Integer.parseInt(vista.getjTduracion().getText()));
+//            pelicula.setCostoReemplazo(Integer.parseInt(vista.getjTcostoRe().getText()));
+//            System.err.println(""+vista.getjCBClasificacion().getSelectedItem());
+//            //pelicula.setClasificacion(vista.getjCBClasificacion().getSelectedItem().toString());
+//            pelicula.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
+//            pelicula.setCaracteristicasEspeciales("{"+vista.getjTcarateristicas().getText()+"}");
+//            pelicula.setTextoCompleto(vista.getjTtextoCompleto().getText());
 
-            int indiceLenguaje = 0;
-            indiceLenguaje = vista.getjCBlenguaje().getSelectedIndex();
-            pelicula.setLenguajeID(listaLenguajes.get(indiceLenguaje).getLenguageID());
-            pelicula.setDuracionRenta(Integer.parseInt(vista.getjTDuracionAlquiler().getText()));
-            pelicula.setTarifaRenta(Integer.parseInt(vista.getjTtarifa().getText()));
-            pelicula.setLongitud(Integer.parseInt(vista.getjTduracion().getText()));
-            pelicula.setCostoReemplazo(Integer.parseInt(vista.getjTcostoRe().getText()));
-            System.err.println(""+vista.getjCBClasificacion().getSelectedItem());
-            //pelicula.setClasificacion(vista.getjCBClasificacion().getSelectedItem().toString());
-            pelicula.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
-            pelicula.setCaracteristicasEspeciales("{"+vista.getjTcarateristicas().getText()+"}");
-            pelicula.setTextoCompleto(vista.getjTtextoCompleto().getText());
-            
-            JOptionPane.showMessageDialog(null, " Mostrar"+ vista.getjTid_peli());//**********
-            
-            
+            //JOptionPane.showMessageDialog(null, " Mostrar"+ vista.getjTid_peli());//**********
             int actorID = 0;
             int indiceActor = 0;
             indiceActor = vista.getjCBactor().getSelectedIndex();
@@ -122,41 +161,36 @@ public class ControllerPelicula {
             tamaño = modelo.listadoPeliculas().size();
 
             //if (tamaño == 0) {
-                int resultado = 0;
-                //int resultado2 = 0;
-                resultado = modelo.grabarPelicula(pelicula);
-                
-                
-                
-                modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
-                modelo.grabarPeliculaActor(actorID, pelicula.getPeliculaId());
-                if (resultado == 1) {
-                    vista.gestionMensajes("Registro Grabado con éxito",
-                            "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+            int resultado = 0;
+            //int resultado2 = 0;
+            resultado = modelo.grabarPelicula(pelicula);
 
-                    ArrayList<Pelicula> listaPeliculas;
-                    listaPeliculas = modelo.listadoPeliculas();
-                    vista.cargarPeliculasTabla(listaPeliculas);
+            // modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
+            //modelo.grabarPeliculaActor(actorID, pelicula.getPeliculaId());
+            if (resultado == 1) {
+                vista.gestionMensajes("Registro Grabado con éxito",
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
-                    //vista.activarControles(false); 
-                    //vista.nuevoAction();
-                } else {
-                    vista.gestionMensajes("Error al grabar",
-                            "Confirmación", JOptionPane.ERROR_MESSAGE);
-                }
-            //} else {
-                vista.gestionMensajes("Codigo ya está registrado",
-                        "Confirmación",
-                        JOptionPane.ERROR_MESSAGE);
+                ArrayList<Pelicula> listaPeliculas;
+                listaPeliculas = modelo.listadoPeliculas();
+                vista.cargarPeliculasTabla(listaPeliculas);
+
+                //vista.activarControles(false); 
+                //vista.nuevoAction();
+            } else {
+                vista.gestionMensajes("Error al grabar",
+                        "Confirmación", JOptionPane.ERROR_MESSAGE);
             }
-        
+            //} else {
+            vista.gestionMensajes("Codigo ya está registrado",
+                    "Confirmación",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
     }
-    
-    
-    
-    private void actualizar(){
-           
-        
+
+    private void actualizar() {
+
         /*
             Pelicula pelicula = new Pelicula();
              
@@ -194,15 +228,11 @@ public class ControllerPelicula {
                         JOptionPane.ERROR_MESSAGE);                 
             }              
         } 
-*/
+         */
     }
-    
-    public void delete()
-    {
-    
+
+    public void delete() {
+
     }
-    
-    
-    
 
 }

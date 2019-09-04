@@ -5,6 +5,8 @@
  */
 package InternalFrame;
 
+import Controlador.ControllerDireccion;
+import JFrame.jFdireccion;
 import Modelo.*;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -49,18 +51,18 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jTnombreCliente = new javax.swing.JTextField();
         jTCorreoCliente = new javax.swing.JTextField();
         jTDireccion = new javax.swing.JTextField();
-        jLfechaCreacion = new javax.swing.JLabel();
-        jTFechaCreacion = new javax.swing.JTextField();
+        jLfechaActualizacion = new javax.swing.JLabel();
+        jTFechaActualizacion = new javax.swing.JTextField();
         jLCorreo = new javax.swing.JLabel();
         jLDireccion = new javax.swing.JLabel();
-        jBTienda = new javax.swing.JButton();
         jLApellidos = new javax.swing.JLabel();
         jTApellidos = new javax.swing.JTextField();
         jComboBoxTienda = new javax.swing.JComboBox<>();
         jBIngresoDireccion = new javax.swing.JButton();
         jCActivoInt = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLfechaCreacion1 = new javax.swing.JLabel();
+        jTFechaCreacion1 = new javax.swing.JTextField();
         jPtabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCliente = new javax.swing.JTable();
@@ -90,7 +92,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jLTienda.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLTienda.setForeground(new java.awt.Color(51, 51, 51));
         jLTienda.setText("Tienda:");
-        jPingreso.add(jLTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, 20));
+        jPingreso.add(jLTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, 20));
 
         jLNombre.setBackground(new java.awt.Color(238, 112, 82));
         jLNombre.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
@@ -107,7 +109,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jLactivo.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLactivo.setForeground(new java.awt.Color(51, 51, 51));
         jLactivo.setText("Activo:");
-        jPingreso.add(jLactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, -1, -1));
+        jPingreso.add(jLactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
 
         jTnombreCliente.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTnombreCliente.setForeground(new java.awt.Color(102, 102, 102));
@@ -137,22 +139,22 @@ public class iFcliente extends javax.swing.JInternalFrame {
                 jTDireccionActionPerformed(evt);
             }
         });
-        jPingreso.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 140, 20));
+        jPingreso.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 170, 20));
 
-        jLfechaCreacion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
-        jLfechaCreacion.setForeground(new java.awt.Color(51, 51, 51));
-        jLfechaCreacion.setText("Fecha Creacion:");
-        jPingreso.add(jLfechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+        jLfechaActualizacion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLfechaActualizacion.setForeground(new java.awt.Color(51, 51, 51));
+        jLfechaActualizacion.setText("Ultima actualización:");
+        jPingreso.add(jLfechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, -1, -1));
 
-        jTFechaCreacion.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTFechaCreacion.setForeground(new java.awt.Color(102, 102, 102));
-        jTFechaCreacion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTFechaCreacion.addActionListener(new java.awt.event.ActionListener() {
+        jTFechaActualizacion.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTFechaActualizacion.setForeground(new java.awt.Color(102, 102, 102));
+        jTFechaActualizacion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTFechaActualizacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFechaCreacionActionPerformed(evt);
+                jTFechaActualizacionActionPerformed(evt);
             }
         });
-        jPingreso.add(jTFechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 240, 20));
+        jPingreso.add(jTFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 240, 20));
 
         jLCorreo.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLCorreo.setForeground(new java.awt.Color(51, 51, 51));
@@ -162,15 +164,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jLDireccion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLDireccion.setForeground(new java.awt.Color(51, 51, 51));
         jLDireccion.setText("Direccion:");
-        jPingreso.add(jLDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
-
-        jBTienda.setText("Ingresar");
-        jBTienda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBTiendaActionPerformed(evt);
-            }
-        });
-        jPingreso.add(jBTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 80, 30));
+        jPingreso.add(jLDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
         jLApellidos.setBackground(new java.awt.Color(238, 112, 82));
         jLApellidos.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
@@ -189,21 +183,38 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jPingreso.add(jTApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 240, -1));
 
         jComboBoxTienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPingreso.add(jComboBoxTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 140, 30));
+        jPingreso.add(jComboBoxTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 200, 20));
 
         jBIngresoDireccion.setText("Ingresar");
-        jPingreso.add(jBIngresoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 73, -1, 30));
+        jBIngresoDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBIngresoDireccionActionPerformed(evt);
+            }
+        });
+        jPingreso.add(jBIngresoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, -1, 30));
 
         jCActivoInt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPingreso.add(jCActivoInt, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, -1, -1));
-
-        jLabel1.setText("Ultima Actualización:");
-        jPingreso.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, -1));
+        jPingreso.add(jCActivoInt, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 160, 20));
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 204));
         jPingreso.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 130, 30));
 
-        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 660, 390));
+        jLfechaCreacion1.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLfechaCreacion1.setForeground(new java.awt.Color(51, 51, 51));
+        jLfechaCreacion1.setText("Fecha Creacion:");
+        jPingreso.add(jLfechaCreacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
+
+        jTFechaCreacion1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTFechaCreacion1.setForeground(new java.awt.Color(102, 102, 102));
+        jTFechaCreacion1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTFechaCreacion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFechaCreacion1ActionPerformed(evt);
+            }
+        });
+        jPingreso.add(jTFechaCreacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 240, 20));
+
+        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 670, 390));
 
         jPtabla.setBackground(new java.awt.Color(255, 255, 255));
         jPtabla.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(153, 153, 153))); // NOI18N
@@ -320,13 +331,9 @@ public class iFcliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTDireccionActionPerformed
 
-    private void jTFechaCreacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFechaCreacionActionPerformed
+    private void jTFechaActualizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFechaActualizacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTFechaCreacionActionPerformed
-
-    private void jBTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTiendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBTiendaActionPerformed
+    }//GEN-LAST:event_jTFechaActualizacionActionPerformed
 
     private void jTApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTApellidosActionPerformed
         // TODO add your handling code here:
@@ -342,10 +349,24 @@ public class iFcliente extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jTableClienteMouseClicked
 
+    private void jTFechaCreacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFechaCreacion1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFechaCreacion1ActionPerformed
+
+    private void jBIngresoDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresoDireccionActionPerformed
+        // TODO add your handling code here:
+        
+        DireccionDAO modeloDireccion = new DireccionDAO();
+        jFdireccion DireccionView = new jFdireccion();
+        ControllerDireccion controldor = new ControllerDireccion(DireccionView, modeloDireccion);
+        
+        DireccionView.setVisible(true);
+        
+    }//GEN-LAST:event_jBIngresoDireccionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBIngresoDireccion;
-    private javax.swing.JButton jBTienda;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
@@ -357,10 +378,10 @@ public class iFcliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLDireccion;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLTienda;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLactivo;
-    private javax.swing.JLabel jLfechaCreacion;
+    private javax.swing.JLabel jLfechaActualizacion;
+    private javax.swing.JLabel jLfechaCreacion1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPbotones;
     private javax.swing.JPanel jPingreso;
@@ -370,7 +391,8 @@ public class iFcliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTClienteID;
     private javax.swing.JTextField jTCorreoCliente;
     private javax.swing.JTextField jTDireccion;
-    private javax.swing.JTextField jTFechaCreacion;
+    private javax.swing.JTextField jTFechaActualizacion;
+    private javax.swing.JTextField jTFechaCreacion1;
     private javax.swing.JTable jTableCliente;
     private javax.swing.JTextField jTnombreCliente;
     // End of variables declaration//GEN-END:variables
@@ -387,10 +409,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
         return jBnuevo;
     }
 
-    public JButton getjButton2() {
-        return jBTienda;
-    }
-
     public JTable getjTableCliente() {
         return jTableCliente;
     }
@@ -404,7 +422,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
     }
 
     public JTextField getjTFechaCreacion() {
-        return jTFechaCreacion;
+        return jTFechaActualizacion;
     }
 
     public JComboBox getjCActivoInt() {
@@ -425,13 +443,10 @@ public class iFcliente extends javax.swing.JInternalFrame {
         return jTClienteID;
     }
 
-    public JButton getjBTienda() {
-        return jBTienda;
-    }
-
     public JComboBox<String> getjComboBoxTienda() {
         return jComboBoxTienda;
     }
+    
 
     public void addListenerBtnNuevo(ActionListener listenCliente) {
         jBnuevo.addActionListener(listenCliente);
@@ -441,7 +456,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
     
-    public void addListenerTabla(MouseListener listener)
+    public void addMouseListenerTabla(MouseListener listener)
     {
         jTableCliente.addMouseListener(listener);
         
@@ -470,12 +485,11 @@ public class iFcliente extends javax.swing.JInternalFrame {
      {
          DefaultComboBoxModel model;
          
-         String[] arregloTiendas = new String[listadoTienda.size()];
-         //ArrayList <Integer> arreglotiendas; 
+         String[] arregloTiendas = new String[listadoTienda.size()]; 
          
          for(int a=0; a < listadoTienda.size();a++)
          {
-             arregloTiendas[a] = "Sede no. " +listadoTienda.get(a).getTiendaID();
+             arregloTiendas[a] = "Tienda " +listadoTienda.get(a).getTiendaID();
              
          }
          
@@ -484,6 +498,23 @@ public class iFcliente extends javax.swing.JInternalFrame {
          jComboBoxTienda.setModel(model);
      }
     
+    //Carga el listado del campo activo en entero 0 para activo y 1 para inactivo
+    public void cargarActivoIntCombo(ArrayList<Cliente> listadoCliente)
+     {
+         DefaultComboBoxModel model;
+         
+         String[] arregloCliente = new String[listadoCliente.size()]; 
+         
+         for(int a=0; a < listadoCliente.size();a++)
+         {
+             arregloCliente [a] = "Activo: " +listadoCliente.get(a).getActivo();
+             
+         }
+         
+         model = new DefaultComboBoxModel();
+         
+         jCActivoInt.setModel(model);
+     }
 
     private void limpiarListadoTabla() {
         DefaultTableModel modelo;

@@ -28,7 +28,7 @@ public class DireccionDAO {
         pstm= null;
         int rtdo;
         rtdo= 0;
-        
+        //System.err.println(d.getUltimaActualizacionDireccion());
         try{
             con =Fachada.getConnection();
             String sql = "INSERT INTO address VALUES(?,?,?,?,?,?,?,?)";
@@ -42,6 +42,7 @@ public class DireccionDAO {
             pstm.setInt(5, d.getCiudadID_direccion());
             pstm.setString(6, d.getCodigoPostal());
             pstm.setString(7, d.getTelefono());
+            System.err.println(d.getUltimaActualizacionDireccion());
             pstm.setTimestamp(8, d.getUltimaActualizacionDireccion());         
                                                          
             rtdo = pstm.executeUpdate();

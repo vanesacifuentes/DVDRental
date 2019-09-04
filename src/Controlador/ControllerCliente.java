@@ -26,7 +26,7 @@ public class ControllerCliente {
     //Creación de vista y model Cliente  
     iFcliente vista;
     ClienteDAO modelo;
-    ArrayList<Cliente> ListaCliente;
+    //ArrayList<Cliente> ListaCliente;
     ArrayList<Tienda> listaTiendas;
 
     public ControllerCliente(iFcliente vista, ClienteDAO modelo) {
@@ -36,15 +36,18 @@ public class ControllerCliente {
         
         TiendaDAO modeltienda = new TiendaDAO();
 
-        this.vista.cargarClientesTabla(ListaCliente = modelo.listadoCliente());
+        this.vista.cargarClientesTabla(modelo.listadoCliente());
+        this.vista.cargarActivoIntCombo(modelo.listadoCliente());
         
         this.vista.cargarTiendasCombo(listaTiendas = modeltienda.listadoTiendas());
+       
         
         //Escuchas de los componentes
         ListenerCliente escuchador = new ListenerCliente();
-        this.vista.addListenerTabla(escuchador);
+        
         this.vista.addListenerBtnNuevo(escuchador);
-
+        this.vista.addMouseListenerTabla(escuchador);
+            
     }
 
     public class ListenerCliente implements ActionListener, MouseListener {
@@ -102,9 +105,10 @@ public class ControllerCliente {
                     vista.gestionMensajes("Registro Grabado con éxito",
                             "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
-                    ArrayList<Cliente> listaClientes;
-                    listaClientes = modelo.listadoCliente();
-                    vista.cargarClientesTabla(ListaCliente = listaClientes);
+                    //Se carga 
+//                    ArrayList<Cliente> listaClientes;
+//                    listaClientes = modelo.listadoCliente();
+//                    vista.cargarClientesTabla(ListaCliente = listaClientes);
 
                     //vista.activarControles(false); 
                     //vista.nuevoAction();
@@ -135,18 +139,17 @@ public class ControllerCliente {
             } else {
                 
                 int indiceTabla = vista.getjTableCliente().getSelectedRow();
-                vista.getjTClienteID().setText("" + ListaCliente.get(indiceTabla).getClienteID());
-                vista.getjTnombreCliente().setText(""+ListaCliente.get(indiceTabla).getNombreCliente());
-                vista.getjTCorreoCliente().setText(""+ListaCliente.get(indiceTabla).getCorreoCliente());
-                vista.getjTDireccion().setText(""+ListaCliente.get(indiceTabla).getDireccionCliente());
-                vista.getjTApellidos().setText(""+ListaCliente.get(indiceTabla).getApellidoCliente());
-                vista.getjTFechaCreacion().setText(""+ListaCliente.get(indiceTabla).getFechaCreacion());
+                ArrayList<Cliente> ListaClientes = modelo.listadoCliente();
+                vista.getjTClienteID().setText("" + ListaClientes.get(indiceTabla).getClienteID());
+                vista.getjTnombreCliente().setText(""+ListaClientes.get(indiceTabla).getNombreCliente());
+                vista.getjTCorreoCliente().setText(""+ListaClientes.get(indiceTabla).getCorreoCliente());
+                vista.getjTDireccion().setText(""+ListaClientes.get(indiceTabla).getDireccionCliente());
+                vista.getjTApellidos().setText(""+ListaClientes.get(indiceTabla).getApellidoCliente());
+                vista.getjTFechaCreacion().setText(""+ListaClientes.get(indiceTabla).getFechaCreacion());
                 //vista.getjCActivoInt().setsSelectedItem(""+ListaCliente.get(indiceTabla).getActivo());
                 //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
                 
-                
-                
-                
+ 
 
             }
         }

@@ -146,9 +146,9 @@ public class ControllerPelicula {
 //            pelicula.setLongitud(Integer.parseInt(vista.getjTduracion().getText()));
 //            pelicula.setCostoReemplazo(Integer.parseInt(vista.getjTcostoRe().getText()));
 //            System.err.println(""+vista.getjCBClasificacion().getSelectedItem());
-//            //pelicula.setClasificacion(vista.getjCBClasificacion().getSelectedItem().toString());
+               pelicula.setClasificacion(vista.getjCBClasificacion().getSelectedItem().toString());
 //            pelicula.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
-//            pelicula.setCaracteristicasEspeciales("{"+vista.getjTcarateristicas().getText()+"}");
+                pelicula.setCaracteristicasEspeciales("{"+vista.getjTcarateristicas().getText()+"}");
 //            pelicula.setTextoCompleto(vista.getjTtextoCompleto().getText());
 
             //JOptionPane.showMessageDialog(null, " Mostrar"+ vista.getjTid_peli());//**********

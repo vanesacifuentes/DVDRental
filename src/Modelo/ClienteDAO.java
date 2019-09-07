@@ -93,22 +93,22 @@ public class ClienteDAO {
         try{
             con = Fachada.getConnection();
             String sql = "UPDATE customer " +
-                         "SET customer_id = ?, store_id= ?, first_name= ?, last_name = ?,email=?"
-                    + "address_id=?, activebool=?, create_date=?,last_update=?, active=?"
+                         "SET  first_name= ?, last_name = ?,email=?"
+                    + "address_id=?, active=?"
                     +    "WHERE customer_id =?";
 
             pstm = con.prepareStatement(sql);   
 
             pstm.setInt(1, c.getClienteID());
-            pstm.setInt(2, c.getTiendaIDCliente());
+            //pstm.setInt(2, c.getTiendaIDCliente());
             pstm.setString(3, c.getNombreCliente());
             pstm.setString(4, c.getApellidoCliente());
             pstm.setString(5, c.getCorreoCliente());
             pstm.setInt(6, c.getDireccionCliente());
-            pstm.setBoolean(7, c.getCuentActivoBool());
-            pstm.setDate(8,c.getFechaCreacion());
-            pstm.setTimestamp(9,c.getUltimaActualizacionCliente());
-            pstm.setInt(10, c.getActivo());
+            //pstm.setBoolean(7, c.getCuentActivoBool());
+            //pstm.setDate(8,c.getFechaCreacion());
+            //pstm.setTimestamp(9,c.getUltimaActualizacionCliente());
+            //pstm.setInt(10, c.getActivo());
 
             rtdo = pstm.executeUpdate();  
         }

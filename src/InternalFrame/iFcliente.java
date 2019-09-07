@@ -448,7 +448,15 @@ public class iFcliente extends javax.swing.JInternalFrame {
     public void addListenerBtnNuevo(ActionListener listenCliente) {
         jBnuevo.addActionListener(listenCliente);
     }
+    
+    public void addListenerBtnModificar(ActionListener listenCliente) {
+        jBmodificar.addActionListener(listenCliente);
+    }
 
+    public void addMouseListenerTabla(MouseListener listenCliente) {
+        jTableCliente.addMouseListener(listenCliente);
+    }
+    
     public void gestionMensajes(String mensaje, String titulo, int icono) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }

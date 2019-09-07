@@ -294,7 +294,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jCBcategoriaActionPerformed(evt);
             }
         });
-        jPingreso1.add(jCBcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 180, -1));
+        jPingreso1.add(jCBcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 160, -1));
         jPingreso1.add(tAsinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 240, 120));
 
         jBagrgarCate.addActionListener(new java.awt.event.ActionListener() {
@@ -317,7 +317,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jCBClasificacionActionPerformed(evt);
             }
         });
-        jPingreso1.add(jCBClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 200, -1));
+        jPingreso1.add(jCBClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 180, -1));
 
         jPanel1.add(jPingreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 660, 440));
 

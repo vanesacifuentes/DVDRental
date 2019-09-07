@@ -99,8 +99,9 @@ public class ControllerPelicula {
                 vista.getjTtextoCompleto().setText(""+ListaPeliculas.get(indiceTabla).getTextoCompleto());
                 vista.gettAsinopsis().setText(""+ListaPeliculas.get(indiceTabla).getDescripcion());
                 vista.getjCBClasificacion().setSelectedItem(ListaPeliculas.get(indiceTabla).getClasificacion());
-                //vista.getjCBactor().setSelectedIndex(listaActores.get(indiceTabla));
-
+                
+                //Lenguaje lenguaje = modelo.extraerPorId(ListaPeliculas.get(indiceTabla).getLenguajeID());
+                //vista.getjCBlenguaje().setSelectedItem(lenguaje.getNombreLenguaje());
             }
         }
 
@@ -146,9 +147,9 @@ public class ControllerPelicula {
 //            pelicula.setLongitud(Integer.parseInt(vista.getjTduracion().getText()));
 //            pelicula.setCostoReemplazo(Integer.parseInt(vista.getjTcostoRe().getText()));
 //            System.err.println(""+vista.getjCBClasificacion().getSelectedItem());
-//            //pelicula.setClasificacion(vista.getjCBClasificacion().getSelectedItem().toString());
+               pelicula.setClasificacion(vista.getjCBClasificacion().getSelectedItem().toString());
 //            pelicula.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
-//            pelicula.setCaracteristicasEspeciales("{"+vista.getjTcarateristicas().getText()+"}");
+                pelicula.setCaracteristicasEspeciales("{"+vista.getjTcarateristicas().getText()+"}");
 //            pelicula.setTextoCompleto(vista.getjTtextoCompleto().getText());
 
             //JOptionPane.showMessageDialog(null, " Mostrar"+ vista.getjTid_peli());//**********

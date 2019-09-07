@@ -299,7 +299,67 @@ public class PeliculaDAO {
         
     }
     
-//    **************
+   
+    public Lenguaje extraerPorId (int id)
+    {
+       
+        String s = "";
+        
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        Lenguaje lenguaje = null;
+        try{
+            con = Fachada.getConnection();
+            String sql="";
+           
+                sql = "SELECT * FROM language where language_id = ? ";
+                        
+                                  
+            pstm = con.prepareStatement(sql);
+            
+            
+                pstm.setInt(1, id);
+           
+            
+            rs = pstm.executeQuery();
+                        
+            lenguaje = null;
+            while(rs.next()){
+                lenguaje = new Lenguaje();
+                lenguaje.setNombreLenguaje(rs.getString("name"));
+                lenguaje.setLenguageID(rs.getInt("language_id"));
+                
+               
+            }
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        finally{
+            try{
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return lenguaje;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+
     
     
 

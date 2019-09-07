@@ -132,7 +132,7 @@ public class ControllerCliente {
              
             //Se configura los datos en el objeto cliente de la clase
             //Cliente
-            cliente.setClienteID(Integer.parseInt(vista.getjTClienteID().toString()));
+            //cliente.setClienteID(Integer.parseInt(vista.getjTClienteID().toString()));
             cliente.setNombreCliente(vista.getjTnombreCliente().toString());
             cliente.setApellidoCliente(vista.getjTApellidos().toString());
             cliente.setDireccionCliente(Integer.parseInt(vista.getjTDireccion().toString()));

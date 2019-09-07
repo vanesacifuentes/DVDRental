@@ -93,7 +93,7 @@ public class ClienteDAO {
         try{
             con = Fachada.getConnection();
             String sql = "UPDATE customer " +
-                         "SET customer_id = ?, first_name= ?, last_name = ?,email=?"
+                         "SET  first_name= ?, last_name = ?,email=?"
                     + "address_id=?, active=?"
                     +    "WHERE customer_id =?";
 

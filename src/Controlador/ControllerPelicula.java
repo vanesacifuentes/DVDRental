@@ -99,8 +99,9 @@ public class ControllerPelicula {
                 vista.getjTtextoCompleto().setText(""+ListaPeliculas.get(indiceTabla).getTextoCompleto());
                 vista.gettAsinopsis().setText(""+ListaPeliculas.get(indiceTabla).getDescripcion());
                 vista.getjCBClasificacion().setSelectedItem(ListaPeliculas.get(indiceTabla).getClasificacion());
-                //vista.getjCBactor().setSelectedIndex(listaActores.get(indiceTabla));
-
+                
+                //Lenguaje lenguaje = modelo.extraerPorId(ListaPeliculas.get(indiceTabla).getLenguajeID());
+                //vista.getjCBlenguaje().setSelectedItem(lenguaje.getNombreLenguaje());
             }
         }
 

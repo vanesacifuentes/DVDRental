@@ -9,12 +9,18 @@ import Controlador.ControllerEmpleado;
 import Controlador.ControllerLenguaje;
 import InternalFrame.iFempleado;
 import Modelo.EmpleadoDAO;
+import Modelo.Lenguaje;
 import Modelo.LenguajeDAO;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -43,13 +49,15 @@ public class jFlenguaje extends javax.swing.JFrame {
         jTLenguajeID = new javax.swing.JTextField();
         jLNombreLenguaje = new javax.swing.JLabel();
         jLIDLenguaje = new javax.swing.JLabel();
-        jTFechaActualizacion = new javax.swing.JTextField();
         jLFechaActualizacion = new javax.swing.JLabel();
         jTnombreLenguaje = new javax.swing.JTextField();
+        jLFechaActu = new javax.swing.JLabel();
         jPbotones = new javax.swing.JPanel();
         jBnuevo = new javax.swing.JButton();
         jBmodificar = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableLenguaje = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,35 +76,25 @@ public class jFlenguaje extends javax.swing.JFrame {
                 jTLenguajeIDActionPerformed(evt);
             }
         });
-        jPingreso.add(jTLenguajeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 240, 20));
+        jPingreso.add(jTLenguajeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
 
         jLNombreLenguaje.setBackground(new java.awt.Color(238, 112, 82));
         jLNombreLenguaje.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLNombreLenguaje.setForeground(new java.awt.Color(51, 51, 51));
         jLNombreLenguaje.setText("Nombre Lenguaje:");
-        jPingreso.add(jLNombreLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 30));
+        jPingreso.add(jLNombreLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 30));
 
         jLIDLenguaje.setBackground(new java.awt.Color(238, 112, 82));
         jLIDLenguaje.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLIDLenguaje.setForeground(new java.awt.Color(51, 51, 51));
         jLIDLenguaje.setText("Lenguaje ID:");
-        jPingreso.add(jLIDLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, 20));
-
-        jTFechaActualizacion.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTFechaActualizacion.setForeground(new java.awt.Color(102, 102, 102));
-        jTFechaActualizacion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTFechaActualizacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFechaActualizacionActionPerformed(evt);
-            }
-        });
-        jPingreso.add(jTFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 240, -1));
+        jPingreso.add(jLIDLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 20));
 
         jLFechaActualizacion.setBackground(new java.awt.Color(238, 112, 82));
         jLFechaActualizacion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLFechaActualizacion.setForeground(new java.awt.Color(51, 51, 51));
         jLFechaActualizacion.setText("Fecha actualizacion:");
-        jPingreso.add(jLFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, 20));
+        jPingreso.add(jLFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 20));
 
         jTnombreLenguaje.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTnombreLenguaje.setForeground(new java.awt.Color(102, 102, 102));
@@ -106,9 +104,10 @@ public class jFlenguaje extends javax.swing.JFrame {
                 jTnombreLenguajeActionPerformed(evt);
             }
         });
-        jPingreso.add(jTnombreLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 240, -1));
+        jPingreso.add(jTnombreLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 240, -1));
+        jPingreso.add(jLFechaActu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 100, 20));
 
-        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 330, 260));
+        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 150));
         jPingreso.getAccessibleContext().setAccessibleName("Datos Lenguaje");
 
         jPbotones.setBackground(new java.awt.Color(255, 255, 255));
@@ -146,39 +145,52 @@ public class jFlenguaje extends javax.swing.JFrame {
         jBeliminar.setContentAreaFilled(false);
         jPbotones.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
 
-        jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 330, 50));
+        jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 330, 50));
+
+        jTableLenguaje.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTableLenguaje.setForeground(new java.awt.Color(51, 51, 51));
+        jTableLenguaje.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID Lenguaje", "Nombre Lenguaje"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTableLenguaje);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 330, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 451, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(21, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 383, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTLenguajeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLenguajeIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTLenguajeIDActionPerformed
-
-    private void jTFechaActualizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFechaActualizacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFechaActualizacionActionPerformed
 
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
         // TODO add your handling code here:
@@ -187,6 +199,10 @@ public class jFlenguaje extends javax.swing.JFrame {
     private void jTnombreLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreLenguajeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTnombreLenguajeActionPerformed
+
+    private void jTLenguajeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLenguajeIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTLenguajeIDActionPerformed
 
     public void addListenerBtnNuevo(ActionListener listenLenguaje){
        
@@ -197,6 +213,20 @@ public class jFlenguaje extends javax.swing.JFrame {
         jBmodificar.addActionListener(listenLenguaje);       
     }
     
+    public void addMouseListenerTabla(MouseListener listenCliente) {
+        jTableLenguaje.addMouseListener(listenCliente);
+    }
+
+    public JTable getjTableLenguaje() {
+        return jTableLenguaje;
+    }
+
+    public JLabel getjLFechaActu() {
+        return jLFechaActu;
+    }
+    
+    
+    
     public JButton getjBnuevo() {
         return jBnuevo;
     }
@@ -204,10 +234,7 @@ public class jFlenguaje extends javax.swing.JFrame {
     public JButton getjBModificar() {
         return jBmodificar;
     }
-    
-    public JLabel getjLFechaActualizacion() {
-        return jLFechaActualizacion;
-    }
+   
 
     public JLabel getjLIDLenguaje() {
         return jLIDLenguaje;
@@ -217,9 +244,6 @@ public class jFlenguaje extends javax.swing.JFrame {
         return jLNombreLenguaje;
     }
 
-    public JTextField getjTFechaActualizacion() {
-        return jTFechaActualizacion;
-    }
 
     public JTextField getjTLenguajeID() {
         return jTLenguajeID;
@@ -232,6 +256,30 @@ public class jFlenguaje extends javax.swing.JFrame {
     public void gestionMensajes(String mensaje, String titulo, int icono){
          JOptionPane.showMessageDialog(this,mensaje, titulo, icono);
     }
+    
+     private void limpiarListadoTabla(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTableLenguaje.getModel();
+        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
+            modelo.removeRow(i);
+        }
+    }
+    
+    //Método para cargar los lenguajes a la tabla 
+    public void cargarLenguajesTabla(ArrayList<Lenguaje> listadoLenguaje)
+     {
+         DefaultTableModel model_lenguaje;
+        model_lenguaje = (DefaultTableModel) jTableLenguaje.getModel();        
+        limpiarListadoTabla();
+        for(int i= 0; i < listadoLenguaje.size(); i++){
+              model_lenguaje.addRow(new Object[]{
+              listadoLenguaje.get(i).getLenguageID(),
+              listadoLenguaje.get(i).getNombreLenguaje()});}
+        
+        jTableLenguaje.setModel(model_lenguaje);
+         
+     }
+    
     
     
     
@@ -274,14 +322,16 @@ public class jFlenguaje extends javax.swing.JFrame {
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
+    private javax.swing.JLabel jLFechaActu;
     private javax.swing.JLabel jLFechaActualizacion;
     private javax.swing.JLabel jLIDLenguaje;
     private javax.swing.JLabel jLNombreLenguaje;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPbotones;
     private javax.swing.JPanel jPingreso;
-    private javax.swing.JTextField jTFechaActualizacion;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTLenguajeID;
+    private javax.swing.JTable jTableLenguaje;
     private javax.swing.JTextField jTnombreLenguaje;
     // End of variables declaration//GEN-END:variables
 }

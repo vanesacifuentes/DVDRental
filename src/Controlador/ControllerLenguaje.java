@@ -10,8 +10,10 @@ import Modelo.*;
 import Servicios.Fecha;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.awt.event.MouseListener;
 
 /**
  *
@@ -27,13 +29,17 @@ public class ControllerLenguaje {
         this.vista = vista;
         this.modelo = modelo;
        
-        this.vista.getjBnuevo().addActionListener(new ListenerLenguaje());
+        ListenerLenguaje escuchador = new ListenerLenguaje();
+        this.vista.getjBnuevo().addActionListener(escuchador);
+        this.vista.cargarLenguajesTabla(this.modelo.listadoLenguajes());
+        this.vista.addMouseListener(escuchador);
+        
 
     }
     
 
     
-    public class ListenerLenguaje implements ActionListener {
+    public class ListenerLenguaje implements ActionListener, MouseListener {
 
         
             @Override
@@ -43,12 +49,10 @@ public class ControllerLenguaje {
                 JOptionPane.showMessageDialog(null, "Prueba");
                 registrar();
             } else if (ae.getSource() == vista.getjBModificar()) {
-                //actualizar();
+                actualizar();
             }
         }
-        
-    }     
-        
+
         public void registrar() {
 
         if (vista.getjTLenguajeID().equals("")) {
@@ -96,10 +100,83 @@ public class ControllerLenguaje {
             }
         
     }
+        
+        public void actualizar() {
+            
+            Lenguaje lenguaje= new Lenguaje();
+             
+            //Se configura los datos en el objeto cliente de la clase Lenguaje
+           
+            lenguaje.setLenguageID(Integer.parseInt(vista.getjTLenguajeID().toString()));
+            lenguaje.setNombreLenguaje(vista.getjTnombreLenguaje().toString());
+            lenguaje.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
+                     
+            if(modelo.modificarLenguaje(lenguaje) == 1){
+                vista.gestionMensajes(
+                        "Actualización exitosa",
+                        "Confirmación ", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                                        
+//                vista.activarControles(false); 
+//                vista.nuevoAction();
+                ArrayList<Lenguaje> listadoLenguajes; 
+                listadoLenguajes = modelo.listadoLenguajes();
+                vista.cargarLenguajesTabla(listadoLenguajes);           
+            } else {
+                vista.gestionMensajes(
+                        "Actualización Falida jajaja",
+                        "Confirmación ", 
+                        JOptionPane.ERROR_MESSAGE);                 
+            }  
+            
+
+
+        }
+        
+             @Override
+        public void mouseClicked(MouseEvent me) {
+            if (vista.getjTableLenguaje().getSelectedRow() == -1) {
+                if (vista.getjTableLenguaje().getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "No hay registros");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
+                }
+            } else {
+                
+                int indiceTabla = vista.getjTableLenguaje().getSelectedRow();
+                ArrayList<Lenguaje> ListaLenguajes = modelo.listadoLenguajes();
+                vista.getjTLenguajeID().setText("" + ListaLenguajes.get(indiceTabla).getLenguageID());
+                vista.getjTnombreLenguaje().setText("" + ListaLenguajes.get(indiceTabla).getNombreLenguaje());  
+                vista.getjLFechaActu().setText("" + ListaLenguajes.get(indiceTabla).getUltimaActualizacion());
+        }
+
+
+        
+    }  
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+           // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent me) {
+           // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void mouseExited(MouseEvent me) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
     
         
         
- }    
+    }}
     
     
 

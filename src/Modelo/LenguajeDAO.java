@@ -150,15 +150,11 @@ public class LenguajeDAO {
             String sql="";
             
 
-            sql = "SELECT language_id, name FROM language ORDER BY language_id";            
+            sql = "SELECT * FROM language ORDER BY language_id";            
                  
                                   
             pstm = con.prepareStatement(sql);
             
-            sql = "SELECT language_id, name FROM language ORDER BY language_id";            
-                                  
-            pstm = con.prepareStatement(sql);
-
             
             rs = pstm.executeQuery();
                         
@@ -169,7 +165,7 @@ public class LenguajeDAO {
                 
                 lenguaje.setLenguageID(rs.getInt("language_id"));
                 lenguaje.setNombreLenguaje(rs.getString("name"));           
-               
+                lenguaje.setUltimaActualizacion(rs.getTimestamp("last_update"));
                 listadoLenguaje.add(lenguaje);
             }
         }

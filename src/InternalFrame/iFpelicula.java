@@ -579,10 +579,10 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBagrgarCateActionPerformed
 
     private void jBLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLenguajeActionPerformed
-        jFlenguaje vista = new jFlenguaje();
-        LenguajeDAO modelo = new LenguajeDAO();
-        ControllerLenguaje lenguajeControlador = new ControllerLenguaje(vista, modelo);
-        vista.setVisible(true);
+//        jFlenguaje vista = new jFlenguaje();
+//        LenguajeDAO modelo = new LenguajeDAO();
+//        ControllerLenguaje lenguajeControlador = new ControllerLenguaje(vista, modelo);
+//        vista.setVisible(true);
     }//GEN-LAST:event_jBLenguajeActionPerformed
 
     public void validaNumero(char c,KeyEvent evt)

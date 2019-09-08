@@ -11,6 +11,7 @@ import JFrame.jFcategoria;
 import JFrame.jFlenguaje;
 import java.awt.TextArea;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -154,6 +155,9 @@ public class iFpelicula extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTañoKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTañoKeyTyped(evt);
+            }
         });
         jPingreso1.add(jTaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 240, 20));
 
@@ -192,6 +196,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jTtarifaActionPerformed(evt);
             }
         });
+        jTtarifa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTtarifaKeyTyped(evt);
+            }
+        });
         jPingreso1.add(jTtarifa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 240, 20));
 
         jTduracion.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
@@ -200,6 +209,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jTduracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTduracionActionPerformed(evt);
+            }
+        });
+        jTduracion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTduracionKeyTyped(evt);
             }
         });
         jPingreso1.add(jTduracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 240, 20));
@@ -219,6 +233,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jTcostoRe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTcostoReActionPerformed(evt);
+            }
+        });
+        jTcostoRe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTcostoReKeyTyped(evt);
             }
         });
         jPingreso1.add(jTcostoRe, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 240, 20));
@@ -259,6 +278,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jTDuracionAlquiler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTDuracionAlquilerActionPerformed(evt);
+            }
+        });
+        jTDuracionAlquiler.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTDuracionAlquilerKeyTyped(evt);
             }
         });
         jPingreso1.add(jTDuracionAlquiler, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 240, 20));
@@ -542,13 +566,50 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
     private void jTañoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTañoKeyPressed
         // TODO add your handling code here:
-        //evt.get
+       //evt.consume();
+//        char h =  evt.getKeyChar();
+//        
+//        String cadena = Character.toString(h);
+//        try{
+//            int a = Integer.parseInt(cadena);
+//        }catch(NumberFormatException e)
+//        {
+//            
+//        }
+        
         
         
         
         
     }//GEN-LAST:event_jTañoKeyPressed
 
+    private void jTañoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTañoKeyTyped
+        validaNumero(evt.getKeyChar(),evt); 
+    }//GEN-LAST:event_jTañoKeyTyped
+
+    private void jTtarifaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTtarifaKeyTyped
+        validaNumero(evt.getKeyChar(),evt);
+    }//GEN-LAST:event_jTtarifaKeyTyped
+
+    private void jTDuracionAlquilerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDuracionAlquilerKeyTyped
+        validaNumero(evt.getKeyChar(),evt);
+    }//GEN-LAST:event_jTDuracionAlquilerKeyTyped
+
+    private void jTcostoReKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTcostoReKeyTyped
+        validaNumero(evt.getKeyChar(),evt);
+    }//GEN-LAST:event_jTcostoReKeyTyped
+
+    private void jTduracionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTduracionKeyTyped
+        validaNumero(evt.getKeyChar(),evt);
+    }//GEN-LAST:event_jTduracionKeyTyped
+
+    public void validaNumero(char c,KeyEvent evt)
+    {
+        if(!Character.isDigit(c))
+           evt.consume();
+    }
+    
+    
     public void activarCampos(Boolean b) {
         jTDuracionAlquiler.setEnabled(b);
         jTaño.setEnabled(b);

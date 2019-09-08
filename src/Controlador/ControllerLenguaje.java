@@ -23,6 +23,9 @@ public class ControllerLenguaje {
     
     jFlenguaje vista;
     LenguajeDAO modelo;
+
+    
+    
     
     public ControllerLenguaje(jFlenguaje vista, LenguajeDAO modelo) {
 

@@ -310,4 +310,13 @@ public class ControllerPelicula {
         }
     }
 
+    public iFpelicula getVista() {
+        return vista;
+    }
+
+    public PeliculaDAO getModelo() {
+        return modelo;
+    }
+    
+
 }

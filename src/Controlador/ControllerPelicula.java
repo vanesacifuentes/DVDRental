@@ -66,18 +66,21 @@ public class ControllerPelicula {
         public void actionPerformed(ActionEvent ae) {
 
             if (ae.getSource() == vista.getjBnuevo()) {
+                
                 if (vista.getjBnuevo().getText().equalsIgnoreCase("Nuevo")) {
                     vista.activarCampos(true);
                     vista.setearCampos();
                     vista.getjBnuevo().setText("Grabar");
                     vista.getjBmodificar().setText("Cancelar");
                     vista.getjBeliminar().setVisible(false);
+                    
                 } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Grabar")) {
                     registrar();
                     vista.activarCampos(false);
                     vista.getjBnuevo().setText("Nuevo");
                     vista.getjBmodificar().setText("Modificar");
                     vista.getjBeliminar().setEnabled(true);
+                    
                 } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Actualizar"))
                 {
                     actualizar();
@@ -95,8 +98,7 @@ public class ControllerPelicula {
                     vista.setearCampos();
                     vista.getjBnuevo().setText("Nuevo");
                     vista.getjBmodificar().setText("Modificar");
-                    vista.getjBeliminar().setVisible(true);
-                    
+                    vista.getjBeliminar().setVisible(true);   
                 }
 
             }else if (ae.getSource() == vista.getjBeliminar())
@@ -169,23 +171,23 @@ public class ControllerPelicula {
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
         } else {
             Pelicula pelicula = new Pelicula();
-//            pelicula.setPeliculaId(2000);//revisar el ingreso null
-//            pelicula.setTitulo(vista.getjTtitulo().getText());
-//            pelicula.setDescripcion(vista.gettAsinopsis().getText());
-//            pelicula.setAnhoLanzamiento(Integer.parseInt(vista.getjTaño().getText()));
-//
-//            int indiceLenguaje = 0;
-//            indiceLenguaje = vista.getjCBlenguaje().getSelectedIndex();
-//            pelicula.setLenguajeID(listaLenguajes.get(indiceLenguaje).getLenguageID());
-//            pelicula.setDuracionRenta(Integer.parseInt(vista.getjTDuracionAlquiler().getText()));
-//            pelicula.setTarifaRenta(Integer.parseInt(vista.getjTtarifa().getText()));
-//            pelicula.setLongitud(Integer.parseInt(vista.getjTduracion().getText()));
-//            pelicula.setCostoReemplazo(Integer.parseInt(vista.getjTcostoRe().getText()));
-//            System.err.println(""+vista.getjCBClasificacion().getSelectedItem());
+            pelicula.setPeliculaId(2000);//revisar el ingreso null
+            pelicula.setTitulo(vista.getjTtitulo().getText());
+            pelicula.setDescripcion(vista.gettAsinopsis().getText());
+            pelicula.setAnhoLanzamiento(Integer.parseInt(vista.getjTaño().getText()));
+
+            int indiceLenguaje = 0;
+            indiceLenguaje = vista.getjCBlenguaje().getSelectedIndex();
+            pelicula.setLenguajeID(listaLenguajes.get(indiceLenguaje).getLenguageID());
+            pelicula.setDuracionRenta(Integer.parseInt(vista.getjTDuracionAlquiler().getText()));
+            pelicula.setTarifaRenta(Integer.parseInt(vista.getjTtarifa().getText()));
+            pelicula.setLongitud(Integer.parseInt(vista.getjTduracion().getText()));
+            pelicula.setCostoReemplazo(Integer.parseInt(vista.getjTcostoRe().getText()));
+            System.err.println(""+vista.getjCBClasificacion().getSelectedItem());
             pelicula.setClasificacion(vista.getjCBClasificacion().getSelectedItem().toString());
-//            pelicula.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
+            pelicula.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
             pelicula.setCaracteristicasEspeciales("{" + vista.getjTcarateristicas().getText() + "}");
-//            pelicula.setTextoCompleto(vista.getjTtextoCompleto().getText());
+            pelicula.setTextoCompleto(vista.getjTtextoCompleto().getText());
 
             //JOptionPane.showMessageDialog(null, " Mostrar"+ vista.getjTid_peli());//**********
             int actorID = 0;

@@ -31,6 +31,7 @@ public class jFlenguaje extends javax.swing.JFrame {
     /**
      * Creates new form jFlenguaje
      */
+    int valor;
     public jFlenguaje() {
         initComponents();
     }
@@ -203,7 +204,19 @@ public class jFlenguaje extends javax.swing.JFrame {
     private void jTLenguajeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLenguajeIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTLenguajeIDActionPerformed
-
+    
+    public void activarCampos(Boolean b) {
+        jTnombreLenguaje.setEnabled(b);
+    }
+    
+    
+    public void setearCampos() {
+        
+      jTnombreLenguaje.setText("");
+      jTLenguajeID.setText("" + valor);
+    }
+    
+    
     public void addListenerBtnNuevo(ActionListener listenLenguaje){
        
         jBnuevo.addActionListener(listenLenguaje);       
@@ -239,7 +252,7 @@ public class jFlenguaje extends javax.swing.JFrame {
         return jBnuevo;
     }
 
-    public JButton getjBModificar() {
+    public JButton getjBmodificar() {
         return jBmodificar;
     }
    
@@ -285,7 +298,7 @@ public class jFlenguaje extends javax.swing.JFrame {
               listadoLenguaje.get(i).getNombreLenguaje()});
         }
         
-        int valor = Integer.parseInt(""+model_lenguaje.getValueAt(model_lenguaje.getRowCount()-1, 0))+1;
+        valor = Integer.parseInt(""+model_lenguaje.getValueAt(model_lenguaje.getRowCount()-1, 0))+1;
         jTLenguajeID.setText(""+valor);
         jTLenguajeID.setEnabled(false);
      }

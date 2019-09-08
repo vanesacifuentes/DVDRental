@@ -47,14 +47,45 @@ public class ControllerLenguaje {
 
             if (ae.getSource() == vista.getjBnuevo()) {
                 JOptionPane.showMessageDialog(null, "Prueba");
-                registrar();
-            } else if (ae.getSource() == vista.getjBModificar()) 
+                
+                    if (vista.getjBnuevo().getText().equalsIgnoreCase("Nuevo")) {
+                    vista.activarCampos(true);
+                    vista.setearCampos();
+                    vista.getjBnuevo().setText("Grabar");
+                    vista.getjBmodificar().setText("Cancelar");
+                    vista.getjBeliminar().setVisible(false);
+                    
+                } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Grabar")) {
+                    registrar();
+                    vista.activarCampos(false);
+                    vista.getjBnuevo().setText("Nuevo");
+                    vista.getjBmodificar().setText("Modificar");
+                    vista.getjBeliminar().setEnabled(true);
+            
+                }else if (vista.getjBnuevo().getText().equalsIgnoreCase("Actualizar")){
+                    actualizar();
+                }        
+                                          
+            } else if (ae.getSource() == vista.getjBmodificar()) 
             {
-                actualizar();
+                 if (vista.getjBmodificar().getText().equalsIgnoreCase("Modificar")) {
+                    vista.activarCampos(true);
+                    vista.getjBnuevo().setText("Actualizar");
+                    vista.getjBmodificar().setText("Cancelar");
+                    vista.getjBeliminar().setVisible(false);
+                }else if (vista.getjBmodificar().getText().equalsIgnoreCase("Cancelar")){
+                    
+                    vista.activarCampos(false);
+                    vista.setearCampos();
+                    vista.getjBnuevo().setText("Nuevo");
+                    vista.getjBmodificar().setText("Modificar");
+                    vista.getjBeliminar().setVisible(true);    
+                }  
             }else if (ae.getSource() == vista.getjBeliminar()) {
                 borrar();
             }
         }
+        
 
         public void registrar() {
 

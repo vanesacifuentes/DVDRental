@@ -65,7 +65,7 @@ public class jFlenguaje extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPingreso.setBackground(new java.awt.Color(255, 255, 255));
-        jPingreso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
+        jPingreso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos lenguaje", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
         jPingreso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTLenguajeID.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
@@ -208,6 +208,11 @@ public class jFlenguaje extends javax.swing.JFrame {
        
         jBnuevo.addActionListener(listenLenguaje);       
     }
+    
+    public void addListenerBtnEliminar(ActionListener listenLenguaje){
+       
+        jBeliminar.addActionListener(listenLenguaje);       
+    }
 
     public void addListenerBtnModificar(ActionListener listenLenguaje){
         jBmodificar.addActionListener(listenLenguaje);       
@@ -224,9 +229,12 @@ public class jFlenguaje extends javax.swing.JFrame {
     public JLabel getjLFechaActu() {
         return jLFechaActu;
     }
+
+    public JButton getjBeliminar() {
+        return jBeliminar;
+    }
     
-    
-    
+  
     public JButton getjBnuevo() {
         return jBnuevo;
     }
@@ -274,10 +282,12 @@ public class jFlenguaje extends javax.swing.JFrame {
         for(int i= 0; i < listadoLenguaje.size(); i++){
               model_lenguaje.addRow(new Object[]{
               listadoLenguaje.get(i).getLenguageID(),
-              listadoLenguaje.get(i).getNombreLenguaje()});}
+              listadoLenguaje.get(i).getNombreLenguaje()});
+        }
         
-        jTableLenguaje.setModel(model_lenguaje);
-         
+        int valor = Integer.parseInt(""+model_lenguaje.getValueAt(model_lenguaje.getRowCount()-1, 0))+1;
+        jTLenguajeID.setText(""+valor);
+        jTLenguajeID.setEnabled(false);
      }
     
     

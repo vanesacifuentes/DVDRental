@@ -30,11 +30,11 @@ public class ControllerLenguaje {
         this.modelo = modelo;
        
         ListenerLenguaje escuchador = new ListenerLenguaje();
-        this.vista.getjBnuevo().addActionListener(escuchador);
+        this.vista.getjBnuevo().addActionListener(escuchador);  
         this.vista.cargarLenguajesTabla(this.modelo.listadoLenguajes());
         this.vista.addMouseListenerTabla(escuchador);
+        this.vista.getjBeliminar().addActionListener(escuchador);   
         
-
     }
     
 
@@ -48,8 +48,11 @@ public class ControllerLenguaje {
             if (ae.getSource() == vista.getjBnuevo()) {
                 JOptionPane.showMessageDialog(null, "Prueba");
                 registrar();
-            } else if (ae.getSource() == vista.getjBModificar()) {
+            } else if (ae.getSource() == vista.getjBModificar()) 
+            {
                 actualizar();
+            }else if (ae.getSource() == vista.getjBeliminar()) {
+                borrar();
             }
         }
 
@@ -132,6 +135,46 @@ public class ControllerLenguaje {
 
 
         }
+        
+        
+    private void borrar(){
+            int codigo =0;
+            codigo  = Integer.parseInt(vista.getjTLenguajeID().getText());
+            
+            if(codigo==0){
+                 vista.gestionMensajes(
+                         "Por favor seleccione un Lenguaje de la tabla",
+                         "Mensaje de Advertencia ", 
+                    JOptionPane.ERROR_MESSAGE);
+            }else{
+                int respuesta = JOptionPane.showConfirmDialog(null,
+                        "¿Desea Eliminar el lenguaje: " + vista.getjTableLenguaje().getValueAt(
+                    vista.getjTableLenguaje().getSelectedRow(), 1),
+                        
+                        "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
+                
+                if(respuesta == JOptionPane.YES_OPTION){                    
+
+                    if(modelo.borrarLenguaje(codigo) ==  1){
+                        JOptionPane.showMessageDialog(null, 
+                                "Registro Borrado con éxtio", 
+                                "Confirmación de acción", 
+                                JOptionPane.INFORMATION_MESSAGE);                    
+                       
+                        ArrayList<Lenguaje> listadoLenguaje; 
+                        listadoLenguaje = modelo.listadoLenguajes();
+                        vista.cargarLenguajesTabla(listadoLenguaje);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, 
+                                "Error al borrar",
+                                "Confirmación de acción", 
+                                JOptionPane.ERROR_MESSAGE);                    
+                    }
+                }
+            }
+        } 
+        
         
              @Override
         public void mouseClicked(MouseEvent me) {

@@ -452,6 +452,10 @@ public class iFcliente extends javax.swing.JInternalFrame {
     public void addListenerBtnModificar(ActionListener listenCliente) {
         jBmodificar.addActionListener(listenCliente);
     }
+    
+    public void addListenerBtnEliminar(ActionListener listenCliente) {
+        jBeliminar.addActionListener(listenCliente);
+    }
 
     public void addMouseListenerTabla(MouseListener listenCliente) {
         jTableCliente.addMouseListener(listenCliente);

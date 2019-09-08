@@ -32,6 +32,8 @@ public class iFpelicula extends javax.swing.JInternalFrame {
      */
     public iFpelicula() {
         initComponents();
+        activarCampos(false);
+        
         
     }
 
@@ -78,6 +80,8 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jBagrgarCate = new javax.swing.JButton();
         jBcrudActor = new javax.swing.JButton();
         jCBClasificacion = new javax.swing.JComboBox<>();
+        jBLenguaje1 = new javax.swing.JButton();
+        jBagrgarCate1 = new javax.swing.JButton();
         jPtabla1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -264,13 +268,13 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         });
         jPingreso1.add(jBagregarActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 20, 20));
 
-        jBLenguaje.setText("Ingresar");
+        jBLenguaje.setText("Update");
         jBLenguaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBLenguajeActionPerformed(evt);
             }
         });
-        jPingreso1.add(jBLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, 30));
+        jPingreso1.add(jBLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 50, -1));
 
         jCBactor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCBactor.addActionListener(new java.awt.event.ActionListener() {
@@ -278,7 +282,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jCBactorActionPerformed(evt);
             }
         });
-        jPingreso1.add(jCBactor, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 180, -1));
+        jPingreso1.add(jCBactor, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 120, -1));
 
         jCBlenguaje.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCBlenguaje.addActionListener(new java.awt.event.ActionListener() {
@@ -286,7 +290,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jCBlenguajeActionPerformed(evt);
             }
         });
-        jPingreso1.add(jCBlenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 160, -1));
+        jPingreso1.add(jCBlenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 130, -1));
 
         jCBcategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCBcategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -294,9 +298,10 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jCBcategoriaActionPerformed(evt);
             }
         });
-        jPingreso1.add(jCBcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 160, -1));
+        jPingreso1.add(jCBcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 130, -1));
         jPingreso1.add(tAsinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 240, 120));
 
+        jBagrgarCate.setText("...");
         jBagrgarCate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBagrgarCateActionPerformed(evt);
@@ -317,7 +322,23 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jCBClasificacionActionPerformed(evt);
             }
         });
-        jPingreso1.add(jCBClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 180, -1));
+        jPingreso1.add(jCBClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 120, -1));
+
+        jBLenguaje1.setText("+");
+        jBLenguaje1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLenguaje1ActionPerformed(evt);
+            }
+        });
+        jPingreso1.add(jBLenguaje1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
+
+        jBagrgarCate1.setText("+");
+        jBagrgarCate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBagrgarCate1ActionPerformed(evt);
+            }
+        });
+        jPingreso1.add(jBagrgarCate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 40, 20));
 
         jPanel1.add(jPingreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 660, 440));
 
@@ -504,6 +525,33 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBClasificacionActionPerformed
 
+    private void jBLenguaje1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLenguaje1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBLenguaje1ActionPerformed
+
+    private void jBagrgarCate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagrgarCate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBagrgarCate1ActionPerformed
+
+    public void activarCampos(Boolean b)
+    {
+        jTDuracionAlquiler.setEnabled(b);
+        jTaño.setEnabled(b);
+        jTtitulo.setEnabled(b);
+        jCBlenguaje.setEnabled(b);
+        jCBcategoria.setEnabled(b);
+        jCBactor.setEnabled(b);
+        jCBClasificacion.setEnabled(b);
+        jTtarifa.setEnabled(b);
+        jTduracion.setEnabled(b);
+        jTcostoRe.setEnabled(b);
+        jTcarateristicas.setEnabled(b);
+        jTtextoCompleto.setEnabled(b);
+        tAsinopsis.setEnabled(b);
+    }
+    
+    
+    
     public void addListenerBtnNuevo(ActionListener listenPelicula){
         jBnuevo.addActionListener(listenPelicula);       
     }
@@ -732,8 +780,10 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBLenguaje;
+    private javax.swing.JButton jBLenguaje1;
     private javax.swing.JButton jBagregarActor;
     private javax.swing.JButton jBagrgarCate;
+    private javax.swing.JButton jBagrgarCate1;
     private javax.swing.JButton jBcrudActor;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;

@@ -74,17 +74,20 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jLultimaAc = new javax.swing.JLabel();
         jTDuracionAlquiler = new javax.swing.JTextField();
         jLActor = new javax.swing.JLabel();
-        jBagregarActor = new javax.swing.JButton();
-        jBLenguaje = new javax.swing.JButton();
         jCBactor = new javax.swing.JComboBox();
         jCBlenguaje = new javax.swing.JComboBox();
         jCBcategoria = new javax.swing.JComboBox();
         tAsinopsis = new java.awt.TextArea();
-        jBagrgarCate = new javax.swing.JButton();
-        jBcrudActor = new javax.swing.JButton();
         jCBClasificacion = new javax.swing.JComboBox<>();
-        jBLenguaje1 = new javax.swing.JButton();
-        jBagrgarCate1 = new javax.swing.JButton();
+        jBagregarActor = new javax.swing.JButton();
+        jBagrgarCate = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jBLenguaje = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPtabla1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -108,7 +111,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jTid_peliActionPerformed(evt);
             }
         });
-        jPingreso1.add(jTid_peli, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 240, 20));
+        jPingreso1.add(jTid_peli, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 110, 20));
 
         jTtitulo.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTtitulo.setForeground(new java.awt.Color(102, 102, 102));
@@ -118,30 +121,30 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jTtituloActionPerformed(evt);
             }
         });
-        jPingreso1.add(jTtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 240, 20));
+        jPingreso1.add(jTtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 240, 20));
 
         jLlanguaje.setBackground(new java.awt.Color(238, 112, 82));
         jLlanguaje.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLlanguaje.setForeground(new java.awt.Color(51, 51, 51));
         jLlanguaje.setText("Lenguaje:");
-        jPingreso1.add(jLlanguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, 20));
+        jPingreso1.add(jLlanguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, 20));
 
         jLaño.setBackground(new java.awt.Color(238, 112, 82));
         jLaño.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLaño.setForeground(new java.awt.Color(51, 51, 51));
         jLaño.setText("Año de lanzamiento:");
-        jPingreso1.add(jLaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 20));
+        jPingreso1.add(jLaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 20));
 
         jLtitulo.setBackground(new java.awt.Color(238, 112, 82));
         jLtitulo.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLtitulo.setForeground(new java.awt.Color(51, 51, 51));
         jLtitulo.setText("Título:");
-        jPingreso1.add(jLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, 20));
+        jPingreso1.add(jLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 20));
 
         jLtextoCompleto.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLtextoCompleto.setForeground(new java.awt.Color(51, 51, 51));
         jLtextoCompleto.setText("Texto completo:");
-        jPingreso1.add(jLtextoCompleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, -1, -1));
+        jPingreso1.add(jLtextoCompleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, -1));
 
         jTaño.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTaño.setForeground(new java.awt.Color(102, 102, 102));
@@ -159,7 +162,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jTañoKeyTyped(evt);
             }
         });
-        jPingreso1.add(jTaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 240, 20));
+        jPingreso1.add(jTaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 90, 20));
 
         jLcategoria.setBackground(new java.awt.Color(238, 112, 82));
         jLcategoria.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
@@ -171,7 +174,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jsinopsis.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jsinopsis.setForeground(new java.awt.Color(51, 51, 51));
         jsinopsis.setText("Sinopsis:");
-        jPingreso1.add(jsinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, -1, -1));
+        jPingreso1.add(jsinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, -1, -1));
 
         jLid.setBackground(new java.awt.Color(238, 112, 82));
         jLid.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
@@ -181,12 +184,12 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
         jLprecio.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLprecio.setText("Precio:");
-        jPingreso1.add(jLprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+        jPingreso1.add(jLprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         jLduracion.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLduracion.setForeground(new java.awt.Color(51, 51, 51));
         jLduracion.setText("Duración:");
-        jPingreso1.add(jLduracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 70, -1));
+        jPingreso1.add(jLduracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 70, -1));
 
         jTtarifa.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTtarifa.setForeground(new java.awt.Color(102, 102, 102));
@@ -201,7 +204,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jTtarifaKeyTyped(evt);
             }
         });
-        jPingreso1.add(jTtarifa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 240, 20));
+        jPingreso1.add(jTtarifa, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 90, 20));
 
         jTduracion.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTduracion.setForeground(new java.awt.Color(102, 102, 102));
@@ -216,16 +219,16 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jTduracionKeyTyped(evt);
             }
         });
-        jPingreso1.add(jTduracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 240, 20));
+        jPingreso1.add(jTduracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 90, 20));
 
         jLcostoRe.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLcostoRe.setForeground(new java.awt.Color(51, 51, 51));
         jLcostoRe.setText("Costo de reemplazo:");
-        jPingreso1.add(jLcostoRe, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
+        jPingreso1.add(jLcostoRe, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, -1));
 
         jLclasificacion.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLclasificacion.setText("Clasificación:");
-        jPingreso1.add(jLclasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, -1, -1));
+        jPingreso1.add(jLclasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
         jTcostoRe.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTcostoRe.setForeground(new java.awt.Color(102, 102, 102));
@@ -240,12 +243,12 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jTcostoReKeyTyped(evt);
             }
         });
-        jPingreso1.add(jTcostoRe, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 240, 20));
+        jPingreso1.add(jTcostoRe, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 90, 20));
 
         jLcaracteristicas.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLcaracteristicas.setForeground(new java.awt.Color(51, 51, 51));
         jLcaracteristicas.setText("Caracteristicas especiales:");
-        jPingreso1.add(jLcaracteristicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, -1, -1));
+        jPingreso1.add(jLcaracteristicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, -1, -1));
 
         jTcarateristicas.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTcarateristicas.setForeground(new java.awt.Color(102, 102, 102));
@@ -255,7 +258,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jTcarateristicasActionPerformed(evt);
             }
         });
-        jPingreso1.add(jTcarateristicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 240, 20));
+        jPingreso1.add(jTcarateristicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 240, 20));
 
         jTtextoCompleto.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTtextoCompleto.setForeground(new java.awt.Color(102, 102, 102));
@@ -265,12 +268,12 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jTtextoCompletoActionPerformed(evt);
             }
         });
-        jPingreso1.add(jTtextoCompleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 240, 20));
+        jPingreso1.add(jTtextoCompleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 240, 20));
 
         jLultimaAc.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLultimaAc.setForeground(new java.awt.Color(51, 51, 51));
         jLultimaAc.setText("Duración Alquiler:");
-        jPingreso1.add(jLultimaAc, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 120, -1));
+        jPingreso1.add(jLultimaAc, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 120, -1));
 
         jTDuracionAlquiler.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTDuracionAlquiler.setForeground(new java.awt.Color(102, 102, 102));
@@ -285,27 +288,12 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jTDuracionAlquilerKeyTyped(evt);
             }
         });
-        jPingreso1.add(jTDuracionAlquiler, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 240, 20));
+        jPingreso1.add(jTDuracionAlquiler, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, 90, 20));
 
         jLActor.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jLActor.setForeground(new java.awt.Color(51, 51, 51));
         jLActor.setText("Actor:");
-        jPingreso1.add(jLActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
-
-        jBagregarActor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBagregarActorActionPerformed(evt);
-            }
-        });
-        jPingreso1.add(jBagregarActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 20, 20));
-
-        jBLenguaje.setText("Update");
-        jBLenguaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBLenguajeActionPerformed(evt);
-            }
-        });
-        jPingreso1.add(jBLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 50, -1));
+        jPingreso1.add(jLActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
         jCBactor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCBactor.addActionListener(new java.awt.event.ActionListener() {
@@ -313,7 +301,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jCBactorActionPerformed(evt);
             }
         });
-        jPingreso1.add(jCBactor, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 120, -1));
+        jPingreso1.add(jCBactor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 90, -1));
 
         jCBlenguaje.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCBlenguaje.addActionListener(new java.awt.event.ActionListener() {
@@ -321,7 +309,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jCBlenguajeActionPerformed(evt);
             }
         });
-        jPingreso1.add(jCBlenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 130, -1));
+        jPingreso1.add(jCBlenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 90, -1));
 
         jCBcategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCBcategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -329,23 +317,8 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jCBcategoriaActionPerformed(evt);
             }
         });
-        jPingreso1.add(jCBcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 130, -1));
-        jPingreso1.add(tAsinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 240, 120));
-
-        jBagrgarCate.setText("...");
-        jBagrgarCate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBagrgarCateActionPerformed(evt);
-            }
-        });
-        jPingreso1.add(jBagrgarCate, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 50, 20));
-
-        jBcrudActor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBcrudActorActionPerformed(evt);
-            }
-        });
-        jPingreso1.add(jBcrudActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 20, 20));
+        jPingreso1.add(jCBcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 90, -1));
+        jPingreso1.add(tAsinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 240, 100));
 
         jCBClasificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCBClasificacion.addActionListener(new java.awt.event.ActionListener() {
@@ -353,25 +326,47 @@ public class iFpelicula extends javax.swing.JInternalFrame {
                 jCBClasificacionActionPerformed(evt);
             }
         });
-        jPingreso1.add(jCBClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 120, -1));
+        jPingreso1.add(jCBClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 90, -1));
 
-        jBLenguaje1.setText("+");
-        jBLenguaje1.addActionListener(new java.awt.event.ActionListener() {
+        jBagregarActor.setText("+");
+        jBagregarActor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBLenguaje1ActionPerformed(evt);
+                jBagregarActorActionPerformed(evt);
             }
         });
-        jPingreso1.add(jBLenguaje1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
+        jPingreso1.add(jBagregarActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 20, -1));
 
-        jBagrgarCate1.setText("+");
-        jBagrgarCate1.addActionListener(new java.awt.event.ActionListener() {
+        jBagrgarCate.setText("+");
+        jBagrgarCate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBagrgarCate1ActionPerformed(evt);
+                jBagrgarCateActionPerformed(evt);
             }
         });
-        jPingreso1.add(jBagrgarCate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 40, 20));
+        jPingreso1.add(jBagrgarCate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 20, -1));
 
-        jPanel1.add(jPingreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 660, 440));
+        jScrollPane1.setViewportView(jList1);
+
+        jPingreso1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 140, 50));
+
+        jScrollPane2.setViewportView(jList2);
+
+        jPingreso1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 140, 50));
+
+        jBLenguaje.setText("+");
+        jBLenguaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLenguajeActionPerformed(evt);
+            }
+        });
+        jPingreso1.add(jBLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 20, -1));
+
+        jButton1.setText("Quitar");
+        jPingreso1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
+
+        jButton2.setText("Quitar");
+        jPingreso1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
+
+        jPanel1.add(jPingreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 660, 460));
 
         jPtabla1.setBackground(new java.awt.Color(255, 255, 255));
         jPtabla1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(153, 153, 153))); // NOI18N
@@ -400,9 +395,9 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(jTable2);
 
-        jPtabla1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 120));
+        jPtabla1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 90));
 
-        jPanel1.add(jPtabla1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 660, 120));
+        jPanel1.add(jPtabla1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 660, 90));
 
         jPbotones1.setBackground(new java.awt.Color(255, 255, 255));
         jPbotones1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -444,7 +439,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         });
         jPbotones1.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 70, 30));
 
-        jPanel1.add(jPbotones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 660, 50));
+        jPanel1.add(jPbotones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 660, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -506,24 +501,6 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTDuracionAlquilerActionPerformed
 
-    private void jBagregarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagregarActorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBagregarActorActionPerformed
-
-    private void jBLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLenguajeActionPerformed
-
-        JOptionPane.showMessageDialog(null, "Grabar lenguaje");
-
-        jFlenguaje lenguajeView = new jFlenguaje();
-
-        LenguajeDAO lenguajeModel = new LenguajeDAO();
-
-        ControllerLenguaje lenguajeControl = new ControllerLenguaje(lenguajeView, lenguajeModel);
-
-        lenguajeView.setVisible(true);
-
-    }//GEN-LAST:event_jBLenguajeActionPerformed
-
     private void jCBactorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBactorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBactorActionPerformed
@@ -536,14 +513,6 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBcategoriaActionPerformed
 
-    private void jBagrgarCateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagrgarCateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBagrgarCateActionPerformed
-
-    private void jBcrudActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcrudActorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBcrudActorActionPerformed
-
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBeliminarActionPerformed
@@ -555,14 +524,6 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     private void jCBClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBClasificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBClasificacionActionPerformed
-
-    private void jBLenguaje1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLenguaje1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBLenguaje1ActionPerformed
-
-    private void jBagrgarCate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagrgarCate1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBagrgarCate1ActionPerformed
 
     private void jTañoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTañoKeyPressed
         // TODO add your handling code here:
@@ -602,6 +563,21 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     private void jTduracionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTduracionKeyTyped
         validaNumero(evt.getKeyChar(),evt);
     }//GEN-LAST:event_jTduracionKeyTyped
+
+    private void jBagregarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagregarActorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBagregarActorActionPerformed
+
+    private void jBagrgarCateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagrgarCateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBagrgarCateActionPerformed
+
+    private void jBLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLenguajeActionPerformed
+        jFlenguaje vista = new jFlenguaje();
+        LenguajeDAO modelo = new LenguajeDAO();
+        ControllerLenguaje lenguajeControlador = new ControllerLenguaje(vista, modelo);
+        vista.setVisible(true);
+    }//GEN-LAST:event_jBLenguajeActionPerformed
 
     public void validaNumero(char c,KeyEvent evt)
     {
@@ -840,9 +816,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         return jBagrgarCate;
     }
 
-    public JButton getjBcrudActor() {
-        return jBcrudActor;
-    }
+    
 
     public JButton getjBeliminar() {
         return jBeliminar;
@@ -864,14 +838,13 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBLenguaje;
-    private javax.swing.JButton jBLenguaje1;
     private javax.swing.JButton jBagregarActor;
     private javax.swing.JButton jBagrgarCate;
-    private javax.swing.JButton jBagrgarCate1;
-    private javax.swing.JButton jBcrudActor;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jCBClasificacion;
     private javax.swing.JComboBox jCBactor;
     private javax.swing.JComboBox jCBcategoria;
@@ -884,6 +857,8 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLcostoRe;
     private javax.swing.JLabel jLduracion;
     private javax.swing.JLabel jLid;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JLabel jLlanguaje;
     private javax.swing.JLabel jLprecio;
     private javax.swing.JLabel jLtextoCompleto;
@@ -893,6 +868,8 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPbotones1;
     private javax.swing.JPanel jPingreso1;
     private javax.swing.JPanel jPtabla1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTDuracionAlquiler;
     private javax.swing.JTable jTable2;

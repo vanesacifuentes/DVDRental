@@ -79,7 +79,7 @@ public class jFautor extends javax.swing.JFrame {
         jLFechaActualizacion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLFechaActualizacion.setForeground(new java.awt.Color(51, 51, 51));
         jLFechaActualizacion.setText("Fecha actualización:");
-        jPingreso.add(jLFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, 20));
+        jPingreso.add(jLFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, 20));
 
         jTnombreActor.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTnombreActor.setForeground(new java.awt.Color(102, 102, 102));
@@ -90,13 +90,13 @@ public class jFautor extends javax.swing.JFrame {
             }
         });
         jPingreso.add(jTnombreActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 240, -1));
-        jPingreso.add(jLFechaActu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 100, 20));
+        jPingreso.add(jLFechaActu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 100, 20));
 
         jLApellidoActor.setBackground(new java.awt.Color(238, 112, 82));
         jLApellidoActor.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLApellidoActor.setForeground(new java.awt.Color(51, 51, 51));
         jLApellidoActor.setText("Apellido Actor:");
-        jPingreso.add(jLApellidoActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 30));
+        jPingreso.add(jLApellidoActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 30));
 
         jTApellidoActor.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTApellidoActor.setForeground(new java.awt.Color(102, 102, 102));
@@ -106,9 +106,9 @@ public class jFautor extends javax.swing.JFrame {
                 jTApellidoActorActionPerformed(evt);
             }
         });
-        jPingreso.add(jTApellidoActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 240, -1));
+        jPingreso.add(jTApellidoActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 240, -1));
 
-        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 220));
+        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 200));
 
         jPbotones.setBackground(new java.awt.Color(255, 255, 255));
         jPbotones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -145,7 +145,7 @@ public class jFautor extends javax.swing.JFrame {
         jBeliminar.setContentAreaFilled(false);
         jPbotones.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
 
-        jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 330, 50));
+        jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 330, 50));
 
         jTableActores.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTableActores.setForeground(new java.awt.Color(51, 51, 51));
@@ -170,24 +170,22 @@ public class jFautor extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTableActores);
 
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 330, 90));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

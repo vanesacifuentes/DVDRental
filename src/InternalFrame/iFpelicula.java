@@ -5,6 +5,7 @@
  */
 package InternalFrame;
 
+import Controlador.ControllerCategoria;
 import Controlador.ControllerLenguaje;
 import Modelo.*;
 import JFrame.jFcategoria;
@@ -570,6 +571,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
     private void jBagrgarCateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagrgarCateActionPerformed
         // TODO add your handling code here:
+        jFcategoria vista = new jFcategoria();
+        CategoriaDAO modelo = new CategoriaDAO();
+        ControllerCategoria categoriaControlador = new ControllerCategoria(vista, modelo);
+        vista.setVisible(true);
+        
     }//GEN-LAST:event_jBagrgarCateActionPerformed
 
     private void jBLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLenguajeActionPerformed

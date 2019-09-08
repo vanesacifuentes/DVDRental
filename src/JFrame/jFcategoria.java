@@ -5,6 +5,18 @@
  */
 package JFrame;
 
+import Modelo.Categoria;
+import Modelo.Lenguaje;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nicol
@@ -14,6 +26,7 @@ public class jFcategoria extends javax.swing.JFrame {
     /**
      * Creates new form jFcategoria
      */
+    int valor;
     public jFcategoria() {
         initComponents();
     }
@@ -42,7 +55,7 @@ public class jFcategoria extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableCategoria = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -160,7 +173,7 @@ public class jFcategoria extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -186,6 +199,104 @@ public class jFcategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBnuevoActionPerformed
 
+    public void activarCampos(Boolean b) {
+        jTnombreCategoria.setEnabled(b);
+    }
+    
+    
+    public void setearCampos() {
+        
+      jTnombreCategoria.setText("");
+      jTCategoriaID.setText("" + valor);
+    }
+    
+    public JButton getjBeliminar() {
+        return jBeliminar;
+    }
+
+    public JButton getjBmodificar() {
+        return jBmodificar;
+    }
+
+    public JButton getjBnuevo() {
+        return jBnuevo;
+    }
+
+    public JLabel getjLFechaActu() {
+        return jLFechaActu;
+    }
+
+    public JLabel getjLFechaActualizacion() {
+        return jLFechaActualizacion;
+    }
+
+    public JLabel getjLIDCategoria() {
+        return jLIDCategoria;
+    }
+
+    public JLabel getjLNombreCategoria() {
+        return jLNombreCategoria;
+    }
+
+    public JTextField getjTCategoriaID() {
+        return jTCategoriaID;
+    }
+
+    public JTable getjTableCategoria() {
+        return jTableCategoria;
+    }
+
+    public JTextField getjTnombreCategoria() {
+        return jTnombreCategoria;
+    }
+
+     private void limpiarListadoTabla(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTableCategoria.getModel();
+        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
+            modelo.removeRow(i);
+        }
+    }
+    
+    //Método para cargar los lenguajes a la tabla 
+    public void cargarCategoriaTabla(ArrayList<Categoria> listadoCategoria)
+     {
+        DefaultTableModel model_categoria;
+        model_categoria = (DefaultTableModel) jTableCategoria.getModel();        
+        limpiarListadoTabla();
+        for(int i= 0; i < listadoCategoria.size(); i++){
+              model_categoria.addRow(new Object[]{
+              listadoCategoria.get(i).getCategoriaId(),
+              listadoCategoria.get(i).getNombreCategoria()});
+        }
+        
+        valor = Integer.parseInt(""+model_categoria.getValueAt(model_categoria.getRowCount()-1, 0))+1;
+        jTCategoriaID.setText(""+valor);
+        jTCategoriaID.setEnabled(false);
+     }
+    
+    public void addListenerBtnNuevo(ActionListener listenCategoria){
+       
+        jBnuevo.addActionListener(listenCategoria);       
+    }
+    
+    public void addListenerBtnEliminar(ActionListener listenCategoria){
+       
+        jBeliminar.addActionListener(listenCategoria);       
+    }
+
+    public void addListenerBtnModificar(ActionListener listenCategoria){
+        jBmodificar.addActionListener(listenCategoria);       
+    }
+    
+    public void addMouseListenerTabla(MouseListener listenCategoria) {
+        jTableCategoria.addMouseListener(listenCategoria);
+    }
+    
+    public void gestionMensajes(String mensaje, String titulo, int icono){
+         JOptionPane.showMessageDialog(this,mensaje, titulo, icono);
+    }
+    
     /**
      * @param args the command line arguments
      */

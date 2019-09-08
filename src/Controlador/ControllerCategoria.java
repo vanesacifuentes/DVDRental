@@ -5,41 +5,41 @@
  */
 package Controlador;
 
-import JFrame.jFlenguaje;
-import Modelo.*;
+import JFrame.jFcategoria;
+import Modelo.Categoria;
+import Modelo.CategoriaDAO;
+import Modelo.Lenguaje;
 import Servicios.Fecha;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import java.awt.event.MouseListener;
 
 /**
  *
  * @author vanes
  */
-public class ControllerLenguaje {
+public class ControllerCategoria {
     
-    jFlenguaje vista;
-    LenguajeDAO modelo;
+    jFcategoria vista;
+    CategoriaDAO modelo;
 
-    public ControllerLenguaje(jFlenguaje vista, LenguajeDAO modelo) {
+    public ControllerCategoria(jFcategoria vista, CategoriaDAO modelo) {
 
         this.vista = vista;
         this.modelo = modelo;
        
-        ListenerLenguaje escuchador = new ListenerLenguaje();
+        ListenerCategoria escuchador = new ListenerCategoria();
         this.vista.getjBnuevo().addActionListener(escuchador);  
-        this.vista.cargarLenguajesTabla(this.modelo.listadoLenguajes());
+        this.vista.cargarCategoriaTabla(this.modelo.listadoCateogoria());
         this.vista.addMouseListenerTabla(escuchador);
         this.vista.getjBeliminar().addActionListener(escuchador);   
         
     }
     
-
-    
-    public class ListenerLenguaje implements ActionListener, MouseListener {
+       public class ListenerCategoria implements ActionListener, MouseListener {
 
         
             @Override
@@ -89,7 +89,7 @@ public class ControllerLenguaje {
 
         public void registrar() {
 
-        if (vista.getjTLenguajeID().equals("")) {
+        if (vista.getjTCategoriaID().equals("")) {
             vista.gestionMensajes("Ingrese el código",
                     "Error de Entrada", JOptionPane.ERROR_MESSAGE);
             /*else if (vista.getNivel().trim().
@@ -97,29 +97,29 @@ public class ControllerLenguaje {
                    vista.gestionMensajes("Seleccione un nivel",
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
         } else {
-            Lenguaje lenguaje = new Lenguaje();
+            Categoria categoria = new Categoria();
             
-            lenguaje.setLenguageID(Integer.parseInt(vista.getjTLenguajeID().getText()));
-            lenguaje.setNombreLenguaje(vista.getjTnombreLenguaje().getText());           
-            lenguaje.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
+            categoria.setCategoriaId(Integer.parseInt(vista.getjTCategoriaID().getText()));
+            categoria.setNombreCategoria(vista.getjTnombreCategoria().getText());           
+            categoria.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
             
             System.out.println("fecha "+Fecha.crearFechaTimeStamp());   
   
             int tamaño = 0;
-            tamaño = modelo.listadoLenguajes().size();
+            tamaño = modelo.listadoCateogoria().size();
 
             //if (tamaño == 0) {
                 int resultado = 0;
                 //int resultado2 = 0;
-                resultado = modelo.grabarLenguaje(lenguaje);
+                resultado = modelo.grabarCategoria(categoria);
                 
                 if (resultado == 1) {
                     vista.gestionMensajes("Registro Grabado con éxito",
                             "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
-                    ArrayList <Lenguaje> listaLenguajes;
-                    listaLenguajes = modelo.listadoLenguajes();
-                    vista.cargarLenguajesTabla(listaLenguajes);
+                    ArrayList <Categoria> listaCategoria;
+                    listaCategoria = modelo.listadoCateogoria();
+                    vista.cargarCategoriaTabla(listaCategoria);
 
                     //vista.activarControles(false); 
                     //vista.nuevoAction();
@@ -137,15 +137,15 @@ public class ControllerLenguaje {
         
         public void actualizar() {
             
-            Lenguaje lenguaje= new Lenguaje();
+            Categoria categoria= new Categoria();
              
-            //Se configura los datos en el objeto cliente de la clase Lenguaje
+            //Se configura los datos en el objeto cliente de la clase Categoria
            
-            lenguaje.setLenguageID(Integer.parseInt(vista.getjTLenguajeID().toString()));
-            lenguaje.setNombreLenguaje(vista.getjTnombreLenguaje().toString());
-            lenguaje.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
+            categoria.setCategoriaId(Integer.parseInt(vista.getjTCategoriaID().toString()));
+            categoria.setNombreCategoria(vista.getjTnombreCategoria().toString());
+            categoria.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
                      
-            if(modelo.modificarLenguaje(lenguaje) == 1){
+            if(modelo.modificarCategoria(categoria) == 1){
                 vista.gestionMensajes(
                         "Actualización exitosa",
                         "Confirmación ", 
@@ -153,9 +153,9 @@ public class ControllerLenguaje {
                                         
 //                vista.activarControles(false); 
 //                vista.nuevoAction();
-                ArrayList<Lenguaje> listadoLenguajes; 
-                listadoLenguajes = modelo.listadoLenguajes();
-                vista.cargarLenguajesTabla(listadoLenguajes);           
+                ArrayList<Categoria> listadoCategorias; 
+                listadoCategorias = modelo.listadoCateogoria();
+                vista.cargarCategoriaTabla(listadoCategorias);           
             } else {
                 vista.gestionMensajes(
                         "Actualización Falida jajaja",
@@ -170,7 +170,7 @@ public class ControllerLenguaje {
         
     private void borrar(){
             int codigo =0;
-            codigo  = Integer.parseInt(vista.getjTLenguajeID().getText());
+            codigo  = Integer.parseInt(vista.getjTCategoriaID().getText());
             
             if(codigo==0){
                  vista.gestionMensajes(
@@ -179,22 +179,22 @@ public class ControllerLenguaje {
                     JOptionPane.ERROR_MESSAGE);
             }else{
                 int respuesta = JOptionPane.showConfirmDialog(null,
-                        "¿Desea Eliminar el lenguaje: " + vista.getjTableLenguaje().getValueAt(
-                    vista.getjTableLenguaje().getSelectedRow(), 1),
+                        "¿Desea Eliminar el lenguaje: " + vista.getjTableCategoria().getValueAt(
+                    vista.getjTableCategoria().getSelectedRow(), 1),
                         
                         "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
                 
                 if(respuesta == JOptionPane.YES_OPTION){                    
 
-                    if(modelo.borrarLenguaje(codigo) ==  1){
+                    if(modelo.borrarCategoria(codigo) ==  1){
                         JOptionPane.showMessageDialog(null, 
                                 "Registro Borrado con éxtio", 
                                 "Confirmación de acción", 
                                 JOptionPane.INFORMATION_MESSAGE);                    
                        
-                        ArrayList<Lenguaje> listadoLenguaje; 
-                        listadoLenguaje = modelo.listadoLenguajes();
-                        vista.cargarLenguajesTabla(listadoLenguaje);
+                        ArrayList<Categoria> listadoCategoria; 
+                        listadoCategoria = modelo.listadoCateogoria();
+                        vista.cargarCategoriaTabla(listadoCategoria);
                     }
                     else{
                         JOptionPane.showMessageDialog(null, 
@@ -209,19 +209,19 @@ public class ControllerLenguaje {
         
              @Override
         public void mouseClicked(MouseEvent me) {
-            if (vista.getjTableLenguaje().getSelectedRow() == -1) {
-                if (vista.getjTableLenguaje().getRowCount() == 0) {
+            if (vista.getjTableCategoria().getSelectedRow() == -1) {
+                if (vista.getjTableCategoria().getRowCount() == 0) {
                     JOptionPane.showMessageDialog(null, "No hay registros");
                 } else {
                     JOptionPane.showMessageDialog(null, "Seleccione una fila");
                 }
             } else {
                 
-                int indiceTabla = vista.getjTableLenguaje().getSelectedRow();
-                ArrayList<Lenguaje> ListaLenguajes = modelo.listadoLenguajes();
-                vista.getjTLenguajeID().setText("" + ListaLenguajes.get(indiceTabla).getLenguageID());
-                vista.getjTnombreLenguaje().setText("" + ListaLenguajes.get(indiceTabla).getNombreLenguaje());  
-                vista.getjLFechaActu().setText("" + ListaLenguajes.get(indiceTabla).getUltimaActualizacion());
+                int indiceTabla = vista.getjTableCategoria().getSelectedRow();
+                ArrayList<Categoria> ListaCategorias = modelo.listadoCateogoria();
+                vista.getjTCategoriaID().setText("" + ListaCategorias.get(indiceTabla).getCategoriaId());
+                vista.getjTnombreCategoria().setText("" + ListaCategorias.get(indiceTabla).getNombreCategoria());  
+                vista.getjLFechaActu().setText("" + ListaCategorias.get(indiceTabla).getUltimaActualizacion());
         }
  
     }  
@@ -249,11 +249,9 @@ public class ControllerLenguaje {
         
         
     }
+    
+    
+    
+    
+    
 }
-    
-    
-
-    
-    
-    
-

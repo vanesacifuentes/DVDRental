@@ -27,21 +27,188 @@ public class jFautor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPingreso = new javax.swing.JPanel();
+        jTActorID = new javax.swing.JTextField();
+        jLNombreActor = new javax.swing.JLabel();
+        jLIDActor = new javax.swing.JLabel();
+        jLFechaActualizacion = new javax.swing.JLabel();
+        jTnombreActor = new javax.swing.JTextField();
+        jLFechaActu = new javax.swing.JLabel();
+        jLApellidoActor = new javax.swing.JLabel();
+        jTApellidoActor = new javax.swing.JTextField();
+        jPbotones = new javax.swing.JPanel();
+        jBnuevo = new javax.swing.JButton();
+        jBmodificar = new javax.swing.JButton();
+        jBeliminar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableActores = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPingreso.setBackground(new java.awt.Color(255, 255, 255));
+        jPingreso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos Actores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
+        jPingreso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTActorID.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTActorID.setForeground(new java.awt.Color(102, 102, 102));
+        jTActorID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTActorID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTActorIDActionPerformed(evt);
+            }
+        });
+        jPingreso.add(jTActorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
+
+        jLNombreActor.setBackground(new java.awt.Color(238, 112, 82));
+        jLNombreActor.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLNombreActor.setForeground(new java.awt.Color(51, 51, 51));
+        jLNombreActor.setText("Nombre Actor:");
+        jPingreso.add(jLNombreActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 30));
+
+        jLIDActor.setBackground(new java.awt.Color(238, 112, 82));
+        jLIDActor.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLIDActor.setForeground(new java.awt.Color(51, 51, 51));
+        jLIDActor.setText("Actores ID:");
+        jPingreso.add(jLIDActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 20));
+
+        jLFechaActualizacion.setBackground(new java.awt.Color(238, 112, 82));
+        jLFechaActualizacion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLFechaActualizacion.setForeground(new java.awt.Color(51, 51, 51));
+        jLFechaActualizacion.setText("Fecha actualización:");
+        jPingreso.add(jLFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, 20));
+
+        jTnombreActor.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTnombreActor.setForeground(new java.awt.Color(102, 102, 102));
+        jTnombreActor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTnombreActor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTnombreActorActionPerformed(evt);
+            }
+        });
+        jPingreso.add(jTnombreActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 240, -1));
+        jPingreso.add(jLFechaActu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 100, 20));
+
+        jLApellidoActor.setBackground(new java.awt.Color(238, 112, 82));
+        jLApellidoActor.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLApellidoActor.setForeground(new java.awt.Color(51, 51, 51));
+        jLApellidoActor.setText("Apellido Actor:");
+        jPingreso.add(jLApellidoActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 30));
+
+        jTApellidoActor.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTApellidoActor.setForeground(new java.awt.Color(102, 102, 102));
+        jTApellidoActor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTApellidoActor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTApellidoActorActionPerformed(evt);
+            }
+        });
+        jPingreso.add(jTApellidoActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 240, -1));
+
+        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 220));
+
+        jPbotones.setBackground(new java.awt.Color(255, 255, 255));
+        jPbotones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPbotones.setForeground(new java.awt.Color(102, 102, 102));
+        jPbotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jBnuevo.setBackground(new java.awt.Color(238, 112, 82));
+        jBnuevo.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBnuevo.setForeground(new java.awt.Color(238, 112, 82));
+        jBnuevo.setText("Nuevo");
+        jBnuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBnuevo.setContentAreaFilled(false);
+        jBnuevo.setDefaultCapable(false);
+        jBnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBnuevoActionPerformed(evt);
+            }
+        });
+        jPbotones.add(jBnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 60, 30));
+
+        jBmodificar.setBackground(new java.awt.Color(238, 112, 82));
+        jBmodificar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBmodificar.setForeground(new java.awt.Color(238, 112, 82));
+        jBmodificar.setText("Modificar");
+        jBmodificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBmodificar.setContentAreaFilled(false);
+        jPbotones.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 80, 30));
+
+        jBeliminar.setBackground(new java.awt.Color(238, 112, 82));
+        jBeliminar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBeliminar.setForeground(new java.awt.Color(238, 112, 82));
+        jBeliminar.setText("Eliminar");
+        jBeliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBeliminar.setContentAreaFilled(false);
+        jPbotones.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
+
+        jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 330, 50));
+
+        jTableActores.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTableActores.setForeground(new java.awt.Color(51, 51, 51));
+        jTableActores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID Actor", "Nombre Actor"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTableActores);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 308, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTActorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTActorIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTActorIDActionPerformed
+
+    private void jTnombreActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreActorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTnombreActorActionPerformed
+
+    private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBnuevoActionPerformed
+
+    private void jTApellidoActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTApellidoActorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTApellidoActorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +246,21 @@ public class jFautor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBeliminar;
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JButton jBnuevo;
+    private javax.swing.JLabel jLApellidoActor;
+    private javax.swing.JLabel jLFechaActu;
+    private javax.swing.JLabel jLFechaActualizacion;
+    private javax.swing.JLabel jLIDActor;
+    private javax.swing.JLabel jLNombreActor;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPbotones;
+    private javax.swing.JPanel jPingreso;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTActorID;
+    private javax.swing.JTextField jTApellidoActor;
+    private javax.swing.JTable jTableActores;
+    private javax.swing.JTextField jTnombreActor;
     // End of variables declaration//GEN-END:variables
 }

@@ -171,7 +171,7 @@ public class ControllerPelicula {
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
         } else {
             Pelicula pelicula = new Pelicula();
-            pelicula.setPeliculaId(2000);//revisar el ingreso null
+            pelicula.setPeliculaId(Integer.parseInt(vista.getjTid_peli().getText()));//revisar el ingreso null
             pelicula.setTitulo(vista.getjTtitulo().getText());
             pelicula.setDescripcion(vista.gettAsinopsis().getText());
             pelicula.setAnhoLanzamiento(Integer.parseInt(vista.getjTaño().getText()));

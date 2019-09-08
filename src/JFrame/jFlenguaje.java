@@ -34,6 +34,7 @@ public class jFlenguaje extends javax.swing.JFrame {
     int valor;
     public jFlenguaje() {
         initComponents();
+        activarCampos(false);
     }
 
     /**

@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.awt.event.MouseListener;
+import InternalFrame.*;
 
 /**
  *
@@ -23,20 +24,22 @@ public class ControllerLenguaje {
     
     jFlenguaje vista;
     LenguajeDAO modelo;
-
+    iFpelicula vistaPelicula;
     
     
     
-    public ControllerLenguaje(jFlenguaje vista, LenguajeDAO modelo) {
+    public ControllerLenguaje(jFlenguaje vista, LenguajeDAO modelo,iFpelicula vistaPelicula) {
 
         this.vista = vista;
         this.modelo = modelo;
+        this.vistaPelicula = vistaPelicula;
        
         ListenerLenguaje escuchador = new ListenerLenguaje();
         this.vista.getjBnuevo().addActionListener(escuchador);  
         this.vista.cargarLenguajesTabla(this.modelo.listadoLenguajes());
         this.vista.addMouseListenerTabla(escuchador);
-        this.vista.getjBeliminar().addActionListener(escuchador);   
+        this.vista.getjBeliminar().addActionListener(escuchador);  
+        this.vista.getjBmodificar().addActionListener(escuchador);
         
     }
     
@@ -49,44 +52,47 @@ public class ControllerLenguaje {
         public void actionPerformed(ActionEvent ae) {
 
             if (ae.getSource() == vista.getjBnuevo()) {
-                JOptionPane.showMessageDialog(null, "Prueba");
+               
                 
-                    if (vista.getjBnuevo().getText().equalsIgnoreCase("Nuevo")) {
+                    if (ae.getSource() == vista.getjBnuevo()) {
+
+                if (vista.getjBnuevo().getText().equalsIgnoreCase("Nuevo")) {
                     vista.activarCampos(true);
                     vista.setearCampos();
                     vista.getjBnuevo().setText("Grabar");
                     vista.getjBmodificar().setText("Cancelar");
                     vista.getjBeliminar().setVisible(false);
-                    
+
                 } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Grabar")) {
                     registrar();
                     vista.activarCampos(false);
                     vista.getjBnuevo().setText("Nuevo");
                     vista.getjBmodificar().setText("Modificar");
                     vista.getjBeliminar().setEnabled(true);
-            
-                }else if (vista.getjBnuevo().getText().equalsIgnoreCase("Actualizar")){
+
+                } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Actualizar")) {
                     actualizar();
-                }        
-                                          
-            } else if (ae.getSource() == vista.getjBmodificar()) 
-            {
-                 if (vista.getjBmodificar().getText().equalsIgnoreCase("Modificar")) {
+                }
+
+            } else if (ae.getSource() == vista.getjBmodificar()) {
+                if (vista.getjBmodificar().getText().equalsIgnoreCase("Modificar")) {
                     vista.activarCampos(true);
                     vista.getjBnuevo().setText("Actualizar");
                     vista.getjBmodificar().setText("Cancelar");
                     vista.getjBeliminar().setVisible(false);
-                }else if (vista.getjBmodificar().getText().equalsIgnoreCase("Cancelar")){
-                    
+                } else if (vista.getjBmodificar().getText().equalsIgnoreCase("Cancelar")) {
+
                     vista.activarCampos(false);
                     vista.setearCampos();
                     vista.getjBnuevo().setText("Nuevo");
                     vista.getjBmodificar().setText("Modificar");
-                    vista.getjBeliminar().setVisible(true);    
-                }  
-            }else if (ae.getSource() == vista.getjBeliminar()) {
+                    vista.getjBeliminar().setVisible(true);
+                }
+
+            } else if (ae.getSource() == vista.getjBeliminar()) {
                 borrar();
             }
+        }
         }
         
 
@@ -123,6 +129,7 @@ public class ControllerLenguaje {
                     ArrayList <Lenguaje> listaLenguajes;
                     listaLenguajes = modelo.listadoLenguajes();
                     vista.cargarLenguajesTabla(listaLenguajes);
+                    vistaPelicula.cargarLenguajesCombo(listaLenguajes);
 
                     //vista.activarControles(false); 
                     //vista.nuevoAction();
@@ -158,7 +165,9 @@ public class ControllerLenguaje {
 //                vista.nuevoAction();
                 ArrayList<Lenguaje> listadoLenguajes; 
                 listadoLenguajes = modelo.listadoLenguajes();
-                vista.cargarLenguajesTabla(listadoLenguajes);           
+                vista.cargarLenguajesTabla(listadoLenguajes);   
+                vistaPelicula.cargarLenguajesCombo(listadoLenguajes);
+                
             } else {
                 vista.gestionMensajes(
                         "Actualización Falida jajaja",
@@ -198,6 +207,8 @@ public class ControllerLenguaje {
                         ArrayList<Lenguaje> listadoLenguaje; 
                         listadoLenguaje = modelo.listadoLenguajes();
                         vista.cargarLenguajesTabla(listadoLenguaje);
+                        vistaPelicula.cargarLenguajesCombo(listadoLenguaje);
+                        
                     }
                     else{
                         JOptionPane.showMessageDialog(null, 

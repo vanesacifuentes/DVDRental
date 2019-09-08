@@ -24,17 +24,17 @@ import javax.swing.JOptionPane;
  * @author vanes
  */
 public class ControllerPelicula {
-    
+
     private iFpelicula vista;
     private PeliculaDAO modelo;
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<Lenguaje> listaLenguajes;
     private ArrayList<Actor> listaActores;
-    
+
     public ControllerPelicula(iFpelicula vista, PeliculaDAO modelo) {
         this.vista = vista;
         this.modelo = modelo;
-        
+
         CategoriaDAO modelCat = new CategoriaDAO();
         LenguajeDAO modelLenguaje = new LenguajeDAO();
         ActorDAO modelActor = new ActorDAO();
@@ -56,49 +56,61 @@ public class ControllerPelicula {
         this.vista.getjBmodificar().addActionListener(listen);
         this.vista.getjBeliminar().addActionListener(listen);
         this.vista.addMouseListenerTabla(listen);
-        
+
     }
-    
+
     public class PeliculaListener implements ActionListener, MouseListener {
 
         //Clase manejadora de los eventos del IFpelicula
         @Override
         public void actionPerformed(ActionEvent ae) {
-            
+
             if (ae.getSource() == vista.getjBnuevo()) {
                 if (vista.getjBnuevo().getText().equalsIgnoreCase("Nuevo")) {
                     vista.activarCampos(true);
+                    vista.setearCampos();
                     vista.getjBnuevo().setText("Grabar");
                     vista.getjBmodificar().setText("Cancelar");
                     vista.getjBeliminar().setVisible(false);
-                } else 
-                if(vista.getjBmodificar().getText().equalsIgnoreCase("Cancelar"))
-                {
-                    vista.activarCampos(true);
-                    vista.getjBnuevo().setText("Nuevo");
-                    vista.getjBmodificar().setText("Modificar");
-                    vista.getjBeliminar().setVisible(true);
-                    
-                }else
-                {
-                    
+                } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Grabar")) {
                     registrar();
                     vista.activarCampos(false);
                     vista.getjBnuevo().setText("Nuevo");
                     vista.getjBmodificar().setText("Modificar");
-                    vista.setVisible(true);
+                    vista.getjBeliminar().setEnabled(true);
+                } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Actualizar"))
+                {
+                    actualizar();
+                }
+                
+            } else if (ae.getSource() == vista.getjBmodificar()) {
+                if (vista.getjBmodificar().getText().equalsIgnoreCase("Modificar")) {
+                    vista.activarCampos(true);
+                    vista.getjBnuevo().setText("Actualizar");
+                    vista.getjBmodificar().setText("Cancelar");
+                    vista.getjBeliminar().setVisible(false);
+                }else if (vista.getjBmodificar().getText().equalsIgnoreCase("Cancelar")){
+                    
+                    vista.activarCampos(false);
+                    vista.setearCampos();
+                    vista.getjBnuevo().setText("Nuevo");
+                    vista.getjBmodificar().setText("Modificar");
+                    vista.getjBeliminar().setVisible(true);
                     
                 }
-            } else if (ae.getSource() == vista.getjBmodificar()) {
-                actualizar();
-            } else if (ae.getSource() == vista.getjBeliminar()) {
+
+            }else if (ae.getSource() == vista.getjBeliminar())
+            {
                 borrar();
             }
-            
+
         }
-        
+
         @Override
         public void mouseClicked(MouseEvent me) {
+            
+            if(!vista.getjBnuevo().getText().equalsIgnoreCase("Grabar"))
+            {
             if (vista.getjTable2().getSelectedRow() == -1) {
                 if (vista.getjTable2().getRowCount() == 0) {
                     JOptionPane.showMessageDialog(null, "No hay registros");
@@ -106,9 +118,9 @@ public class ControllerPelicula {
                     JOptionPane.showMessageDialog(null, "Seleccione una fila");
                 }
             } else {
-                
+
                 int indiceTabla = vista.getjTable2().getSelectedRow();
-                
+
                 ArrayList<Pelicula> ListaPeliculas = modelo.listadoPeliculas();
                 vista.getjTid_peli().setText("" + ListaPeliculas.get(indiceTabla).getPeliculaId());
                 vista.getjTtitulo().setText("" + ListaPeliculas.get(indiceTabla).getTitulo());
@@ -125,28 +137,29 @@ public class ControllerPelicula {
                 //Lenguaje lenguaje = modelo.extraerPorId(ListaPeliculas.get(indiceTabla).getLenguajeID());
                 //vista.getjCBlenguaje().setSelectedItem(lenguaje.getNombreLenguaje());
             }
+            }
         }
-        
+
         @Override
         public void mousePressed(MouseEvent me) {
         }
-        
+
         @Override
         public void mouseReleased(MouseEvent me) {
         }
-        
+
         @Override
         public void mouseEntered(MouseEvent me) {
         }
-        
+
         @Override
         public void mouseExited(MouseEvent me) {
         }
-        
+
     }
-    
+
     public void registrar() {
-        
+
         if (vista.getjTid_peli().equals("")) {
             vista.gestionMensajes("Ingrese el código",
                     "Error de Entrada", JOptionPane.ERROR_MESSAGE);
@@ -179,12 +192,12 @@ public class ControllerPelicula {
             int indiceActor = 0;
             indiceActor = vista.getjCBactor().getSelectedIndex();
             actorID = listaActores.get(indiceActor).getActorID();
-            
+
             int categoriaID = 0;
             int indiceCategoria = 0;
             indiceCategoria = vista.getjCBcategoria().getSelectedIndex();
             categoriaID = listaCategorias.get(indiceCategoria).getCategoriaId();
-            
+
             int tamaño;
             tamaño = modelo.listadoPeliculas().size();
 
@@ -198,7 +211,7 @@ public class ControllerPelicula {
             if (resultado == 1) {
                 vista.gestionMensajes("Registro Grabado con éxito",
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
-                
+
                 ArrayList<Pelicula> listaPeliculas;
                 listaPeliculas = modelo.listadoPeliculas();
                 vista.cargarPeliculasTabla(listaPeliculas);
@@ -214,9 +227,9 @@ public class ControllerPelicula {
                     "Confirmación",
                     JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }
-    
+
     private void actualizar() {
 
         /*
@@ -258,43 +271,41 @@ public class ControllerPelicula {
         } 
          */
     }
-    
-    private void borrar(){
-            int codigo =0;
-            codigo  = Integer.parseInt(vista.getjTid_peli().getText());
-            
-            if(codigo==0){
-                 vista.gestionMensajes(
-                         "Por favor seleccione una Película de la tabla",
-                         "Mensaje de Advertencia ", 
-                    JOptionPane.ERROR_MESSAGE);
-            }else{
-                int respuesta = JOptionPane.showConfirmDialog(null,
-                        "¿Desea Eliminar la película: " + vista.getjTable2().getValueAt(
-                    vista.getjTable2().getSelectedRow(), 1),
-                        
-                        "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
-                
-                if(respuesta == JOptionPane.YES_OPTION){                    
 
-                    if(modelo.borrarPelicula(codigo) ==  1){
-                        JOptionPane.showMessageDialog(null, 
-                                "Registro Borrado con éxtio", 
-                                "Confirmación de acción", 
-                                JOptionPane.INFORMATION_MESSAGE);                    
-                       
-                        ArrayList<Pelicula> listadoPeliculas; 
-                        listadoPeliculas = modelo.listadoPeliculas();
-                        vista.cargarPeliculasTabla(listadoPeliculas);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, 
-                                "Error al borrar",
-                                "Confirmación de acción", 
-                                JOptionPane.ERROR_MESSAGE);                    
-                    }
+    private void borrar() {
+        int codigo = 0;
+        codigo = Integer.parseInt(vista.getjTid_peli().getText());
+
+        if (codigo == 0) {
+            vista.gestionMensajes(
+                    "Por favor seleccione una Película de la tabla",
+                    "Mensaje de Advertencia ",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            int respuesta = JOptionPane.showConfirmDialog(null,
+                    "¿Desea Eliminar la película: " + vista.getjTable2().getValueAt(
+                            vista.getjTable2().getSelectedRow(), 1),
+                    "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
+
+            if (respuesta == JOptionPane.YES_OPTION) {
+
+                if (modelo.borrarPelicula(codigo) == 1) {
+                    JOptionPane.showMessageDialog(null,
+                            "Registro Borrado con éxtio",
+                            "Confirmación de acción",
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                    ArrayList<Pelicula> listadoPeliculas;
+                    listadoPeliculas = modelo.listadoPeliculas();
+                    vista.cargarPeliculasTabla(listadoPeliculas);
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Error al borrar",
+                            "Confirmación de acción",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
-        } 
-    
+        }
+    }
+
 }

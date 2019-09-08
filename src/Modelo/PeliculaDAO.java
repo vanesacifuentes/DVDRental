@@ -29,7 +29,7 @@ public class PeliculaDAO {
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "INSERT INTO film values (?,?,?,?,?,?,?,?,?,CAST(? AS mpaa_rating),?,TEXT(?),?)";
+            String sql = "INSERT INTO film values (?,?,?,?,?,?,?,?,?,CAST(? AS mpaa_rating),?,?,?)";
             
             pstm = con.prepareStatement(sql);
             
@@ -44,7 +44,7 @@ public class PeliculaDAO {
             pstm.setDouble(9,5);
             pstm.setString(10, "Onlhn");
             pstm.setTimestamp(11, Fecha.crearFechaTimeStamp());
-            pstm.setString(12,p.getCaracteristicasEspeciales());
+            pstm.setNull(12,Types.NULL);
             pstm.setNull(13,Types.NULL);
             
             rtdo = pstm.executeUpdate();  

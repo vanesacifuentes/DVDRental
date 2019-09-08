@@ -119,7 +119,7 @@ public class ControllerLenguaje {
 
                     ArrayList <Lenguaje> listaLenguajes;
                     listaLenguajes = modelo.listadoLenguajes();
-                    //vista.cargarClientesTabla(listaClientes);
+                    vista.cargarLenguajesTabla(listaLenguajes);
 
                     //vista.activarControles(false); 
                     //vista.nuevoAction();

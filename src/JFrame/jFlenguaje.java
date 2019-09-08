@@ -213,8 +213,8 @@ public class jFlenguaje extends javax.swing.JFrame {
         jBmodificar.addActionListener(listenLenguaje);       
     }
     
-    public void addMouseListenerTabla(MouseListener listenCliente) {
-        jTableLenguaje.addMouseListener(listenCliente);
+    public void addMouseListenerTabla(MouseListener listenLenguaje) {
+        jTableLenguaje.addMouseListener(listenLenguaje);
     }
 
     public JTable getjTableLenguaje() {
@@ -268,7 +268,7 @@ public class jFlenguaje extends javax.swing.JFrame {
     //Método para cargar los lenguajes a la tabla 
     public void cargarLenguajesTabla(ArrayList<Lenguaje> listadoLenguaje)
      {
-         DefaultTableModel model_lenguaje;
+        DefaultTableModel model_lenguaje;
         model_lenguaje = (DefaultTableModel) jTableLenguaje.getModel();        
         limpiarListadoTabla();
         for(int i= 0; i < listadoLenguaje.size(); i++){

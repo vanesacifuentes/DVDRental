@@ -32,7 +32,7 @@ public class ControllerLenguaje {
         ListenerLenguaje escuchador = new ListenerLenguaje();
         this.vista.getjBnuevo().addActionListener(escuchador);
         this.vista.cargarLenguajesTabla(this.modelo.listadoLenguajes());
-        this.vista.addMouseListener(escuchador);
+        this.vista.addMouseListenerTabla(escuchador);
         
 
     }
@@ -149,9 +149,7 @@ public class ControllerLenguaje {
                 vista.getjTnombreLenguaje().setText("" + ListaLenguajes.get(indiceTabla).getNombreLenguaje());  
                 vista.getjLFechaActu().setText("" + ListaLenguajes.get(indiceTabla).getUltimaActualizacion());
         }
-
-
-        
+ 
     }  
 
         @Override
@@ -176,7 +174,8 @@ public class ControllerLenguaje {
     
         
         
-    }}
+    }
+}
     
     
 

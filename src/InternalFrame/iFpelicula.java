@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package InternalFrame;
+
 import Controlador.ControllerLenguaje;
 import Modelo.*;
 import JFrame.jFcategoria;
@@ -30,11 +31,12 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     /**
      * Creates new form iFpelicula
      */
+    
+    int valor;
     public iFpelicula() {
         initComponents();
         activarCampos(false);
-        
-        
+
     }
 
     /**
@@ -146,6 +148,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jTaño.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTañoActionPerformed(evt);
+            }
+        });
+        jTaño.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTañoKeyPressed(evt);
             }
         });
         jPingreso1.add(jTaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 240, 20));
@@ -482,11 +489,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     private void jBLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLenguajeActionPerformed
 
         JOptionPane.showMessageDialog(null, "Grabar lenguaje");
-        
+
         jFlenguaje lenguajeView = new jFlenguaje();
-     
+
         LenguajeDAO lenguajeModel = new LenguajeDAO();
-        
+
         ControllerLenguaje lenguajeControl = new ControllerLenguaje(lenguajeView, lenguajeModel);
 
         lenguajeView.setVisible(true);
@@ -533,8 +540,16 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBagrgarCate1ActionPerformed
 
-    public void activarCampos(Boolean b)
-    {
+    private void jTañoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTañoKeyPressed
+        // TODO add your handling code here:
+        //evt.get
+        
+        
+        
+        
+    }//GEN-LAST:event_jTañoKeyPressed
+
+    public void activarCampos(Boolean b) {
         jTDuracionAlquiler.setEnabled(b);
         jTaño.setEnabled(b);
         jTtitulo.setEnabled(b);
@@ -549,73 +564,89 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jTtextoCompleto.setEnabled(b);
         tAsinopsis.setEnabled(b);
     }
-    
-    
-    
-    public void addListenerBtnNuevo(ActionListener listenPelicula){
-        jBnuevo.addActionListener(listenPelicula);       
+
+    public void setearCampos() {
+        
+        jTDuracionAlquiler.setText("");
+        jTaño.setText("");
+        jTtitulo.setText("");
+        jCBlenguaje.setSelectedIndex(0);
+        jCBcategoria.setSelectedIndex(0);
+        jCBactor.setSelectedIndex(0);
+        jCBClasificacion.setSelectedIndex(0);
+        jTtarifa.setText("");
+        jTduracion.setText("");
+        jTcostoRe.setText("");
+        jTcarateristicas.setText("");
+        jTtextoCompleto.setText("");
+        tAsinopsis.setText("");
+        jTid_peli.setText("" + valor);
+        
+        
+        
     }
-    
-    public void addMouseListenerTabla(MouseListener listener)
-    {
+
+    public void addListenerBtnNuevo(ActionListener listenPelicula) {
+        jBnuevo.addActionListener(listenPelicula);
+    }
+
+    public void addMouseListenerTabla(MouseListener listener) {
         jTable2.addMouseListener(listener);
-        
+
     }
-    
-    
-    public void cargarPeliculasTabla(ArrayList<Pelicula> listadoPelicula){
+
+    public void cargarPeliculasTabla(ArrayList<Pelicula> listadoPelicula) {
         DefaultTableModel defaultCombo;
-        defaultCombo = (DefaultTableModel) jTable2.getModel();        
+        defaultCombo = (DefaultTableModel) jTable2.getModel();
         limpiarListadoTabla();
-        for(int i= 0; i < listadoPelicula.size(); i++){
-              defaultCombo.addRow(new Object[]{
-              listadoPelicula.get(i).getPeliculaId(),
-              listadoPelicula.get(i).getTitulo(),
-              //listadoPelicula.get(i).getDescripcion(),
-              listadoPelicula.get(i).getAnhoLanzamiento(),
-              //listadoPelicula.get(i).getLenguajeID(),
-              //listadoPelicula.get(i).getDuracionRenta(),
-             // listadoPelicula.get(i).getTarifaRenta(),
-              listadoPelicula.get(i).getLongitud()+" Minutos",
-              //listadoPelicula.get(i).getCostoReemplazo(),
-              //listadoPelicula.get(i).getClasificacion(),
-              //listadoPelicula.get(i).getUltimaActualizacion(),
-              //listadoPelicula.get(i).getCaracteristicasEspeciales(),
-              //listadoPelicula.get(i).getTextoCompleto()});      
-     
-        });}
-        
+        for (int i = 0; i < listadoPelicula.size(); i++) {
+            defaultCombo.addRow(new Object[]{
+                listadoPelicula.get(i).getPeliculaId(),
+                listadoPelicula.get(i).getTitulo(),
+                //listadoPelicula.get(i).getDescripcion(),
+                listadoPelicula.get(i).getAnhoLanzamiento(),
+                //listadoPelicula.get(i).getLenguajeID(),
+                //listadoPelicula.get(i).getDuracionRenta(),
+                // listadoPelicula.get(i).getTarifaRenta(),
+                listadoPelicula.get(i).getLongitud() + " Minutos", //listadoPelicula.get(i).getCostoReemplazo(),
+            //listadoPelicula.get(i).getClasificacion(),
+            //listadoPelicula.get(i).getUltimaActualizacion(),
+            //listadoPelicula.get(i).getCaracteristicasEspeciales(),
+            //listadoPelicula.get(i).getTextoCompleto()});      
+            });
+        }
+
         //Muestra en el campo de texto de la Interfaz el ID cliente Consecutivo
-        int valor = Integer.parseInt(""+defaultCombo.getValueAt(defaultCombo.getRowCount()-1, 0))+1;
-        jTid_peli.setText(""+valor);
+        valor = Integer.parseInt("" + defaultCombo.getValueAt(defaultCombo.getRowCount() - 1, 0)) + 1;
+        jTid_peli.setText("" + valor);
         jTid_peli.setEnabled(false);
-                      
+
     }
-    
-    public void cargarClasificacionCombo ()
-    {
+
+    public void cargarClasificacionCombo() {
         DefaultComboBoxModel model;
-        
-        String [] arregloClasificacion = new String[5];
-        
+
+        String[] arregloClasificacion = new String[5];
+
         arregloClasificacion[0] = "G";
         arregloClasificacion[1] = "NC-17";
         arregloClasificacion[2] = "PG-13";
         arregloClasificacion[3] = "R";
         arregloClasificacion[4] = "PG";
-        model = new DefaultComboBoxModel (arregloClasificacion);
-        
+        model = new DefaultComboBoxModel(arregloClasificacion);
+
         jCBClasificacion.setModel(model);
-      
+
     }
-    
-     private void limpiarListadoTabla(){
+
+    private void limpiarListadoTabla() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jTable2.getModel();
-        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
+        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
+
     /* 
      public void activarControles(boolean estado){
         txtCodigo.setEnabled(estado);
@@ -626,59 +657,52 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         btnCerrar.setEnabled(!estado);
         jtListado.setEnabled(!estado);
     }*/
-     
-     
-     public void cargarCategoriasCombo(ArrayList<Categoria> listadoCategoria)
-     {
-         DefaultComboBoxModel model;
-         String[] arregloCategorias = new String[listadoCategoria.size()];
-         
-         for(int a=0;a < listadoCategoria.size();a++)
-         {
-             arregloCategorias[a] = listadoCategoria.get(a).getNombreCategoria();
-         }
-         
-         model = new DefaultComboBoxModel(arregloCategorias);
-         
-         jCBcategoria.setModel(model);
-     }
-     
-     public void cargarLenguajesCombo(ArrayList<Lenguaje> listadoLenguaje)
-     {
-         DefaultComboBoxModel model;
-         String[] arregloCategorias = new String[listadoLenguaje.size()];
-         
-         for(int a=0;a < listadoLenguaje.size();a++)
-         {
-             arregloCategorias[a] = listadoLenguaje.get(a).getNombreLenguaje();
-         }
-         
-         model = new DefaultComboBoxModel(arregloCategorias);
-         
-         jCBlenguaje.setModel(model);
-         
-     }
-     
-     //Método para cargar actores al comboBox Actores
-     public void cargarActorCombo(ArrayList <Actor> listadoActores)
-     {
-         DefaultComboBoxModel model; 
-         
-         String [] arregloActores = new String [listadoActores.size()];
-         
-         for(int a = 0; a < listadoActores.size(); a++)
-         {
-             arregloActores[a] = listadoActores.get(a).getNombreActor()+" "+listadoActores.get(a).getApellidoActor();
-         }
-         model = new DefaultComboBoxModel(arregloActores);
-         
-         jCBactor.setModel(model);    
-     }
-    
-    public void gestionMensajes(String mensaje, String titulo, int icono){
-         JOptionPane.showMessageDialog(this,mensaje, titulo, icono);
+
+    public void cargarCategoriasCombo(ArrayList<Categoria> listadoCategoria) {
+        DefaultComboBoxModel model;
+        String[] arregloCategorias = new String[listadoCategoria.size()];
+
+        for (int a = 0; a < listadoCategoria.size(); a++) {
+            arregloCategorias[a] = listadoCategoria.get(a).getNombreCategoria();
+        }
+
+        model = new DefaultComboBoxModel(arregloCategorias);
+
+        jCBcategoria.setModel(model);
     }
-    
+
+    public void cargarLenguajesCombo(ArrayList<Lenguaje> listadoLenguaje) {
+        DefaultComboBoxModel model;
+        String[] arregloCategorias = new String[listadoLenguaje.size()];
+
+        for (int a = 0; a < listadoLenguaje.size(); a++) {
+            arregloCategorias[a] = listadoLenguaje.get(a).getNombreLenguaje();
+        }
+
+        model = new DefaultComboBoxModel(arregloCategorias);
+
+        jCBlenguaje.setModel(model);
+
+    }
+
+    //Método para cargar actores al comboBox Actores
+    public void cargarActorCombo(ArrayList<Actor> listadoActores) {
+        DefaultComboBoxModel model;
+
+        String[] arregloActores = new String[listadoActores.size()];
+
+        for (int a = 0; a < listadoActores.size(); a++) {
+            arregloActores[a] = listadoActores.get(a).getNombreActor() + " " + listadoActores.get(a).getApellidoActor();
+        }
+        model = new DefaultComboBoxModel(arregloActores);
+
+        jCBactor.setModel(model);
+    }
+
+    public void gestionMensajes(String mensaje, String titulo, int icono) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
+    }
+
     public JComboBox getjCBactor() {
         return jCBactor;
     }
@@ -714,7 +738,6 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     public JTable getjTable2() {
         return jTable2;
     }
-    
 
     public JTextField getjTduracion() {
         return jTduracion;
@@ -773,10 +796,10 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     }
 
     public JButton getjBLenguaje() {
-       
+
         return jBLenguaje;
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBLenguaje;

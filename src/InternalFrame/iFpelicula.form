@@ -539,14 +539,14 @@
             </Component>
             <Component class="javax.swing.JButton" name="jBLenguaje">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ingresar"/>
+                <Property name="text" type="java.lang.String" value="Update"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBLenguajeActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="210" y="200" width="-1" height="30"/>
+                  <AbsoluteConstraints x="220" y="200" width="50" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -566,7 +566,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="380" y="100" width="180" height="-1"/>
+                  <AbsoluteConstraints x="380" y="100" width="120" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -586,7 +586,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="30" y="200" width="160" height="-1"/>
+                  <AbsoluteConstraints x="30" y="200" width="130" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -606,7 +606,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="30" y="250" width="160" height="-1"/>
+                  <AbsoluteConstraints x="30" y="250" width="130" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -618,6 +618,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JButton" name="jBagrgarCate">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="..."/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBagrgarCateActionPerformed"/>
               </Events>
@@ -656,7 +659,33 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="380" y="150" width="180" height="-1"/>
+                  <AbsoluteConstraints x="380" y="150" width="120" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jBLenguaje1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="+"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBLenguaje1ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="170" y="200" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jBagrgarCate1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="+"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBagrgarCate1ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="170" y="250" width="40" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>

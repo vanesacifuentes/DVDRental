@@ -81,7 +81,8 @@ public class LenguajeDAO {
             pstm.setInt(1,l.getLenguageID());
             pstm.setString(2, l.getNombreLenguaje());
             pstm.setTimestamp(3, l.getUltimaActualizacion());
-           
+            pstm.setInt(4,l.getLenguageID());
+             
             rtdo = pstm.executeUpdate();  
         }
         catch(SQLException ex){

@@ -31,8 +31,12 @@ public class jFlenguaje extends javax.swing.JFrame {
     /**
      * Creates new form jFlenguaje
      */
+    public int valor;
+
     public jFlenguaje() {
         initComponents();
+        activarCampos(false);
+        jTLenguajeID.setEnabled(false);
     }
 
     /**
@@ -59,13 +63,13 @@ public class jFlenguaje extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableLenguaje = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPingreso.setBackground(new java.awt.Color(255, 255, 255));
-        jPingreso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
+        jPingreso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos lenguaje", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
         jPingreso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTLenguajeID.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
@@ -93,7 +97,7 @@ public class jFlenguaje extends javax.swing.JFrame {
         jLFechaActualizacion.setBackground(new java.awt.Color(238, 112, 82));
         jLFechaActualizacion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLFechaActualizacion.setForeground(new java.awt.Color(51, 51, 51));
-        jLFechaActualizacion.setText("Fecha actualizacion:");
+        jLFechaActualizacion.setText("Fecha actualización:");
         jPingreso.add(jLFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 20));
 
         jTnombreLenguaje.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
@@ -204,15 +208,40 @@ public class jFlenguaje extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTLenguajeIDActionPerformed
 
-    public void addListenerBtnNuevo(ActionListener listenLenguaje){
-       
-        jBnuevo.addActionListener(listenLenguaje);       
+    public void activarCampos(Boolean b) {
+        jTnombreLenguaje.setEnabled(b);
+        //jTLenguajeID.setEnabled(b);
     }
 
-    public void addListenerBtnModificar(ActionListener listenLenguaje){
-        jBmodificar.addActionListener(listenLenguaje);       
+    public void setearCampos() {
+
+        jTnombreLenguaje.setText("");
+        jTLenguajeID.setText("");
+        
     }
-    
+
+    public void nuevaAccion() {
+        activarCampos(false);
+        setearCampos();
+        jBnuevo.setText("Nuevo");
+        jBmodificar.setText("Modificar");
+        jBeliminar.setVisible(true);
+    }
+
+    public void addListenerBtnNuevo(ActionListener listenLenguaje) {
+
+        jBnuevo.addActionListener(listenLenguaje);
+    }
+
+    public void addListenerBtnEliminar(ActionListener listenLenguaje) {
+
+        jBeliminar.addActionListener(listenLenguaje);
+    }
+
+    public void addListenerBtnModificar(ActionListener listenLenguaje) {
+        jBmodificar.addActionListener(listenLenguaje);
+    }
+
     public void addMouseListenerTabla(MouseListener listenLenguaje) {
         jTableLenguaje.addMouseListener(listenLenguaje);
     }
@@ -224,17 +253,18 @@ public class jFlenguaje extends javax.swing.JFrame {
     public JLabel getjLFechaActu() {
         return jLFechaActu;
     }
-    
-    
-    
+
+    public JButton getjBeliminar() {
+        return jBeliminar;
+    }
+
     public JButton getjBnuevo() {
         return jBnuevo;
     }
 
-    public JButton getjBModificar() {
+    public JButton getjBmodificar() {
         return jBmodificar;
     }
-   
 
     public JLabel getjLIDLenguaje() {
         return jLIDLenguaje;
@@ -244,7 +274,6 @@ public class jFlenguaje extends javax.swing.JFrame {
         return jLNombreLenguaje;
     }
 
-
     public JTextField getjTLenguajeID() {
         return jTLenguajeID;
     }
@@ -252,37 +281,35 @@ public class jFlenguaje extends javax.swing.JFrame {
     public JTextField getjTnombreLenguaje() {
         return jTnombreLenguaje;
     }
-    
-    public void gestionMensajes(String mensaje, String titulo, int icono){
-         JOptionPane.showMessageDialog(this,mensaje, titulo, icono);
+
+    public void gestionMensajes(String mensaje, String titulo, int icono) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
-    
-     private void limpiarListadoTabla(){
+
+    private void limpiarListadoTabla() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jTableLenguaje.getModel();
-        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
+        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
-    
+
     //Método para cargar los lenguajes a la tabla 
-    public void cargarLenguajesTabla(ArrayList<Lenguaje> listadoLenguaje)
-     {
+    public void cargarLenguajesTabla(ArrayList<Lenguaje> listadoLenguaje) {
         DefaultTableModel model_lenguaje;
-        model_lenguaje = (DefaultTableModel) jTableLenguaje.getModel();        
+        model_lenguaje = (DefaultTableModel) jTableLenguaje.getModel();
         limpiarListadoTabla();
-        for(int i= 0; i < listadoLenguaje.size(); i++){
-              model_lenguaje.addRow(new Object[]{
-              listadoLenguaje.get(i).getLenguageID(),
-              listadoLenguaje.get(i).getNombreLenguaje()});}
-        
-        jTableLenguaje.setModel(model_lenguaje);
-         
-     }
-    
-    
-    
-    
+        for (int i = 0; i < listadoLenguaje.size(); i++) {
+            model_lenguaje.addRow(new Object[]{
+                listadoLenguaje.get(i).getLenguageID(),
+                listadoLenguaje.get(i).getNombreLenguaje()});
+        }
+
+        valor = Integer.parseInt("" + model_lenguaje.getValueAt(model_lenguaje.getRowCount() - 1, 0)) + 1;
+        //jTLenguajeID.setText("" + valor);
+        //jTLenguajeID.setEnabled(false);
+    }
+
     /**
      * @param args the command line arguments
      */

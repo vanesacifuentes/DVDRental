@@ -5,6 +5,18 @@
  */
 package JFrame;
 
+import Modelo.Categoria;
+import Modelo.Lenguaje;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nicol
@@ -14,6 +26,7 @@ public class jFcategoria extends javax.swing.JFrame {
     /**
      * Creates new form jFcategoria
      */
+    int valor;
     public jFcategoria() {
         initComponents();
     }
@@ -28,93 +41,262 @@ public class jFcategoria extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPingreso = new javax.swing.JPanel();
+        jTCategoriaID = new javax.swing.JTextField();
+        jLNombreCategoria = new javax.swing.JLabel();
+        jLIDCategoria = new javax.swing.JLabel();
+        jLFechaActualizacion = new javax.swing.JLabel();
+        jTnombreCategoria = new javax.swing.JTextField();
+        jLFechaActu = new javax.swing.JLabel();
+        jPbotones = new javax.swing.JPanel();
+        jBnuevo = new javax.swing.JButton();
+        jBmodificar = new javax.swing.JButton();
+        jBeliminar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableCategoria = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton5.setBackground(new java.awt.Color(238, 112, 82));
-        jButton5.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(238, 112, 82));
-        jButton5.setText("Nuevo");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jButton5.setContentAreaFilled(false);
-        jButton5.setDefaultCapable(false);
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 60, 30));
+        jPingreso.setBackground(new java.awt.Color(255, 255, 255));
+        jPingreso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos categoría", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
+        jPingreso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton7.setBackground(new java.awt.Color(238, 112, 82));
-        jButton7.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(238, 112, 82));
-        jButton7.setText("Modificar");
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jButton7.setContentAreaFilled(false);
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 80, 30));
-
-        jButton9.setBackground(new java.awt.Color(238, 112, 82));
-        jButton9.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(238, 112, 82));
-        jButton9.setText("Eliminar");
-        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jButton9.setContentAreaFilled(false);
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 70, 30));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 210, -1));
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTCategoriaID.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTCategoriaID.setForeground(new java.awt.Color(102, 102, 102));
+        jTCategoriaID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTCategoriaID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTCategoriaIDActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 210, -1));
+        jPingreso.add(jTCategoriaID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
 
-        jLabel1.setText("ID:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jLNombreCategoria.setBackground(new java.awt.Color(238, 112, 82));
+        jLNombreCategoria.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLNombreCategoria.setForeground(new java.awt.Color(51, 51, 51));
+        jLNombreCategoria.setText("Nombre Categoría:");
+        jPingreso.add(jLNombreCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 30));
 
-        jLabel3.setText("Nombre de categoria:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 110, -1));
+        jLIDCategoria.setBackground(new java.awt.Color(238, 112, 82));
+        jLIDCategoria.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLIDCategoria.setForeground(new java.awt.Color(51, 51, 51));
+        jLIDCategoria.setText("Categoría ID:");
+        jPingreso.add(jLIDCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 20));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jLFechaActualizacion.setBackground(new java.awt.Color(238, 112, 82));
+        jLFechaActualizacion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLFechaActualizacion.setForeground(new java.awt.Color(51, 51, 51));
+        jLFechaActualizacion.setText("Fecha actualización:");
+        jPingreso.add(jLFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 20));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 248, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 128, Short.MAX_VALUE)
-        );
+        jTnombreCategoria.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTnombreCategoria.setForeground(new java.awt.Color(102, 102, 102));
+        jTnombreCategoria.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTnombreCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTnombreCategoriaActionPerformed(evt);
+            }
+        });
+        jPingreso.add(jTnombreCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 240, -1));
+        jPingreso.add(jLFechaActu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 100, 20));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, 130));
+        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 150));
+
+        jPbotones.setBackground(new java.awt.Color(255, 255, 255));
+        jPbotones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPbotones.setForeground(new java.awt.Color(102, 102, 102));
+        jPbotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jBnuevo.setBackground(new java.awt.Color(238, 112, 82));
+        jBnuevo.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBnuevo.setForeground(new java.awt.Color(238, 112, 82));
+        jBnuevo.setText("Nuevo");
+        jBnuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBnuevo.setContentAreaFilled(false);
+        jBnuevo.setDefaultCapable(false);
+        jBnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBnuevoActionPerformed(evt);
+            }
+        });
+        jPbotones.add(jBnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 60, 30));
+
+        jBmodificar.setBackground(new java.awt.Color(238, 112, 82));
+        jBmodificar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBmodificar.setForeground(new java.awt.Color(238, 112, 82));
+        jBmodificar.setText("Modificar");
+        jBmodificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBmodificar.setContentAreaFilled(false);
+        jPbotones.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 80, 30));
+
+        jBeliminar.setBackground(new java.awt.Color(238, 112, 82));
+        jBeliminar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBeliminar.setForeground(new java.awt.Color(238, 112, 82));
+        jBeliminar.setText("Eliminar");
+        jBeliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBeliminar.setContentAreaFilled(false);
+        jPbotones.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
+
+        jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 330, 50));
+
+        jTableCategoria.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTableCategoria.setForeground(new java.awt.Color(51, 51, 51));
+        jTableCategoria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID Categoría", "Nombre Categoría"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTableCategoria);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 330, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTCategoriaIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCategoriaIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTCategoriaIDActionPerformed
 
+    private void jTnombreCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTnombreCategoriaActionPerformed
+
+    private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBnuevoActionPerformed
+
+    public void activarCampos(Boolean b) {
+        jTnombreCategoria.setEnabled(b);
+    }
+    
+    
+    public void setearCampos() {
+        
+      jTnombreCategoria.setText("");
+      jTCategoriaID.setText("" + valor);
+    }
+    
+    public JButton getjBeliminar() {
+        return jBeliminar;
+    }
+
+    public JButton getjBmodificar() {
+        return jBmodificar;
+    }
+
+    public JButton getjBnuevo() {
+        return jBnuevo;
+    }
+
+    public JLabel getjLFechaActu() {
+        return jLFechaActu;
+    }
+
+    public JLabel getjLFechaActualizacion() {
+        return jLFechaActualizacion;
+    }
+
+    public JLabel getjLIDCategoria() {
+        return jLIDCategoria;
+    }
+
+    public JLabel getjLNombreCategoria() {
+        return jLNombreCategoria;
+    }
+
+    public JTextField getjTCategoriaID() {
+        return jTCategoriaID;
+    }
+
+    public JTable getjTableCategoria() {
+        return jTableCategoria;
+    }
+
+    public JTextField getjTnombreCategoria() {
+        return jTnombreCategoria;
+    }
+
+     private void limpiarListadoTabla(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTableCategoria.getModel();
+        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
+            modelo.removeRow(i);
+        }
+    }
+    
+    //Método para cargar los lenguajes a la tabla 
+    public void cargarCategoriaTabla(ArrayList<Categoria> listadoCategoria)
+     {
+        DefaultTableModel model_categoria;
+        model_categoria = (DefaultTableModel) jTableCategoria.getModel();        
+        limpiarListadoTabla();
+        for(int i= 0; i < listadoCategoria.size(); i++){
+              model_categoria.addRow(new Object[]{
+              listadoCategoria.get(i).getCategoriaId(),
+              listadoCategoria.get(i).getNombreCategoria()});
+        }
+        
+        valor = Integer.parseInt(""+model_categoria.getValueAt(model_categoria.getRowCount()-1, 0))+1;
+        jTCategoriaID.setText(""+valor);
+        jTCategoriaID.setEnabled(false);
+     }
+    
+    public void addListenerBtnNuevo(ActionListener listenCategoria){
+       
+        jBnuevo.addActionListener(listenCategoria);       
+    }
+    
+    public void addListenerBtnEliminar(ActionListener listenCategoria){
+       
+        jBeliminar.addActionListener(listenCategoria);       
+    }
+
+    public void addListenerBtnModificar(ActionListener listenCategoria){
+        jBmodificar.addActionListener(listenCategoria);       
+    }
+    
+    public void addMouseListenerTabla(MouseListener listenCategoria) {
+        jTableCategoria.addMouseListener(listenCategoria);
+    }
+    
+    public void gestionMensajes(String mensaje, String titulo, int icono){
+         JOptionPane.showMessageDialog(this,mensaje, titulo, icono);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -151,14 +333,19 @@ public class jFcategoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jBeliminar;
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JButton jBnuevo;
+    private javax.swing.JLabel jLFechaActu;
+    private javax.swing.JLabel jLFechaActualizacion;
+    private javax.swing.JLabel jLIDCategoria;
+    private javax.swing.JLabel jLNombreCategoria;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel jPbotones;
+    private javax.swing.JPanel jPingreso;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTCategoriaID;
+    private javax.swing.JTable jTableCategoria;
+    private javax.swing.JTextField jTnombreCategoria;
     // End of variables declaration//GEN-END:variables
 }

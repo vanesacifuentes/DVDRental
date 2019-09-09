@@ -29,23 +29,23 @@ public class PeliculaDAO {
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "INSERT INTO film values (?,?,?,?,?,?,?,?,?,CAST(? AS mpaa_rating),?,TEXT(?),?)";
+            String sql = "INSERT INTO film values (?,?,?,?,?,?,?,?,?,CAST(? AS mpaa_rating),?,?,?)";
             
             pstm = con.prepareStatement(sql);
             
-            pstm.setInt(1,10500);
-            pstm.setString(2,"GS");
-            pstm.setString(3,"FXZJSZ");
-            pstm.setInt(4,2006);
-            pstm.setInt(5,5);
-            pstm.setInt(6,5);
-            pstm.setInt(7,5);
-            pstm.setInt(8,5);
-            pstm.setDouble(9,5);
-            pstm.setString(10, "Onlhn");
-            pstm.setTimestamp(11, Fecha.crearFechaTimeStamp());
-            pstm.setString(12,p.getCaracteristicasEspeciales());
-            pstm.setNull(13,Types.NULL);
+            pstm.setInt(1,p.getPeliculaId());
+            pstm.setString(2,p.getTitulo());
+            pstm.setString(3,p.getDescripcion());
+            pstm.setInt(4,p.getAnhoLanzamiento());
+            pstm.setInt(5,p.getLenguajeID());
+            pstm.setInt(6,p.getDuracionRenta());
+            pstm.setInt(7,p.getTarifaRenta());
+            pstm.setInt(8,p.getLongitud());
+            pstm.setDouble(9,p.getCostoReemplazo());
+            pstm.setString(10,p.getClasificacion());
+            pstm.setTimestamp(11, p.getUltimaActualizacion());
+            pstm.setNull(12,Types.NULL);
+            pstm.setNull(13,Types.NULL); 
             
             rtdo = pstm.executeUpdate();  
         }

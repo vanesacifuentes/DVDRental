@@ -47,6 +47,7 @@ public class ControllerCliente {
         
         this.vista.addListenerBtnNuevo(escuchador);
         this.vista.addListenerBtnModificar(escuchador);
+        this.vista.addListenerBtnEliminar(escuchador);
         this.vista.addMouseListenerTabla(escuchador);
             
     }
@@ -61,7 +62,10 @@ public class ControllerCliente {
             } else if (ae.getSource() == vista.getjBmodificar()) {
                 JOptionPane.showMessageDialog(null, "Prueba");
                 actualizar();
-            }
+            }else if (ae.getSource() == vista.getjBeliminar()) {
+                JOptionPane.showMessageDialog(null, "Prueba");
+                borrar();   
+        }
         }
 
         public void registrar() {
@@ -159,14 +163,44 @@ public class ControllerCliente {
                         "Confirmación ", 
                         JOptionPane.ERROR_MESSAGE);                 
             }  
+        }
+        
+            private void borrar(){
+            int codigo =0;
+            codigo  = Integer.parseInt(vista.getjTClienteID().getText());
             
-            
-            
-            
-            
-            
-            
+            if(codigo==0){
+                 vista.gestionMensajes(
+                         "Por favor seleccione un Cliente de la tabla",
+                         "Mensaje de Advertencia ", 
+                    JOptionPane.ERROR_MESSAGE);
+            }else{
+                int respuesta = JOptionPane.showConfirmDialog(null,
+                        "¿Desea Eliminar el cliente: " + vista.getjTableCliente().getValueAt(
+                    vista.getjTableCliente().getSelectedRow(), 1),
+                        
+                        "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
+                
+                if(respuesta == JOptionPane.YES_OPTION){                    
 
+                    if(modelo.borrarCliente(codigo) ==  1){
+                        JOptionPane.showMessageDialog(null, 
+                                "Registro Borrado con éxtio", 
+                                "Confirmación de acción", 
+                                JOptionPane.INFORMATION_MESSAGE);                    
+                       
+                        ArrayList<Cliente> listadoCliente; 
+                        listadoCliente = modelo.listadoCliente();
+                        vista.cargarClientesTabla(listadoCliente);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, 
+                                "Error al borrar",
+                                "Confirmación de acción", 
+                                JOptionPane.ERROR_MESSAGE);                    
+                    }
+                }
+            }
         }
 
         @Override

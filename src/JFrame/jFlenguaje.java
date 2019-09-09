@@ -97,7 +97,7 @@ public class jFlenguaje extends javax.swing.JFrame {
         jLFechaActualizacion.setBackground(new java.awt.Color(238, 112, 82));
         jLFechaActualizacion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLFechaActualizacion.setForeground(new java.awt.Color(51, 51, 51));
-        jLFechaActualizacion.setText("Fecha actualizacion:");
+        jLFechaActualizacion.setText("Fecha actualización:");
         jPingreso.add(jLFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, 20));
 
         jTnombreLenguaje.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N

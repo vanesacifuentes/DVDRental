@@ -9,6 +9,7 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.sql.Timestamp;
 /**
  *
  * @author vanes
@@ -35,7 +36,7 @@ public class CategoriaDAO {
             
             pstm.setInt(1, c.getCategoriaId());
             pstm.setString(2,c.getNombreCategoria());
-            pstm.setString(3, c.getUltimaActualizacion());
+            pstm.setTimestamp(3, c.getUltimaActualizacion());
             
             rtdo = pstm.executeUpdate();  
         }
@@ -78,7 +79,7 @@ public class CategoriaDAO {
 
             pstm.setInt(1,c.getCategoriaId());
             pstm.setString(2, c.getNombreCategoria());
-            pstm.setString(3, c.getUltimaActualizacion());
+            pstm.setTimestamp(3, c.getUltimaActualizacion());
            
             rtdo = pstm.executeUpdate();  
         }

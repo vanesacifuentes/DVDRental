@@ -52,23 +52,17 @@ public class ControllerLenguaje {
         public void actionPerformed(ActionEvent ae) {
 
             if (ae.getSource() == vista.getjBnuevo()) {
-               
-                
-                    if (ae.getSource() == vista.getjBnuevo()) {
 
                 if (vista.getjBnuevo().getText().equalsIgnoreCase("Nuevo")) {
                     vista.activarCampos(true);
-                    vista.setearCampos();
+                    vista.getjTLenguajeID().setText(""+vista.valor);
                     vista.getjBnuevo().setText("Grabar");
                     vista.getjBmodificar().setText("Cancelar");
                     vista.getjBeliminar().setVisible(false);
 
                 } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Grabar")) {
                     registrar();
-                    vista.activarCampos(false);
-                    vista.getjBnuevo().setText("Nuevo");
-                    vista.getjBmodificar().setText("Modificar");
-                    vista.getjBeliminar().setEnabled(true);
+                    
 
                 } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Actualizar")) {
                     actualizar();
@@ -82,17 +76,12 @@ public class ControllerLenguaje {
                     vista.getjBeliminar().setVisible(false);
                 } else if (vista.getjBmodificar().getText().equalsIgnoreCase("Cancelar")) {
 
-                    vista.activarCampos(false);
-                    vista.setearCampos();
-                    vista.getjBnuevo().setText("Nuevo");
-                    vista.getjBmodificar().setText("Modificar");
-                    vista.getjBeliminar().setVisible(true);
+                    vista.nuevaAccion();
                 }
 
             } else if (ae.getSource() == vista.getjBeliminar()) {
                 borrar();
             }
-        }
         }
         
 
@@ -108,8 +97,8 @@ public class ControllerLenguaje {
         } else {
             Lenguaje lenguaje = new Lenguaje();
             
-            lenguaje.setLenguageID(Integer.parseInt(vista.getjTLenguajeID().getText()));
-            lenguaje.setNombreLenguaje(vista.getjTnombreLenguaje().getText());           
+            lenguaje.setLenguageID(Integer.parseInt(vista.getjTLenguajeID().getText().trim()));
+            lenguaje.setNombreLenguaje(vista.getjTnombreLenguaje().getText().trim());           
             lenguaje.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
             
             System.out.println("fecha "+Fecha.crearFechaTimeStamp());   
@@ -126,6 +115,9 @@ public class ControllerLenguaje {
                     vista.gestionMensajes("Registro Grabado con éxito",
                             "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
+                    vista.nuevaAccion();
+                   
+                    
                     ArrayList <Lenguaje> listaLenguajes;
                     listaLenguajes = modelo.listadoLenguajes();
                     vista.cargarLenguajesTabla(listaLenguajes);
@@ -147,12 +139,20 @@ public class ControllerLenguaje {
         
         public void actualizar() {
             
+            String codigo;
+            codigo = (vista.getjTLenguajeID().getText());
+            
+            if(codigo.equalsIgnoreCase("")){
+                 vista.gestionMensajes(
+                         "Por favor seleccione un Lenguaje de la tabla",
+                         "Mensaje de Advertencia ", 
+                    JOptionPane.ERROR_MESSAGE);
+            }else{
+            
             Lenguaje lenguaje= new Lenguaje();
-             
             //Se configura los datos en el objeto cliente de la clase Lenguaje
-           
-            lenguaje.setLenguageID(Integer.parseInt(vista.getjTLenguajeID().toString()));
-            lenguaje.setNombreLenguaje(vista.getjTnombreLenguaje().toString());
+            lenguaje.setLenguageID(Integer.parseInt(vista.getjTLenguajeID().getText().trim()));
+            lenguaje.setNombreLenguaje(vista.getjTnombreLenguaje().getText().trim());
             lenguaje.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
                      
             if(modelo.modificarLenguaje(lenguaje) == 1){
@@ -167,6 +167,7 @@ public class ControllerLenguaje {
                 listadoLenguajes = modelo.listadoLenguajes();
                 vista.cargarLenguajesTabla(listadoLenguajes);   
                 vistaPelicula.cargarLenguajesCombo(listadoLenguajes);
+                vista.nuevaAccion();
                 
             } else {
                 vista.gestionMensajes(
@@ -175,16 +176,16 @@ public class ControllerLenguaje {
                         JOptionPane.ERROR_MESSAGE);                 
             }  
             
-
+            }
 
         }
         
         
     private void borrar(){
-            int codigo =0;
-            codigo  = Integer.parseInt(vista.getjTLenguajeID().getText());
+            String codigo;
+            codigo = (vista.getjTLenguajeID().getText());
             
-            if(codigo==0){
+            if(codigo.equalsIgnoreCase("")){
                  vista.gestionMensajes(
                          "Por favor seleccione un Lenguaje de la tabla",
                          "Mensaje de Advertencia ", 
@@ -198,7 +199,7 @@ public class ControllerLenguaje {
                 
                 if(respuesta == JOptionPane.YES_OPTION){                    
 
-                    if(modelo.borrarLenguaje(codigo) ==  1){
+                    if(modelo.borrarLenguaje(Integer.parseInt(codigo)) ==  1){
                         JOptionPane.showMessageDialog(null, 
                                 "Registro Borrado con éxtio", 
                                 "Confirmación de acción", 
@@ -208,6 +209,7 @@ public class ControllerLenguaje {
                         listadoLenguaje = modelo.listadoLenguajes();
                         vista.cargarLenguajesTabla(listadoLenguaje);
                         vistaPelicula.cargarLenguajesCombo(listadoLenguaje);
+                        vista.nuevaAccion();
                         
                     }
                     else{

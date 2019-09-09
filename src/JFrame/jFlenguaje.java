@@ -31,10 +31,12 @@ public class jFlenguaje extends javax.swing.JFrame {
     /**
      * Creates new form jFlenguaje
      */
-    int valor;
+    public int valor;
+
     public jFlenguaje() {
         initComponents();
         activarCampos(false);
+        jTLenguajeID.setEnabled(false);
     }
 
     /**
@@ -205,33 +207,41 @@ public class jFlenguaje extends javax.swing.JFrame {
     private void jTLenguajeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLenguajeIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTLenguajeIDActionPerformed
-    
+
     public void activarCampos(Boolean b) {
         jTnombreLenguaje.setEnabled(b);
-    }
-    
-    
-    public void setearCampos() {
-        
-      jTnombreLenguaje.setText("");
-      jTLenguajeID.setText("" + valor);
-    }
-    
-    
-    public void addListenerBtnNuevo(ActionListener listenLenguaje){
-       
-        jBnuevo.addActionListener(listenLenguaje);       
-    }
-    
-    public void addListenerBtnEliminar(ActionListener listenLenguaje){
-       
-        jBeliminar.addActionListener(listenLenguaje);       
+        //jTLenguajeID.setEnabled(b);
     }
 
-    public void addListenerBtnModificar(ActionListener listenLenguaje){
-        jBmodificar.addActionListener(listenLenguaje);       
+    public void setearCampos() {
+
+        jTnombreLenguaje.setText("");
+        jTLenguajeID.setText("");
+        
     }
-    
+
+    public void nuevaAccion() {
+        activarCampos(false);
+        setearCampos();
+        jBnuevo.setText("Nuevo");
+        jBmodificar.setText("Modificar");
+        jBeliminar.setVisible(true);
+    }
+
+    public void addListenerBtnNuevo(ActionListener listenLenguaje) {
+
+        jBnuevo.addActionListener(listenLenguaje);
+    }
+
+    public void addListenerBtnEliminar(ActionListener listenLenguaje) {
+
+        jBeliminar.addActionListener(listenLenguaje);
+    }
+
+    public void addListenerBtnModificar(ActionListener listenLenguaje) {
+        jBmodificar.addActionListener(listenLenguaje);
+    }
+
     public void addMouseListenerTabla(MouseListener listenLenguaje) {
         jTableLenguaje.addMouseListener(listenLenguaje);
     }
@@ -247,8 +257,7 @@ public class jFlenguaje extends javax.swing.JFrame {
     public JButton getjBeliminar() {
         return jBeliminar;
     }
-    
-  
+
     public JButton getjBnuevo() {
         return jBnuevo;
     }
@@ -256,7 +265,6 @@ public class jFlenguaje extends javax.swing.JFrame {
     public JButton getjBmodificar() {
         return jBmodificar;
     }
-   
 
     public JLabel getjLIDLenguaje() {
         return jLIDLenguaje;
@@ -266,7 +274,6 @@ public class jFlenguaje extends javax.swing.JFrame {
         return jLNombreLenguaje;
     }
 
-
     public JTextField getjTLenguajeID() {
         return jTLenguajeID;
     }
@@ -274,39 +281,35 @@ public class jFlenguaje extends javax.swing.JFrame {
     public JTextField getjTnombreLenguaje() {
         return jTnombreLenguaje;
     }
-    
-    public void gestionMensajes(String mensaje, String titulo, int icono){
-         JOptionPane.showMessageDialog(this,mensaje, titulo, icono);
+
+    public void gestionMensajes(String mensaje, String titulo, int icono) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
-    
-     private void limpiarListadoTabla(){
+
+    private void limpiarListadoTabla() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jTableLenguaje.getModel();
-        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
+        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
-    
+
     //Método para cargar los lenguajes a la tabla 
-    public void cargarLenguajesTabla(ArrayList<Lenguaje> listadoLenguaje)
-     {
+    public void cargarLenguajesTabla(ArrayList<Lenguaje> listadoLenguaje) {
         DefaultTableModel model_lenguaje;
-        model_lenguaje = (DefaultTableModel) jTableLenguaje.getModel();        
+        model_lenguaje = (DefaultTableModel) jTableLenguaje.getModel();
         limpiarListadoTabla();
-        for(int i= 0; i < listadoLenguaje.size(); i++){
-              model_lenguaje.addRow(new Object[]{
-              listadoLenguaje.get(i).getLenguageID(),
-              listadoLenguaje.get(i).getNombreLenguaje()});
+        for (int i = 0; i < listadoLenguaje.size(); i++) {
+            model_lenguaje.addRow(new Object[]{
+                listadoLenguaje.get(i).getLenguageID(),
+                listadoLenguaje.get(i).getNombreLenguaje()});
         }
-        
-        valor = Integer.parseInt(""+model_lenguaje.getValueAt(model_lenguaje.getRowCount()-1, 0))+1;
-        jTLenguajeID.setText(""+valor);
-        jTLenguajeID.setEnabled(false);
-     }
-    
-    
-    
-    
+
+        valor = Integer.parseInt("" + model_lenguaje.getValueAt(model_lenguaje.getRowCount() - 1, 0)) + 1;
+        //jTLenguajeID.setText("" + valor);
+        //jTLenguajeID.setEnabled(false);
+    }
+
     /**
      * @param args the command line arguments
      */

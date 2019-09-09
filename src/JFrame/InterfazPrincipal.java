@@ -246,7 +246,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private void jMempladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMempladosActionPerformed
         // TODO add your handling code here:
         
-        JOptionPane.showMessageDialog(null, "Grabar cliente");
+        JOptionPane.showMessageDialog(null, "Grabar empleado");
         iFempleado empleadoView = new iFempleado();
         
         EmpleadoDAO empleadoModel = new EmpleadoDAO();

@@ -54,6 +54,8 @@ public class ControllerPelicula {
         //Se añade las escuchas a los botones
         PeliculaListener listen = new PeliculaListener();
         this.vista.getjBLenguaje().addActionListener(listen);
+        this.vista.getjBagregarActor().addActionListener(listen);
+        this.vista.getjBagrgarCate().addActionListener(listen);
         this.vista.addListenerBtnNuevo(listen);
         this.vista.getjBmodificar().addActionListener(listen);
         this.vista.getjBeliminar().addActionListener(listen);

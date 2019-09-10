@@ -40,7 +40,7 @@ public class ActorDAO {
             pstm.setInt(1, a.getActorID());
             pstm.setString(2,a.getNombreActor());
             pstm.setString(3, a.getApellidoActor());
-            pstm.setString(4, a.getUltimaActializacionActor());
+            pstm.setTimestamp(4, a.getUltimaActializacionActor());
             
             rtdo = pstm.executeUpdate();
             
@@ -87,7 +87,7 @@ public class ActorDAO {
             pstm.setInt(1, a.getActorID());
             pstm.setString(2,a.getNombreActor());
             pstm.setString(3, a.getApellidoActor());
-            pstm.setString(4, a.getUltimaActializacionActor());
+            pstm.setTimestamp(4, a.getUltimaActializacionActor());
 
             rtdo = pstm.executeUpdate();  
         }
@@ -157,15 +157,9 @@ public class ActorDAO {
             con = Fachada.getConnection(); 
             String sql="";
             
-
             sql = "SELECT actor_id, first_name, last_name FROM actor ORDER BY actor_id";            
                                            
             pstm = con.prepareStatement(sql);
-            
-            sql = "SELECT actor_id, first_name, last_name FROM actor ORDER BY actor_id";            
-                                  
-            pstm = con.prepareStatement(sql);
-
             
             rs = pstm.executeQuery();
                         

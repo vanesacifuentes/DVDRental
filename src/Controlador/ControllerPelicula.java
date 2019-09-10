@@ -227,8 +227,8 @@ public class ControllerPelicula {
             //int resultado2 = 0;
             resultado = modelo.grabarPelicula(pelicula);
 
-            // modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
-            //modelo.grabarPeliculaActor(actorID, pelicula.getPeliculaId());
+//            modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
+//            modelo.grabarPeliculaActor(actorID, pelicula.getPeliculaId());
             if (resultado == 1) {
                 vista.gestionMensajes("Registro Grabado con éxito",
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);

@@ -31,6 +31,8 @@ public class jFactor extends javax.swing.JFrame {
     public jFactor() {
         initComponents();
         activarCampos(false);
+        jTActorID.setEnabled(false);
+        
     }
 
     /**
@@ -261,18 +263,16 @@ public class jFactor extends javax.swing.JFrame {
 
 
     public void activarCampos(Boolean b) {
+        
         jTnombreActor.setEnabled(b);
-        jTApellidoActor.setEnabled(b);
-        //jTLenguajeID.setEnabled(b);
+        jTApellidoActor.setEnabled(b); 
+       
     }
 
     public void setearCampos() {
-
-        jTActorID.setText("");
         jTnombreActor.setText("");
         jTApellidoActor.setText("");
-        jLFechaActualizacion.setText("");
- 
+        jLFechaActualizacion.setText(""); 
     }
 
     public void nuevaAccion() {
@@ -326,8 +326,7 @@ public class jFactor extends javax.swing.JFrame {
         }
 
         valor = Integer.parseInt("" + model_actor.getValueAt(model_actor.getRowCount() - 1, 0)) + 1;
-        //jTLenguajeID.setText("" + valor);
-        //jTLenguajeID.setEnabled(false);
+        
     }
     
     

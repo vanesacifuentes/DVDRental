@@ -55,6 +55,7 @@ public class ControllerLenguaje {
 
                 if (vista.getjBnuevo().getText().equalsIgnoreCase("Nuevo")) {
                     vista.activarCampos(true);
+                    vista.setearCampos();
                     vista.getjTLenguajeID().setText(""+vista.valor);
                     vista.getjBnuevo().setText("Grabar");
                     vista.getjBmodificar().setText("Cancelar");

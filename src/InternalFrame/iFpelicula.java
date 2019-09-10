@@ -5,8 +5,10 @@
  */
 package InternalFrame;
 
+import Controlador.ControllerActor;
 import Controlador.ControllerCategoria;
 import Controlador.ControllerLenguaje;
+import JFrame.jFactor;
 import Modelo.*;
 import JFrame.jFcategoria;
 import JFrame.jFlenguaje;
@@ -567,14 +569,19 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
     private void jBagregarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagregarActorActionPerformed
         // TODO add your handling code here:
+//        jFactor vista = new jFactor();
+//        ActorDAO modelo = new ActorDAO();
+//        ControllerActor actorControlador = new ControllerActor(vista, modelo);
+//        vista.setVisible(true);
+        
     }//GEN-LAST:event_jBagregarActorActionPerformed
 
     private void jBagrgarCateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagrgarCateActionPerformed
         // TODO add your handling code here:
-        jFcategoria vista = new jFcategoria();
-        CategoriaDAO modelo = new CategoriaDAO();
-        ControllerCategoria categoriaControlador = new ControllerCategoria(vista, modelo);
-        vista.setVisible(true);
+//        jFcategoria vista = new jFcategoria();
+//        CategoriaDAO modelo = new CategoriaDAO();
+//        ControllerCategoria categoriaControlador = new ControllerCategoria(vista, modelo);
+//        vista.setVisible(true);
         
     }//GEN-LAST:event_jBagrgarCateActionPerformed
 

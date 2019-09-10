@@ -109,6 +109,19 @@ public class ControllerPelicula {
                 LenguajeDAO modelo = new LenguajeDAO();
                 ControllerLenguaje lenguajeControlador = new ControllerLenguaje(vista1, modelo,vista);
                 vista1.setVisible(true);
+                
+            }else if(ae.getSource() == vista.getjBagregarActor()){
+                jFactor vistaActor = new jFactor();
+                ActorDAO modelo = new ActorDAO();
+                ControllerActor actorControlador = new ControllerActor(vistaActor, modelo, vista);
+                vistaActor.setVisible(true);
+                
+            }else if(ae.getSource() == vista.getjBagrgarCate()){
+                
+                jFcategoria vistaCategoria = new jFcategoria();
+                CategoriaDAO modelo = new CategoriaDAO();
+                //ControllerCategoria categoriaControlador = new ControllerCategoria(vistaCategoria, modelo, vista);
+                vistaCategoria.setVisible(true);
             }
 
         }

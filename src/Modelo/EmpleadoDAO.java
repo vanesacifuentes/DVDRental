@@ -32,7 +32,7 @@ public class EmpleadoDAO {
 
         try {
             con = Fachada.getConnection();
-            String sql = "INSERT INTO staff (?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO staff VALUES (?,?,?,?,?,?,?,?,?,?)";
 
             pstm = con.prepareStatement(sql);
 

@@ -25,6 +25,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     public iFalquiler() {
         initComponents();
         modelo = new DefaultListModel();
+        jListBusquedaPeliculas.setModel(modelo);
 
     }
 
@@ -85,8 +86,12 @@ public class iFalquiler extends javax.swing.JInternalFrame {
 
         jTBuscador.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTBuscador.setForeground(new java.awt.Color(102, 102, 102));
-        jTBuscador.setText("Ingrese el título...");
         jTBuscador.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jTBuscador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTBuscadorActionPerformed(evt);
+            }
+        });
         jTBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTBuscadorKeyReleased(evt);
@@ -169,11 +174,6 @@ public class iFalquiler extends javax.swing.JInternalFrame {
 
         jPanel4.add(jPinformacionPeliculs, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 460, 270));
 
-        jListBusquedaPeliculas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jListBusquedaPeliculas);
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 390, 100));
@@ -280,13 +280,18 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTBuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTBuscadorActionPerformed
+
     //Método para cargar al JList el listado por nombre de Pelicula
     public void cargarPeliculasLista(ArrayList<Pelicula> listaPelicula) {
+        modelo.removeAllElements();
         for (int i = 0; i < listaPelicula.size(); i++) {
             modelo.addElement(listaPelicula.get(i).getTitulo());
 
         }
-        jListBusquedaPeliculas.setModel(modelo);
+        
     }
 
     public JTextField getjTBuscador() {

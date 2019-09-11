@@ -224,21 +224,25 @@ public class PeliculaDAO {
     
     //Metodo para realizar la busqueda por el nombre de película 
     public ArrayList <Pelicula> buscarPeliculas(String texto){   
-        
+        ArrayList<Pelicula> listadoPeliculas = new ArrayList<>();
+        if(texto.equals("")){
+            
+        }else
+        {
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
         
-        ArrayList<Pelicula> listadoPeliculas = new ArrayList<>();
+        
         try{
             con = Fachada.getConnection();
             String sql="";
-           
+            
            //JOptionPane.showMessageDialog(null, texto);
                // sql = "select * from film where title like" + "'"+texto+"%'";   
                //String filtro = ""+texto+"%";
                
-                sql = "select * from film where title like 'A%'";
+                sql = "select * from film where title like '"+texto+"%'";
                // sql = "select * from film where title like "+'"'filtro+'"';      
              
             pstm = con.prepareStatement(sql);
@@ -283,6 +287,9 @@ public class PeliculaDAO {
                 JOptionPane.showMessageDialog(null,"Código : " + 
                         ex.getErrorCode() + "\nError :" + ex.getMessage());
             }
+        }
+        return listadoPeliculas;
+        
         }
         return listadoPeliculas;
     }

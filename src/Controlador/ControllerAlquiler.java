@@ -34,7 +34,7 @@ public class ControllerAlquiler {
         //this.vista.cargarPeliculasLista(listadoPelicula = modelPelicula.listadoPeliculas());
         
        ListenerAlquiler escucha = new ListenerAlquiler();
-       vista.getjTBuscador().addKeyListener(escucha);
+       this.vista.getjTBuscador().addKeyListener(escucha);
         
         
     }
@@ -49,21 +49,20 @@ public class ControllerAlquiler {
 
         @Override
         public void keyTyped(KeyEvent ke) {
-            PeliculaDAO modelPelicula = new PeliculaDAO();
-            String buscar = vista.getjTBuscador().getText().trim();
-            vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(buscar));
+            
             
         }
 
         @Override
         public void keyPressed(KeyEvent ke) {
-            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
         }
 
         @Override
         public void keyReleased(KeyEvent ke) {
-            
-           // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            PeliculaDAO modelPelicula = new PeliculaDAO();
+            String buscar = vista.getjTBuscador().getText().trim();
+            vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(buscar));
         }
 
 

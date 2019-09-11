@@ -191,9 +191,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     private void jMalquilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMalquilarActionPerformed
         // TODO add your handling code here:
-        iFalquiler alquiler = new iFalquiler();
-        jDesktopPane.add(alquiler);
-        alquiler.setVisible(true);
+        JOptionPane.showMessageDialog(null, "Grabar alquiler");
+        iFalquiler alquilerView = new iFalquiler();
+        AlquilerDAO alquilerModel= new AlquilerDAO();
+        
+        ControllerAlquiler alquilerControl = new ControllerAlquiler(alquilerView, alquilerModel);
+        
+        jDesktopPane.add(alquilerView);
+        alquilerView.setVisible(true);
     }//GEN-LAST:event_jMalquilarActionPerformed
 
     private void MantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MantenimientoActionPerformed

@@ -222,6 +222,75 @@ public class PeliculaDAO {
         return listadoPeliculas;
     }
     
+    //Metodo para realizar la busqueda por el nombre de película 
+    public ArrayList <Pelicula> buscarPeliculas(String texto){   
+        
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        
+        ArrayList<Pelicula> listadoPeliculas = new ArrayList<>();
+        try{
+            con = Fachada.getConnection();
+            String sql="";
+           
+           //JOptionPane.showMessageDialog(null, texto);
+               // sql = "select * from film where title like" + "'"+texto+"%'";   
+               //String filtro = ""+texto+"%";
+               
+                sql = "select * from film where title like 'A%'";
+               // sql = "select * from film where title like "+'"'filtro+'"';      
+             
+            pstm = con.prepareStatement(sql);
+            
+           
+            rs = pstm.executeQuery();
+                        
+            Pelicula pelicula = null;
+            while(rs.next()){
+                pelicula = new Pelicula();
+
+                
+//                pelicula.setPeliculaId(rs.getInt("film_id"));
+                pelicula.setTitulo(rs.getString("title"));
+//                pelicula.setDescripcion(rs.getString("description"));
+//                pelicula.setAnhoLanzamiento(rs.getInt("release_year"));
+//                pelicula.setLenguajeID(rs.getInt("language_id"));
+//                pelicula.setDuracionRenta(rs.getInt("rental_duration"));
+//                pelicula.setTarifaRenta(rs.getInt("rental_rate"));
+//                pelicula.setLongitud(rs.getInt("length"));
+//                pelicula.setCostoReemplazo(rs.getDouble("replacement_cost"));
+//                pelicula.setClasificacion(rs.getString("rating"));
+//                pelicula.setUltimaActualizacion(rs.getTimestamp("last_update"));
+//                pelicula.setCaracteristicasEspeciales(rs.getString("special_features"));
+//                pelicula.setTextoCompleto(rs.getString("fulltext"));
+            
+                listadoPeliculas.add(pelicula);
+            }
+        }
+        
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "uisjdkv cas ");
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        finally{
+            try{
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return listadoPeliculas;
+    }
+    
+    
+    
+    
+    
     //Metodo para grabar película y categoria- Relacion tabla debil....
     public int grabarPeliculaCategoria(int categoriaID,int peliculaID){      
         

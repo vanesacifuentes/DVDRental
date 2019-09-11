@@ -27,7 +27,7 @@ public class ControllerPelicula {
 
     private iFpelicula vista;
     private PeliculaDAO modelo;
-    private ArrayList<Categoria> listaCategorias,listaCategoriasSelected;
+    private ArrayList<Categoria> listaCategorias, listaCategoriasSelected;
     private ArrayList<Lenguaje> listaLenguajes;
     private ArrayList<Actor> listaActores;
 
@@ -208,30 +208,12 @@ public class ControllerPelicula {
             pelicula.setCaracteristicasEspeciales("{" + vista.getjTcarateristicas().getText() + "}");
             pelicula.setTextoCompleto(vista.getjTtextoCompleto().getText());
 
-            //JOptionPane.showMessageDialog(null, " Mostrar"+ vista.getjTid_peli());//**********
-            int actorID = 0;
-            int indiceActor = 0;
-            indiceActor = vista.getjCBactor().getSelectedIndex();
-            actorID = listaActores.get(indiceActor).getActorID();
-
-            int resultado = 0;
+            int resultado;
             resultado = modelo.grabarPelicula(pelicula);
 
-//            for (int a = 0; a < vista.getModeloListaCategoria().getSize(); a++) {
-//                int categoriaID = 0;
-//
-//                categoriaID = listaCategorias.get(indiceCategoria).getCategoriaId();
-//
-//                int tamaño;
-//                tamaño = modelo.listadoPeliculas().size();
-//
-//                modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
-//            }
-            //if (tamaño == 0) {
+            registrarPelicula_Categoria(pelicula.getPeliculaId());
+            registrarPelicula_Actor(pelicula.getPeliculaId());
 
-            //int resultado2 = 0;
-//            modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
-//            modelo.grabarPeliculaActor(actorID, pelicula.getPeliculaId());
             if (resultado == 1) {
                 vista.gestionMensajes("Registro Grabado con éxito",
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
@@ -240,18 +222,56 @@ public class ControllerPelicula {
                 listaPeliculas = modelo.listadoPeliculas();
                 vista.cargarPeliculasTabla(listaPeliculas);
 
-                //vista.activarControles(false); 
-                //vista.nuevoAction();
             } else {
                 vista.gestionMensajes("Error al grabar",
                         "Confirmación", JOptionPane.ERROR_MESSAGE);
             }
-            //} else {
+
             vista.gestionMensajes("Codigo ya está registrado",
                     "Confirmación",
                     JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+
+    public Categoria buscarCategoria_Nombre(String nombre, ArrayList<Categoria> array) {
+        Categoria cat = new Categoria();
+        for (int a = 0; a < array.size(); a++) {
+            if (nombre.equalsIgnoreCase(array.get(a).getNombreCategoria())) {
+                cat = array.get(a);
+            }
+
+        }
+        return cat;
+    }
+
+    public Actor buscarActor_Nombre(String nombre, ArrayList<Actor> array) {
+        Actor actor = new Actor();
+        for (int a = 0; a < array.size(); a++) {
+            if (nombre.equalsIgnoreCase(array.get(a).getNombreActor())) {
+                actor = array.get(a);
+            }
+
+        }
+        return actor;
+    }
+
+    public void registrarPelicula_Categoria(int idPelicula) {
+        for (int a = 0; a < vista.getModeloListaCategoria().getSize(); a++) {
+
+            Categoria category = buscarCategoria_Nombre(vista.getModeloListaCategoria().getElementAt(a).toString(), listaCategorias);
+
+            modelo.grabarPeliculaCategoria(category.getCategoriaId(), idPelicula);
+        }
+    }
+
+    public void registrarPelicula_Actor(int idActor) {
+        for (int a = 0; a < vista.getModeloListaActor().getSize(); a++) {
+
+            Actor actor = buscarActor_Nombre(vista.getModeloListaCategoria().getElementAt(a).toString(), listaActores);
+
+            modelo.grabarPeliculaCategoria(actor.getActorID(), idActor);
+        }
     }
 
     private void actualizar() {

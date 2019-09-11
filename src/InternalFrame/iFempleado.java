@@ -15,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import Modelo.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
@@ -365,52 +366,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    public void cargarTiendasCombo(ArrayList<Tienda> listadoTiendas){ 
-       DefaultComboBoxModel model; 
-         
-         String [] arregloActores = new String [listadoTiendas.size()];
-         
-         for(int a = 0; a < listadoTiendas.size(); a++)
-         {
-             arregloActores[a] = "Sede no. "+listadoTiendas.get(a).getTiendaID();
-         }
-         model = new DefaultComboBoxModel(arregloActores);
-         
-         jCBTiendaID.setModel(model); 
-    }
     
-    
-    
-    
-    public void cargarEmpleadosTabla(ArrayList<Empleado> listadoEmpleado)
-    {
-        //System.err.println(listadoEmpleado.get(3).getContrasenaEmpleado());
-         DefaultTableModel defaultcombo;
-        defaultcombo = (DefaultTableModel) jTableEmpleado.getModel();        
-        limpiarListadoTabla();
-        for(int i= 0; i < listadoEmpleado.size(); i++){
-              defaultcombo.addRow(new Object[]{
-              listadoEmpleado.get(i).getEmpleadoID(),
-              listadoEmpleado.get(i).getNombreEmpleado(),
-              listadoEmpleado.get(i).getNombreUsuarioEmpleado(),
-              listadoEmpleado.get(i).getDireccionID_Empleado(),
-        });}
-        
-        
-        //Muestra en el campo de texto de la Interfaz el ID cliente Consecutivo
-        int valor = Integer.parseInt(""+defaultcombo.getValueAt(defaultcombo.getRowCount()-1, 0))+1;
-        jTEmpleadoID.setText(""+valor);
-        jTEmpleadoID.setEnabled(false);
-        
-    }
-    
-    private void limpiarListadoTabla(){
-        DefaultTableModel modelo;
-        modelo = (DefaultTableModel) jTableEmpleado.getModel();
-        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
-            modelo.removeRow(i);
-        }
-    }
     
      public void gestionMensajes(String mensaje, String titulo, int icono){
          JOptionPane.showMessageDialog(this,mensaje, titulo, icono);
@@ -452,8 +408,60 @@ public class iFempleado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTnombreEmpleado;
     // End of variables declaration//GEN-END:variables
 
+    public void cargarTiendasCombo(ArrayList<Tienda> listadoTiendas){ 
+        
+        DefaultComboBoxModel model; 
+        String [] arregloTiendas = new String [listadoTiendas.size()];
+
+        for (int a = 0 ; a < listadoTiendas.size(); a++){
+            arregloTiendas[a] = "Sede no. "+listadoTiendas.get(a).getTiendaID();
+        }
+        model = new DefaultComboBoxModel(arregloTiendas);
+        jCBTiendaID.setModel(model); 
+    }
     
-    public void AddListenerTabala(MouseListener ml){
+    public void cargarEmpleadosTabla(ArrayList<Empleado> listadoEmpleado){
+        
+        DefaultTableModel defaultcombo;
+        defaultcombo = (DefaultTableModel) jTableEmpleado.getModel();        
+        limpiarListadoTabla();
+        for(int i= 0; i < listadoEmpleado.size(); i++){
+              defaultcombo.addRow(new Object[]{
+              listadoEmpleado.get(i).getEmpleadoID(),
+              listadoEmpleado.get(i).getNombreEmpleado(),
+              listadoEmpleado.get(i).getNombreUsuarioEmpleado(),
+              listadoEmpleado.get(i).getDireccionID_Empleado(),
+              listadoEmpleado.get(i).getTiendaID_Empleado()
+              });
+        }
+        
+        //Muestra en el campo de texto de la Interfaz el ID cliente Consecutivo
+        int valor = Integer.parseInt(""+defaultcombo.getValueAt(defaultcombo.getRowCount()-1, 0))+1;
+        jTEmpleadoID.setText(""+valor);
+        jTEmpleadoID.setEnabled(false);
+    }
+    
+    private void limpiarListadoTabla(){
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTableEmpleado.getModel();
+        for(int i=modelo.getRowCount()-1; i>=0 ; i--){
+            modelo.removeRow(i);
+        }
+    }
+    
+    public void AddListenerJBEliminar(ActionListener al){
+        jBeliminar.addActionListener(al);
+    }
+    
+    public void AddListenerJBModificar(ActionListener al){
+        jBmodificar.addActionListener(al);
+    }
+    
+    public void AddListenerJBNuevo(ActionListener al){
+        jBnuevo.addActionListener(al);
+    }
+    
+    public void AddListenerTabla(MouseListener ml){
         jTableEmpleado.addMouseListener(ml);
     }
     

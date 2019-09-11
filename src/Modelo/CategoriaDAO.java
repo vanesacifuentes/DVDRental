@@ -80,6 +80,7 @@ public class CategoriaDAO {
             pstm.setInt(1,c.getCategoriaId());
             pstm.setString(2, c.getNombreCategoria());
             pstm.setTimestamp(3, c.getUltimaActualizacion());
+            pstm.setInt(4,c.getCategoriaId());
            
             rtdo = pstm.executeUpdate();  
         }
@@ -152,12 +153,12 @@ public class CategoriaDAO {
             
 
             
-                sql = "SELECT category_id, name FROM category ORDER BY category_id";            
+                           
                  
-                                  
+            sql = "SELECT * FROM category ORDER BY category_id";                      
             pstm = con.prepareStatement(sql);
             
-            sql = "SELECT category_id, name FROM category ORDER BY category_id";            
+                     
                                   
             pstm = con.prepareStatement(sql);
 
@@ -169,7 +170,8 @@ public class CategoriaDAO {
                 categoria = new Categoria();
 
                 categoria.setCategoriaId(rs.getInt("category_id"));
-                categoria.setNombreCategoria(rs.getString("name"));           
+                categoria.setNombreCategoria(rs.getString("name"));
+                categoria.setUltimaActualizacion(rs.getTimestamp("last_update"));
                
                 listadoCategorias.add(categoria);
             }

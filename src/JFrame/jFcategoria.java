@@ -26,7 +26,7 @@ public class jFcategoria extends javax.swing.JFrame {
     /**
      * Creates new form jFcategoria
      */
-    int valor;
+    public int valor;
     public jFcategoria() {
         initComponents();
     }
@@ -201,13 +201,23 @@ public class jFcategoria extends javax.swing.JFrame {
 
     public void activarCampos(Boolean b) {
         jTnombreCategoria.setEnabled(b);
+        //jTLenguajeID.setEnabled(b);
     }
-    
-    
+
     public void setearCampos() {
+
+        jTnombreCategoria.setText("");
+        jTCategoriaID.setText("");
+        jLFechaActu.setText("");
         
-      jTnombreCategoria.setText("");
-      jTCategoriaID.setText("" + valor);
+    }
+
+    public void nuevaAccion() {
+        activarCampos(false);
+        setearCampos();
+        jBnuevo.setText("Nuevo");
+        jBmodificar.setText("Modificar");
+        jBeliminar.setVisible(true);
     }
     
     public JButton getjBeliminar() {
@@ -271,7 +281,6 @@ public class jFcategoria extends javax.swing.JFrame {
         }
         
         valor = Integer.parseInt(""+model_categoria.getValueAt(model_categoria.getRowCount()-1, 0))+1;
-        jTCategoriaID.setText(""+valor);
         jTCategoriaID.setEnabled(false);
      }
     

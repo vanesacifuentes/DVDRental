@@ -217,6 +217,7 @@ public class jFlenguaje extends javax.swing.JFrame {
 
         jTnombreLenguaje.setText("");
         jTLenguajeID.setText("");
+        jLFechaActu.setText("");
         
     }
 

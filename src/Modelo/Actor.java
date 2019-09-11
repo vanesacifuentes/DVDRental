@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Modelo;
-
+import java.sql.Timestamp;
 /**
  *
  * @author vanes
@@ -14,7 +14,7 @@ public class Actor {
     private int actorID;
     private String nombreActor;
     private String apellidoActor;
-    private String ultimaActializacionActor;
+    private Timestamp ultimaActializacionActor;
 
     public Actor() {
     }
@@ -31,9 +31,10 @@ public class Actor {
         return apellidoActor;
     }
 
-    public String getUltimaActializacionActor() {
+    public Timestamp getUltimaActializacionActor() {
         return ultimaActializacionActor;
     }
+
     
     public void setActorID(int actorID) {
         this.actorID = actorID;
@@ -47,7 +48,7 @@ public class Actor {
         this.apellidoActor = apellidoActor;
     }
 
-    public void setUltimaActializacionActor(String ultimaActializacionActor) {
+    public void setUltimaActializacionActor(Timestamp ultimaActializacionActor) {
         this.ultimaActializacionActor = ultimaActializacionActor;
     }
        

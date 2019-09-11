@@ -5,8 +5,10 @@
  */
 package InternalFrame;
 
+import Controlador.ControllerActor;
 import Controlador.ControllerCategoria;
 import Controlador.ControllerLenguaje;
+import JFrame.jFactor;
 import Modelo.*;
 import JFrame.jFcategoria;
 import JFrame.jFlenguaje;
@@ -16,8 +18,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -33,11 +37,19 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     /**
      * Creates new form iFpelicula
      */
-    
     int valor;
+
+    private DefaultListModel modeloListaCategoria, modeloListaActor;
+
     public iFpelicula() {
         initComponents();
         activarCampos(false);
+        modeloListaCategoria = new DefaultListModel();
+        modeloListaActor = new DefaultListModel();
+        jListCategoria.setModel(modeloListaCategoria);
+        jListActor.setModel(modeloListaActor);
+        //jBañadirCategoria.setEnabled(false);
+        jBquitarCategoria.setEnabled(false);
 
     }
 
@@ -83,12 +95,14 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jBagregarActor = new javax.swing.JButton();
         jBagrgarCate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListActor = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        jListCategoria = new javax.swing.JList<>();
         jBLenguaje = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBquitarCategoria = new javax.swing.JButton();
+        jBañadirActor = new javax.swing.JButton();
+        jBañadirCategoria = new javax.swing.JButton();
+        jBquitarActor = new javax.swing.JButton();
         jPtabla1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -297,6 +311,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jPingreso1.add(jLActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
         jCBactor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBactor.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCBactorItemStateChanged(evt);
+            }
+        });
         jCBactor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBactorActionPerformed(evt);
@@ -313,6 +332,11 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jPingreso1.add(jCBlenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 90, -1));
 
         jCBcategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBcategoria.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCBcategoriaItemStateChanged(evt);
+            }
+        });
         jCBcategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBcategoriaActionPerformed(evt);
@@ -345,11 +369,16 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         });
         jPingreso1.add(jBagrgarCate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 20, -1));
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jListActor);
 
         jPingreso1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 140, 50));
 
-        jScrollPane2.setViewportView(jList2);
+        jListCategoria.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListCategoriaValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jListCategoria);
 
         jPingreso1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 140, 50));
 
@@ -361,11 +390,37 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         });
         jPingreso1.add(jBLenguaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 20, -1));
 
-        jButton1.setText("Quitar");
-        jPingreso1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
+        jBquitarCategoria.setText("-");
+        jBquitarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBquitarCategoriaActionPerformed(evt);
+            }
+        });
+        jPingreso1.add(jBquitarCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 40, -1));
 
-        jButton2.setText("Quitar");
-        jPingreso1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
+        jBañadirActor.setText("+");
+        jBañadirActor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBañadirActorActionPerformed(evt);
+            }
+        });
+        jPingreso1.add(jBañadirActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 40, -1));
+
+        jBañadirCategoria.setText("+");
+        jBañadirCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBañadirCategoriaActionPerformed(evt);
+            }
+        });
+        jPingreso1.add(jBañadirCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 40, -1));
+
+        jBquitarActor.setText("-");
+        jBquitarActor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBquitarActorActionPerformed(evt);
+            }
+        });
+        jPingreso1.add(jBquitarActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 40, -1));
 
         jPanel1.add(jPingreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 660, 460));
 
@@ -512,6 +567,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
     private void jCBcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBcategoriaActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jCBcategoriaActionPerformed
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
@@ -528,7 +584,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
     private void jTañoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTañoKeyPressed
         // TODO add your handling code here:
-       //evt.consume();
+        //evt.consume();
 //        char h =  evt.getKeyChar();
 //        
 //        String cadena = Character.toString(h);
@@ -538,44 +594,46 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 //        {
 //            
 //        }
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_jTañoKeyPressed
 
     private void jTañoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTañoKeyTyped
-        validaNumero(evt.getKeyChar(),evt); 
+        validaNumero(evt.getKeyChar(), evt);
     }//GEN-LAST:event_jTañoKeyTyped
 
     private void jTtarifaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTtarifaKeyTyped
-        validaNumero(evt.getKeyChar(),evt);
+        validaNumero(evt.getKeyChar(), evt);
     }//GEN-LAST:event_jTtarifaKeyTyped
 
     private void jTDuracionAlquilerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDuracionAlquilerKeyTyped
-        validaNumero(evt.getKeyChar(),evt);
+        validaNumero(evt.getKeyChar(), evt);
     }//GEN-LAST:event_jTDuracionAlquilerKeyTyped
 
     private void jTcostoReKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTcostoReKeyTyped
-        validaNumero(evt.getKeyChar(),evt);
+        validaNumero(evt.getKeyChar(), evt);
     }//GEN-LAST:event_jTcostoReKeyTyped
 
     private void jTduracionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTduracionKeyTyped
-        validaNumero(evt.getKeyChar(),evt);
+        validaNumero(evt.getKeyChar(), evt);
     }//GEN-LAST:event_jTduracionKeyTyped
 
     private void jBagregarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagregarActorActionPerformed
         // TODO add your handling code here:
+//        jFactor vista = new jFactor();
+//        ActorDAO modelo = new ActorDAO();
+//        ControllerActor actorControlador = new ControllerActor(vista, modelo);
+//        vista.setVisible(true);
+
     }//GEN-LAST:event_jBagregarActorActionPerformed
 
     private void jBagrgarCateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagrgarCateActionPerformed
         // TODO add your handling code here:
-        jFcategoria vista = new jFcategoria();
-        CategoriaDAO modelo = new CategoriaDAO();
-        ControllerCategoria categoriaControlador = new ControllerCategoria(vista, modelo);
-        vista.setVisible(true);
-        
+//        jFcategoria vista = new jFcategoria();
+//        CategoriaDAO modelo = new CategoriaDAO();
+//        ControllerCategoria categoriaControlador = new ControllerCategoria(vista, modelo);
+//        vista.setVisible(true);
+
     }//GEN-LAST:event_jBagrgarCateActionPerformed
 
     private void jBLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLenguajeActionPerformed
@@ -585,13 +643,56 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 //        vista.setVisible(true);
     }//GEN-LAST:event_jBLenguajeActionPerformed
 
-    public void validaNumero(char c,KeyEvent evt)
-    {
-        if(!Character.isDigit(c))
-           evt.consume();
+    private void jBañadirCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBañadirCategoriaActionPerformed
+
+        modeloListaCategoria.addElement(jCBcategoria.getSelectedItem().toString());
+        jBañadirCategoria.setEnabled(false);
+        jBquitarCategoria.setEnabled(false);
+
+    }//GEN-LAST:event_jBañadirCategoriaActionPerformed
+
+    private void jCBcategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBcategoriaItemStateChanged
+        // TODO add your handling code here:
+
+        jBañadirCategoria.setEnabled(true);
+        jBquitarCategoria.setEnabled(false);
+
+
+    }//GEN-LAST:event_jCBcategoriaItemStateChanged
+
+    private void jListCategoriaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListCategoriaValueChanged
+
+        jBquitarCategoria.setEnabled(true);
+    }//GEN-LAST:event_jListCategoriaValueChanged
+
+    private void jBquitarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBquitarCategoriaActionPerformed
+        modeloListaCategoria.removeElementAt(jListCategoria.getSelectedIndex());
+        jBquitarCategoria.setEnabled(false);
+
+    }//GEN-LAST:event_jBquitarCategoriaActionPerformed
+
+    private void jCBactorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBactorItemStateChanged
+        jBañadirActor.setEnabled(true);
+        jBquitarActor.setEnabled(false);
+    }//GEN-LAST:event_jCBactorItemStateChanged
+
+    private void jBañadirActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBañadirActorActionPerformed
+        modeloListaActor.addElement(jCBactor.getSelectedItem().toString());
+        jBañadirActor.setEnabled(false);
+        jBquitarActor.setEnabled(false);
+    }//GEN-LAST:event_jBañadirActorActionPerformed
+
+    private void jBquitarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBquitarActorActionPerformed
+        modeloListaActor.removeElementAt(jListActor.getSelectedIndex());
+        jBquitarActor.setEnabled(false);
+    }//GEN-LAST:event_jBquitarActorActionPerformed
+
+    public void validaNumero(char c, KeyEvent evt) {
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
     }
-    
-    
+
     public void activarCampos(Boolean b) {
         jTDuracionAlquiler.setEnabled(b);
         jTaño.setEnabled(b);
@@ -609,7 +710,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     }
 
     public void setearCampos() {
-        
+
         jTDuracionAlquiler.setText("");
         jTaño.setText("");
         jTtitulo.setText("");
@@ -624,9 +725,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jTtextoCompleto.setText("");
         tAsinopsis.setText("");
         jTid_peli.setText("" + valor);
-        
-        
-        
+
     }
 
     public void addListenerBtnNuevo(ActionListener listenPelicula) {
@@ -700,7 +799,6 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         btnCerrar.setEnabled(!estado);
         jtListado.setEnabled(!estado);
     }*/
-
     public void cargarCategoriasCombo(ArrayList<Categoria> listadoCategoria) {
         DefaultComboBoxModel model;
         String[] arregloCategorias = new String[listadoCategoria.size()];
@@ -822,8 +920,6 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         return jBagrgarCate;
     }
 
-    
-
     public JButton getjBeliminar() {
         return jBeliminar;
     }
@@ -841,16 +937,36 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         return jBLenguaje;
     }
 
+    public JList<String> getjListActor() {
+        return jListActor;
+    }
+
+    public JList<String> getjListCategoria() {
+        return jListCategoria;
+    }
+
+    public DefaultListModel getModeloListaCategoria() {
+        return modeloListaCategoria;
+    }
+
+    public DefaultListModel getModeloListaActor() {
+        return modeloListaActor;
+    }
+    
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBLenguaje;
     private javax.swing.JButton jBagregarActor;
     private javax.swing.JButton jBagrgarCate;
+    private javax.swing.JButton jBañadirActor;
+    private javax.swing.JButton jBañadirCategoria;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBquitarActor;
+    private javax.swing.JButton jBquitarCategoria;
     private javax.swing.JComboBox<String> jCBClasificacion;
     private javax.swing.JComboBox jCBactor;
     private javax.swing.JComboBox jCBcategoria;
@@ -863,8 +979,8 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLcostoRe;
     private javax.swing.JLabel jLduracion;
     private javax.swing.JLabel jLid;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> jListActor;
+    private javax.swing.JList<String> jListCategoria;
     private javax.swing.JLabel jLlanguaje;
     private javax.swing.JLabel jLprecio;
     private javax.swing.JLabel jLtextoCompleto;

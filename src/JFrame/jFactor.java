@@ -5,17 +5,34 @@
  */
 package JFrame;
 
+import Modelo.Actor;
+import Modelo.Lenguaje;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nicol
  */
-public class jFautor extends javax.swing.JFrame {
+public class jFactor extends javax.swing.JFrame {
 
     /**
      * Creates new form jFautor
      */
-    public jFautor() {
+    
+    public int valor;
+    public jFactor() {
         initComponents();
+        activarCampos(false);
+        jTActorID.setEnabled(false);
+        
     }
 
     /**
@@ -44,7 +61,7 @@ public class jFautor extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableActores = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -208,6 +225,113 @@ public class jFautor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTApellidoActorActionPerformed
 
+    public JButton getjBeliminar() {
+        return jBeliminar;
+    }
+
+    public JButton getjBmodificar() {
+        return jBmodificar;
+    }
+
+    public JButton getjBnuevo() {
+        return jBnuevo;
+    }
+
+    public JTextField getjTActorID() {
+        return jTActorID;
+    }
+
+    public JTextField getjTApellidoActor() {
+        return jTApellidoActor;
+    }
+
+    public JTable getjTableActores() {
+        return jTableActores;
+    }
+
+    public JTextField getjTnombreActor() {
+        return jTnombreActor;
+    }
+
+    public void setjLFechaActu(JLabel jLFechaActu) {
+        this.jLFechaActu = jLFechaActu;
+    }
+
+    public JLabel getjLFechaActu() {
+        return jLFechaActu;
+    }
+
+
+    public void activarCampos(Boolean b) {
+        
+        jTnombreActor.setEnabled(b);
+        jTApellidoActor.setEnabled(b); 
+       
+    }
+
+    public void setearCampos() {
+        jTActorID.setText("");
+        jTnombreActor.setText("");
+        jTApellidoActor.setText("");
+         
+    }
+
+    public void nuevaAccion() {
+        activarCampos(false);
+        setearCampos();
+        jBnuevo.setText("Nuevo");
+        jBmodificar.setText("Modificar");
+        jBeliminar.setVisible(true);
+    }
+    
+    
+    public void addListenerBtnNuevo(ActionListener listenActor) {
+
+        jBnuevo.addActionListener(listenActor);
+    }
+
+    public void addListenerBtnEliminar(ActionListener listenActor) {
+
+        jBeliminar.addActionListener(listenActor);
+    }
+
+    public void addListenerBtnModificar(ActionListener listenActor) {
+        jBmodificar.addActionListener(listenActor);
+    }
+
+    public void addMouseListenerTabla(MouseListener listenActor) {
+        jTableActores.addMouseListener(listenActor);
+    }
+    
+    public void gestionMensajes(String mensaje, String titulo, int icono) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
+    }
+
+    private void limpiarListadoTabla() {
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTableActores.getModel();
+        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
+
+    //Método para cargar los actores a la tabla 
+    public void cargarActorTabla(ArrayList<Actor> listadoActores) {
+        DefaultTableModel model_actor;
+        model_actor = (DefaultTableModel) jTableActores.getModel();
+        limpiarListadoTabla();
+        for (int i = 0; i < listadoActores.size(); i++) {
+            model_actor.addRow(new Object[]{
+                listadoActores.get(i).getActorID(),
+                listadoActores.get(i).getNombreActor()});
+        }
+
+        valor = Integer.parseInt("" + model_actor.getValueAt(model_actor.getRowCount() - 1, 0)) + 1;
+        
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -225,20 +349,21 @@ public class jFautor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jFautor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFactor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jFautor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFactor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jFautor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFactor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jFautor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFactor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jFautor().setVisible(true);
+                new jFactor().setVisible(true);
             }
         });
     }

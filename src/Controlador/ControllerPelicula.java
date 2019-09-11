@@ -7,7 +7,6 @@ package Controlador;
 
 import InternalFrame.iFpelicula;
 import Modelo.Categoria;
-import Modelo.CategoriaDAO;
 import Servicios.*;
 import Modelo.*;
 import Modelo.PeliculaDAO;
@@ -28,7 +27,7 @@ public class ControllerPelicula {
 
     private iFpelicula vista;
     private PeliculaDAO modelo;
-    private ArrayList<Categoria> listaCategorias;
+    private ArrayList<Categoria> listaCategorias,listaCategoriasSelected;
     private ArrayList<Lenguaje> listaLenguajes;
     private ArrayList<Actor> listaActores;
 
@@ -36,6 +35,7 @@ public class ControllerPelicula {
         this.vista = vista;
         this.modelo = modelo;
 
+        listaCategoriasSelected = new ArrayList<>();
         CategoriaDAO modelCat = new CategoriaDAO();
         LenguajeDAO modelLenguaje = new LenguajeDAO();
         ActorDAO modelActor = new ActorDAO();
@@ -54,6 +54,8 @@ public class ControllerPelicula {
         //Se añade las escuchas a los botones
         PeliculaListener listen = new PeliculaListener();
         this.vista.getjBLenguaje().addActionListener(listen);
+        this.vista.getjBagregarActor().addActionListener(listen);
+        this.vista.getjBagrgarCate().addActionListener(listen);
         this.vista.addListenerBtnNuevo(listen);
         this.vista.getjBmodificar().addActionListener(listen);
         this.vista.getjBeliminar().addActionListener(listen);
@@ -107,8 +109,21 @@ public class ControllerPelicula {
             } else if (ae.getSource() == vista.getjBLenguaje()) {
                 jFlenguaje vista1 = new jFlenguaje();
                 LenguajeDAO modelo = new LenguajeDAO();
-                ControllerLenguaje lenguajeControlador = new ControllerLenguaje(vista1, modelo,vista);
+                ControllerLenguaje lenguajeControlador = new ControllerLenguaje(vista1, modelo, vista);
                 vista1.setVisible(true);
+
+            } else if (ae.getSource() == vista.getjBagregarActor()) {
+                jFactor vistaActor = new jFactor();
+                ActorDAO modelo = new ActorDAO();
+                ControllerActor actorControlador = new ControllerActor(vistaActor, modelo, vista);
+                vistaActor.setVisible(true);
+
+            } else if (ae.getSource() == vista.getjBagrgarCate()) {
+
+                jFcategoria vistaCategoria = new jFcategoria();
+                CategoriaDAO modelo = new CategoriaDAO();
+                ControllerCategoria categoriaControlador = new ControllerCategoria(vistaCategoria, modelo, vista);
+                vistaCategoria.setVisible(true);
             }
 
         }
@@ -199,21 +214,24 @@ public class ControllerPelicula {
             indiceActor = vista.getjCBactor().getSelectedIndex();
             actorID = listaActores.get(indiceActor).getActorID();
 
-            int categoriaID = 0;
-            int indiceCategoria = 0;
-            indiceCategoria = vista.getjCBcategoria().getSelectedIndex();
-            categoriaID = listaCategorias.get(indiceCategoria).getCategoriaId();
-
-            int tamaño;
-            tamaño = modelo.listadoPeliculas().size();
-
-            //if (tamaño == 0) {
             int resultado = 0;
-            //int resultado2 = 0;
             resultado = modelo.grabarPelicula(pelicula);
 
-            // modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
-            //modelo.grabarPeliculaActor(actorID, pelicula.getPeliculaId());
+//            for (int a = 0; a < vista.getModeloListaCategoria().getSize(); a++) {
+//                int categoriaID = 0;
+//
+//                categoriaID = listaCategorias.get(indiceCategoria).getCategoriaId();
+//
+//                int tamaño;
+//                tamaño = modelo.listadoPeliculas().size();
+//
+//                modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
+//            }
+            //if (tamaño == 0) {
+
+            //int resultado2 = 0;
+//            modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
+//            modelo.grabarPeliculaActor(actorID, pelicula.getPeliculaId());
             if (resultado == 1) {
                 vista.gestionMensajes("Registro Grabado con éxito",
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);

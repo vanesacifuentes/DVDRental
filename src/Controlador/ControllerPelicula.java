@@ -7,7 +7,6 @@ package Controlador;
 
 import InternalFrame.iFpelicula;
 import Modelo.Categoria;
-import Modelo.CategoriaDAO;
 import Servicios.*;
 import Modelo.*;
 import Modelo.PeliculaDAO;

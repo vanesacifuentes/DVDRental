@@ -88,7 +88,7 @@ public class ActorDAO {
             pstm.setString(2,a.getNombreActor());
             pstm.setString(3, a.getApellidoActor());
             pstm.setTimestamp(4, a.getUltimaActializacionActor());
-            pstm.setInt(1, a.getActorID());
+            pstm.setInt(5, a.getActorID());
 
             rtdo = pstm.executeUpdate();  
         }

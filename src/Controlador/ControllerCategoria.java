@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import InternalFrame.iFpelicula;
 import JFrame.jFcategoria;
 import Modelo.Categoria;
 import Modelo.CategoriaDAO;
@@ -24,11 +25,13 @@ public class ControllerCategoria {
 
     jFcategoria vista;
     CategoriaDAO modelo;
+    iFpelicula vistaPelicula;
 
-    public ControllerCategoria(jFcategoria vista, CategoriaDAO modelo) {
+    public ControllerCategoria(jFcategoria vista, CategoriaDAO modelo,iFpelicula vistapelicula) {
 
         this.vista = vista;
         this.modelo = modelo;
+        this.vistaPelicula = vistapelicula;
 
         ListenerCategoria escuchador = new ListenerCategoria();
         this.vista.getjBnuevo().addActionListener(escuchador);
@@ -110,6 +113,7 @@ public class ControllerCategoria {
                     ArrayList<Categoria> listaCategoria;
                     listaCategoria = modelo.listadoCateogoria();
                     vista.cargarCategoriaTabla(listaCategoria);
+                    vistaPelicula.cargarCategoriasCombo(listaCategoria);
                     vista.nuevaAccion();
 
                     //vista.activarControles(false); 
@@ -140,8 +144,8 @@ public class ControllerCategoria {
                 Categoria categoria = new Categoria();
 
                 //Se configura los datos en el objeto cliente de la clase Categoria
-                categoria.setCategoriaId(Integer.parseInt(vista.getjTCategoriaID().toString()));
-                categoria.setNombreCategoria(vista.getjTnombreCategoria().toString());
+                categoria.setCategoriaId(Integer.parseInt(vista.getjTCategoriaID().getText().trim()));
+                categoria.setNombreCategoria(vista.getjTnombreCategoria().getText());
                 categoria.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
 
                 if (modelo.modificarCategoria(categoria) == 1) {
@@ -156,6 +160,7 @@ public class ControllerCategoria {
                     ArrayList<Categoria> listadoCategorias;
                     listadoCategorias = modelo.listadoCateogoria();
                     vista.cargarCategoriaTabla(listadoCategorias);
+                    vistaPelicula.cargarCategoriasCombo(listadoCategorias);
                 } else {
                     vista.gestionMensajes(
                             "Actualización Falida jajaja",
@@ -177,7 +182,7 @@ public class ControllerCategoria {
                     JOptionPane.ERROR_MESSAGE);
             }else{
                 int respuesta = JOptionPane.showConfirmDialog(null,
-                        "¿Desea Eliminar el lenguaje: " + vista.getjTableCategoria().getValueAt(
+                        "¿Desea Eliminar la Categoría: " + vista.getjTableCategoria().getValueAt(
                                 vista.getjTableCategoria().getSelectedRow(), 1),
                         "Confirmación de Acción", JOptionPane.YES_NO_OPTION);
 
@@ -193,6 +198,7 @@ public class ControllerCategoria {
                         ArrayList<Categoria> listadoCategoria;
                         listadoCategoria = modelo.listadoCateogoria();
                         vista.cargarCategoriaTabla(listadoCategoria);
+                        vistaPelicula.cargarCategoriasCombo(listadoCategoria);
                     } else {
                         JOptionPane.showMessageDialog(null,
                                 "Error al borrar",

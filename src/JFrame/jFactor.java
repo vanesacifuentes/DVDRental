@@ -270,9 +270,10 @@ public class jFactor extends javax.swing.JFrame {
     }
 
     public void setearCampos() {
+        jTActorID.setText("");
         jTnombreActor.setText("");
         jTApellidoActor.setText("");
-        jLFechaActualizacion.setText(""); 
+         
     }
 
     public void nuevaAccion() {

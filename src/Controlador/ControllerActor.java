@@ -144,7 +144,7 @@ public class ControllerActor {
             
             if(codigo.equalsIgnoreCase("")){
                  vista.gestionMensajes(
-                         "Por favor seleccione un Lenguaje de la tabla",
+                         "Por favor seleccione un Actor de la tabla",
                          "Mensaje de Advertencia ", 
                     JOptionPane.ERROR_MESSAGE);
             }else{
@@ -188,12 +188,12 @@ public class ControllerActor {
             
             if(codigo.equalsIgnoreCase("")){
                  vista.gestionMensajes(
-                         "Por favor seleccione un Lenguaje de la tabla",
+                         "Por favor seleccione un Actor de la tabla",
                          "Mensaje de Advertencia ", 
                     JOptionPane.ERROR_MESSAGE);
             }else{
                 int respuesta = JOptionPane.showConfirmDialog(null,
-                        "¿Desea Eliminar el lenguaje: " + vista.getjTableActores().getValueAt(
+                        "¿Desea Eliminar el Actor: " + vista.getjTableActores().getValueAt(
                     vista.getjTableActores().getSelectedRow(), 1),
                         
                         "Confirmación de Acción", JOptionPane.YES_NO_OPTION);

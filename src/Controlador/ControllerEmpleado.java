@@ -38,7 +38,10 @@ public class ControllerEmpleado {
         
         //Escucha de los Componentes manejador en el controlador
         EmpleadoListener escucha = new EmpleadoListener();
-        this.vista.AddListenerTabala(escucha);
+        this.vista.AddListenerTabla(escucha);
+        this.vista.AddListenerJBNuevo(escucha);
+        this.vista.AddListenerJBModificar(escucha);
+        this.vista.AddListenerJBEliminar(escucha);
     }
     
     
@@ -48,10 +51,13 @@ public class ControllerEmpleado {
         public void actionPerformed(ActionEvent ae) {
 
             if (ae.getSource() == vista.getjBnuevo()) {
-                JOptionPane.showMessageDialog(null, "Prueba");
+                JOptionPane.showMessageDialog(null, "Crear nuevo empleado");
                 registrar();
             } else if (ae.getSource() == vista.getjBmodificar()) {
-                actualizar();
+                JOptionPane.showMessageDialog(null, "Modificar un empleado");
+                //actualizar();
+            } else if (ae.getSource() == vista.getjBeliminar()) {
+                JOptionPane.showMessageDialog(null, "Eliminar un empleado");
             }
         }
 
@@ -119,7 +125,8 @@ public class ControllerEmpleado {
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
         } else {
             Empleado empleado = new Empleado();
-            empleado.setEmpleadoID(2000);//revisar el ingreso null
+            int x = Integer.parseInt(vista.getjTEmpleadoID().getText());
+            empleado.setEmpleadoID(x);//revisar el ingreso null
             empleado.setNombreEmpleado(vista.getjTnombreEmpleado().getText());
             empleado.setApellidoEmpleado(vista.getjTApellidosEmpleado().getText());
             empleado.setDireccionID_Empleado(Integer.parseInt(vista.getjTDireccion().getText()));

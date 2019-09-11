@@ -265,34 +265,36 @@ public class ControllerPelicula {
         }
     }
 
-    public void registrarPelicula_Actor(int idActor) {
+    public void registrarPelicula_Actor(int idPelicula) {
         for (int a = 0; a < vista.getModeloListaActor().getSize(); a++) {
 
             Actor actor = buscarActor_Nombre(vista.getModeloListaCategoria().getElementAt(a).toString(), listaActores);
 
-            modelo.grabarPeliculaCategoria(actor.getActorID(), idActor);
+            modelo.grabarPeliculaActor(actor.getActorID(), idPelicula);
         }
     }
 
     private void actualizar() {
 
-        /*
+        
             Pelicula pelicula = new Pelicula();
-             
-            //Se configura los datos en el objeto programa de la clase
-            //Pelicula
-            //pelicula.setPeliculaId(vista.getjTid_peli());
-            pelicula.setTitulo(vista.getjTtitulo().getText());                                          
-            pelicula.setDescripcion(vista.gettAsinopsis().getText());                                          
+            pelicula.setPeliculaId(Integer.parseInt(vista.getjTid_peli().getText()));//revisar el ingreso null
+            pelicula.setTitulo(vista.getjTtitulo().getText());
+            pelicula.setDescripcion(vista.gettAsinopsis().getText());
             pelicula.setAnhoLanzamiento(Integer.parseInt(vista.getjTaño().getText()));
-            pelicula.setLenguajeID(Integer.parseInt(vista.getjCBlenguaje().getSelectedIndex());
+
+            int indiceLenguaje = 0;
+            indiceLenguaje = vista.getjCBlenguaje().getSelectedIndex();
+            pelicula.setLenguajeID(listaLenguajes.get(indiceLenguaje).getLenguageID());
             pelicula.setDuracionRenta(Integer.parseInt(vista.getjTDuracionAlquiler().getText()));
-            pelicula.setTarifaRenta(Integer.parseInt(vista.getjTtarifa()));
-            pelicula.setLongitud(Integer.parseInt(vista.getjTduracion()));
-            pelicula.setCostoReemplazo(Integer.parseInt(vista.getjTcostoRe()));
-            pelicula.setClasificacion(vista.getjTclasificacion());
-            pelicula.setCaracteristicasEspeciales(vista.getjTcarateristicas());
-            pelicula.setTextoCompleto(vista.getjTtextoCompleto());
+            pelicula.setTarifaRenta(Integer.parseInt(vista.getjTtarifa().getText()));
+            pelicula.setLongitud(Integer.parseInt(vista.getjTduracion().getText()));
+            pelicula.setCostoReemplazo(Integer.parseInt(vista.getjTcostoRe().getText()));
+            System.err.println("" + vista.getjCBClasificacion().getSelectedItem());
+            pelicula.setClasificacion(vista.getjCBClasificacion().getSelectedItem().toString());
+            pelicula.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
+            pelicula.setCaracteristicasEspeciales("{" + vista.getjTcarateristicas().getText() + "}");
+            pelicula.setTextoCompleto(vista.getjTtextoCompleto().getText());
                     
                          
             if(modelo.modificarPelicula(pelicula) == 1){
@@ -301,8 +303,8 @@ public class ControllerPelicula {
                         "Confirmación ", 
                         JOptionPane.INFORMATION_MESSAGE);
                                         
-                //vista.activarControles(false); 
-                //vista.nuevoAction();
+                
+                
                 ArrayList<Pelicula> listadoPeliculas; 
                 listadoPeliculas = modelo.listadoPeliculas();
                 vista.cargarPeliculasTabla(listadoPeliculas);           
@@ -312,8 +314,8 @@ public class ControllerPelicula {
                         "Confirmación ", 
                         JOptionPane.ERROR_MESSAGE);                 
             }              
-        } 
-         */
+         
+        
     }
 
     private void borrar() {

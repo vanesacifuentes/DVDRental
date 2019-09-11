@@ -101,8 +101,7 @@ public class ControllerLenguaje {
             lenguaje.setLenguageID(Integer.parseInt(vista.getjTLenguajeID().getText().trim()));
             lenguaje.setNombreLenguaje(vista.getjTnombreLenguaje().getText().trim());           
             lenguaje.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
-            
-            System.out.println("fecha "+Fecha.crearFechaTimeStamp());   
+             
   
             int tamaño = 0;
             tamaño = modelo.listadoLenguajes().size();

@@ -58,7 +58,7 @@ public class jFdireccion extends javax.swing.JFrame {
         jBmodificar = new javax.swing.JButton();
         jBnuevo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -212,7 +212,7 @@ public class jFdireccion extends javax.swing.JFrame {
         jBnuevo.setDefaultCapable(false);
         jPanel1.add(jBnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 60, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 380));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

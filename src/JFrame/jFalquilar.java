@@ -30,8 +30,6 @@ public class jFalquilar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPalquiladas = new javax.swing.JPanel();
         jPcliente = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
 
@@ -44,25 +42,16 @@ public class jFalquilar extends javax.swing.JFrame {
         jPalquiladas.setBackground(new java.awt.Color(255, 255, 255));
         jPalquiladas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alquiler", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
         jPalquiladas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jPalquiladas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 330, 120));
+        jPanel1.add(jPalquiladas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 330, 80));
 
         jPcliente.setBackground(new java.awt.Color(255, 255, 255));
         jPcliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
         jPcliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Categoria");
-        jPcliente.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 20));
-
-        jTextField1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPcliente.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 190, -1));
-
         jLabel2.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Cédula:");
-        jPcliente.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jPcliente.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jTextField2.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -71,9 +60,9 @@ public class jFalquilar extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPcliente.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 210, -1));
+        jPcliente.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 210, -1));
 
-        jPanel1.add(jPcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 330, 120));
+        jPanel1.add(jPcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 330, 170));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,12 +128,10 @@ public class jFalquilar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPalquiladas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPcliente;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

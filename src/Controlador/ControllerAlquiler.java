@@ -7,6 +7,7 @@ package Controlador;
 
 import InternalFrame.iFalquiler;
 import Modelo.AlquilerDAO;
+import Modelo.ClienteDAO;
 import Modelo.Pelicula;
 import Modelo.PeliculaDAO;
 import java.util.ArrayList;
@@ -30,12 +31,13 @@ public class ControllerAlquiler {
         
         PeliculaDAO modelPelicula = new PeliculaDAO();
         
-         //Se carga en el JList la informacion proveniente de la base de datos
-        
-        //this.vista.cargarPeliculasLista(listadoPelicula = modelPelicula.listadoPeliculas());
-        
+       //Se carga en el JList la informacion proveniente de la base de datos
+ 
        ListenerAlquiler escucha = new ListenerAlquiler();
        this.vista.getjTBuscador().addKeyListener(escucha);
+       this.vista.getjListBusquedaPeliculas().addKeyListener(escucha);
+       
+       this.vista.getjTBuscarCliente().addKeyListener(escucha);
        this.vista.getjListBusquedaPeliculas().addMouseListener(escucha);
         
         
@@ -59,9 +61,18 @@ public class ControllerAlquiler {
 
         @Override
         public void keyReleased(KeyEvent ke) {
+            
+            if(ke.getSource() == vista.getjTBuscador()){
+            
             PeliculaDAO modelPelicula = new PeliculaDAO();
             String buscar = vista.getjTBuscador().getText().trim();
             vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(formatoString(buscar)));
+            
+            }else{   
+            ClienteDAO modelCliente = new ClienteDAO();
+            int buscar = Integer.parseInt(vista.getjTBuscarCliente().getText().trim());
+            vista.cargarClientesLista(modelCliente.buscarCliente(buscar));
+        }
         }
 
         @Override
@@ -83,10 +94,7 @@ public class ControllerAlquiler {
             vista.getjTPrecio().setText(""+peliculaSelected.getTarifaRenta());
             vista.getjTxTitulo().setText(peliculaSelected.getTitulo());
             vista.getjTDuracion().setText(""+peliculaSelected.getLongitud());
-            
-            
-            
-            
+
         }
 
         @Override

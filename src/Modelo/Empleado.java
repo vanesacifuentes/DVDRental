@@ -23,6 +23,10 @@ public class Empleado {
     private Timestamp ultima_Actualizacion_Empleado;
 //    private ImageIcon fotoEmpleado;
 
+    public Empleado(){
+        
+    }
+    
     public int getEmpleadoID() {
         return empleadoID;
     }

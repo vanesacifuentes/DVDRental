@@ -46,7 +46,7 @@ public class EmpleadoDAO {
             pstm.setString(8, e.getNombreUsuarioEmpleado());
             pstm.setString(9, e.getContrasenaEmpleado());
             pstm.setTimestamp(10, e.getUltima_Actualizacion_Empleado());
-            //11 fotoEmpleado;      
+            //pstm.set11 fotoEmpleado;      
 
             rtdo = pstm.executeUpdate();
 

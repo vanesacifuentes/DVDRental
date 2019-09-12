@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -126,7 +127,7 @@ public class ControllerEmpleado {
         } else {
             Empleado empleado = new Empleado();
             int x = Integer.parseInt(vista.getjTEmpleadoID().getText());
-            empleado.setEmpleadoID(x);//revisar el ingreso null
+            empleado.setEmpleadoID(x);
             empleado.setNombreEmpleado(vista.getjTnombreEmpleado().getText());
             empleado.setApellidoEmpleado(vista.getjTApellidosEmpleado().getText());
             empleado.setDireccionID_Empleado(Integer.parseInt(vista.getjTDireccion().getText()));
@@ -135,7 +136,8 @@ public class ControllerEmpleado {
             //empleado.setActivo(vista.getjTCuentaActivo1().get());
             empleado.setNombreUsuarioEmpleado(vista.getjTNombreUsuario().getText());
             empleado.setContrasenaEmpleado(vista.getjPassContrasena().getName());
-            
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
+            empleado.setUltima_Actualizacion_Empleado(ts);
             //empleado-imagen
 
             
@@ -152,7 +154,7 @@ public class ControllerEmpleado {
 
                     ArrayList<Empleado> listaEmpleados;
                     listaEmpleados = modelo.listadoEmpleado();
-                   vista.cargarEmpleadosTabla(listaEmpleados);
+                   this.vista.cargarEmpleadosTabla(listaEmpleados);
 
                     //vista.activarControles(false); 
                     //vista.nuevoAction();
@@ -160,10 +162,6 @@ public class ControllerEmpleado {
                     vista.gestionMensajes("Error al grabar",
                             "Confirmación", JOptionPane.ERROR_MESSAGE);
                 }
-            //} else {
-                vista.gestionMensajes("Codigo ya está registrado",
-                        "Confirmación",
-                        JOptionPane.ERROR_MESSAGE);
             }
     }
     

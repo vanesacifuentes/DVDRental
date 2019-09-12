@@ -20,7 +20,8 @@ public class ControllerAlquiler {
     
     private iFalquiler vista;
     private AlquilerDAO modelo;
-    private ArrayList <Pelicula> listadoPelicula;
+    private Pelicula peliculaSelected;
+    //private ArrayList <Pelicula> listadoPelicula;
 
     public ControllerAlquiler(iFalquiler vista, AlquilerDAO modelo) {
         
@@ -35,17 +36,15 @@ public class ControllerAlquiler {
         
        ListenerAlquiler escucha = new ListenerAlquiler();
        this.vista.getjTBuscador().addKeyListener(escucha);
+       this.vista.getjListBusquedaPeliculas().addMouseListener(escucha);
         
         
     }
     
-    public class ListenerAlquiler implements ActionListener, KeyListener{
+    public class ListenerAlquiler implements MouseListener, KeyListener{
         
 
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
+        
 
         @Override
         public void keyTyped(KeyEvent ke) {
@@ -63,6 +62,39 @@ public class ControllerAlquiler {
             PeliculaDAO modelPelicula = new PeliculaDAO();
             String buscar = vista.getjTBuscador().getText().trim();
             vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(buscar));
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent me) {
+        }
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+            PeliculaDAO modelPelicula = new PeliculaDAO();
+            int indice = vista.getjListBusquedaPeliculas().getSelectedIndex();
+            ArrayList<Pelicula> p;
+            p = modelPelicula.buscarPeliculas(vista.getModelo().getElementAt(indice).toString());
+            Pelicula peliculaSelected = p.get(0);
+            vista.getjTIDPelicula().setText(""+peliculaSelected.getPeliculaId());
+            vista.getjTPrecio().setText(""+peliculaSelected.getTarifaRenta());
+            vista.getjTxTitulo().setText(peliculaSelected.getTitulo());
+            vista.getjTDuracion().setText(""+peliculaSelected.getLongitud());
+            
+            
+            
+            
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent me) {
         }
 
 

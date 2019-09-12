@@ -294,9 +294,40 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         
     }
 
+    public JList<String> getjListBusquedaPeliculas() {
+        return jListBusquedaPeliculas;
+    }
+
     public JTextField getjTBuscador() {
         return jTBuscador;
     }
+
+    public DefaultListModel getModelo() {
+        return modelo;
+    }
+
+    public JTextField getjTDuracion() {
+        return jTDuracion;
+    }
+
+    public JTextField getjTIDAlquiler() {
+        return jTIDAlquiler;
+    }
+
+    public JTextField getjTIDPelicula() {
+        return jTIDPelicula;
+    }
+
+    public JTextField getjTPrecio() {
+        return jTPrecio;
+    }
+
+    public JTextField getjTxTitulo() {
+        return jTxTitulo;
+    }
+    
+    
+    
 
     
 

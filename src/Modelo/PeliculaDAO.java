@@ -255,19 +255,19 @@ public class PeliculaDAO {
                 pelicula = new Pelicula();
 
                 
-//                pelicula.setPeliculaId(rs.getInt("film_id"));
+               pelicula.setPeliculaId(rs.getInt("film_id"));
                 pelicula.setTitulo(rs.getString("title"));
-//                pelicula.setDescripcion(rs.getString("description"));
-//                pelicula.setAnhoLanzamiento(rs.getInt("release_year"));
-//                pelicula.setLenguajeID(rs.getInt("language_id"));
-//                pelicula.setDuracionRenta(rs.getInt("rental_duration"));
-//                pelicula.setTarifaRenta(rs.getInt("rental_rate"));
-//                pelicula.setLongitud(rs.getInt("length"));
-//                pelicula.setCostoReemplazo(rs.getDouble("replacement_cost"));
-//                pelicula.setClasificacion(rs.getString("rating"));
-//                pelicula.setUltimaActualizacion(rs.getTimestamp("last_update"));
-//                pelicula.setCaracteristicasEspeciales(rs.getString("special_features"));
-//                pelicula.setTextoCompleto(rs.getString("fulltext"));
+                pelicula.setDescripcion(rs.getString("description"));
+                pelicula.setAnhoLanzamiento(rs.getInt("release_year"));
+                pelicula.setLenguajeID(rs.getInt("language_id"));
+                pelicula.setDuracionRenta(rs.getInt("rental_duration"));
+                pelicula.setTarifaRenta(rs.getInt("rental_rate"));
+                pelicula.setLongitud(rs.getInt("length"));
+                pelicula.setCostoReemplazo(rs.getDouble("replacement_cost"));
+                pelicula.setClasificacion(rs.getString("rating"));
+                pelicula.setUltimaActualizacion(rs.getTimestamp("last_update"));
+                pelicula.setCaracteristicasEspeciales(rs.getString("special_features"));
+                pelicula.setTextoCompleto(rs.getString("fulltext"));
             
                 listadoPeliculas.add(pelicula);
             }

@@ -57,7 +57,7 @@ public class MenuCliente extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(238, 112, 82));
         jLabel2.setText("BIENVENIDO");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 220, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 240, -1));
 
         Bmensajes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/chat3.png"))); // NOI18N
         Bmensajes.setBorder(null);

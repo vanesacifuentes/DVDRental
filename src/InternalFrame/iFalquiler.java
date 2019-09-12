@@ -5,7 +5,9 @@
  */
 package InternalFrame;
 
+import Modelo.Cliente;
 import Modelo.Pelicula;
+import java.awt.List;
 import javax.swing.DefaultListModel;
 import java.util.ArrayList;
 import javax.swing.JList;
@@ -20,13 +22,16 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     /**
      * Creates new form iFalquiler
      */
-    DefaultListModel modelo;
+    DefaultListModel modeloBuscarPelicula;
+    DefaultListModel modeloBuscarCliente;
 
     public iFalquiler() {
         initComponents();
-        modelo = new DefaultListModel();
-        jListBusquedaPeliculas.setModel(modelo);
-
+        modeloBuscarPelicula = new DefaultListModel();
+        jListBusquedaPeliculas.setModel(modeloBuscarPelicula);
+        
+        modeloBuscarCliente = new DefaultListModel();
+        jListClienteID.setModel(modeloBuscarCliente);
     }
 
     /**
@@ -48,25 +53,28 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabelSinopsis = new javax.swing.JLabel();
         jLSinopsisTexto = new javax.swing.JLabel();
-        jPinformacionPeliculs = new javax.swing.JPanel();
-        jLidAlquiler = new javax.swing.JLabel();
-        jLtitulo = new javax.swing.JLabel();
-        jLprecio = new javax.swing.JLabel();
-        jLduracion = new javax.swing.JLabel();
-        jLsinopsis = new javax.swing.JLabel();
-        jLidPelicula = new javax.swing.JLabel();
-        jTIDAlquiler = new javax.swing.JTextField();
-        jTIDPelicula = new javax.swing.JTextField();
-        jTxTitulo = new javax.swing.JTextField();
-        jTPrecio = new javax.swing.JTextField();
-        jTDuracion = new javax.swing.JTextField();
-        jLctegoria = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListBusquedaPeliculas = new javax.swing.JList<>();
         jPbotones1 = new javax.swing.JPanel();
         jBAlquilar = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
         jBmodificar1 = new javax.swing.JButton();
+        jPanelCliente = new javax.swing.JPanel();
+        jLCliente = new javax.swing.JLabel();
+        jTBuscarCliente = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListClienteID = new javax.swing.JList<>();
+        jPinformacionPeliculs = new javax.swing.JPanel();
+        jLidAlquiler = new javax.swing.JLabel();
+        jLtitulo = new javax.swing.JLabel();
+        jLprecio = new javax.swing.JLabel();
+        jLduracion = new javax.swing.JLabel();
+        jLidPelicula = new javax.swing.JLabel();
+        jTIDAlquiler = new javax.swing.JTextField();
+        jTIDPelicula = new javax.swing.JTextField();
+        jTxTitulo = new javax.swing.JTextField();
+        jTPrecio = new javax.swing.JTextField();
+        jTDuracion = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,7 +90,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 50, 40));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 50, 40));
 
         jTBuscador.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTBuscador.setForeground(new java.awt.Color(102, 102, 102));
@@ -97,13 +105,13 @@ public class iFalquiler extends javax.swing.JInternalFrame {
                 jTBuscadorKeyReleased(evt);
             }
         });
-        jPanel2.add(jTBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 390, 40));
+        jPanel2.add(jTBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 320, 40));
 
         jLabel1.setBackground(new java.awt.Color(238, 112, 82));
         jLabel1.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(238, 112, 82));
         jLabel1.setText("Buscar:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 60, 40));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 60, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 710, 60));
 
@@ -113,7 +121,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 240));
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 130, 140));
 
         jLabelSinopsis.setBackground(new java.awt.Color(238, 112, 82));
         jLabelSinopsis.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
@@ -124,59 +132,10 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jLSinopsisTexto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jPanel4.add(jLSinopsisTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 600, 90));
 
-        jPinformacionPeliculs.setBackground(new java.awt.Color(255, 255, 255));
-        jPinformacionPeliculs.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLidAlquiler.setBackground(new java.awt.Color(238, 112, 82));
-        jLidAlquiler.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jLidAlquiler.setForeground(new java.awt.Color(238, 112, 82));
-        jLidAlquiler.setText("ID Alquiler:");
-        jPinformacionPeliculs.add(jLidAlquiler, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-
-        jLtitulo.setBackground(new java.awt.Color(238, 112, 82));
-        jLtitulo.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jLtitulo.setForeground(new java.awt.Color(238, 112, 82));
-        jLtitulo.setText("Título:");
-        jLtitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPinformacionPeliculs.add(jLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 70, 30));
-
-        jLprecio.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jLprecio.setForeground(new java.awt.Color(238, 112, 82));
-        jLprecio.setText("Precio:");
-        jPinformacionPeliculs.add(jLprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
-
-        jLduracion.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jLduracion.setForeground(new java.awt.Color(238, 112, 82));
-        jLduracion.setText("Duración:");
-        jPinformacionPeliculs.add(jLduracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 70, -1));
-
-        jLsinopsis.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jLsinopsis.setForeground(new java.awt.Color(238, 112, 82));
-        jLsinopsis.setText("Actores:");
-        jPinformacionPeliculs.add(jLsinopsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
-
-        jLidPelicula.setBackground(new java.awt.Color(238, 112, 82));
-        jLidPelicula.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jLidPelicula.setForeground(new java.awt.Color(238, 112, 82));
-        jLidPelicula.setText("ID pelicula:");
-        jPinformacionPeliculs.add(jLidPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
-        jPinformacionPeliculs.add(jTIDAlquiler, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 200, 20));
-        jPinformacionPeliculs.add(jTIDPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 200, 20));
-        jPinformacionPeliculs.add(jTxTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 200, 20));
-        jPinformacionPeliculs.add(jTPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 200, 20));
-        jPinformacionPeliculs.add(jTDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 200, 20));
-
-        jLctegoria.setBackground(new java.awt.Color(238, 112, 82));
-        jLctegoria.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jLctegoria.setForeground(new java.awt.Color(238, 112, 82));
-        jLctegoria.setText("Categoría:");
-        jPinformacionPeliculs.add(jLctegoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
-
-        jPanel4.add(jPinformacionPeliculs, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 460, 270));
-
+        jListBusquedaPeliculas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(jListBusquedaPeliculas);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 390, 100));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 320, 100));
 
         jPbotones1.setBackground(new java.awt.Color(255, 255, 255));
         jPbotones1.setForeground(new java.awt.Color(102, 102, 102));
@@ -222,6 +181,87 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jPbotones1.add(jBmodificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 80, 30));
 
         jPanel4.add(jPbotones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 420, 50));
+
+        jPanelCliente.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLCliente.setBackground(new java.awt.Color(238, 112, 82));
+        jLCliente.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLCliente.setForeground(new java.awt.Color(238, 112, 82));
+        jLCliente.setText("Cliente:");
+        jLCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jListClienteID.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jListClienteID);
+
+        javax.swing.GroupLayout jPanelClienteLayout = new javax.swing.GroupLayout(jPanelCliente);
+        jPanelCliente.setLayout(jPanelClienteLayout);
+        jPanelClienteLayout.setHorizontalGroup(
+            jPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                    .addComponent(jTBuscarCliente))
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+        jPanelClienteLayout.setVerticalGroup(
+            jPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
+        jPanel4.add(jPanelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 210, 190));
+
+        jPinformacionPeliculs.setBackground(new java.awt.Color(255, 255, 255));
+        jPinformacionPeliculs.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLidAlquiler.setBackground(new java.awt.Color(238, 112, 82));
+        jLidAlquiler.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLidAlquiler.setForeground(new java.awt.Color(238, 112, 82));
+        jLidAlquiler.setText("ID Alquiler:");
+        jPinformacionPeliculs.add(jLidAlquiler, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jLtitulo.setBackground(new java.awt.Color(238, 112, 82));
+        jLtitulo.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLtitulo.setForeground(new java.awt.Color(238, 112, 82));
+        jLtitulo.setText("Título:");
+        jLtitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPinformacionPeliculs.add(jLtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 70, 30));
+
+        jLprecio.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLprecio.setForeground(new java.awt.Color(238, 112, 82));
+        jLprecio.setText("Precio:");
+        jPinformacionPeliculs.add(jLprecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        jLduracion.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLduracion.setForeground(new java.awt.Color(238, 112, 82));
+        jLduracion.setText("Duración:");
+        jPinformacionPeliculs.add(jLduracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 70, -1));
+
+        jLidPelicula.setBackground(new java.awt.Color(238, 112, 82));
+        jLidPelicula.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLidPelicula.setForeground(new java.awt.Color(238, 112, 82));
+        jLidPelicula.setText("ID pelicula:");
+        jPinformacionPeliculs.add(jLidPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        jPinformacionPeliculs.add(jTIDAlquiler, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 200, 20));
+        jPinformacionPeliculs.add(jTIDPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 200, 20));
+        jPinformacionPeliculs.add(jTxTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 200, 20));
+        jPinformacionPeliculs.add(jTPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 200, 20));
+        jPinformacionPeliculs.add(jTDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 200, 20));
+
+        jPanel4.add(jPinformacionPeliculs, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 360, 270));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -276,22 +316,32 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jTBuscadorKeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jTBuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscadorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTBuscadorActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     //Método para cargar al JList el listado por nombre de Pelicula
     public void cargarPeliculasLista(ArrayList<Pelicula> listaPelicula) {
-        modelo.removeAllElements();
+        modeloBuscarPelicula.removeAllElements();
         for (int i = 0; i < listaPelicula.size(); i++) {
-            modelo.addElement(listaPelicula.get(i).getTitulo());
+            modeloBuscarPelicula.addElement(listaPelicula.get(i).getTitulo());
 
         }
         
+    }
+    
+    //Método para cargar al JList el listado por id de Cliente
+    public void cargarClientesLista(ArrayList<Cliente> listaCliente) {
+        modeloBuscarCliente.removeAllElements();
+        for (int i = 0; i < listaCliente.size(); i++) {
+            modeloBuscarPelicula.addElement(listaCliente.get(i).getClienteID());
+
+        }
+      
     }
 
     public JList<String> getjListBusquedaPeliculas() {
@@ -303,7 +353,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     }
 
     public DefaultListModel getModelo() {
-        return modelo;
+        return modeloBuscarPelicula;
     }
 
     public JTextField getjTDuracion() {
@@ -325,10 +375,14 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     public JTextField getjTxTitulo() {
         return jTxTitulo;
     }
-    
-    
-    
 
+    public JList<String> getjListClienteID() {
+        return jListClienteID;
+    }
+
+    public JTextField getjTBuscarCliente() {
+        return jTBuscarCliente;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -336,26 +390,29 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLSinopsisTexto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelSinopsis;
-    private javax.swing.JLabel jLctegoria;
     private javax.swing.JLabel jLduracion;
     private javax.swing.JLabel jLidAlquiler;
     private javax.swing.JLabel jLidPelicula;
     private javax.swing.JList<String> jListBusquedaPeliculas;
+    private javax.swing.JList<String> jListClienteID;
     private javax.swing.JLabel jLprecio;
-    private javax.swing.JLabel jLsinopsis;
     private javax.swing.JLabel jLtitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanelCliente;
     private javax.swing.JPanel jPbotones1;
     private javax.swing.JPanel jPinformacionPeliculs;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTBuscador;
+    private javax.swing.JTextField jTBuscarCliente;
     private javax.swing.JTextField jTDuracion;
     private javax.swing.JTextField jTIDAlquiler;
     private javax.swing.JTextField jTIDPelicula;

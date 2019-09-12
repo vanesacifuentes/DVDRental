@@ -235,6 +235,7 @@ public class ControllerPelicula {
     }
 
     public Categoria buscarCategoria_Nombre(String nombre, ArrayList<Categoria> array) {
+        
         Categoria cat = new Categoria();
         for (int a = 0; a < array.size(); a++) {
             if (nombre.equalsIgnoreCase(array.get(a).getNombreCategoria())) {
@@ -247,9 +248,11 @@ public class ControllerPelicula {
 
     public Actor buscarActor_Nombre(String nombre, ArrayList<Actor> array) {
         Actor actor = new Actor();
+        //JOptionPane.showMessageDialog(null, nombre);
         for (int a = 0; a < array.size(); a++) {
-            if (nombre.equalsIgnoreCase(array.get(a).getNombreActor())) {
+            if (nombre.equalsIgnoreCase(array.get(a).getNombreActor()+" "+array.get(a).getApellidoActor())) {
                 actor = array.get(a);
+                //JOptionPane.showMessageDialog(null, actor.getActorID()+"___"+actor.getNombreActor());
             }
 
         }
@@ -260,7 +263,7 @@ public class ControllerPelicula {
         for (int a = 0; a < vista.getModeloListaCategoria().getSize(); a++) {
 
             Categoria category = buscarCategoria_Nombre(vista.getModeloListaCategoria().getElementAt(a).toString(), listaCategorias);
-
+            System.err.println("Categoria -- "+category.getCategoriaId());
             modelo.grabarPeliculaCategoria(category.getCategoriaId(), idPelicula);
         }
     }
@@ -268,8 +271,8 @@ public class ControllerPelicula {
     public void registrarPelicula_Actor(int idPelicula) {
         for (int a = 0; a < vista.getModeloListaActor().getSize(); a++) {
 
-            Actor actor = buscarActor_Nombre(vista.getModeloListaCategoria().getElementAt(a).toString(), listaActores);
-
+            Actor actor = buscarActor_Nombre(vista.getModeloListaActor().getElementAt(a).toString(), listaActores);
+            System.err.println("Actor -- "+actor.getActorID());
             modelo.grabarPeliculaActor(actor.getActorID(), idPelicula);
         }
     }

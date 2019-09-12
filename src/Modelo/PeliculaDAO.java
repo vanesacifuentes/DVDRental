@@ -238,12 +238,10 @@ public class PeliculaDAO {
             con = Fachada.getConnection();
             String sql="";
             
-           //JOptionPane.showMessageDialog(null, texto);
-               // sql = "select * from film where title like" + "'"+texto+"%'";   
-               //String filtro = ""+texto+"%";
+           
                
                 sql = "select * from film where title like '"+texto+"%'";
-               // sql = "select * from film where title like "+'"'filtro+'"';      
+                    
              
             pstm = con.prepareStatement(sql);
             

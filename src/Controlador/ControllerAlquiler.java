@@ -61,7 +61,7 @@ public class ControllerAlquiler {
         public void keyReleased(KeyEvent ke) {
             PeliculaDAO modelPelicula = new PeliculaDAO();
             String buscar = vista.getjTBuscador().getText().trim();
-            vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(buscar));
+            vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(formatoString(buscar)));
         }
 
         @Override
@@ -97,7 +97,12 @@ public class ControllerAlquiler {
         public void mouseExited(MouseEvent me) {
         }
 
-
+        public String formatoString(String text){
+            String PrimeraLetra,allText;
+            PrimeraLetra = text.substring(0, 1).toUpperCase();
+            allText = text.substring(1).toLowerCase();
+            return PrimeraLetra+allText;
+        }
 
 }
     

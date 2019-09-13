@@ -243,7 +243,7 @@ public class ClienteDAO {
                // sql = "select * from film where title like" + "'"+texto+"%'";   
                //String filtro = ""+texto+"%";
                
-                sql = "select * from customer where customer_id like '"+codigoCliente+"%'";
+                sql = "select from customer where customer_id like '"+codigoCliente+"%'";
                // sql = "select * from film where title like "+'"'filtro+'"';      
              
             pstm = con.prepareStatement(sql);

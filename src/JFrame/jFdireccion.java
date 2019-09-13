@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Gestionar direccion, mostrar agregar nuevo y borrar
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : jFdireccion- Interfaz
  */
 package JFrame;
 
@@ -12,10 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-/**
- *
- * @author nicol
- */
+
 public class jFdireccion extends javax.swing.JFrame {
 
     /**
@@ -293,6 +292,7 @@ public class jFdireccion extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
     
+    //Escuchas
     public void addListenerBtnNuevo(ActionListener listenCliente) {
         jBnuevo.addActionListener(listenCliente);
     }

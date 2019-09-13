@@ -1,12 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Gestionar actor, mostrar agregar nuevo y borrar
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : jFactor- Interfaz
  */
 package JFrame;
 
 import Modelo.Actor;
-import Modelo.Lenguaje;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -17,10 +18,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author nicol
- */
+
 public class jFactor extends javax.swing.JFrame {
 
     /**
@@ -284,7 +282,7 @@ public class jFactor extends javax.swing.JFrame {
         jBeliminar.setVisible(true);
     }
     
-    
+    //Escuchas
     public void addListenerBtnNuevo(ActionListener listenActor) {
 
         jBnuevo.addActionListener(listenActor);

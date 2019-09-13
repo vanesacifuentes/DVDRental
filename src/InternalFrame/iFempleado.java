@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Interfaz Empleado
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : iFempleado- Interfaz
  */
 
 package InternalFrame;
@@ -19,10 +21,7 @@ import java.awt.event.MouseListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
-/**
- *
- * @author nicol
- */
+
 public class iFempleado extends javax.swing.JInternalFrame {
 
     /**
@@ -365,6 +364,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    //Método para cargar las tiendas en un comboBox determinado
     public void cargarTiendasCombo(ArrayList<Tienda> listadoTiendas){ 
        DefaultComboBoxModel model; 
          
@@ -381,7 +381,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
     
     
     
-    
+    //Método para cargar en una Tabla listado de los Empleados registrados en la base de datos
     public void cargarEmpleadosTabla(ArrayList<Empleado> listadoEmpleado)
     {
         //System.err.println(listadoEmpleado.get(3).getContrasenaEmpleado());
@@ -404,6 +404,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
         
     }
     
+    //Limpiar el listado
     private void limpiarListadoTabla(){
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jTableEmpleado.getModel();
@@ -412,47 +413,13 @@ public class iFempleado extends javax.swing.JInternalFrame {
         }
     }
     
+    //Mensaje
      public void gestionMensajes(String mensaje, String titulo, int icono){
          JOptionPane.showMessageDialog(this,mensaje, titulo, icono);
     }
     
-    
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBFoto;
-    private javax.swing.JButton jBeliminar;
-    private javax.swing.JButton jBmodificar;
-    private javax.swing.JButton jBnuevo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jCBTiendaID;
-    private javax.swing.JLabel jLApellidos;
-    private javax.swing.JLabel jLContrasena;
-    private javax.swing.JLabel jLCorreo;
-    private javax.swing.JLabel jLDireccion;
-    private javax.swing.JLabel jLEmpleadoID;
-    private javax.swing.JLabel jLNombreEmpleado;
-    private javax.swing.JLabel jLTienda1;
-    private javax.swing.JLabel jLUltimaActualizacion;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLactivo;
-    private javax.swing.JPanel jPanelEmpleado;
-    private javax.swing.JPasswordField jPassContrasena;
-    private javax.swing.JPanel jPbotones;
-    private javax.swing.JPanel jPingreso;
-    private javax.swing.JPanel jPtabla;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTApellidosEmpleado;
-    private javax.swing.JTextField jTCorreoEmpleado;
-    private javax.swing.JTextField jTDireccion;
-    private javax.swing.JTextField jTEmpleadoID;
-    private javax.swing.JTextField jTNombreUsuario;
-    private javax.swing.JTable jTableEmpleado;
-    private javax.swing.JTextField jTnombreEmpleado;
-    // End of variables declaration//GEN-END:variables
-
-    
+     
+    //MouseListener para Tabla 
     public void AddListenerTabala(MouseListener ml){
         jTableEmpleado.addMouseListener(ml);
     }
@@ -493,8 +460,6 @@ public class iFempleado extends javax.swing.JInternalFrame {
         return jLUltimaActualizacion;
     }
 
-    
-
     public JTextField getjTDireccion() {
         return jTDireccion;
     }
@@ -514,7 +479,44 @@ public class iFempleado extends javax.swing.JInternalFrame {
     public JTextField getjTEmpleadoID() {
         return jTEmpleadoID;
     }
+     
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBFoto;
+    private javax.swing.JButton jBeliminar;
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JButton jBnuevo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jCBTiendaID;
+    private javax.swing.JLabel jLApellidos;
+    private javax.swing.JLabel jLContrasena;
+    private javax.swing.JLabel jLCorreo;
+    private javax.swing.JLabel jLDireccion;
+    private javax.swing.JLabel jLEmpleadoID;
+    private javax.swing.JLabel jLNombreEmpleado;
+    private javax.swing.JLabel jLTienda1;
+    private javax.swing.JLabel jLUltimaActualizacion;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLactivo;
+    private javax.swing.JPanel jPanelEmpleado;
+    private javax.swing.JPasswordField jPassContrasena;
+    private javax.swing.JPanel jPbotones;
+    private javax.swing.JPanel jPingreso;
+    private javax.swing.JPanel jPtabla;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTApellidosEmpleado;
+    private javax.swing.JTextField jTCorreoEmpleado;
+    private javax.swing.JTextField jTDireccion;
+    private javax.swing.JTextField jTEmpleadoID;
+    private javax.swing.JTextField jTNombreUsuario;
+    private javax.swing.JTable jTableEmpleado;
+    private javax.swing.JTextField jTnombreEmpleado;
+    // End of variables declaration//GEN-END:variables
+
+    
+    
    
 
     

@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla customer
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : ClienteDAO
  */
 package Modelo;
 import java.sql.Connection;
@@ -12,10 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import Servicios.Fachada;
 
-/**
- *
- * @author vanes
- */
+
 public class ClienteDAO {
      /* 
      * @param a Objeto de la clase Cliente a grabar
@@ -224,9 +223,9 @@ public class ClienteDAO {
     }  
     
     //Metodo para realizar la busqueda por el id del cliente
-    public ArrayList <Cliente> buscarCliente(int codigoCliente){   
+    public ArrayList <Cliente> buscarCliente(String nombreCliente){   
         ArrayList<Cliente> listadoClientes = new ArrayList<>();
-        if(codigoCliente == 0){
+        if(nombreCliente.equals("")){
             
         }else
         {
@@ -243,7 +242,9 @@ public class ClienteDAO {
                // sql = "select * from film where title like" + "'"+texto+"%'";   
                //String filtro = ""+texto+"%";
                
-                sql = "select from customer where customer_id like '"+codigoCliente+"%'";
+               //sql = "select * from customer where upper ('"+%codigoCliente%'") like ?";
+               
+                sql = "select * from customer where first_name like '"+nombreCliente+"%'";
                // sql = "select * from film where title like "+'"'filtro+'"';      
              
             pstm = con.prepareStatement(sql);

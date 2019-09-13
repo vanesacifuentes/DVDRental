@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla customer
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : ControllerCliente
  */
 package Controlador;
 
@@ -29,6 +31,7 @@ public class ControllerCliente {
     //ArrayList<Cliente> ListaCliente;
     ArrayList<Tienda> listaTiendas;
 
+    //Constructor Controlador de cliente
     public ControllerCliente(iFcliente vista, ClienteDAO modelo) {
 
         this.vista = vista;
@@ -51,7 +54,7 @@ public class ControllerCliente {
         this.vista.addMouseListenerTabla(escuchador);
             
     }
-
+    //Construccion clase ListenerCliente para manejar los eventos
     public class ListenerCliente implements ActionListener, MouseListener {
 
         @Override
@@ -67,7 +70,7 @@ public class ControllerCliente {
                 borrar();   
         }
         }
-
+        //Método registrar clientes
         public void registrar() {
 
             if (vista.getjTClienteID().equals("")) {
@@ -78,30 +81,19 @@ public class ControllerCliente {
                    vista.gestionMensajes("Seleccione un nivel",
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
             } else {
-            Cliente cliente = new Cliente();
-                
+            Cliente cliente = new Cliente();               
             cliente.setClienteID(Integer.parseInt(vista.getjTClienteID().getText()));
-
-            cliente.setTiendaIDCliente(vista.getjComboBoxTienda().getSelectedIndex()+1);
-            
-            cliente.setNombreCliente(vista.getjTnombreCliente().getText());
-            
-            cliente.setApellidoCliente(vista.getjTApellidos().getText());
-            
-            cliente.setCorreoCliente(vista.getjTCorreoCliente().getText());
-            
-            cliente.setDireccionCliente(Integer.parseInt(vista.getjTDireccion().getText()));
-            
-            cliente.setCuenta_activo(true);
-            
-            cliente.setFechaCreacion(Fecha.crearFechaDate());
-            
-            cliente.setUltimaActualizacionCliente(Fecha.crearFechaTimeStamp());
-            
+            cliente.setTiendaIDCliente(vista.getjComboBoxTienda().getSelectedIndex()+1);           
+            cliente.setNombreCliente(vista.getjTnombreCliente().getText());       
+            cliente.setApellidoCliente(vista.getjTApellidos().getText());            
+            cliente.setCorreoCliente(vista.getjTCorreoCliente().getText());            
+            cliente.setDireccionCliente(Integer.parseInt(vista.getjTDireccion().getText()));          
+            cliente.setCuenta_activo(true);            
+            cliente.setFechaCreacion(Fecha.crearFechaDate());            
+            cliente.setUltimaActualizacionCliente(Fecha.crearFechaTimeStamp());           
             cliente.setActivo(1);
            
-            
-///dd
+
                 //if (tamaño == 0) {
                 int resultado = 0;
                 //int resultado2 = 0;
@@ -129,7 +121,7 @@ public class ControllerCliente {
             }
 
         }
-
+        //Método para actualizar cliente
         public void actualizar() {
             
             Cliente cliente = new Cliente();
@@ -164,7 +156,7 @@ public class ControllerCliente {
                         JOptionPane.ERROR_MESSAGE);                 
             }  
         }
-        
+        //Método para borrar cliente
             private void borrar(){
             int codigo =0;
             codigo  = Integer.parseInt(vista.getjTClienteID().getText());
@@ -202,7 +194,7 @@ public class ControllerCliente {
                 }
             }
         }
-
+        //Método escucha para seleccionar la tabla y carguen los datos del cliente seleccionado    
         @Override
         public void mouseClicked(MouseEvent me) {
             if (vista.getjTableCliente().getSelectedRow() == -1) {

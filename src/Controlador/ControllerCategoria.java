@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla category
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : ControllerCategoria
  */
 package Controlador;
 
@@ -17,16 +19,14 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author vanes
- */
+
 public class ControllerCategoria {
 
     jFcategoria vista;
     CategoriaDAO modelo;
     iFpelicula vistaPelicula;
 
+    //Constructor Controlador de categoria
     public ControllerCategoria(jFcategoria vista, CategoriaDAO modelo,iFpelicula vistapelicula) {
 
         this.vista = vista;
@@ -41,7 +41,7 @@ public class ControllerCategoria {
         this.vista.getjBmodificar().addActionListener(escuchador);
 
     }
-
+    //Construccion clase ListenerCategoria para manejar los eventos
     public class ListenerCategoria implements ActionListener, MouseListener {
 
         @Override
@@ -79,7 +79,8 @@ public class ControllerCategoria {
                 borrar();
             }
         }
-
+        
+        //Método registrar categoria
         public void registrar() {
 
             if (vista.getjTCategoriaID().equals("")) {
@@ -129,7 +130,7 @@ public class ControllerCategoria {
             }
 
         }
-
+        //Método actualizar categoria
         public void actualizar() {
 
              String codigo;
@@ -170,7 +171,7 @@ public class ControllerCategoria {
             }
 
         }
-
+        //Método borrar categoria
         private void borrar() {
             String codigo;
             codigo = (vista.getjTCategoriaID().getText());
@@ -209,7 +210,7 @@ public class ControllerCategoria {
             }
         
         }
-
+        //Método escucha para seleccionar la tabla y carguen los datos de categoria seleccionado
         @Override
         public void mouseClicked(MouseEvent me) {
             if (vista.getjTableCategoria().getSelectedRow() == -1) {

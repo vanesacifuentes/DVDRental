@@ -1,7 +1,7 @@
 /*
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
- * Fecha         : 10/09/2019
- * Objetivo      : Modela el acceso a datos de la tabla Rental
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla rental
  * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : AlquilerDAO
  */

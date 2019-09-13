@@ -1,22 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Establecer la conexión con la base de datos 
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : Fachada
  */
+
 package Servicios;
 import java.sql.Connection;
 import java.sql.*;
 import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author vanes
- */
 public class Fachada {
     
     private static Connection con = null;
     
+    //Método getConnection permite establecer la conexión con la base de datos
     public static Connection getConnection()
     {
         try{
@@ -35,7 +35,7 @@ public class Fachada {
             }        
             
             if (con != null){
-                //JOptionPane.showMessageDialog(null, "::::::::");
+                
             }
             
         }catch(ClassNotFoundException | SQLException ex)

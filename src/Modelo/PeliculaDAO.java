@@ -38,7 +38,7 @@ public class PeliculaDAO {
             pstm.setInt(4,p.getAnhoLanzamiento());
             pstm.setInt(5,p.getLenguajeID());
             pstm.setInt(6,p.getDuracionRenta());
-            pstm.setInt(7,p.getTarifaRenta());
+            pstm.setFloat(7,p.getTarifaRenta());
             pstm.setInt(8,p.getLongitud());
             pstm.setDouble(9,p.getCostoReemplazo());
             pstm.setString(10,p.getClasificacion());
@@ -94,7 +94,7 @@ public class PeliculaDAO {
             pstm.setInt(4,p.getAnhoLanzamiento());
             pstm.setInt(5,p.getLenguajeID());
             pstm.setInt(6,p.getDuracionRenta());
-            pstm.setInt(7,p.getTarifaRenta());
+            pstm.setFloat(7,p.getTarifaRenta());
             pstm.setInt(8,p.getLongitud());
             pstm.setDouble(9,p.getCostoReemplazo());
             pstm.setString(10,p.getClasificacion());
@@ -191,7 +191,7 @@ public class PeliculaDAO {
                 pelicula.setAnhoLanzamiento(rs.getInt("release_year"));
                 pelicula.setLenguajeID(rs.getInt("language_id"));
                 pelicula.setDuracionRenta(rs.getInt("rental_duration"));
-                pelicula.setTarifaRenta(rs.getInt("rental_rate"));
+                pelicula.setTarifaRenta(rs.getFloat("rental_rate"));
                 pelicula.setLongitud(rs.getInt("length"));
                 pelicula.setCostoReemplazo(rs.getDouble("replacement_cost"));
                 pelicula.setClasificacion(rs.getString("rating"));
@@ -258,7 +258,7 @@ public class PeliculaDAO {
                 pelicula.setAnhoLanzamiento(rs.getInt("release_year"));
                 pelicula.setLenguajeID(rs.getInt("language_id"));
                 pelicula.setDuracionRenta(rs.getInt("rental_duration"));
-                pelicula.setTarifaRenta(rs.getInt("rental_rate"));
+                pelicula.setTarifaRenta(rs.getFloat("rental_rate"));
                 pelicula.setLongitud(rs.getInt("length"));
                 pelicula.setCostoReemplazo(rs.getDouble("replacement_cost"));
                 pelicula.setClasificacion(rs.getString("rating"));

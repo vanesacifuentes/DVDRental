@@ -16,7 +16,7 @@ public class Pelicula {
     private int anhoLanzamiento;
     private int lenguajeID;
     private int duracionRenta;
-    private int tarifaRenta;
+    private float tarifaRenta;
     private int longitud;
     private double costoReemplazo;
     private String clasificacion;
@@ -54,7 +54,7 @@ public class Pelicula {
         return duracionRenta;
     }
 
-    public int getTarifaRenta() {
+    public float getTarifaRenta() {
         return tarifaRenta;
     }
 
@@ -102,7 +102,7 @@ public class Pelicula {
         this.duracionRenta = duracionRenta;
     }
 
-    public void setTarifaRenta(int tarifaRenta) {
+    public void setTarifaRenta(float tarifaRenta) {
         this.tarifaRenta = tarifaRenta;
     }
 

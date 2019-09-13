@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla film
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : PeliculaDAO
  */
 package Modelo;
 import  Servicios.*;
@@ -9,10 +11,7 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-/**
- *
- * @author vanes
- */
+
 public class PeliculaDAO {
     
     /**
@@ -238,12 +237,10 @@ public class PeliculaDAO {
             con = Fachada.getConnection();
             String sql="";
             
-           //JOptionPane.showMessageDialog(null, texto);
-               // sql = "select * from film where title like" + "'"+texto+"%'";   
-               //String filtro = ""+texto+"%";
+           
                
                 sql = "select * from film where title like '"+texto+"%'";
-               // sql = "select * from film where title like "+'"'filtro+'"';      
+                    
              
             pstm = con.prepareStatement(sql);
             
@@ -255,19 +252,19 @@ public class PeliculaDAO {
                 pelicula = new Pelicula();
 
                 
-//                pelicula.setPeliculaId(rs.getInt("film_id"));
+               pelicula.setPeliculaId(rs.getInt("film_id"));
                 pelicula.setTitulo(rs.getString("title"));
-//                pelicula.setDescripcion(rs.getString("description"));
-//                pelicula.setAnhoLanzamiento(rs.getInt("release_year"));
-//                pelicula.setLenguajeID(rs.getInt("language_id"));
-//                pelicula.setDuracionRenta(rs.getInt("rental_duration"));
-//                pelicula.setTarifaRenta(rs.getInt("rental_rate"));
-//                pelicula.setLongitud(rs.getInt("length"));
-//                pelicula.setCostoReemplazo(rs.getDouble("replacement_cost"));
-//                pelicula.setClasificacion(rs.getString("rating"));
-//                pelicula.setUltimaActualizacion(rs.getTimestamp("last_update"));
-//                pelicula.setCaracteristicasEspeciales(rs.getString("special_features"));
-//                pelicula.setTextoCompleto(rs.getString("fulltext"));
+                pelicula.setDescripcion(rs.getString("description"));
+                pelicula.setAnhoLanzamiento(rs.getInt("release_year"));
+                pelicula.setLenguajeID(rs.getInt("language_id"));
+                pelicula.setDuracionRenta(rs.getInt("rental_duration"));
+                pelicula.setTarifaRenta(rs.getInt("rental_rate"));
+                pelicula.setLongitud(rs.getInt("length"));
+                pelicula.setCostoReemplazo(rs.getDouble("replacement_cost"));
+                pelicula.setClasificacion(rs.getString("rating"));
+                pelicula.setUltimaActualizacion(rs.getTimestamp("last_update"));
+                pelicula.setCaracteristicasEspeciales(rs.getString("special_features"));
+                pelicula.setTextoCompleto(rs.getString("fulltext"));
             
                 listadoPeliculas.add(pelicula);
             }
@@ -296,7 +293,70 @@ public class PeliculaDAO {
     
     
     
+    public void selectPelicula_Actor()
+    {
+        
+    }
     
+     public void selectPelicula_Categoria()
+    {
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        
+        ArrayList<String> listadoPeliculas = new ArrayList<>();
+        try{
+            con = Fachada.getConnection();
+            String sql="";
+           
+                sql = "SELECT * FROM film ORDER BY film_id";            
+            
+                                   
+            pstm = con.prepareStatement(sql);
+            
+           
+            rs = pstm.executeQuery();
+                        
+            Pelicula pelicula = null;
+            while(rs.next()){
+                pelicula = new Pelicula();
+
+                
+                pelicula.setPeliculaId(rs.getInt("film_id"));
+                pelicula.setTitulo(rs.getString("title"));
+                pelicula.setDescripcion(rs.getString("description"));
+                pelicula.setAnhoLanzamiento(rs.getInt("release_year"));
+                pelicula.setLenguajeID(rs.getInt("language_id"));
+                pelicula.setDuracionRenta(rs.getInt("rental_duration"));
+                pelicula.setTarifaRenta(rs.getInt("rental_rate"));
+                pelicula.setLongitud(rs.getInt("length"));
+                pelicula.setCostoReemplazo(rs.getDouble("replacement_cost"));
+                pelicula.setClasificacion(rs.getString("rating"));
+                pelicula.setUltimaActualizacion(rs.getTimestamp("last_update"));
+                pelicula.setCaracteristicasEspeciales(rs.getString("special_features"));
+                pelicula.setTextoCompleto(rs.getString("fulltext"));
+            
+                //listadoPeliculas.add(pelicula);
+            }
+        }
+        
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "uisjdkv cas ");
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        finally{
+            try{
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        //return listadoPeliculas;
+    }
     
     //Metodo para grabar película y categoria- Relacion tabla debil....
     public int grabarPeliculaCategoria(int categoriaID,int peliculaID){      

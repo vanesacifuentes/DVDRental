@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla film
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : ControllerPelicula
  */
 package Controlador;
 
@@ -27,10 +29,11 @@ public class ControllerPelicula {
 
     private iFpelicula vista;
     private PeliculaDAO modelo;
-    private ArrayList<Categoria> listaCategorias,listaCategoriasSelected;
+    private ArrayList<Categoria> listaCategorias, listaCategoriasSelected;
     private ArrayList<Lenguaje> listaLenguajes;
     private ArrayList<Actor> listaActores;
 
+    //Constructor Controlador de pelicula
     public ControllerPelicula(iFpelicula vista, PeliculaDAO modelo) {
         this.vista = vista;
         this.modelo = modelo;
@@ -62,7 +65,8 @@ public class ControllerPelicula {
         this.vista.addMouseListenerTabla(listen);
 
     }
-
+    
+    //Construccion clase EmpleadoListener para manejar los eventos
     public class PeliculaListener implements ActionListener, MouseListener {
 
         //Clase manejadora de los eventos del IFpelicula
@@ -208,30 +212,12 @@ public class ControllerPelicula {
             pelicula.setCaracteristicasEspeciales("{" + vista.getjTcarateristicas().getText() + "}");
             pelicula.setTextoCompleto(vista.getjTtextoCompleto().getText());
 
-            //JOptionPane.showMessageDialog(null, " Mostrar"+ vista.getjTid_peli());//**********
-            int actorID = 0;
-            int indiceActor = 0;
-            indiceActor = vista.getjCBactor().getSelectedIndex();
-            actorID = listaActores.get(indiceActor).getActorID();
-
-            int resultado = 0;
+            int resultado;
             resultado = modelo.grabarPelicula(pelicula);
 
-//            for (int a = 0; a < vista.getModeloListaCategoria().getSize(); a++) {
-//                int categoriaID = 0;
-//
-//                categoriaID = listaCategorias.get(indiceCategoria).getCategoriaId();
-//
-//                int tamaño;
-//                tamaño = modelo.listadoPeliculas().size();
-//
-//                modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
-//            }
-            //if (tamaño == 0) {
+            registrarPelicula_Categoria(pelicula.getPeliculaId());
+            registrarPelicula_Actor(pelicula.getPeliculaId());
 
-            //int resultado2 = 0;
-//            modelo.grabarPeliculaCategoria(categoriaID, pelicula.getPeliculaId());
-//            modelo.grabarPeliculaActor(actorID, pelicula.getPeliculaId());
             if (resultado == 1) {
                 vista.gestionMensajes("Registro Grabado con éxito",
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
@@ -240,13 +226,11 @@ public class ControllerPelicula {
                 listaPeliculas = modelo.listadoPeliculas();
                 vista.cargarPeliculasTabla(listaPeliculas);
 
-                //vista.activarControles(false); 
-                //vista.nuevoAction();
             } else {
                 vista.gestionMensajes("Error al grabar",
                         "Confirmación", JOptionPane.ERROR_MESSAGE);
             }
-            //} else {
+
             vista.gestionMensajes("Codigo ya está registrado",
                     "Confirmación",
                     JOptionPane.ERROR_MESSAGE);
@@ -254,25 +238,70 @@ public class ControllerPelicula {
 
     }
 
+    public Categoria buscarCategoria_Nombre(String nombre, ArrayList<Categoria> array) {
+        
+        Categoria cat = new Categoria();
+        for (int a = 0; a < array.size(); a++) {
+            if (nombre.equalsIgnoreCase(array.get(a).getNombreCategoria())) {
+                cat = array.get(a);
+            }
+
+        }
+        return cat;
+    }
+
+    public Actor buscarActor_Nombre(String nombre, ArrayList<Actor> array) {
+        Actor actor = new Actor();
+        //JOptionPane.showMessageDialog(null, nombre);
+        for (int a = 0; a < array.size(); a++) {
+            if (nombre.equalsIgnoreCase(array.get(a).getNombreActor()+" "+array.get(a).getApellidoActor())) {
+                actor = array.get(a);
+                //JOptionPane.showMessageDialog(null, actor.getActorID()+"___"+actor.getNombreActor());
+            }
+
+        }
+        return actor;
+    }
+
+    public void registrarPelicula_Categoria(int idPelicula) {
+        for (int a = 0; a < vista.getModeloListaCategoria().getSize(); a++) {
+
+            Categoria category = buscarCategoria_Nombre(vista.getModeloListaCategoria().getElementAt(a).toString(), listaCategorias);
+            System.err.println("Categoria -- "+category.getCategoriaId());
+            modelo.grabarPeliculaCategoria(category.getCategoriaId(), idPelicula);
+        }
+    }
+
+    public void registrarPelicula_Actor(int idPelicula) {
+        for (int a = 0; a < vista.getModeloListaActor().getSize(); a++) {
+
+            Actor actor = buscarActor_Nombre(vista.getModeloListaActor().getElementAt(a).toString(), listaActores);
+            System.err.println("Actor -- "+actor.getActorID());
+            modelo.grabarPeliculaActor(actor.getActorID(), idPelicula);
+        }
+    }
+
     private void actualizar() {
 
-        /*
+        
             Pelicula pelicula = new Pelicula();
-             
-            //Se configura los datos en el objeto programa de la clase
-            //Pelicula
-            //pelicula.setPeliculaId(vista.getjTid_peli());
-            pelicula.setTitulo(vista.getjTtitulo().getText());                                          
-            pelicula.setDescripcion(vista.gettAsinopsis().getText());                                          
+            pelicula.setPeliculaId(Integer.parseInt(vista.getjTid_peli().getText()));//revisar el ingreso null
+            pelicula.setTitulo(vista.getjTtitulo().getText());
+            pelicula.setDescripcion(vista.gettAsinopsis().getText());
             pelicula.setAnhoLanzamiento(Integer.parseInt(vista.getjTaño().getText()));
-            pelicula.setLenguajeID(Integer.parseInt(vista.getjCBlenguaje().getSelectedIndex());
+
+            int indiceLenguaje = 0;
+            indiceLenguaje = vista.getjCBlenguaje().getSelectedIndex();
+            pelicula.setLenguajeID(listaLenguajes.get(indiceLenguaje).getLenguageID());
             pelicula.setDuracionRenta(Integer.parseInt(vista.getjTDuracionAlquiler().getText()));
-            pelicula.setTarifaRenta(Integer.parseInt(vista.getjTtarifa()));
-            pelicula.setLongitud(Integer.parseInt(vista.getjTduracion()));
-            pelicula.setCostoReemplazo(Integer.parseInt(vista.getjTcostoRe()));
-            pelicula.setClasificacion(vista.getjTclasificacion());
-            pelicula.setCaracteristicasEspeciales(vista.getjTcarateristicas());
-            pelicula.setTextoCompleto(vista.getjTtextoCompleto());
+            pelicula.setTarifaRenta(Integer.parseInt(vista.getjTtarifa().getText()));
+            pelicula.setLongitud(Integer.parseInt(vista.getjTduracion().getText()));
+            pelicula.setCostoReemplazo(Integer.parseInt(vista.getjTcostoRe().getText()));
+            System.err.println("" + vista.getjCBClasificacion().getSelectedItem());
+            pelicula.setClasificacion(vista.getjCBClasificacion().getSelectedItem().toString());
+            pelicula.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
+            pelicula.setCaracteristicasEspeciales("{" + vista.getjTcarateristicas().getText() + "}");
+            pelicula.setTextoCompleto(vista.getjTtextoCompleto().getText());
                     
                          
             if(modelo.modificarPelicula(pelicula) == 1){
@@ -281,8 +310,8 @@ public class ControllerPelicula {
                         "Confirmación ", 
                         JOptionPane.INFORMATION_MESSAGE);
                                         
-                //vista.activarControles(false); 
-                //vista.nuevoAction();
+                
+                
                 ArrayList<Pelicula> listadoPeliculas; 
                 listadoPeliculas = modelo.listadoPeliculas();
                 vista.cargarPeliculasTabla(listadoPeliculas);           
@@ -292,8 +321,8 @@ public class ControllerPelicula {
                         "Confirmación ", 
                         JOptionPane.ERROR_MESSAGE);                 
             }              
-        } 
-         */
+         
+        
     }
 
     private void borrar() {

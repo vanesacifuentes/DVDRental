@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla staff
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : EmpleadoDAO
  */
 package Modelo;
 
@@ -13,10 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import Servicios.Fachada;
 
-/**
- *
- * @author vanes
- */
+
 public class EmpleadoDAO {
 
     /* 
@@ -32,7 +31,7 @@ public class EmpleadoDAO {
 
         try {
             con = Fachada.getConnection();
-            String sql = "INSERT INTO staff (?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO staff values(?,?,?,?,?,?,?,?,?,?,?)";
 
             pstm = con.prepareStatement(sql);
 

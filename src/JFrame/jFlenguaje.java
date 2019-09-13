@@ -1,20 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Gestionar lenguaje, mostrar agregar nuevo y borrar
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : jFlenguaje- Interfaz
  */
 package JFrame;
 
-import Controlador.ControllerEmpleado;
-import Controlador.ControllerLenguaje;
-import InternalFrame.iFempleado;
-import Modelo.EmpleadoDAO;
+
 import Modelo.Lenguaje;
-import Modelo.LenguajeDAO;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,10 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author nicol
- */
+
 public class jFlenguaje extends javax.swing.JFrame {
 
     /**
@@ -307,8 +301,7 @@ public class jFlenguaje extends javax.swing.JFrame {
         }
 
         valor = Integer.parseInt("" + model_lenguaje.getValueAt(model_lenguaje.getRowCount() - 1, 0)) + 1;
-        //jTLenguajeID.setText("" + valor);
-        //jTLenguajeID.setEnabled(false);
+
     }
 
     /**

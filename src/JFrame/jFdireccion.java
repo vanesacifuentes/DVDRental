@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Gestionar direccion, mostrar agregar nuevo y borrar
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : jFdireccion- Interfaz
  */
 package JFrame;
 
@@ -12,10 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-/**
- *
- * @author nicol
- */
+
 public class jFdireccion extends javax.swing.JFrame {
 
     /**
@@ -58,7 +57,7 @@ public class jFdireccion extends javax.swing.JFrame {
         jBmodificar = new javax.swing.JButton();
         jBnuevo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -212,7 +211,7 @@ public class jFdireccion extends javax.swing.JFrame {
         jBnuevo.setDefaultCapable(false);
         jPanel1.add(jBnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 60, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 380));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -293,6 +292,7 @@ public class jFdireccion extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
     
+    //Escuchas
     public void addListenerBtnNuevo(ActionListener listenCliente) {
         jBnuevo.addActionListener(listenCliente);
     }

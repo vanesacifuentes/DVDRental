@@ -1,31 +1,29 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla address
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : ControllerDireccion
  */
 package Controlador;
 
-import Controlador.ControllerCliente.ListenerCliente;
+
 import JFrame.jFdireccion;
-import Modelo.Cliente;
 import Modelo.Direccion;
 import Modelo.DireccionDAO;
 import Servicios.Fecha;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author vanes
- */
+
 public class ControllerDireccion {
     
     
     jFdireccion vista;
     DireccionDAO modelo;
 
+    //Constructor Controlador de direccion
     public ControllerDireccion(jFdireccion vista, DireccionDAO modelo) {
         this.vista = vista;
         this.modelo = modelo;
@@ -37,7 +35,7 @@ public class ControllerDireccion {
         
         
     }
-    
+    //Construccion clase ListenerDireccion para manejar los eventos
     public class ListenerDireccion implements ActionListener {
 
         @Override
@@ -50,7 +48,8 @@ public class ControllerDireccion {
             }
         }
     }
-
+    
+        //Metodo registrar direccion
         public void registrar() { //
 
             if (vista.getjTDireccionID().equals("")) {

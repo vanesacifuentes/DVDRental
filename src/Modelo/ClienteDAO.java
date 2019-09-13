@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla customer
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : ClienteDAO
  */
 package Modelo;
 import java.sql.Connection;
@@ -12,10 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import Servicios.Fachada;
 
-/**
- *
- * @author vanes
- */
+
 public class ClienteDAO {
      /* 
      * @param a Objeto de la clase Cliente a grabar
@@ -222,4 +221,76 @@ public class ClienteDAO {
         consecutivoID = listadoCliente.size();
         return listadoCliente;
     }  
+    
+    //Metodo para realizar la busqueda por el id del cliente
+    public ArrayList <Cliente> buscarCliente(String nombreCliente){   
+        ArrayList<Cliente> listadoClientes = new ArrayList<>();
+        if(nombreCliente.equals("")){
+            
+        }else
+        {
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        
+        
+        try{
+            con = Fachada.getConnection();
+            String sql="";
+            
+           //JOptionPane.showMessageDialog(null, texto);
+               // sql = "select * from film where title like" + "'"+texto+"%'";   
+               //String filtro = ""+texto+"%";
+               
+               //sql = "select * from customer where upper ('"+%codigoCliente%'") like ?";
+               
+                sql = "select * from customer where first_name like '"+nombreCliente+"%'";
+               // sql = "select * from film where title like "+'"'filtro+'"';      
+             
+            pstm = con.prepareStatement(sql);
+            
+           
+            rs = pstm.executeQuery();
+                        
+            Cliente cliente = null;
+            while(rs.next()){
+                cliente = new Cliente();
+    
+            cliente.setClienteID(rs.getInt("customer_id"));
+            cliente.setTiendaIDCliente(rs.getInt("store_id"));
+            cliente.setNombreCliente(rs.getString("first_name"));
+            cliente.setApellidoCliente(rs.getString("last_name"));
+            cliente.setCorreoCliente(rs.getString("email"));
+            cliente.setDireccionCliente(rs.getInt("address_id"));
+            cliente.setCuenta_activo(rs.getBoolean("activebool"));
+            cliente.setFechaCreacion(rs.getDate("create_date"));
+            cliente.setUltimaActualizacionCliente(rs.getTimestamp("last_update"));
+            cliente.setActivo(rs.getInt("active"));
+            
+                listadoClientes.add(cliente);
+            }
+        }
+        
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "uisjdkv cas ");
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        finally{
+            try{
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return listadoClientes;
+        
+        }
+        return listadoClientes;
+    }
+    
+    
 }

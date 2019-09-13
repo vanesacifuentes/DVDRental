@@ -224,9 +224,9 @@ public class ClienteDAO {
     }  
     
     //Metodo para realizar la busqueda por el id del cliente
-    public ArrayList <Cliente> buscarCliente(int codigoCliente){   
+    public ArrayList <Cliente> buscarCliente(String nombreCliente){   
         ArrayList<Cliente> listadoClientes = new ArrayList<>();
-        if(codigoCliente == 0){
+        if(nombreCliente.equals("")){
             
         }else
         {
@@ -243,7 +243,9 @@ public class ClienteDAO {
                // sql = "select * from film where title like" + "'"+texto+"%'";   
                //String filtro = ""+texto+"%";
                
-                sql = "select * from customer where customer_id like '"+codigoCliente+"%'";
+               //sql = "select * from customer where upper ('"+%codigoCliente%'") like ?";
+               
+                sql = "select * from customer where first_name like '"+nombreCliente+"%'";
                // sql = "select * from film where title like "+'"'filtro+'"';      
              
             pstm = con.prepareStatement(sql);

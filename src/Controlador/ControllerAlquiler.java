@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla Rental
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : AlquilerDAO
  */
 package Controlador;
 
@@ -13,10 +15,7 @@ import Modelo.PeliculaDAO;
 import java.util.ArrayList;
 import java.awt.event.*;
 
-/**
- *
- * @author vanes
- */
+
 public class ControllerAlquiler {
     
     private iFalquiler vista;
@@ -70,7 +69,7 @@ public class ControllerAlquiler {
             
             }else{   
             ClienteDAO modelCliente = new ClienteDAO();
-            int buscar = Integer.parseInt(vista.getjTBuscarCliente().getText().trim());
+            String buscar = vista.getjTBuscarCliente().getText().trim();
             vista.cargarClientesLista(modelCliente.buscarCliente(buscar));
         }
         }
@@ -85,6 +84,8 @@ public class ControllerAlquiler {
 
         @Override
         public void mouseReleased(MouseEvent me) {
+            
+            //if (me.getSource() == vista.getjTBuscador()){
             PeliculaDAO modelPelicula = new PeliculaDAO();
             int indice = vista.getjListBusquedaPeliculas().getSelectedIndex();
             ArrayList<Pelicula> p;
@@ -94,6 +95,11 @@ public class ControllerAlquiler {
             vista.getjTPrecio().setText(""+peliculaSelected.getTarifaRenta());
             vista.getjTxTitulo().setText(peliculaSelected.getTitulo());
             vista.getjTDuracion().setText(""+peliculaSelected.getLongitud());
+            
+//            }else{
+//                
+//            }    
+            
 
         }
 

@@ -1,6 +1,6 @@
 /*
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
- * Fecha         : 10/09/2019
+ * Fecha         : Septiembre-2019
  * Objetivo      : Se declaran atributos, el constructor sin parametros y los métodos get y set de la clase Alquiler 
  * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : Alquiler

@@ -1,17 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Interfaz Pelicula
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : iFpelicula- Interfaz
  */
 package InternalFrame;
 
-import Controlador.ControllerActor;
-import Controlador.ControllerCategoria;
-import Controlador.ControllerLenguaje;
-import JFrame.jFactor;
+
 import Modelo.*;
-import JFrame.jFcategoria;
-import JFrame.jFlenguaje;
 import java.awt.TextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -28,10 +25,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author nicol
- */
+
 public class iFpelicula extends javax.swing.JInternalFrame {
 
     /**
@@ -48,7 +42,6 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         modeloListaActor = new DefaultListModel();
         jListCategoria.setModel(modeloListaCategoria);
         jListActor.setModel(modeloListaActor);
-        //jBañadirCategoria.setEnabled(false);
         jBquitarCategoria.setEnabled(false);
 
     }
@@ -583,19 +576,6 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCBClasificacionActionPerformed
 
     private void jTañoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTañoKeyPressed
-        // TODO add your handling code here:
-        //evt.consume();
-//        char h =  evt.getKeyChar();
-//        
-//        String cadena = Character.toString(h);
-//        try{
-//            int a = Integer.parseInt(cadena);
-//        }catch(NumberFormatException e)
-//        {
-//            
-//        }
-
-
     }//GEN-LAST:event_jTañoKeyPressed
 
     private void jTañoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTañoKeyTyped
@@ -620,27 +600,13 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
     private void jBagregarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagregarActorActionPerformed
         // TODO add your handling code here:
-//        jFactor vista = new jFactor();
-//        ActorDAO modelo = new ActorDAO();
-//        ControllerActor actorControlador = new ControllerActor(vista, modelo);
-//        vista.setVisible(true);
-
     }//GEN-LAST:event_jBagregarActorActionPerformed
 
     private void jBagrgarCateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBagrgarCateActionPerformed
         // TODO add your handling code here:
-//        jFcategoria vista = new jFcategoria();
-//        CategoriaDAO modelo = new CategoriaDAO();
-//        ControllerCategoria categoriaControlador = new ControllerCategoria(vista, modelo);
-//        vista.setVisible(true);
-
     }//GEN-LAST:event_jBagrgarCateActionPerformed
 
     private void jBLenguajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLenguajeActionPerformed
-//        jFlenguaje vista = new jFlenguaje();
-//        LenguajeDAO modelo = new LenguajeDAO();
-//        ControllerLenguaje lenguajeControlador = new ControllerLenguaje(vista, modelo);
-//        vista.setVisible(true);
     }//GEN-LAST:event_jBLenguajeActionPerformed
 
     private void jBañadirCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBañadirCategoriaActionPerformed
@@ -686,13 +652,23 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         modeloListaActor.removeElementAt(jListActor.getSelectedIndex());
         jBquitarActor.setEnabled(false);
     }//GEN-LAST:event_jBquitarActorActionPerformed
+    
+    //Escuchas
+    public void addListenerBtnNuevo(ActionListener listenPelicula) {
+        jBnuevo.addActionListener(listenPelicula);
+    }
 
+    public void addMouseListenerTabla(MouseListener listener) {
+        jTable2.addMouseListener(listener);
+
+    }
+    
     public void validaNumero(char c, KeyEvent evt) {
         if (!Character.isDigit(c)) {
             evt.consume();
         }
     }
-
+    
     public void activarCampos(Boolean b) {
         jTDuracionAlquiler.setEnabled(b);
         jTaño.setEnabled(b);
@@ -728,15 +704,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
     }
 
-    public void addListenerBtnNuevo(ActionListener listenPelicula) {
-        jBnuevo.addActionListener(listenPelicula);
-    }
-
-    public void addMouseListenerTabla(MouseListener listener) {
-        jTable2.addMouseListener(listener);
-
-    }
-
+    //Método para cargar la información de películas a la Tabla
     public void cargarPeliculasTabla(ArrayList<Pelicula> listadoPelicula) {
         DefaultTableModel defaultCombo;
         defaultCombo = (DefaultTableModel) jTable2.getModel();
@@ -745,16 +713,9 @@ public class iFpelicula extends javax.swing.JInternalFrame {
             defaultCombo.addRow(new Object[]{
                 listadoPelicula.get(i).getPeliculaId(),
                 listadoPelicula.get(i).getTitulo(),
-                //listadoPelicula.get(i).getDescripcion(),
                 listadoPelicula.get(i).getAnhoLanzamiento(),
-                //listadoPelicula.get(i).getLenguajeID(),
-                //listadoPelicula.get(i).getDuracionRenta(),
-                // listadoPelicula.get(i).getTarifaRenta(),
-                listadoPelicula.get(i).getLongitud() + " Minutos", //listadoPelicula.get(i).getCostoReemplazo(),
-            //listadoPelicula.get(i).getClasificacion(),
-            //listadoPelicula.get(i).getUltimaActualizacion(),
-            //listadoPelicula.get(i).getCaracteristicasEspeciales(),
-            //listadoPelicula.get(i).getTextoCompleto()});      
+                listadoPelicula.get(i).getLongitud() + " Minutos", 
+     
             });
         }
 
@@ -764,7 +725,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jTid_peli.setEnabled(false);
 
     }
-
+    //Método para cargar las clasificaciones de película a un comboBox
     public void cargarClasificacionCombo() {
         DefaultComboBoxModel model;
 
@@ -780,7 +741,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jCBClasificacion.setModel(model);
 
     }
-
+    //Limpiar el listado
     private void limpiarListadoTabla() {
         DefaultTableModel modelo;
         modelo = (DefaultTableModel) jTable2.getModel();
@@ -788,17 +749,8 @@ public class iFpelicula extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
-
-    /* 
-     public void activarControles(boolean estado){
-        txtCodigo.setEnabled(estado);
-        txtNombre.setEnabled(estado);
-        cbxNivel.setEnabled(estado);
-        txtCreditos.setEnabled(estado);        
-        btnBorrar.setEnabled(!estado);
-        btnCerrar.setEnabled(!estado);
-        jtListado.setEnabled(!estado);
-    }*/
+    
+    //Método para cargar categorias a un comboBox
     public void cargarCategoriasCombo(ArrayList<Categoria> listadoCategoria) {
         DefaultComboBoxModel model;
         String[] arregloCategorias = new String[listadoCategoria.size()];
@@ -811,7 +763,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
         jCBcategoria.setModel(model);
     }
-
+    //Método para cargar lenguajes a un combobox
     public void cargarLenguajesCombo(ArrayList<Lenguaje> listadoLenguaje) {
         DefaultComboBoxModel model;
         String[] arregloCategorias = new String[listadoLenguaje.size()];
@@ -839,7 +791,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
         jCBactor.setModel(model);
     }
-
+    //Mensajes
     public void gestionMensajes(String mensaje, String titulo, int icono) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
@@ -952,9 +904,6 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     public DefaultListModel getModeloListaActor() {
         return modeloListaActor;
     }
-    
-    
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBLenguaje;

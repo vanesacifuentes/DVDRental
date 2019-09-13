@@ -34,4 +34,13 @@ public class Fecha {
         return fecha;
     }
 
+    public static Timestamp crearFechaTimeStampEspecifico(int año,int mes,int dia)
+    {
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date now;
+        calendar.set(año,mes-1,dia,0,0,0);
+        now = calendar.getTime();
+        Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
+        return currentTimestamp;
+    }
 }

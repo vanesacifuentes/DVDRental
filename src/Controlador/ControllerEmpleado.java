@@ -1,13 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla staff
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : ControllerEmpleado
  */
 package Controlador;
 
 import InternalFrame.iFempleado;
 import Modelo.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -15,10 +16,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Usuario
- */
+
 public class ControllerEmpleado {
     
     
@@ -27,6 +25,7 @@ public class ControllerEmpleado {
     private ArrayList<Tienda> listaTienda;
     private ArrayList<Empleado> listaEmpleado;
 
+    //Constructor Controlador de empleado
     public ControllerEmpleado(iFempleado vista,EmpleadoDAO modelo){
         this.modelo = modelo;
         this.vista = vista;
@@ -41,7 +40,7 @@ public class ControllerEmpleado {
         this.vista.AddListenerTabala(escucha);
     }
     
-    
+    //Construccion clase EmpleadoListener para manejar los eventos
     public class EmpleadoListener implements ActionListener, MouseListener{
 
         @Override
@@ -55,6 +54,7 @@ public class ControllerEmpleado {
             }
         }
 
+        //Método escucha para seleccionar la tabla y carguen los datos del empleado seleccionado   
         @Override
         public void mouseClicked(MouseEvent me) {
             if (vista.getjTableCliente().getSelectedRow() == -1) {
@@ -108,7 +108,7 @@ public class ControllerEmpleado {
 //        }
 //    }
     
-    
+    //Método para registrar empleado
     public void registrar(){
                 if (vista.getjTEmpleadoID().equals("")) {
             vista.gestionMensajes("Ingrese el código",
@@ -160,6 +160,7 @@ public class ControllerEmpleado {
             }
     }
     
+    //Método para actualizar empleado
     public void actualizar()
     {
         

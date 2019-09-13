@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla film
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : ControllerPelicula
  */
 package Controlador;
 
@@ -31,6 +33,7 @@ public class ControllerPelicula {
     private ArrayList<Lenguaje> listaLenguajes;
     private ArrayList<Actor> listaActores;
 
+    //Constructor Controlador de pelicula
     public ControllerPelicula(iFpelicula vista, PeliculaDAO modelo) {
         this.vista = vista;
         this.modelo = modelo;
@@ -62,7 +65,8 @@ public class ControllerPelicula {
         this.vista.addMouseListenerTabla(listen);
 
     }
-
+    
+    //Construccion clase EmpleadoListener para manejar los eventos
     public class PeliculaListener implements ActionListener, MouseListener {
 
         //Clase manejadora de los eventos del IFpelicula

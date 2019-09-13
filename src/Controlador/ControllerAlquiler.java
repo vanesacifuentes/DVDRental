@@ -3,7 +3,7 @@
  * Fecha         : Septiembre-2019
  * Objetivo      : Modela el acceso a datos de la tabla Rental
  * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
- * Clase         : AlquilerDAO
+ * Clase         : ControllerAlquiler
  */
 package Controlador;
 

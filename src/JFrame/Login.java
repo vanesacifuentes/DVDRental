@@ -7,7 +7,7 @@ package JFrame;
 
 
 
-import com.sun.awt.AWTUtilities;
+//import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +20,7 @@ import javax.swing.*;
  *
  * @author nicol
  */
-public class Login extends javax.swing.JFrame implements ActionListener {
+public class Login extends javax.swing.JFrame {
     
    // private static Login jf = null;
      //ArrayList<JPanel> paneles  = new ArrayList();
@@ -33,8 +33,8 @@ public class Login extends javax.swing.JFrame implements ActionListener {
        
         jPregistro.setVisible(false);
         this.setLocationRelativeTo(null);
-        Shape form = new RoundRectangle2D.Double(0,0,this.getBounds().width,this.getBounds().height,27,27);
-        AWTUtilities.setWindowShape(this, form);
+       // Shape form = new RoundRectangle2D.Double(0,0,this.getBounds().width,this.getBounds().height,27,27);
+        //AWTUtilities.setWindowShape(this, form);
     }
     
      
@@ -50,6 +50,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         JLMinimizar = new javax.swing.JLabel();
         JlCerrar = new javax.swing.JLabel();
         JPingreso = new javax.swing.JPanel();
+        jBentrar = new javax.swing.JButton();
         JLcontraseña = new javax.swing.JLabel();
         JLUsuario = new javax.swing.JLabel();
         jTusuario = new javax.swing.JTextField();
@@ -58,7 +59,6 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         JPContraseña = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         JBNoCuenta = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         JPImagenRegis = new javax.swing.JPanel();
         JPImagen1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -108,6 +108,14 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         JPingreso.setForeground(new java.awt.Color(255, 255, 255));
         JPingreso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jBentrar.setBackground(new java.awt.Color(238, 112, 82));
+        jBentrar.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jBentrar.setForeground(new java.awt.Color(238, 112, 82));
+        jBentrar.setText("Entrar");
+        jBentrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBentrar.setContentAreaFilled(false);
+        JPingreso.add(jBentrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 60, 30));
+
         JLcontraseña.setBackground(new java.awt.Color(238, 112, 82));
         JLcontraseña.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         JLcontraseña.setForeground(new java.awt.Color(238, 112, 82));
@@ -132,11 +140,6 @@ public class Login extends javax.swing.JFrame implements ActionListener {
                 jTusuarioFocusLost(evt);
             }
         });
-        jTusuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTusuarioActionPerformed(evt);
-            }
-        });
         JPingreso.add(jTusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 170, 30));
 
         jSeparator1.setBackground(new java.awt.Color(153, 153, 153));
@@ -148,11 +151,6 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         JPingreso.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 200, 10));
 
         JPContraseña.setBorder(null);
-        JPContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JPContraseñaActionPerformed(evt);
-            }
-        });
         JPingreso.add(JPContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 200, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/User.png"))); // NOI18N
@@ -171,24 +169,6 @@ public class Login extends javax.swing.JFrame implements ActionListener {
             }
         });
         JPingreso.add(JBNoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, 30));
-
-        jButton1.setBackground(new java.awt.Color(238, 112, 82));
-        jButton1.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(238, 112, 82));
-        jButton1.setText("Entrar");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jButton1.setContentAreaFilled(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        JPingreso.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 60, 30));
 
         getContentPane().add(JPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 510));
 
@@ -330,14 +310,6 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTusuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTusuarioActionPerformed
-
-    private void JPContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JPContraseñaActionPerformed
-
     private void JlCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JlCerrarMouseClicked
          int dialog = JOptionPane.YES_NO_OPTION;
         int result = JOptionPane.showConfirmDialog(null,"Desea salir del login?","Exit",dialog);
@@ -357,12 +329,6 @@ public class Login extends javax.swing.JFrame implements ActionListener {
        jPregistro.setVisible(true);
         //JPImagenRegis.validate();*/             
     }//GEN-LAST:event_JBNoCuentaActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-   /*     setVisible(false);
-        Menu llamado = new Menu();
-        llamado.setVisible(true);*/
-    }//GEN-LAST:event_jButton1MouseClicked
 
     private void JTNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTNombreActionPerformed
         // TODO add your handling code here:
@@ -384,10 +350,6 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTpaisActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jTusuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTusuarioFocusGained
         // TODO add your handling code here
         if(jTusuario.getText().equals("Ingrese su usuario...")){
@@ -406,6 +368,22 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+     public JButton getIngresar(){
+       return jBentrar;
+   }
+   
+   public JTextField getUsuario(){
+       return jTusuario;
+   }
+   
+   public JPasswordField getContraseña(){
+       return JPContraseña;
+   }
+   
+    public void addListenerJBentrar(ActionListener listen){
+       jBentrar.addActionListener(listen);
+   }
+   
     /**
      * @param args the command line arguments
      */
@@ -453,7 +431,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPanel JPingreso;
     private javax.swing.JTextField JTNombre;
     private javax.swing.JLabel JlCerrar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBentrar;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -477,9 +455,5 @@ public class Login extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField jTtelefono;
     private javax.swing.JTextField jTusuario;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
 }

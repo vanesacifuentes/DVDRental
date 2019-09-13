@@ -71,7 +71,6 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jListClienteID = new javax.swing.JList<>();
         jLCodigoCliente = new javax.swing.JLabel();
         jTCodigoCliente = new javax.swing.JTextField();
-        JBRegistroCliente = new javax.swing.JButton();
         jTDuracion = new javax.swing.JTextField();
         jLabelEtiqueta = new javax.swing.JLabel();
         jLabelSinopsis = new javax.swing.JLabel();
@@ -235,19 +234,6 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jLCodigoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPinformacionPeliculs.add(jLCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, -1, 30));
         jPinformacionPeliculs.add(jTCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 200, 30));
-
-        JBRegistroCliente.setBackground(new java.awt.Color(238, 112, 82));
-        JBRegistroCliente.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        JBRegistroCliente.setForeground(new java.awt.Color(238, 112, 82));
-        JBRegistroCliente.setText("Registrar");
-        JBRegistroCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        JBRegistroCliente.setContentAreaFilled(false);
-        JBRegistroCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBRegistroClienteActionPerformed(evt);
-            }
-        });
-        jPinformacionPeliculs.add(JBRegistroCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 80, 30));
         jPinformacionPeliculs.add(jTDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 200, 30));
 
         jPanel4.add(jPinformacionPeliculs, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 360, 380));
@@ -258,7 +244,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 32, Short.MAX_VALUE))
+                .addGap(0, 35, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,10 +308,6 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void JBRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRegistroClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JBRegistroClienteActionPerformed
 
     //Método para cargar al JList el listado por nombre de Pelicula
     public void cargarPeliculasLista(ArrayList<Pelicula> listaPelicula) {
@@ -392,7 +374,6 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBRegistroCliente;
     private javax.swing.JButton jBAlquilar;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;

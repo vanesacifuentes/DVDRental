@@ -73,9 +73,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jListClienteID = new javax.swing.JList<>();
         jLCodigoCliente = new javax.swing.JLabel();
         jTDuracion = new javax.swing.JTextField();
-        jSpinnerAnho = new javax.swing.JSpinner();
         jSpinnerDia = new javax.swing.JSpinner();
-        jSpinnerMes = new javax.swing.JSpinner();
         jLabelEtiqueta = new javax.swing.JLabel();
         jLabelSinopsis = new javax.swing.JLabel();
         jLSinopsisTexto = new javax.swing.JLabel();
@@ -232,15 +230,9 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jPinformacionPeliculs.add(jLCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, -1, 30));
         jPinformacionPeliculs.add(jTDuracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 200, 30));
 
-        jSpinnerAnho.setModel(new javax.swing.SpinnerNumberModel(2019, 2019, 2021, 1));
-        jPinformacionPeliculs.add(jSpinnerAnho, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 70, 30));
-
-        jSpinnerDia.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+        jSpinnerDia.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1568440789951L), null, null, java.util.Calendar.DAY_OF_MONTH));
         jSpinnerDia.setToolTipText("");
-        jPinformacionPeliculs.add(jSpinnerDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 40, 30));
-
-        jSpinnerMes.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
-        jPinformacionPeliculs.add(jSpinnerMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 50, 30));
+        jPinformacionPeliculs.add(jSpinnerDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 200, 30));
 
         jPanel4.add(jPinformacionPeliculs, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 400, 380));
 
@@ -380,17 +372,13 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         return jLabelEtiqueta; 
     }
 
-    public JSpinner getjSpinnerAnho() {
-        return jSpinnerAnho;
-    }
+   
 
     public JSpinner getjSpinnerDia() {
         return jSpinnerDia;
     }
 
-    public JSpinner getjSpinnerMes() {
-        return jSpinnerMes;
-    }
+    
 
     public JButton getjBAlquilar() {
         return jBAlquilar;
@@ -444,9 +432,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPinformacionPeliculs;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinnerAnho;
     private javax.swing.JSpinner jSpinnerDia;
-    private javax.swing.JSpinner jSpinnerMes;
     private javax.swing.JTextField jTBuscador;
     private javax.swing.JTextField jTBuscarCliente;
     private javax.swing.JTextField jTDuracion;

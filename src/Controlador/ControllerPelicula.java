@@ -78,16 +78,13 @@ public class ControllerPelicula {
                 if (vista.getjBnuevo().getText().equalsIgnoreCase("Nuevo")) {
                     vista.activarCampos(true);
                     vista.setearCampos();
+                    vista.getjTid_peli().setText("" + vista.valor);
                     vista.getjBnuevo().setText("Grabar");
                     vista.getjBmodificar().setText("Cancelar");
                     vista.getjBeliminar().setVisible(false);
 
                 } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Grabar")) {
                     registrar();
-                    vista.activarCampos(false);
-                    vista.getjBnuevo().setText("Nuevo");
-                    vista.getjBmodificar().setText("Modificar");
-                    vista.getjBeliminar().setEnabled(true);
 
                 } else if (vista.getjBnuevo().getText().equalsIgnoreCase("Actualizar")) {
                     actualizar();
@@ -101,11 +98,7 @@ public class ControllerPelicula {
                     vista.getjBeliminar().setVisible(false);
                 } else if (vista.getjBmodificar().getText().equalsIgnoreCase("Cancelar")) {
 
-                    vista.activarCampos(false);
-                    vista.setearCampos();
-                    vista.getjBnuevo().setText("Nuevo");
-                    vista.getjBmodificar().setText("Modificar");
-                    vista.getjBeliminar().setVisible(true);
+                    vista.nuevaAccion();
                 }
 
             } else if (ae.getSource() == vista.getjBeliminar()) {
@@ -225,6 +218,7 @@ public class ControllerPelicula {
                 ArrayList<Pelicula> listaPeliculas;
                 listaPeliculas = modelo.listadoPeliculas();
                 vista.cargarPeliculasTabla(listaPeliculas);
+                vista.nuevaAccion();
 
             } else {
                 vista.gestionMensajes("Error al grabar",
@@ -314,7 +308,8 @@ public class ControllerPelicula {
                 
                 ArrayList<Pelicula> listadoPeliculas; 
                 listadoPeliculas = modelo.listadoPeliculas();
-                vista.cargarPeliculasTabla(listadoPeliculas);           
+                vista.cargarPeliculasTabla(listadoPeliculas); 
+                vista.nuevaAccion();
             } else {
                 vista.gestionMensajes(
                         "Actualización Falida",
@@ -351,6 +346,7 @@ public class ControllerPelicula {
                     ArrayList<Pelicula> listadoPeliculas;
                     listadoPeliculas = modelo.listadoPeliculas();
                     vista.cargarPeliculasTabla(listadoPeliculas);
+                    vista.nuevaAccion();
                 } else {
                     JOptionPane.showMessageDialog(null,
                             "Error al borrar",

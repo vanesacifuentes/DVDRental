@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Establecer y/o fecha en formato Timestamp y Date
+ * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : Fachada
  */
 package Servicios;
 
@@ -10,10 +12,7 @@ import java.util.Calendar;
 import java.sql.Date;
 import java.util.GregorianCalendar;
 
-/**
- *
- * @author Usuario
- */
+
 public class Fecha {
 
     public static Timestamp crearFechaTimeStamp() {

@@ -14,6 +14,7 @@ import InternalFrame.iFcliente;
 import InternalFrame.iFdevolucion;
 import InternalFrame.iFempleado;
 import InternalFrame.iFpelicula;
+import Servicios.Fecha;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
@@ -32,6 +33,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         initComponents();
       //  añadirPestañas();
         this.setLocationRelativeTo(null);
+        
+        Fecha fec = new Fecha();
+        System.out.println(fec.crearFechaTimeStampEspecifico(ABORT, WIDTH, WIDTH));
+        
      //   Shape form = new RoundRectangle2D.Double(0,0,this.getBounds().width,this.getBounds().height,27,27);
       //  AWTUtilities.setWindowShape(this, form);
     }

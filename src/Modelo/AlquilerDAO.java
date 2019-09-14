@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -36,13 +37,23 @@ public class AlquilerDAO {
             
             pstm = con.prepareStatement(sql);
             
+            
+            
             pstm.setInt(1,a.getIDalquiler());
             pstm.setTimestamp(2, a.getFechaAlquiler());
-            pstm.setInt(1,a.getIDInventario());
-            pstm.setInt(1,a.getIDCliente());
-            pstm.setTimestamp(2, a.getFechaDevolucion());
-            pstm.setInt(1,a.getIDEmpleado());
-            pstm.setTimestamp(2, a.getFechaUltimaActualizacion());
+            pstm.setInt(3,6);
+            pstm.setInt(4,4);
+            pstm.setNull(5,Types.NULL);
+            pstm.setInt(6,1);
+            pstm.setTimestamp(7, a.getFechaUltimaActualizacion());
+            
+//            pstm.setInt(1,a.getIDalquiler());
+//            pstm.setTimestamp(2, a.getFechaAlquiler());
+//            pstm.setInt(3,a.getIDInventario());
+//            pstm.setInt(4,a.getIDCliente());
+//            pstm.setTimestamp(5, a.getFechaDevolucion());
+//            pstm.setInt(6,a.getIDEmpleado());
+//            pstm.setTimestamp(7, a.getFechaUltimaActualizacion());
                 
             rtdo = pstm.executeUpdate();  
         }
@@ -88,11 +99,11 @@ public class AlquilerDAO {
 
             pstm.setInt(1,a.getIDalquiler());
             pstm.setTimestamp(2, a.getFechaAlquiler());
-            pstm.setInt(1,a.getIDInventario());
-            pstm.setInt(1,a.getIDCliente());
-            pstm.setTimestamp(2, a.getFechaDevolucion());
-            pstm.setInt(1,a.getIDEmpleado());
-            pstm.setTimestamp(2, a.getFechaUltimaActualizacion());
+            pstm.setInt(3,a.getIDInventario());
+            pstm.setInt(4,a.getIDCliente());
+            pstm.setTimestamp(5, a.getFechaDevolucion());
+            pstm.setInt(6,a.getIDEmpleado());
+            pstm.setTimestamp(7, a.getFechaUltimaActualizacion());
   
             rtdo = pstm.executeUpdate();  
         }

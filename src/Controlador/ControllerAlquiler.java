@@ -8,16 +8,19 @@
 package Controlador;
 
 import InternalFrame.iFalquiler;
+import Modelo.Alquiler;
 import Modelo.AlquilerDAO;
 import Modelo.ClienteDAO;
 import Modelo.Pelicula;
 import Modelo.PeliculaDAO;
+import Servicios.Fecha;
 import java.util.ArrayList;
 import java.awt.event.*;
-
+import javax.swing.JOptionPane;
 
 public class ControllerAlquiler {
 
+    int valor;
     private iFalquiler vista;
     private AlquilerDAO modelo;
     private Pelicula peliculaSelected;
@@ -37,10 +40,24 @@ public class ControllerAlquiler {
 
         this.vista.getjTBuscarCliente().addKeyListener(escucha);
         this.vista.getjListBusquedaPeliculas().addMouseListener(escucha);
-
+        
+        this.vista.getjBAlquilar().addActionListener(escucha);
+  
     }
 
-    public class ListenerAlquiler implements MouseListener, KeyListener {
+    public class ListenerAlquiler implements ActionListener, MouseListener, KeyListener {
+        
+        
+        //@Override
+        public void actionPerformed(ActionEvent ae) {
+            if (ae.getSource() == vista.getjBAlquilar()) {
+                JOptionPane.showMessageDialog(null, "Prueba alquilar");
+                registrar();
+            } else if (ae.getSource() == vista.getjBmodificar()) {
+                //actualizar();
+            }
+        }
+               
 
         @Override
         public void keyTyped(KeyEvent ke) {
@@ -85,10 +102,9 @@ public class ControllerAlquiler {
             ArrayList<Pelicula> p;
             p = modelPelicula.buscarPeliculas(vista.getModelo().getElementAt(indice).toString());
             Pelicula peliculaSelected = p.get(0);
-            vista.getjTIDPelicula().setText("" + peliculaSelected.getPeliculaId());
-            vista.getjTPrecio().setText("" + peliculaSelected.getTarifaRenta());
+            vista.getjTPrecio().setText("" + peliculaSelected.getTarifaRenta()+ " $US");
             vista.getjTxTitulo().setText(peliculaSelected.getTitulo());
-            vista.getjTDuracion().setText("" + peliculaSelected.getLongitud());
+            vista.getjTDuracion().setText("" + peliculaSelected.getLongitud() +" Minutos");
             
         }
 
@@ -113,5 +129,56 @@ public class ControllerAlquiler {
         }
 
     }
+   
+       
+    
+   public void registrar() {
 
-}
+        if (vista.getjTIDAlquiler().equals("")) {
+            vista.gestionMensajes("Ingrese el código",
+                    "Error de Entrada", JOptionPane.ERROR_MESSAGE);
+            /*else if (vista.getNivel().trim().
+                           equals("Seleccionar ...")){
+                   vista.gestionMensajes("Seleccione un nivel",
+                           "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
+        } else {
+            Alquiler alquiler = new Alquiler();
+            
+//            int anho = Integer.parseInt((String) vista.getjSpinnerAnho().getValue());
+//            int mes = Integer.parseInt((String)vista.getjSpinnerMes().getValue());
+//            int dia = Integer.parseInt((String)vista.getjSpinnerDia().getValue());
+            
+            alquiler.setIDalquiler(Integer.parseInt(vista.getjTIDAlquiler().getText()));
+            alquiler.setFechaAlquiler(Fecha.crearFechaTimeStamp());
+            //inventario 
+            //id de cliente alquiler.setIDCliente(Integer.parseInt(vista.get));
+           // alquiler.setFechaDevolucion(Fecha.crearFechaTimeStampEspecifico(anho,mes-1,dia));
+            
+           // System.out.println(Fecha.crearFechaTimeStampEspecifico(anho,mes-1,dia));
+            alquiler.setFechaUltimaActualizacion(Fecha.crearFechaTimeStamp());
+
+            int resultado;
+            resultado = modelo.grabarAlquiler(alquiler);
+
+            if (resultado == 1) {
+                vista.gestionMensajes("Registro Grabado con éxito",
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+
+             //   ArrayList<Alquiler> listaalquiler;
+            }
+                
+             else {
+                vista.gestionMensajes("Error al grabar",
+                        "Confirmación", JOptionPane.ERROR_MESSAGE);
+            }
+
+            vista.gestionMensajes("Codigo ya está registrado",
+                    "Confirmación",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+}   
+    
+    
+

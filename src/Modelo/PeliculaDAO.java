@@ -47,6 +47,50 @@ public class PeliculaDAO {
             pstm.setNull(13,Types.NULL); 
             
             rtdo = pstm.executeUpdate();  
+            
+            if(rtdo > 0){
+                int i =0;
+                while(i < 4){
+                crearInventarioPelicula(p);
+                i++;
+                }
+            }
+            
+        }
+
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código: " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        
+        finally{
+            try{
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return rtdo;
+    }
+    
+    
+    
+    public int crearInventarioPelicula(Pelicula p){      
+        
+        Connection con = null;
+        PreparedStatement pstm;
+        pstm = null;
+        int rtdo;
+        rtdo = 0;
+        try{
+            con = Fachada.getConnection();
+            String sql = "INSERT INTO inventory (film_id, store_id) select " + p.getPeliculaId() + ", store_id from store ";
+            
+            pstm = con.prepareStatement(sql);
+            
+            rtdo = pstm.executeUpdate();  
         }
 
         catch(SQLException ex){
@@ -120,7 +164,10 @@ public class PeliculaDAO {
         }
         return rtdo;
     }
-            
+       
+    
+    
+    
     /**
      * 
      * @param codigo código de pelicula a borrar
@@ -132,8 +179,110 @@ public class PeliculaDAO {
         int rtdo;
         rtdo = 0;
         try{
+//            if(borrarCategoriaPelicula(film_id) >= 0){
+//                if(borrarActorPelicula(film_id) >= 0){
+//                    if(borrarInventarioPelicula(film_id) >= 0){
+                    
+                    con = Fachada.getConnection();
+                    //String sql = "DELETE FROM film WHERE film_id = ? ";
+                    String sql = "update film set status = 'I' WHERE film_id = ? ";
+                    pstm = con.prepareStatement(sql);
+                    pstm.setInt(1, film_id);
+                    rtdo = pstm.executeUpdate(); 
+                    return rtdo;
+                    
+//                    }
+//            
+//               }
+//            
+//            
+//            }
+            
+            
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        } 
+        finally{
+            try{
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return rtdo;
+    }
+    
+    
+    public int borrarInventarioPelicula(int film_id){      
+        Connection con = null;
+        PreparedStatement pstm = null;
+        int rtdo;
+        rtdo = -1;
+        try{
             con = Fachada.getConnection();
-            String sql = "DELETE FROM film WHERE film_id = ? ";
+            String sql = "DELETE FROM inventory WHERE film_id = ? ";
+            pstm = con.prepareStatement(sql);
+            pstm.setInt(1, film_id);
+            rtdo = pstm.executeUpdate(); 
+            return rtdo;
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        } 
+        finally{
+            try{
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return rtdo;
+    }
+    
+    public int borrarCategoriaPelicula(int film_id){      
+        Connection con = null;
+        PreparedStatement pstm = null;
+        int rtdo;
+        rtdo = -1;
+        try{
+            con = Fachada.getConnection();
+            String sql = "DELETE FROM film_category WHERE film_id = ? ";
+            pstm = con.prepareStatement(sql);
+            pstm.setInt(1, film_id);
+            rtdo = pstm.executeUpdate(); 
+            return rtdo;
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        } 
+        finally{
+            try{
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return rtdo;
+    }
+    
+    public int borrarActorPelicula(int film_id){      
+        Connection con = null;
+        PreparedStatement pstm = null;
+        int rtdo;
+        rtdo = -1;
+        try{
+            con = Fachada.getConnection();
+            String sql = "DELETE FROM film_actor WHERE film_id = ? ";
             pstm = con.prepareStatement(sql);
             pstm.setInt(1, film_id);
             rtdo = pstm.executeUpdate(); 
@@ -172,7 +321,7 @@ public class PeliculaDAO {
             con = Fachada.getConnection();
             String sql="";
            
-                sql = "SELECT * FROM film ORDER BY film_id";            
+                sql = "SELECT * FROM film  WHERE STATUS = 'A' ORDER BY film_id";            
             
                                    
             pstm = con.prepareStatement(sql);
@@ -239,8 +388,8 @@ public class PeliculaDAO {
             
            
                
-                sql = "select * from film where title like '"+texto+"%'";
-                    
+                //sql = "select * from film where title like '"+texto+"%'";
+                  sql = "select * from film where title like '"+texto+"%' and status = 'A'";  
              
             pstm = con.prepareStatement(sql);
             

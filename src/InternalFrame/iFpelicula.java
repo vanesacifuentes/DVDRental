@@ -31,7 +31,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     /**
      * Creates new form iFpelicula
      */
-    int valor;
+    public int valor;
 
     private DefaultListModel modeloListaCategoria, modeloListaActor;
 
@@ -703,6 +703,14 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jTid_peli.setText("" + valor);
 
     }
+    
+    public void nuevaAccion() {
+        activarCampos(false);
+        setearCampos();
+        jBnuevo.setText("Nuevo");
+        jBmodificar.setText("Modificar");
+        jBeliminar.setVisible(true);
+    }
 
     //Método para cargar la información de películas a la Tabla
     public void cargarPeliculasTabla(ArrayList<Pelicula> listadoPelicula) {
@@ -904,6 +912,8 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     public DefaultListModel getModeloListaActor() {
         return modeloListaActor;
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBLenguaje;

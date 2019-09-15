@@ -34,6 +34,7 @@ public class ControllerAlquiler {
     private Pelicula peliculaSelected;
     private Cliente clienteSelected;
     private Inventario inventarioSelected;
+    private ArrayList<Inventario> listaInventario_PelDisp;
     //private ArrayList <Pelicula> listadoPelicula;
 
     public ControllerAlquiler(iFalquiler vista, AlquilerDAO modelo) {
@@ -112,15 +113,23 @@ public class ControllerAlquiler {
                 ArrayList<Pelicula> p;
                 p = modelPelicula.buscarPeliculas(vista.getModeloBuscarPeliculas().getElementAt(indice).toString());
                 peliculaSelected = p.get(0);
-
+                
+                
+                ArrayList<Inventario> listaInventario;
+                InventarioDAO inventario = new InventarioDAO();
+                listaInventario = inventario.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),"todos");
+                
+                listaInventario_PelDisp = inventario.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),"disponibles");
+                
                 vista.getjLTitulo().setText(peliculaSelected.getTitulo());
                 vista.getjLPrecio().setText("" + peliculaSelected.getTarifaRenta() + " $US");
                 vista.getjTAreaSinopsis().setText("" + peliculaSelected.getDescripcion());
+                vista.getjLCantTotalnum().setText(""+listaInventario.size());
+                vista.getjLCantidadDisponum().setText(""+listaInventario_PelDisp.size());
                 
                 
-                InventarioDAO inventario = new InventarioDAO();
-             
-                inventario.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId());
+                
+                
                 
                 
             } else if (me.getSource() == vista.getjListClienteID()) {
@@ -137,6 +146,9 @@ public class ControllerAlquiler {
             }
 
         }
+        
+        
+        
 
         @Override
         public void mouseEntered(MouseEvent me) {

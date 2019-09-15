@@ -167,11 +167,9 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jPinformacionPeliculs1.add(jLBuscarCliente4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 30));
 
         jLNombreCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLNombreCliente.setText("fdfd");
         jPinformacionPeliculs1.add(jLNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 210, 30));
 
         jLIDCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLIDCliente.setText("sdsa");
         jPinformacionPeliculs1.add(jLIDCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 104, 50, 40));
 
         jPanel4.add(jPinformacionPeliculs1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 440, 150));
@@ -389,9 +387,21 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         return jTBuscadorPelicula;
     }
 
-    public DefaultListModel getModelo() {
+    public DefaultListModel getModeloBuscarPeliculas() {
         return modeloBuscarPelicula;
     }
+
+    public DefaultListModel getModeloBuscarCliente() {
+        return modeloBuscarCliente;
+    }
+
+    public JLabel getjLIDCliente() {
+        return jLIDCliente;
+    }
+    
+    
+    
+    
 
     public JButton getjBAlquilar() {
         return jBAlquilar;

@@ -12,6 +12,7 @@ import Modelo.Alquiler;
 import Modelo.AlquilerDAO;
 import Modelo.Cliente;
 import Modelo.ClienteDAO;
+import Modelo.Empleado;
 import Modelo.Inventario;
 import Modelo.InventarioDAO;
 import Modelo.Pelicula;
@@ -35,13 +36,16 @@ public class ControllerAlquiler {
     private Cliente clienteSelected;
     private Inventario inventarioSelected;
     private ArrayList<Inventario> listaInventario_PelDisp;
+    private Empleado empleadoUsuario;
     //private ArrayList <Pelicula> listadoPelicula;
 
     public ControllerAlquiler(iFalquiler vista, AlquilerDAO modelo) {
 
+        
         this.vista = vista;
         this.modelo = modelo;
 
+        empleadoUsuario =  this.vista.getEmpleadoUsuario();
         PeliculaDAO modelPelicula = new PeliculaDAO();
 
         //Se carga en el JList la informacion proveniente de la base de datos
@@ -62,6 +66,9 @@ public class ControllerAlquiler {
         public void actionPerformed(ActionEvent ae) {
             if (ae.getSource() == vista.getjBAlquilar()) {
                 JOptionPane.showMessageDialog(null, "Prueba alquilar");
+                InventarioDAO inventarioModel = new InventarioDAO();
+                inventarioModel.actualizarStatusRental();
+
                 registrar();
             } else if (ae.getSource() == vista.getjBmodificar()) {
                 //actualizar();
@@ -116,16 +123,17 @@ public class ControllerAlquiler {
                 
                 
                 ArrayList<Inventario> listaInventario;
-                InventarioDAO inventario = new InventarioDAO();
-                listaInventario = inventario.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),"todos");
+                InventarioDAO inventarioModel = new InventarioDAO();
+                listaInventario = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),"todos");
                 
-                listaInventario_PelDisp = inventario.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),"disponibles");
+                listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),"disponibles");
                 
                 vista.getjLTitulo().setText(peliculaSelected.getTitulo());
                 vista.getjLPrecio().setText("" + peliculaSelected.getTarifaRenta() + " $US");
                 vista.getjTAreaSinopsis().setText("" + peliculaSelected.getDescripcion());
                 vista.getjLCantTotalnum().setText(""+listaInventario.size());
                 vista.getjLCantidadDisponum().setText(""+listaInventario_PelDisp.size());
+                                
                 
                 
                 
@@ -184,18 +192,19 @@ public class ControllerAlquiler {
         } else {
             Alquiler alquiler = new Alquiler();
 
-            alquiler.setIDalquiler(Integer.parseInt(vista.getjTIDAlquiler().getText()));
+            alquiler.setIDalquiler(20000);
             alquiler.setFechaAlquiler(Fecha.crearFechaTimeStamp());
-            //inventario 
-            //id de cliente alquiler.setIDCliente(Integer.parseInt(vista.get));
-
+            alquiler.setIDInventario(listaInventario_PelDisp.get(0).getInventarioID());
+            alquiler.setIDCliente(clienteSelected.getClienteID());
+            
+            
             Date date = vista.getjDateChooserDev().getDate();
             Timestamp times = new Timestamp(date.getTime());
 
             alquiler.setFechaDevolucion(times);
-
-            // System.out.println(Fecha.crearFechaTimeStampEspecifico(anho,mes-1,dia));
+            alquiler.setIDEmpleado(empleadoUsuario.getEmpleadoID());
             alquiler.setFechaUltimaActualizacion(Fecha.crearFechaTimeStamp());
+            alquiler.setStatusRental(true);
 
             int resultado;
             resultado = modelo.grabarAlquiler(alquiler);

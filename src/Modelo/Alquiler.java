@@ -20,6 +20,7 @@ public class Alquiler {
         private Timestamp fechaDevolucion;
         private int IDEmpleado;
         private Timestamp fechaUltimaActualizacion;
+        private boolean statusRental;
 
     //Constructor
     public Alquiler() {
@@ -82,5 +83,14 @@ public class Alquiler {
     public void setFechaUltimaActualizacion(Timestamp fechaUltimaActualizacion) {
         this.fechaUltimaActualizacion = fechaUltimaActualizacion;
     }
+
+    public boolean isStatusRental() {
+        return statusRental;
+    }
+
+    public void setStatusRental(boolean statusRental) {
+        this.statusRental = statusRental;
+    }
+    
     
 }

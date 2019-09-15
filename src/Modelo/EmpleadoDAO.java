@@ -205,99 +205,59 @@ public class EmpleadoDAO {
         //consecutivoID = listadoCliente.size();
         return listadoEmpleado;
     }
-    
-     //Metodo para buscar por nombre usuario
-    
-    public String buscarNombreUsuario(String username) {
         
-        String busquedaUsuario = null;
+    //Método extraer usuario
+    public Empleado extraerUsuario (String usuario, String contrasena)
+    {
+       
+        String s = "";
+        
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-
-
-        try {
+        Empleado empleado = null;
+        try{
             con = Fachada.getConnection();
-            String sql = "";
-
-            sql = "SELECT username FROM staff WHERE = '" + username + "'";
-
+            String sql="";
+           
+                sql = "SELECT * FROM staff WHERE username = '" +usuario + "' and password = '" +contrasena + "'";       
+                                  
             pstm = con.prepareStatement(sql);
-
+            
+//                pstm.setString(1, id);
+//                pstm.setInt(1, id);
+           
             rs = pstm.executeQuery();
-
-            if(rs.next()){
+                        
+            empleado = null;
+            while(rs.next()){
+                empleado = new Empleado();
+                empleado.setEmpleadoID(rs.getInt("staff_id"));
+                empleado.setNombreEmpleado(rs.getString("first_name"));
+                empleado.setApellidoEmpleado(rs.getString("last_name"));
+                empleado.setTiendaID_Empleado(rs.getInt("store_id"));
+                empleado.setNombreUsuarioEmpleado(rs.getString("username"));
+                empleado.setContrasenaEmpleado(rs.getString("password"));
                 
-                username = rs.getString("username");
-                busquedaUsuario = (username);
-     
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Código : "
-                    + ex.getErrorCode() + "\nError :" + ex.getMessage());
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pstm != null) {
-                    pstm.close();
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Código : "
-                        + ex.getErrorCode() + "\nError :" + ex.getMessage());
+               
             }
         }
-        return busquedaUsuario;
-    }
-
-    
-    //Buscar empleado por username y contraseña y permite el ingreso en el loguin 
-    public String buscarEmpleadoRegistrado(String username, String contrasena) {
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        finally{
+            try{
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return empleado;
         
-        String busquedaUsuario = null;
-        Connection con = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-
-
-        try {
-            con = Fachada.getConnection();
-            String sql = "";
-
-            sql = "SELECT username, password FROM staff WHERE = '" +username + "' and '" +contrasena +"'";
-
-            pstm = con.prepareStatement(sql);
-
-            rs = pstm.executeQuery();
-
-            if(rs.next()){
-                
-                busquedaUsuario = "Usuario encontrado";
-            } else{
-                busquedaUsuario = "Usuario no encontrado";
-                
-//                username = rs.getString("username");
-//                contrasena = rs.getString("password");
-     
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Código : "
-                    + ex.getErrorCode() + "\nError :" + ex.getMessage());
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pstm != null) {
-                    pstm.close();
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Código : "
-                        + ex.getErrorCode() + "\nError :" + ex.getMessage());
-            }
-        }
-        return busquedaUsuario;
     }
     
    

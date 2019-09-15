@@ -9,8 +9,8 @@ package JFrame;
 
 //import com.sun.awt.AWTUtilities;
 import Controlador.ControllerInterfaz;
+import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
-import Controlador.ControllerLogin;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +31,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     
-     EmpleadoDAO empleadoModel= new EmpleadoDAO();
+    //EmpleadoDAO empleadoModel= new EmpleadoDAO();
     public Login() {
         initComponents();  
      
@@ -381,27 +381,28 @@ public class Login extends javax.swing.JFrame {
 
     private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
         
-         EmpleadoDAO empleadoModel= new EmpleadoDAO();
+        EmpleadoDAO empleadoModel= new EmpleadoDAO();
         
-        String busqueda_usuario = empleadoModel.buscarEmpleadoRegistrado(jTusuario.getText(), JPContraseña.getText());
+        Empleado empleadoUsuario = empleadoModel.extraerUsuario(jTusuario.getText(), JPContraseña.getText());
         
         if (jTusuario.getText().equals("admin") && JPContraseña.getText().equals("admin")) {
             JOptionPane.showMessageDialog(null, "Bienvenido(a) iniciaste sesión como administrador");
-            InterfazPrincipal interfazView = new InterfazPrincipal();
+            
+            InterfazPrincipal interfazView = new InterfazPrincipal(empleadoUsuario);
             interfazView.setVisible(true);
             this.dispose();
             
-        } else if (busqueda_usuario.equals("Usuario encontrado")) {
-            String busqueda_nombre = empleadoModel.buscarNombreUsuario(jTusuario.getText());
-            JOptionPane.showMessageDialog(null, "Bienvenido al sistema DVD Rental" + busqueda_nombre);
-            InterfazPrincipal interfazView = new InterfazPrincipal();
+        } else if (empleadoUsuario !=null) {
+              
+            JOptionPane.showMessageDialog(null, "Bienvenido al sistema DVD Rental \n" + ""+empleadoUsuario.getNombreEmpleado()+ " "+ empleadoUsuario.getApellidoEmpleado());
+            
+            InterfazPrincipal interfazView = new InterfazPrincipal(empleadoUsuario);
             interfazView.setVisible(true);
             this.dispose();
         } else{
         
         JOptionPane.showMessageDialog(null, "Usuario no encontrado");
-        }
-              
+        }             
     }//GEN-LAST:event_jBEntrarActionPerformed
 
     public JButton getjBEntrar() {

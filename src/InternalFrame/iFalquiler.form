@@ -462,7 +462,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserDev">
+                    <Component class="org.netbeans.modules.form.InvalidComponent" name="jDateChooserDev">
                       <Properties>
                         <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
                         <Property name="maxSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">

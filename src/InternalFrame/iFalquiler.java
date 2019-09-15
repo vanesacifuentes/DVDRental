@@ -73,7 +73,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jLTitulo = new javax.swing.JLabel();
         jLtitulo5 = new javax.swing.JLabel();
         jLPrecio = new javax.swing.JLabel();
-        jDateChooserDev = new com.toedter.calendar.JDateChooser();
+        jDateChooserDev = new org.netbeans.modules.form.InvalidComponent();
         jPbotones1 = new javax.swing.JPanel();
         jBAlquilar = new javax.swing.JButton();
         jBmodificar = new javax.swing.JButton();
@@ -210,11 +210,6 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jLPrecio.setText("fdfd");
         jPinformacionPeliculs2.add(jLPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 90, 30));
 
-        jDateChooserDev.setDateFormatString("yyyy-MM-dd HH:mm:ss");
-        jDateChooserDev.setMaxSelectableDate(new java.util.Date(253370786484000L));
-        jDateChooserDev.setMinSelectableDate(new java.util.Date(1568527284000L));
-        jDateChooserDev.setMinimumSize(new java.awt.Dimension(20, 10));
-        jDateChooserDev.setPreferredSize(new java.awt.Dimension(50, 20));
         jPinformacionPeliculs2.add(jDateChooserDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 160, 30));
 
         jPanel4.add(jPinformacionPeliculs2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 440, 210));
@@ -446,7 +441,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooserDev;
+    private org.netbeans.modules.form.InvalidComponent jDateChooserDev;
     private javax.swing.JLabel jLBuscarCliente4;
     private javax.swing.JLabel jLCodigoCliente;
     private javax.swing.JLabel jLCodigoCliente2;

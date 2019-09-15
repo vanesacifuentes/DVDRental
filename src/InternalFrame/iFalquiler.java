@@ -210,12 +210,9 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jLPrecio.setText("fdfd");
         jPinformacionPeliculs2.add(jLPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 90, 30));
 
-        jDateChooserDev.setDateFormatString("yyyy-MM-dd HH:mm:ss");
-        jDateChooserDev.setMaxSelectableDate(new java.util.Date(253370786484000L));
-        jDateChooserDev.setMinSelectableDate(new java.util.Date(1568527284000L));
-        jDateChooserDev.setMinimumSize(new java.awt.Dimension(20, 10));
-        jDateChooserDev.setPreferredSize(new java.awt.Dimension(50, 20));
-        jPinformacionPeliculs2.add(jDateChooserDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 160, 30));
+        jDateChooserDev.setDateFormatString("yyyy/MM/dd HH:mm:ss");
+        jDateChooserDev.setMinSelectableDate(new java.util.Date(1568523600000L));
+        jPinformacionPeliculs2.add(jDateChooserDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 120, -1));
 
         jPanel4.add(jPinformacionPeliculs2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 440, 210));
 

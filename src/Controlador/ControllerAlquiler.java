@@ -42,7 +42,7 @@ public class ControllerAlquiler {
 
         //Se carga en el JList la informacion proveniente de la base de datos
         ListenerAlquiler escucha = new ListenerAlquiler();
-        this.vista.getjTBuscador().addKeyListener(escucha);
+        this.vista.getjTBuscadorPelicula().addKeyListener(escucha);
         this.vista.getjListBusquedaPeliculas().addMouseListener(escucha);
 
         this.vista.getjTBuscarCliente().addKeyListener(escucha);
@@ -77,10 +77,10 @@ public class ControllerAlquiler {
         @Override
         public void keyReleased(KeyEvent ke) {
 
-            if (ke.getSource() == vista.getjTBuscador()) {
+            if (ke.getSource() == vista.getjTBuscadorPelicula()) {
 
                 PeliculaDAO modelPelicula = new PeliculaDAO();
-                String buscar = vista.getjTBuscador().getText().trim();
+                String buscar = vista.getjTBuscadorPelicula().getText().trim();
                 vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(formatoString(buscar)));
 
             } else if (ke.getSource() == vista.getjTBuscarCliente()) {

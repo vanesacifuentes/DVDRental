@@ -9,6 +9,7 @@ package JFrame;
 
 
 import Modelo.Lenguaje;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -97,6 +98,11 @@ public class jFlenguaje extends javax.swing.JFrame {
         jTnombreLenguaje.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTnombreLenguaje.setForeground(new java.awt.Color(102, 102, 102));
         jTnombreLenguaje.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTnombreLenguaje.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTnombreLenguajeFocusGained(evt);
+            }
+        });
         jTnombreLenguaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTnombreLenguajeActionPerformed(evt);
@@ -202,6 +208,14 @@ public class jFlenguaje extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTLenguajeIDActionPerformed
 
+    private void jTnombreLenguajeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnombreLenguajeFocusGained
+        // TODO add your handling code here:
+        if (jTnombreLenguaje.getText().equalsIgnoreCase("Campo Requerido")) {
+            jTnombreLenguaje.setForeground(Color.BLACK);
+            jTnombreLenguaje.setText("");
+        }
+    }//GEN-LAST:event_jTnombreLenguajeFocusGained
+
     public void activarCampos(Boolean b) {
         jTnombreLenguaje.setEnabled(b);
         //jTLenguajeID.setEnabled(b);
@@ -302,6 +316,23 @@ public class jFlenguaje extends javax.swing.JFrame {
 
         valor = Integer.parseInt("" + model_lenguaje.getValueAt(model_lenguaje.getRowCount() - 1, 0)) + 1;
 
+    }
+    
+    
+    public int validarCampos()
+    {
+        int rtdo = 1;
+
+        if (jTnombreLenguaje.getText().equals("") || jTnombreLenguaje.getText().equals("Campo Requerido")) {
+
+            rtdo = 0;
+            jTnombreLenguaje.setForeground(Color.red);
+            jTnombreLenguaje.setText("Campo Requerido");
+
+        }
+        
+
+        return rtdo;
     }
 
     /**

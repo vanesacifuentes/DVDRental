@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.awt.event.MouseListener;
 import InternalFrame.*;
+import java.awt.Color;
 
 public class ControllerLenguaje {
 
@@ -82,10 +83,12 @@ public class ControllerLenguaje {
         //Método registrar lenguaje
         public void registrar() {
 
-            if (vista.getjTLenguajeID().equals("")) {
-                vista.gestionMensajes("Ingrese el código",
+             if (vista.validarCampos() == 0) {
+
+                JOptionPane.showMessageDialog(null, "Ingrese Todos los Campos Requeridos");
+                /*vista.gestionMensajes("Ingrese el código",
                         "Error de Entrada", JOptionPane.ERROR_MESSAGE);
-                /*else if (vista.getNivel().trim().
+                else if (vista.getNivel().trim().
                            equals("Seleccionar ...")){
                    vista.gestionMensajes("Seleccione un nivel",
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
@@ -142,6 +145,16 @@ public class ControllerLenguaje {
                         JOptionPane.ERROR_MESSAGE);
             } else {
 
+                if (vista.validarCampos() == 0) {
+
+                JOptionPane.showMessageDialog(null, "Ingrese Todos los Campos Requeridos");
+                /*vista.gestionMensajes("Ingrese el código",
+                        "Error de Entrada", JOptionPane.ERROR_MESSAGE);
+                else if (vista.getNivel().trim().
+                           equals("Seleccionar ...")){
+                   vista.gestionMensajes("Seleccione un nivel",
+                           "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
+            } else {
                 Lenguaje lenguaje = new Lenguaje();
                 //Se configura los datos en el objeto cliente de la clase Lenguaje
                 lenguaje.setLenguageID(Integer.parseInt(vista.getjTLenguajeID().getText().trim()));
@@ -169,6 +182,7 @@ public class ControllerLenguaje {
                             JOptionPane.ERROR_MESSAGE);
                 }
 
+            }
             }
 
         }
@@ -216,14 +230,11 @@ public class ControllerLenguaje {
         //Método escucha para seleccionar la tabla y carguen los datos del lenguaje seleccionado   
         @Override
         public void mouseClicked(MouseEvent me) {
-            if (vista.getjTableLenguaje().getSelectedRow() == -1) {
-                if (vista.getjTableLenguaje().getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "No hay registros");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
-                }
+            if (vista.getjBnuevo().getText().equals("Grabar"))
+            {
+                
             } else {
-
+                vista.getjTnombreLenguaje().setForeground(Color.BLACK);
                 int indiceTabla = vista.getjTableLenguaje().getSelectedRow();
                 ArrayList<Lenguaje> ListaLenguajes = modelo.listadoLenguajes();
                 vista.getjTLenguajeID().setText("" + ListaLenguajes.get(indiceTabla).getLenguageID());

@@ -12,6 +12,7 @@ import JFrame.jFactor;
 import Modelo.ActorDAO;
 import Modelo.*;
 import Servicios.Fecha;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -83,10 +84,12 @@ public class ControllerActor {
         //Método registrar Actor
         public void registrar() {
 
-            if (vista.getjTActorID().equals("")) {
-                vista.gestionMensajes("Ingrese el código",
+            if (vista.validarCampos() == 0) {
+
+                JOptionPane.showMessageDialog(null, "Ingrese Todos los Campos Requeridos");
+                /*vista.gestionMensajes("Ingrese el código",
                         "Error de Entrada", JOptionPane.ERROR_MESSAGE);
-                /*else if (vista.getNivel().trim().
+                else if (vista.getNivel().trim().
                            equals("Seleccionar ...")){
                    vista.gestionMensajes("Seleccione un nivel",
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
@@ -126,9 +129,9 @@ public class ControllerActor {
                             "Confirmación", JOptionPane.ERROR_MESSAGE);
                 }
                 //} else {
-                vista.gestionMensajes("Codigo ya está registrado",
-                        "Confirmación",
-                        JOptionPane.ERROR_MESSAGE);
+//                vista.gestionMensajes("Codigo ya está registrado",
+//                        "Confirmación",
+//                        JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -146,6 +149,12 @@ public class ControllerActor {
                         JOptionPane.ERROR_MESSAGE);
             } else {
 
+                if (vista.validarCampos() == 0) {
+
+                    JOptionPane.showMessageDialog(null, "Ingrese Todos los Campos Requeridos");
+
+                }else
+                {
                 Actor actor = new Actor();
                 //Se configura los datos en el objeto cliente de la clase Actor
                 actor.setActorID(Integer.parseInt(vista.getjTActorID().getText().trim()));
@@ -175,8 +184,10 @@ public class ControllerActor {
                 }
 
             }
+            }
 
         }
+
         //Método borrar actor
         private void borrar() {
             String codigo;
@@ -220,14 +231,9 @@ public class ControllerActor {
         //Método escucha para seleccionar la tabla y carguen los datos del actor seleccionado
         @Override
         public void mouseClicked(MouseEvent me) {
-            if (vista.getjTableActores().getSelectedRow() == -1) {
-                if (vista.getjTableActores().getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "No hay registros");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
-                }
+            if (vista.getjBnuevo().getText().equals("Grabar")) {
             } else {
-
+                vista.getjTnombreActor().setForeground(Color.BLACK);
                 int indiceTabla = vista.getjTableActores().getSelectedRow();
                 ArrayList<Actor> ListaActores = modelo.listadoActores();
                 vista.getjTActorID().setText("" + ListaActores.get(indiceTabla).getActorID());

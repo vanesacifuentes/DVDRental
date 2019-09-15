@@ -9,6 +9,7 @@ package InternalFrame;
 
 
 import Modelo.*;
+import java.awt.Color;
 import java.awt.TextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -683,6 +684,10 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jTcarateristicas.setEnabled(b);
         jTtextoCompleto.setEnabled(b);
         tAsinopsis.setEnabled(b);
+        jBagregarActor.setEnabled(b);
+        jBagrgarCate.setEnabled(b);
+        jBLenguaje.setEnabled(b);
+        
     }
 
     public void setearCampos() {
@@ -799,9 +804,56 @@ public class iFpelicula extends javax.swing.JInternalFrame {
 
         jCBactor.setModel(model);
     }
+    
     //Mensajes
     public void gestionMensajes(String mensaje, String titulo, int icono) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
+    }
+    
+    
+    public int validarCampos() {
+        int rtdo = 1;
+
+        if (jTtitulo.getText().equals("") || jTtitulo.getText().equals("Campo Requerido")) {
+
+            rtdo = 0;
+            mostrarCamposVacios(jTtitulo);
+
+        }
+        if (jTaño.getText().equals("") || jTaño.getText().equals("Campo Requerido")) {
+            
+            rtdo = 0;
+            mostrarCamposVacios(jTaño);
+        }
+        if(jTtarifa.getText().equals("") || jTtarifa.getText().equals("Campo Requerido")) {
+                  
+            rtdo = 0;
+            mostrarCamposVacios(jTtarifa);
+        }
+        if(jTcostoRe.getText().equals("") || jTcostoRe.getText().equals("Campo Requerido")) {
+            
+            rtdo = 0;
+            mostrarCamposVacios(jTcostoRe);   
+        }
+        
+        if(jTduracion.getText().equals("") || jTduracion.getText().equals("Campo Requerido")) {
+                  
+            rtdo = 0;
+            mostrarCamposVacios(jTduracion);
+        }
+        if(jTcarateristicas.getText().equals("") || jTcarateristicas.getText().equals("Campo Requerido")) {
+                  
+            rtdo = 0;
+            mostrarCamposVacios(jTcarateristicas);
+        }
+
+        return rtdo;
+    }
+
+    public void mostrarCamposVacios(JTextField jt) {
+        jt.setForeground(Color.red);
+        jt.setText("Campo Requerido");
+
     }
 
     public JComboBox getjCBactor() {

@@ -13,9 +13,11 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class InventarioDAO {
-    //Implementacion UPDATE
-    //gg
-
+    
+//      UPDATE inventory
+//   SET
+//       status_rental='false'
+// WHERE inventory_id = 1 and status_rental= 'true'      
     /**
      *
      * @param inventory_id id del inventario a listar, 0 se listaran todos

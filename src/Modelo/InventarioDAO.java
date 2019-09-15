@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 public class InventarioDAO {
     //Implementacion UPDATE
-    
+    //gg
 
     /**
      *

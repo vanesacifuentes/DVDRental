@@ -10,6 +10,7 @@ package InternalFrame;
 import Modelo.Cliente;
 import Modelo.Pelicula;
 import JFrame.*;
+import Modelo.Empleado;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
@@ -30,8 +31,11 @@ public class iFalquiler extends javax.swing.JInternalFrame {
      */
     DefaultListModel modeloBuscarPelicula;
     DefaultListModel modeloBuscarCliente;
+    private Empleado empleadoUsuario;
 
-    public iFalquiler() {
+    public iFalquiler(Empleado empleadoUsuario) {
+        
+        this.empleadoUsuario= empleadoUsuario;
         initComponents();
         modeloBuscarPelicula = new DefaultListModel();
         jListBusquedaPeliculas.setModel(modeloBuscarPelicula);

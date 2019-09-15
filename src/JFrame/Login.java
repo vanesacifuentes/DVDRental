@@ -30,6 +30,8 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+     EmpleadoDAO empleadoModel= new EmpleadoDAO();
     public Login() {
         initComponents();  
      
@@ -166,10 +168,10 @@ public class Login extends javax.swing.JFrame {
         JPingreso.add(JBNoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, 30));
 
         jBEntrar.setBackground(new java.awt.Color(238, 112, 82));
-        jBEntrar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBEntrar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         jBEntrar.setForeground(new java.awt.Color(238, 112, 82));
         jBEntrar.setText("Entrar");
-        jBEntrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBEntrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBEntrar.setContentAreaFilled(false);
         jBEntrar.setDefaultCapable(false);
         jBEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -378,18 +380,27 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
-        // TODO add your handling code here:
         
-        //JOptionPane.showMessageDialog(null, "Prueba desde Evento para abrir interfaz");
+         EmpleadoDAO empleadoModel= new EmpleadoDAO();
         
-        EmpleadoDAO empleadoModel= new EmpleadoDAO();
-        InterfazPrincipal interfazView = new InterfazPrincipal();
+        String busqueda_usuario = empleadoModel.buscarEmpleadoRegistrado(jTusuario.getText(), JPContraseña.getText());
         
-        ControllerLogin controllerLogin = new ControllerLogin(this, empleadoModel);
+        if (jTusuario.getText().equals("admin") && JPContraseña.getText().equals("admin")) {
+            JOptionPane.showMessageDialog(null, "Bienvenido(a) iniciaste sesión como administrador");
+            InterfazPrincipal interfazView = new InterfazPrincipal();
+            interfazView.setVisible(true);
+            this.dispose();
+            
+        } else if (busqueda_usuario.equals("Usuario encontrado")) {
+            String busqueda_nombre = empleadoModel.buscarNombreUsuario(jTusuario.getText());
+            JOptionPane.showMessageDialog(null, "Bienvenido al sistema DVD Rental" + busqueda_nombre);
+            InterfazPrincipal interfazView = new InterfazPrincipal();
+            interfazView.setVisible(true);
+            this.dispose();
+        } else{
         
-        //ControllerInterfaz controlador = new ControllerInterfaz(interfazView, empleadoModel);
-        //interfazView.setVisible(true);
-       
+        JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+        }
               
     }//GEN-LAST:event_jBEntrarActionPerformed
 

@@ -244,6 +244,7 @@ public class ClienteDAO {
                
                //sql = "select * from customer where upper ('"+%codigoCliente%'") like ?";
                
+                //sql = "select * from customer where first_name like '"+nombreCliente+"%'";
                 sql = "select * from customer where first_name like '"+nombreCliente+"%'";
                // sql = "select * from film where title like "+'"'filtro+'"';      
              

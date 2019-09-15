@@ -33,27 +33,29 @@ public class AlquilerDAO {
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "INSERT INTO rental values (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO rental values (?,?,?,?,?,?,?,?)";
             
             pstm = con.prepareStatement(sql);
             
             
             
-            pstm.setInt(1,a.getIDalquiler());
-            pstm.setTimestamp(2, a.getFechaAlquiler());
-            pstm.setInt(3,6);
-            pstm.setInt(4,4);
-            pstm.setNull(5,Types.NULL);
-            pstm.setInt(6,1);
-            pstm.setTimestamp(7, a.getFechaUltimaActualizacion());
-            
 //            pstm.setInt(1,a.getIDalquiler());
 //            pstm.setTimestamp(2, a.getFechaAlquiler());
-//            pstm.setInt(3,a.getIDInventario());
-//            pstm.setInt(4,a.getIDCliente());
+//            pstm.setInt(3,6);
+//            pstm.setInt(4,4);
+//            //pstm.setNull(5,Types.NULL);
 //            pstm.setTimestamp(5, a.getFechaDevolucion());
-//            pstm.setInt(6,a.getIDEmpleado());
+//            pstm.setInt(6,1);
 //            pstm.setTimestamp(7, a.getFechaUltimaActualizacion());
+            
+            pstm.setInt(1,a.getIDalquiler());
+            pstm.setTimestamp(2, a.getFechaAlquiler());
+            pstm.setInt(3,a.getIDInventario());
+            pstm.setInt(4,a.getIDCliente());
+            pstm.setTimestamp(5, a.getFechaDevolucion());
+            pstm.setInt(6,a.getIDEmpleado());
+            pstm.setTimestamp(7, a.getFechaUltimaActualizacion());
+            pstm.setBoolean(8, a.isStatusRental());
                 
             rtdo = pstm.executeUpdate();  
         }

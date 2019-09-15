@@ -1,7 +1,7 @@
 /*
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
- * Objetivo      : Interfaz Principal, permite realizar el llamado a los internal Frame
+ * Objetivo      : Interfaz Principal, permite realizar el llamado a los internal Frame e interactuar con el programa
  * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : InterfazPrincipal
  */
@@ -29,7 +29,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form InterfazPrincipal
      */
-    public InterfazPrincipal() {
+    private Empleado empleadoUsuario;
+    public InterfazPrincipal(Empleado empleadoUsuario) {
+        
+        this.empleadoUsuario = empleadoUsuario;
         initComponents();
       //  añadirPestañas();
         this.setLocationRelativeTo(null);
@@ -199,7 +202,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private void jMalquilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMalquilarActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Grabar alquiler");
-        iFalquiler alquilerView = new iFalquiler();
+        iFalquiler alquilerView = new iFalquiler(empleadoUsuario);
         AlquilerDAO alquilerModel= new AlquilerDAO();
         
         ControllerAlquiler alquilerControl = new ControllerAlquiler(alquilerView, alquilerModel);
@@ -268,6 +271,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         empleadoView.setVisible(true); 
     }//GEN-LAST:event_jMempladosActionPerformed
 
+    public Empleado getEmpleadoUsuario() {
+        return empleadoUsuario;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -298,7 +307,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfazPrincipal().setVisible(true);
+               // new InterfazPrincipal().setVisible(true);
             }
         });
     }

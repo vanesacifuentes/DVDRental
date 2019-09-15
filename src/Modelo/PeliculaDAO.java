@@ -353,7 +353,7 @@ public class PeliculaDAO {
         }
         
         catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "uisjdkv cas ");
+
             JOptionPane.showMessageDialog(null,"Código : " + 
                         ex.getErrorCode() + "\nError :" + ex.getMessage());
         }
@@ -389,7 +389,7 @@ public class PeliculaDAO {
            
                
                 //sql = "select * from film where title like '"+texto+"%'";
-                  sql = "select * from film where title like '"+texto+"%' and status = 'A'";  
+                  sql = "select * from film where title like '"+texto+"%' and status = 'A' order by film_id";  
              
             pstm = con.prepareStatement(sql);
             
@@ -420,7 +420,7 @@ public class PeliculaDAO {
         }
         
         catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "uisjdkv cas ");
+
             JOptionPane.showMessageDialog(null,"Código : " + 
                         ex.getErrorCode() + "\nError :" + ex.getMessage());
         }

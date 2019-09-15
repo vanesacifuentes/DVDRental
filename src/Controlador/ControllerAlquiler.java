@@ -12,12 +12,20 @@ import Modelo.Alquiler;
 import Modelo.AlquilerDAO;
 import Modelo.Cliente;
 import Modelo.ClienteDAO;
+import Modelo.Empleado;
+import Modelo.Inventario;
+import Modelo.InventarioDAO;
 import Modelo.Pelicula;
 import Modelo.PeliculaDAO;
 import Servicios.Fecha;
+import static com.oracle.jrockit.jfr.ContentType.Timestamp;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.util.ArrayList;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import java.util.Date;
+import java.sql.Timestamp;
 
 public class ControllerAlquiler {
 
@@ -25,40 +33,47 @@ public class ControllerAlquiler {
     private iFalquiler vista;
     private AlquilerDAO modelo;
     private Pelicula peliculaSelected;
+    private Cliente clienteSelected;
+    private Inventario inventarioSelected;
+    private ArrayList<Inventario> listaInventario_PelDisp;
+    private Empleado empleadoUsuario;
     //private ArrayList <Pelicula> listadoPelicula;
 
     public ControllerAlquiler(iFalquiler vista, AlquilerDAO modelo) {
 
+        
         this.vista = vista;
         this.modelo = modelo;
 
+        empleadoUsuario =  this.vista.getEmpleadoUsuario();
         PeliculaDAO modelPelicula = new PeliculaDAO();
 
         //Se carga en el JList la informacion proveniente de la base de datos
         ListenerAlquiler escucha = new ListenerAlquiler();
-        this.vista.getjTBuscador().addKeyListener(escucha);
-        this.vista.getjListBusquedaPeliculas().addKeyListener(escucha);
+        this.vista.getjTBuscadorPelicula().addKeyListener(escucha);
+        this.vista.getjListBusquedaPeliculas().addMouseListener(escucha);
 
         this.vista.getjTBuscarCliente().addKeyListener(escucha);
-        this.vista.getjListBusquedaPeliculas().addMouseListener(escucha);
-        
+        this.vista.getjListClienteID().addMouseListener(escucha);
+
         this.vista.getjBAlquilar().addActionListener(escucha);
-  
+
     }
 
     public class ListenerAlquiler implements ActionListener, MouseListener, KeyListener {
-        
-        
+
         //@Override
         public void actionPerformed(ActionEvent ae) {
             if (ae.getSource() == vista.getjBAlquilar()) {
                 JOptionPane.showMessageDialog(null, "Prueba alquilar");
+                InventarioDAO inventarioModel = new InventarioDAO();
+                //inventarioModel.actualizarStatusRental(listaInventario_PelDisp.get(0));
+
                 registrar();
             } else if (ae.getSource() == vista.getjBmodificar()) {
                 //actualizar();
             }
         }
-               
 
         @Override
         public void keyTyped(KeyEvent ke) {
@@ -72,18 +87,19 @@ public class ControllerAlquiler {
 
         @Override
         public void keyReleased(KeyEvent ke) {
-            
-            if(ke.getSource() == vista.getjTBuscador()){
-            
-            PeliculaDAO modelPelicula = new PeliculaDAO();
-            String buscar = vista.getjTBuscador().getText().trim();
-            vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(formatoString(buscar)));
-            
-            }else{   
-            ClienteDAO modelCliente = new ClienteDAO();
-            String buscar = vista.getjTBuscarCliente().getText().trim();
-            vista.cargarClientesLista(modelCliente.buscarCliente(formatoString(buscar)));
-        }
+
+            if (ke.getSource() == vista.getjTBuscadorPelicula()) {
+
+                PeliculaDAO modelPelicula = new PeliculaDAO();
+                String buscar = vista.getjTBuscadorPelicula().getText().trim();
+                vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(formatoString(buscar)));
+
+            } else if (ke.getSource() == vista.getjTBuscarCliente()) {
+
+                ClienteDAO modelCliente = new ClienteDAO();
+                String buscar = vista.getjTBuscarCliente().getText().trim();
+                vista.cargarClientesLista(modelCliente.buscarCliente(formatoString(buscar)));
+            }
         }
 
         @Override
@@ -96,30 +112,51 @@ public class ControllerAlquiler {
 
         @Override
         public void mouseReleased(MouseEvent me) {
-            
-            //if (me.getSource() == vista.getjTBuscador()){
+
+            if (me.getSource() == vista.getjListBusquedaPeliculas()) {
+
+                PeliculaDAO modelPelicula = new PeliculaDAO();
+                int indice = vista.getjListBusquedaPeliculas().getSelectedIndex();
+                ArrayList<Pelicula> p;
+                p = modelPelicula.buscarPeliculas(vista.getModeloBuscarPeliculas().getElementAt(indice).toString());
+                peliculaSelected = p.get(0);
                 
-            PeliculaDAO modelPelicula = new PeliculaDAO();
-            int indice = vista.getjListBusquedaPeliculas().getSelectedIndex();
-            ArrayList<Pelicula> p;
-            p = modelPelicula.buscarPeliculas(vista.getModelo().getElementAt(indice).toString());
-            Pelicula peliculaSelected = p.get(0);
-            vista.getjLTitulo().setText(peliculaSelected.getTitulo());
-            vista.getjLPrecio().setText("" + peliculaSelected.getTarifaRenta()+ " $US");
-            vista.getjTAreaSinopsis().setText("" + peliculaSelected.getDescripcion());
-            
-//            else{
-//            
-//            //Obtener el id del cliente
-//            ClienteDAO modelCliente = new ClienteDAO();
-//            int indice = vista.getjListClienteID().getSelectedIndex();
-//            ArrayList<Cliente> c;
-//            c = modelCliente.buscarCliente(vista.getModelo().getElementAt(indice).toString());  
-//            System.out.println("" + c);
-//            
-//            }
-         
+                
+                ArrayList<Inventario> listaInventario;
+                InventarioDAO inventarioModel = new InventarioDAO();
+                listaInventario = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),"todos");
+                
+                listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),"disponibles");
+                
+                vista.getjLTitulo().setText(peliculaSelected.getTitulo());
+                vista.getjLPrecio().setText("" + peliculaSelected.getTarifaRenta() + " $US");
+                vista.getjTAreaSinopsis().setText("" + peliculaSelected.getDescripcion());
+                vista.getjLCantTotalnum().setText(""+listaInventario.size());
+                vista.getjLCantidadDisponum().setText(""+listaInventario_PelDisp.size());
+                                
+                
+                
+                
+                
+                
+                
+            } else if (me.getSource() == vista.getjListClienteID()) {
+
+                //Obtener el id del cliente
+                ClienteDAO modelCliente = new ClienteDAO();
+
+                int indice = vista.getjListClienteID().getSelectedIndex();
+                ArrayList<Cliente> c;
+                c = modelCliente.buscarCliente(vista.getModeloBuscarCliente().getElementAt(indice).toString());
+                clienteSelected = c.get(0);
+                vista.getjLNombreCliente().setText(clienteSelected.getNombreCliente() + " " + clienteSelected.getApellidoCliente());
+                vista.getjLIDCliente().setText("" + clienteSelected.getClienteID());
+            }
+
         }
+        
+        
+        
 
         @Override
         public void mouseEntered(MouseEvent me) {
@@ -138,14 +175,12 @@ public class ControllerAlquiler {
                 allText = text.substring(1).toLowerCase();
                 return PrimeraLetra + allText;
             }
-            
+
         }
 
     }
-   
-       
-    
-   public void registrar() {
+
+    public void registrar() {
 
         if (vista.getjTIDAlquiler().equals("")) {
             vista.gestionMensajes("Ingrese el código",
@@ -156,19 +191,20 @@ public class ControllerAlquiler {
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
         } else {
             Alquiler alquiler = new Alquiler();
-            
-//            int anho = Integer.parseInt((String) vista.getjSpinnerAnho().getValue());
-//            int mes = Integer.parseInt((String)vista.getjSpinnerMes().getValue());
-//            int dia = Integer.parseInt((String)vista.getjSpinnerDia().getValue());
-            
-            alquiler.setIDalquiler(Integer.parseInt(vista.getjTIDAlquiler().getText()));
+
+            alquiler.setIDalquiler(20000);
             alquiler.setFechaAlquiler(Fecha.crearFechaTimeStamp());
-            //inventario 
-            //id de cliente alquiler.setIDCliente(Integer.parseInt(vista.get));
-           // alquiler.setFechaDevolucion(Fecha.crearFechaTimeStampEspecifico(anho,mes-1,dia));
+            alquiler.setIDInventario(listaInventario_PelDisp.get(0).getInventarioID());
+            alquiler.setIDCliente(clienteSelected.getClienteID());
             
-           // System.out.println(Fecha.crearFechaTimeStampEspecifico(anho,mes-1,dia));
+            
+            Date date = vista.getjDateChooserDev().getDate();
+            Timestamp times = new Timestamp(date.getTime());
+
+            alquiler.setFechaDevolucion(times);
+            alquiler.setIDEmpleado(empleadoUsuario.getEmpleadoID());
             alquiler.setFechaUltimaActualizacion(Fecha.crearFechaTimeStamp());
+            alquiler.setStatusRental(true);
 
             int resultado;
             resultado = modelo.grabarAlquiler(alquiler);
@@ -177,10 +213,8 @@ public class ControllerAlquiler {
                 vista.gestionMensajes("Registro Grabado con éxito",
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
-             //   ArrayList<Alquiler> listaalquiler;
-            }
-                
-             else {
+                //   ArrayList<Alquiler> listaalquiler;
+            } else {
                 vista.gestionMensajes("Error al grabar",
                         "Confirmación", JOptionPane.ERROR_MESSAGE);
             }
@@ -191,7 +225,4 @@ public class ControllerAlquiler {
         }
 
     }
-}   
-    
-    
-
+}

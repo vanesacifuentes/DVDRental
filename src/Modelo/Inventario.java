@@ -14,6 +14,7 @@ public class Inventario {
     private int peliculaID_inventario;
     private int tiendaID;
     private Timestamp ultimaActualizacion;
+    private String status;
 
     public Inventario() {
     }
@@ -49,6 +50,15 @@ public class Inventario {
     public void setUltimaActualizacion(Timestamp ultimaActualizacion) {
         this.ultimaActualizacion = ultimaActualizacion;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     
     
     

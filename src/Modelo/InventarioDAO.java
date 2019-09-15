@@ -19,6 +19,81 @@ public class InventarioDAO {
      * @param inventory_id id del inventario a listar, 0 se listaran todos
      * @return ArrayList, lista de objetos Inventario
      */
+    
+    public ArrayList<Inventario> extraerInventario_IdPelicula(int idPelicula)
+    {
+        ArrayList<Inventario> listadoInventario;
+        listadoInventario = new ArrayList<>();
+        
+        
+        
+       
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        
+        
+        try{
+            con = Fachada.getConnection();
+            String sql="";
+            
+           
+               
+                //sql = "select * from film where title like '"+texto+"%'";
+                //  sql = "select * from inventory where title like '"+texto+"%' and status = 'A'";  
+             sql = "select * from inventory where film_id = '"+idPelicula+"' order by inventory_id";  
+            pstm = con.prepareStatement(sql);
+            
+           
+            rs = pstm.executeQuery();
+                        
+            Inventario inventario = null;
+            while(rs.next()){
+                inventario = new Inventario();
+
+                
+               inventario.setInventarioID(rs.getInt("invetory_id"));
+                inventario.setPeliculaID_inventario(rs.getInt("film_id"));
+                inventario.setTiendaID(rs.getInt("store_id"));
+                inventario.setUltimaActualizacion(rs.getTimestamp("last_update"));
+                inventario.setStatus(rs.getString("status"));
+                
+            
+                listadoInventario.add(inventario);
+            }
+        }
+        
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "uisjdkv cas ");
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        finally{
+            try{
+                if(rs!=null) rs.close();
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return listadoInventario;
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+     
+        
+    
+    
+    
     public ArrayList <Inventario> listadoInventario(int inventory_id){   
         
         Connection con = null;

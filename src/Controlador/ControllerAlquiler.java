@@ -12,6 +12,8 @@ import Modelo.Alquiler;
 import Modelo.AlquilerDAO;
 import Modelo.Cliente;
 import Modelo.ClienteDAO;
+import Modelo.Inventario;
+import Modelo.InventarioDAO;
 import Modelo.Pelicula;
 import Modelo.PeliculaDAO;
 import Servicios.Fecha;
@@ -31,6 +33,7 @@ public class ControllerAlquiler {
     private AlquilerDAO modelo;
     private Pelicula peliculaSelected;
     private Cliente clienteSelected;
+    private Inventario inventarioSelected;
     //private ArrayList <Pelicula> listadoPelicula;
 
     public ControllerAlquiler(iFalquiler vista, AlquilerDAO modelo) {
@@ -113,6 +116,13 @@ public class ControllerAlquiler {
                 vista.getjLTitulo().setText(peliculaSelected.getTitulo());
                 vista.getjLPrecio().setText("" + peliculaSelected.getTarifaRenta() + " $US");
                 vista.getjTAreaSinopsis().setText("" + peliculaSelected.getDescripcion());
+                
+                
+                InventarioDAO inventario = new InventarioDAO();
+             
+                inventario.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId());
+                
+                
             } else if (me.getSource() == vista.getjListClienteID()) {
 
                 //Obtener el id del cliente

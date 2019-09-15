@@ -15,6 +15,7 @@ import Modelo.ClienteDAO;
 import Modelo.Pelicula;
 import Modelo.PeliculaDAO;
 import Servicios.Fecha;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.util.ArrayList;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
@@ -156,16 +157,13 @@ public class ControllerAlquiler {
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
         } else {
             Alquiler alquiler = new Alquiler();
-            
-//            int anho = Integer.parseInt((String) vista.getjSpinnerAnho().getValue());
-//            int mes = Integer.parseInt((String)vista.getjSpinnerMes().getValue());
-//            int dia = Integer.parseInt((String)vista.getjSpinnerDia().getValue());
+           
             
             alquiler.setIDalquiler(Integer.parseInt(vista.getjTIDAlquiler().getText()));
             alquiler.setFechaAlquiler(Fecha.crearFechaTimeStamp());
             //inventario 
             //id de cliente alquiler.setIDCliente(Integer.parseInt(vista.get));
-           // alquiler.setFechaDevolucion(Fecha.crearFechaTimeStampEspecifico(anho,mes-1,dia));
+           // alquiler.setFechaDevolucion((JTextFieldDateEditor)vista.getjDateChooserDev().getDateEditor().getUiComponent().get);
             
            // System.out.println(Fecha.crearFechaTimeStampEspecifico(anho,mes-1,dia));
             alquiler.setFechaUltimaActualizacion(Fecha.crearFechaTimeStamp());

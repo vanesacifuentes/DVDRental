@@ -389,7 +389,7 @@ public class PeliculaDAO {
            
                
                 //sql = "select * from film where title like '"+texto+"%'";
-                  sql = "select * from film where title like '"+texto+"%' and status = 'A'";  
+                  sql = "select * from film where title like '"+texto+"%' and status = 'A' order by film_id";  
              
             pstm = con.prepareStatement(sql);
             

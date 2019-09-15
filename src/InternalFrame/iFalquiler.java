@@ -472,6 +472,16 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     public JLabel getjLNombreCliente() {
         return jLNombreCliente;
     }
+
+    public JLabel getjLCantTotalnum() {
+        return jLCantTotalnum;
+    }
+
+    public JLabel getjLCantidadDisponum() {
+        return jLCantidadDisponum;
+    }
+    
+    
     
     
 

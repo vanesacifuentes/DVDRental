@@ -422,6 +422,8 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     public JDateChooser getjDateChooserDev() {
         return jDateChooserDev;
     }
+    
+    
 
  
     //Escuchas

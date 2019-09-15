@@ -15,9 +15,14 @@ import Modelo.ClienteDAO;
 import Modelo.Pelicula;
 import Modelo.PeliculaDAO;
 import Servicios.Fecha;
+import static com.oracle.jrockit.jfr.ContentType.Timestamp;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.util.ArrayList;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import java.util.Date;
+import java.sql.Timestamp;
 
 public class ControllerAlquiler {
 
@@ -112,7 +117,7 @@ public class ControllerAlquiler {
 //            
 //            //Obtener el id del cliente
 //            ClienteDAO modelCliente = new ClienteDAO();
-//            int indice = vista.getjListClienteID().getSelectedIndex();
+//            int indice = vista.get.getSelectedIndex();
 //            ArrayList<Cliente> c;
 //            c = modelCliente.buscarCliente(vista.getModelo().getElementAt(indice).toString());  
 //            System.out.println("" + c);
@@ -156,16 +161,17 @@ public class ControllerAlquiler {
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
         } else {
             Alquiler alquiler = new Alquiler();
-            
-//            int anho = Integer.parseInt((String) vista.getjSpinnerAnho().getValue());
-//            int mes = Integer.parseInt((String)vista.getjSpinnerMes().getValue());
-//            int dia = Integer.parseInt((String)vista.getjSpinnerDia().getValue());
+           
             
             alquiler.setIDalquiler(Integer.parseInt(vista.getjTIDAlquiler().getText()));
             alquiler.setFechaAlquiler(Fecha.crearFechaTimeStamp());
             //inventario 
             //id de cliente alquiler.setIDCliente(Integer.parseInt(vista.get));
-           // alquiler.setFechaDevolucion(Fecha.crearFechaTimeStampEspecifico(anho,mes-1,dia));
+            
+            Date date = vista.getjDateChooserDev().getDate();
+            Timestamp times = new Timestamp(date.getTime());
+
+            alquiler.setFechaDevolucion(times);
             
            // System.out.println(Fecha.crearFechaTimeStampEspecifico(anho,mes-1,dia));
             alquiler.setFechaUltimaActualizacion(Fecha.crearFechaTimeStamp());

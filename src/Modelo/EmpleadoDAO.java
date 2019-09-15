@@ -205,5 +205,100 @@ public class EmpleadoDAO {
         //consecutivoID = listadoCliente.size();
         return listadoEmpleado;
     }
+    
+     //Metodo para buscar por nombre usuario
+    
+    public String buscarNombreUsuario(String username) {
+        
+        String busquedaUsuario = null;
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
 
+
+        try {
+            con = Fachada.getConnection();
+            String sql = "";
+
+            sql = "SELECT username FROM staff WHERE = '" + username + "'";
+
+            pstm = con.prepareStatement(sql);
+
+            rs = pstm.executeQuery();
+
+            if(rs.next()){
+                
+                username = rs.getString("username");
+                busquedaUsuario = (username);
+     
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Código : "
+                    + ex.getErrorCode() + "\nError :" + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstm != null) {
+                    pstm.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Código : "
+                        + ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return busquedaUsuario;
+    }
+
+    
+    //Buscar empleado por username y contraseña y permite el ingreso en el loguin 
+    public String buscarEmpleadoRegistrado(String username, String contrasena) {
+        
+        String busquedaUsuario = null;
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+
+        try {
+            con = Fachada.getConnection();
+            String sql = "";
+
+            sql = "SELECT username, password FROM staff WHERE = '" +username + "' and '" +contrasena +"'";
+
+            pstm = con.prepareStatement(sql);
+
+            rs = pstm.executeQuery();
+
+            if(rs.next()){
+                
+                busquedaUsuario = "Usuario encontrado";
+            } else{
+                busquedaUsuario = "Usuario no encontrado";
+                
+//                username = rs.getString("username");
+//                contrasena = rs.getString("password");
+     
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Código : "
+                    + ex.getErrorCode() + "\nError :" + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstm != null) {
+                    pstm.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Código : "
+                        + ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return busquedaUsuario;
+    }
+    
+   
 }

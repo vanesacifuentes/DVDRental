@@ -1,7 +1,7 @@
 /*
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
- * Objetivo      : Interfaz Principal, permite realizar el llamado a los internal Frame
+ * Objetivo      : Interfaz Principal, permite realizar el llamado a los internal Frame e interactuar con el programa
  * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : InterfazPrincipal
  */

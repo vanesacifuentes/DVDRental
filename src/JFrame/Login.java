@@ -8,6 +8,9 @@ package JFrame;
 
 
 //import com.sun.awt.AWTUtilities;
+import Controlador.ControllerInterfaz;
+import Modelo.EmpleadoDAO;
+import Controlador.ControllerLogin;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,7 +53,6 @@ public class Login extends javax.swing.JFrame {
         JLMinimizar = new javax.swing.JLabel();
         JlCerrar = new javax.swing.JLabel();
         JPingreso = new javax.swing.JPanel();
-        jBentrar = new javax.swing.JButton();
         JLcontraseña = new javax.swing.JLabel();
         JLUsuario = new javax.swing.JLabel();
         jTusuario = new javax.swing.JTextField();
@@ -59,6 +61,7 @@ public class Login extends javax.swing.JFrame {
         JPContraseña = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         JBNoCuenta = new javax.swing.JButton();
+        jBEntrar = new javax.swing.JButton();
         JPImagenRegis = new javax.swing.JPanel();
         JPImagen1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -107,14 +110,6 @@ public class Login extends javax.swing.JFrame {
         JPingreso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         JPingreso.setForeground(new java.awt.Color(255, 255, 255));
         JPingreso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jBentrar.setBackground(new java.awt.Color(238, 112, 82));
-        jBentrar.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jBentrar.setForeground(new java.awt.Color(238, 112, 82));
-        jBentrar.setText("Entrar");
-        jBentrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jBentrar.setContentAreaFilled(false);
-        JPingreso.add(jBentrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 60, 30));
 
         JLcontraseña.setBackground(new java.awt.Color(238, 112, 82));
         JLcontraseña.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
@@ -169,6 +164,20 @@ public class Login extends javax.swing.JFrame {
             }
         });
         JPingreso.add(JBNoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, 30));
+
+        jBEntrar.setBackground(new java.awt.Color(238, 112, 82));
+        jBEntrar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBEntrar.setForeground(new java.awt.Color(238, 112, 82));
+        jBEntrar.setText("Entrar");
+        jBEntrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBEntrar.setContentAreaFilled(false);
+        jBEntrar.setDefaultCapable(false);
+        jBEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEntrarActionPerformed(evt);
+            }
+        });
+        JPingreso.add(jBEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 100, 40));
 
         getContentPane().add(JPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 510));
 
@@ -352,25 +361,41 @@ public class Login extends javax.swing.JFrame {
 
     private void jTusuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTusuarioFocusGained
         // TODO add your handling code here
-        if(jTusuario.getText().equals("Ingrese su usuario...")){
-            jTusuario.setText("");
-        }
+//        if(jTusuario.getText().equals("Ingrese su usuario...")){
+//            jTusuario.setText("");
+//        }
     }//GEN-LAST:event_jTusuarioFocusGained
 
     private void jTusuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTusuarioFocusLost
         // TODO add your handling code here
-        if(jTusuario.getText().equals("")){
-            jTusuario.setText("Ingrese su usuario...");
-        }
+//        if(jTusuario.getText().equals("")){
+//            jTusuario.setText("Ingrese su usuario...");
+//        }
     }//GEN-LAST:event_jTusuarioFocusLost
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-     public JButton getIngresar(){
-       return jBentrar;
-   }
+    private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
+        // TODO add your handling code here:
+        
+        //JOptionPane.showMessageDialog(null, "Prueba desde Evento para abrir interfaz");
+        
+        EmpleadoDAO empleadoModel= new EmpleadoDAO();
+        InterfazPrincipal interfazView = new InterfazPrincipal();
+        
+        ControllerLogin controllerLogin = new ControllerLogin(this, empleadoModel);
+        
+        //ControllerInterfaz controlador = new ControllerInterfaz(interfazView, empleadoModel);
+        //interfazView.setVisible(true);
+       
+              
+    }//GEN-LAST:event_jBEntrarActionPerformed
+
+    public JButton getjBEntrar() {
+        return jBEntrar;
+    }
    
    public JTextField getUsuario(){
        return jTusuario;
@@ -380,10 +405,11 @@ public class Login extends javax.swing.JFrame {
        return JPContraseña;
    }
    
-    public void addListenerJBentrar(ActionListener listen){
-       jBentrar.addActionListener(listen);
-   }
-   
+    public void addListenerBtnEntrar(ActionListener listen) {
+        jBEntrar.addActionListener(listen);
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -431,7 +457,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel JPingreso;
     private javax.swing.JTextField JTNombre;
     private javax.swing.JLabel JlCerrar;
-    private javax.swing.JButton jBentrar;
+    private javax.swing.JButton jBEntrar;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

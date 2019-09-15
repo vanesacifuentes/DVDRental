@@ -43,7 +43,8 @@ public class AlquilerDAO {
             pstm.setTimestamp(2, a.getFechaAlquiler());
             pstm.setInt(3,6);
             pstm.setInt(4,4);
-            pstm.setNull(5,Types.NULL);
+            //pstm.setNull(5,Types.NULL);
+            pstm.setTimestamp(5, a.getFechaDevolucion());
             pstm.setInt(6,1);
             pstm.setTimestamp(7, a.getFechaUltimaActualizacion());
             

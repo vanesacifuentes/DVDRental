@@ -353,7 +353,7 @@ public class PeliculaDAO {
         }
         
         catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "uisjdkv cas ");
+
             JOptionPane.showMessageDialog(null,"Código : " + 
                         ex.getErrorCode() + "\nError :" + ex.getMessage());
         }
@@ -420,7 +420,7 @@ public class PeliculaDAO {
         }
         
         catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "uisjdkv cas ");
+
             JOptionPane.showMessageDialog(null,"Código : " + 
                         ex.getErrorCode() + "\nError :" + ex.getMessage());
         }

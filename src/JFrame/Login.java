@@ -394,7 +394,7 @@ public class Login extends javax.swing.JFrame {
             
         } else if (empleadoUsuario !=null) {
               
-            JOptionPane.showMessageDialog(null, "Bienvenido al sistema DVD Rental \n" + ""+empleadoUsuario.getNombreEmpleado()+ " "+ empleadoUsuario.getApellidoEmpleado());
+            JOptionPane.showMessageDialog(null, "Bienvenido al sistema DVD Rental \n" + "\t"+empleadoUsuario.getNombreEmpleado()+ " "+ empleadoUsuario.getApellidoEmpleado());
             
             InterfazPrincipal interfazView = new InterfazPrincipal(empleadoUsuario);
             interfazView.setVisible(true);

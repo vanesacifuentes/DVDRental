@@ -196,7 +196,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jPinformacionPeliculs1.add(jLNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 210, 30));
 
         jLIDCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jPinformacionPeliculs1.add(jLIDCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 104, 50, 40));
+        jPinformacionPeliculs1.add(jLIDCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 50, 30));
 
         jPanel4.add(jPinformacionPeliculs1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 440, 160));
 
@@ -288,7 +288,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         });
         jPbotones1.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 80, 30));
 
-        jPanel4.add(jPbotones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 440, 70));
+        jPanel4.add(jPbotones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 440, 60));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

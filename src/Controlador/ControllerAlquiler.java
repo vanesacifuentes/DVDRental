@@ -67,7 +67,7 @@ public class ControllerAlquiler {
             if (ae.getSource() == vista.getjBAlquilar()) {
                 JOptionPane.showMessageDialog(null, "Prueba alquilar");
                 InventarioDAO inventarioModel = new InventarioDAO();
-                inventarioModel.actualizarStatusRental();
+                inventarioModel.actualizarStatusRental(listaInventario_PelDisp.get(0));
 
                 registrar();
             } else if (ae.getSource() == vista.getjBmodificar()) {

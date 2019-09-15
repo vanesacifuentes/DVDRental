@@ -8,6 +8,7 @@
 package JFrame;
 
 import Modelo.Categoria;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -93,6 +94,11 @@ public class jFcategoria extends javax.swing.JFrame {
         jTnombreCategoria.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTnombreCategoria.setForeground(new java.awt.Color(102, 102, 102));
         jTnombreCategoria.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTnombreCategoria.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTnombreCategoriaFocusGained(evt);
+            }
+        });
         jTnombreCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTnombreCategoriaActionPerformed(evt);
@@ -197,6 +203,34 @@ public class jFcategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBnuevoActionPerformed
 
+    private void jTnombreCategoriaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnombreCategoriaFocusGained
+        // TODO add your handling code here:
+        if (jTnombreCategoria.getText().equalsIgnoreCase("Campo Requerido")) {
+            jTnombreCategoria.setForeground(Color.BLACK);
+            jTnombreCategoria.setText("");
+        }
+    }//GEN-LAST:event_jTnombreCategoriaFocusGained
+
+    public int validarCampos()
+    {
+        int rtdo = 1;
+
+        if (jTnombreCategoria.getText().equals("") || jTnombreCategoria.getText().equals("Campo Requerido")) {
+
+            rtdo = 0;
+            jTnombreCategoria.setForeground(Color.red);
+            jTnombreCategoria.setText("Campo Requerido");
+
+        }
+        
+
+        return rtdo;
+        
+    }
+    
+    
+    
+    
     public void activarCampos(Boolean b) {
         jTnombreCategoria.setEnabled(b);
         //jTLenguajeID.setEnabled(b);

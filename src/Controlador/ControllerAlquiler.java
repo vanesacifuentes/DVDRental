@@ -10,6 +10,7 @@ package Controlador;
 import InternalFrame.iFalquiler;
 import Modelo.Alquiler;
 import Modelo.AlquilerDAO;
+import Modelo.Cliente;
 import Modelo.ClienteDAO;
 import Modelo.Pelicula;
 import Modelo.PeliculaDAO;
@@ -81,7 +82,7 @@ public class ControllerAlquiler {
             }else{   
             ClienteDAO modelCliente = new ClienteDAO();
             String buscar = vista.getjTBuscarCliente().getText().trim();
-            vista.cargarClientesLista(modelCliente.buscarCliente(buscar));
+            vista.cargarClientesLista(modelCliente.buscarCliente(formatoString(buscar)));
         }
         }
 
@@ -97,15 +98,27 @@ public class ControllerAlquiler {
         public void mouseReleased(MouseEvent me) {
             
             //if (me.getSource() == vista.getjTBuscador()){
+                
             PeliculaDAO modelPelicula = new PeliculaDAO();
             int indice = vista.getjListBusquedaPeliculas().getSelectedIndex();
             ArrayList<Pelicula> p;
             p = modelPelicula.buscarPeliculas(vista.getModelo().getElementAt(indice).toString());
             Pelicula peliculaSelected = p.get(0);
-            vista.getjTPrecio().setText("" + peliculaSelected.getTarifaRenta()+ " $US");
-            vista.getjTxTitulo().setText(peliculaSelected.getTitulo());
-            vista.getjTDuracion().setText("" + peliculaSelected.getLongitud() +" Minutos");
+            vista.getjLTitulo().setText(peliculaSelected.getTitulo());
+            vista.getjLPrecio().setText("" + peliculaSelected.getTarifaRenta()+ " $US");
+            vista.getjTAreaSinopsis().setText("" + peliculaSelected.getDescripcion());
             
+//            else{
+//            
+//            //Obtener el id del cliente
+//            ClienteDAO modelCliente = new ClienteDAO();
+//            int indice = vista.getjListClienteID().getSelectedIndex();
+//            ArrayList<Cliente> c;
+//            c = modelCliente.buscarCliente(vista.getModelo().getElementAt(indice).toString());  
+//            System.out.println("" + c);
+//            
+//            }
+         
         }
 
         @Override

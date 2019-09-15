@@ -271,6 +271,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         empleadoView.setVisible(true); 
     }//GEN-LAST:event_jMempladosActionPerformed
 
+    public Empleado getEmpleadoUsuario() {
+        return empleadoUsuario;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */

@@ -480,6 +480,12 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     public JLabel getjLCantidadDisponum() {
         return jLCantidadDisponum;
     }
+
+    public Empleado getEmpleadoUsuario() {
+        return empleadoUsuario;
+    }
+    
+    
     
     
     

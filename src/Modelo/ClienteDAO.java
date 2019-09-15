@@ -289,7 +289,10 @@ public class ClienteDAO {
         return listadoClientes;
         
         }
+        
+        
         return listadoClientes;
+        
     }
     
     

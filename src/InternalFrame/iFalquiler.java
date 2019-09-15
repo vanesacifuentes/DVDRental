@@ -64,6 +64,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jListClienteID = new javax.swing.JList<>();
         jLBuscarCliente4 = new javax.swing.JLabel();
+        jLNombreCliente = new javax.swing.JLabel();
         jLIDCliente = new javax.swing.JLabel();
         jPinformacionPeliculs2 = new javax.swing.JPanel();
         jLidAlquiler2 = new javax.swing.JLabel();
@@ -143,16 +144,17 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jLCodigoCliente.setBackground(new java.awt.Color(238, 112, 82));
         jLCodigoCliente.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         jLCodigoCliente.setForeground(new java.awt.Color(51, 51, 51));
-        jLCodigoCliente.setText("Código Cliente:");
+        jLCodigoCliente.setText("Nombre Cliente:");
         jLCodigoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPinformacionPeliculs1.add(jLCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 30));
+
+        jTBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTBuscarClienteActionPerformed(evt);
+            }
+        });
         jPinformacionPeliculs1.add(jTBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 200, 30));
 
-        jListClienteID.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane5.setViewportView(jListClienteID);
 
         jPinformacionPeliculs1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 200, 40));
@@ -164,9 +166,13 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         jLBuscarCliente4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPinformacionPeliculs1.add(jLBuscarCliente4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 30));
 
+        jLNombreCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLNombreCliente.setText("fdfd");
+        jPinformacionPeliculs1.add(jLNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 210, 30));
+
         jLIDCliente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLIDCliente.setText("fdfd");
-        jPinformacionPeliculs1.add(jLIDCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 90, 30));
+        jLIDCliente.setText("sdsa");
+        jPinformacionPeliculs1.add(jLIDCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 104, 50, 40));
 
         jPanel4.add(jPinformacionPeliculs1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 440, 150));
 
@@ -346,6 +352,10 @@ public class iFalquiler extends javax.swing.JInternalFrame {
         inventarioView.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTBuscarClienteActionPerformed
+
     //Método para cargar al JList el listado por nombre de Pelicula
     public void cargarPeliculasLista(ArrayList<Pelicula> listaPelicula) {
         modeloBuscarPelicula.removeAllElements();
@@ -419,6 +429,18 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     public JDateChooser getjDateChooserDev() {
         return jDateChooserDev;
     }
+
+    public JList<String> getjListClienteID() {
+        return jListClienteID;
+    }
+
+    public JLabel getjLCodigoCliente() {
+        return jLCodigoCliente;
+    }
+
+    public JLabel getjLNombreCliente() {
+        return jLNombreCliente;
+    }
     
     
 
@@ -448,6 +470,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLCodigoCliente;
     private javax.swing.JLabel jLCodigoCliente2;
     private javax.swing.JLabel jLIDCliente;
+    private javax.swing.JLabel jLNombreCliente;
     private javax.swing.JLabel jLPrecio;
     private javax.swing.JLabel jLTitulo;
     private javax.swing.JLabel jLabel1;

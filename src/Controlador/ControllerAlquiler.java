@@ -30,6 +30,7 @@ public class ControllerAlquiler {
     private iFalquiler vista;
     private AlquilerDAO modelo;
     private Pelicula peliculaSelected;
+    private Cliente clienteSelected;
     //private ArrayList <Pelicula> listadoPelicula;
 
     public ControllerAlquiler(iFalquiler vista, AlquilerDAO modelo) {
@@ -45,7 +46,7 @@ public class ControllerAlquiler {
         this.vista.getjListBusquedaPeliculas().addKeyListener(escucha);
 
         this.vista.getjTBuscarCliente().addKeyListener(escucha);
-        this.vista.getjListBusquedaPeliculas().addMouseListener(escucha);
+        this.vista.getjListClienteID().addMouseListener(escucha);
         
         this.vista.getjBAlquilar().addActionListener(escucha);
   
@@ -84,7 +85,7 @@ public class ControllerAlquiler {
             String buscar = vista.getjTBuscador().getText().trim();
             vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(formatoString(buscar)));
             
-            }else{   
+            }else if (ke.getSource() == vista.getjTBuscarCliente()){   
             ClienteDAO modelCliente = new ClienteDAO();
             String buscar = vista.getjTBuscarCliente().getText().trim();
             vista.cargarClientesLista(modelCliente.buscarCliente(formatoString(buscar)));
@@ -102,27 +103,34 @@ public class ControllerAlquiler {
         @Override
         public void mouseReleased(MouseEvent me) {
             
-            //if (me.getSource() == vista.getjTBuscador()){
+            if (me.getSource() == vista.getjListBusquedaPeliculas()){
                 
             PeliculaDAO modelPelicula = new PeliculaDAO();
             int indice = vista.getjListBusquedaPeliculas().getSelectedIndex();
             ArrayList<Pelicula> p;
             p = modelPelicula.buscarPeliculas(vista.getModelo().getElementAt(indice).toString());
-            Pelicula peliculaSelected = p.get(0);
+            peliculaSelected = p.get(0);
+            
             vista.getjLTitulo().setText(peliculaSelected.getTitulo());
             vista.getjLPrecio().setText("" + peliculaSelected.getTarifaRenta()+ " $US");
             vista.getjTAreaSinopsis().setText("" + peliculaSelected.getDescripcion());
+            }
             
-//            else{
-//            
-//            //Obtener el id del cliente
-//            ClienteDAO modelCliente = new ClienteDAO();
-//            int indice = vista.get.getSelectedIndex();
-//            ArrayList<Cliente> c;
-//            c = modelCliente.buscarCliente(vista.getModelo().getElementAt(indice).toString());  
-//            System.out.println("" + c);
-//            
-//            }
+            else if (me.getSource() == vista.getjListClienteID()){
+            
+            //Obtener el id del cliente
+            ClienteDAO modelCliente = new ClienteDAO();
+            
+            int indice = vista.getjListClienteID().getSelectedIndex();
+            ArrayList<Cliente> c;
+            c = modelCliente.buscarCliente(vista.getModelo().getElementAt(indice).toString());  
+            clienteSelected = c.get(0);
+            
+            JOptionPane.showMessageDialog(null, c.get(0));
+            
+            vista.getjLNombreCliente().setText(clienteSelected.getNombreCliente() +" " +clienteSelected.getApellidoCliente());
+            vista.getjLCodigoCliente().setText(""+ clienteSelected.getClienteID());
+            }
          
         }
 

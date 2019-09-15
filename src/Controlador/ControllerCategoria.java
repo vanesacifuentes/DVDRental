@@ -12,13 +12,13 @@ import JFrame.jFcategoria;
 import Modelo.Categoria;
 import Modelo.CategoriaDAO;
 import Servicios.Fecha;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
 
 public class ControllerCategoria {
 
@@ -27,7 +27,7 @@ public class ControllerCategoria {
     iFpelicula vistaPelicula;
 
     //Constructor Controlador de categoria
-    public ControllerCategoria(jFcategoria vista, CategoriaDAO modelo,iFpelicula vistapelicula) {
+    public ControllerCategoria(jFcategoria vista, CategoriaDAO modelo, iFpelicula vistapelicula) {
 
         this.vista = vista;
         this.modelo = modelo;
@@ -41,6 +41,7 @@ public class ControllerCategoria {
         this.vista.getjBmodificar().addActionListener(escuchador);
 
     }
+
     //Construccion clase ListenerCategoria para manejar los eventos
     public class ListenerCategoria implements ActionListener, MouseListener {
 
@@ -79,14 +80,16 @@ public class ControllerCategoria {
                 borrar();
             }
         }
-        
+
         //Método registrar categoria
         public void registrar() {
 
-            if (vista.getjTCategoriaID().equals("")) {
-                vista.gestionMensajes("Ingrese el código",
+            if (vista.validarCampos() == 0) {
+
+                JOptionPane.showMessageDialog(null, "Ingrese Todos los Campos Requeridos");
+                /*vista.gestionMensajes("Ingrese el código",
                         "Error de Entrada", JOptionPane.ERROR_MESSAGE);
-                /*else if (vista.getNivel().trim().
+                else if (vista.getNivel().trim().
                            equals("Seleccionar ...")){
                    vista.gestionMensajes("Seleccione un nivel",
                            "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
@@ -130,58 +133,72 @@ public class ControllerCategoria {
             }
 
         }
+
         //Método actualizar categoria
         public void actualizar() {
 
-             String codigo;
+            String codigo;
             codigo = (vista.getjTCategoriaID().getText());
-            
-            if(codigo.equalsIgnoreCase("")){
-                 vista.gestionMensajes(
-                         "Por favor seleccione una Categoría de la tabla",
-                         "Mensaje de Advertencia ", 
-                    JOptionPane.ERROR_MESSAGE);
-            }else{
-                Categoria categoria = new Categoria();
 
-                //Se configura los datos en el objeto cliente de la clase Categoria
-                categoria.setCategoriaId(Integer.parseInt(vista.getjTCategoriaID().getText().trim()));
-                categoria.setNombreCategoria(vista.getjTnombreCategoria().getText());
-                categoria.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
+            if (codigo.equalsIgnoreCase("")) {
+                vista.gestionMensajes(
+                        "Por favor seleccione una Categoría de la tabla",
+                        "Mensaje de Advertencia ",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (vista.validarCampos() == 0) {
 
-                if (modelo.modificarCategoria(categoria) == 1) {
-                    vista.gestionMensajes(
-                            "Actualización exitosa",
-                            "Confirmación ",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    vista.nuevaAccion();
+                    JOptionPane.showMessageDialog(null, "Ingrese Todos los Campos Requeridos");
+                    /*vista.gestionMensajes("Ingrese el código",
+                        "Error de Entrada", JOptionPane.ERROR_MESSAGE);
+                else if (vista.getNivel().trim().
+                           equals("Seleccionar ...")){
+                   vista.gestionMensajes("Seleccione un nivel",
+                           "Error de Entrada", JOptionPane.ERROR_MESSAGE );  */
+                } else {
+
+                    Categoria categoria = new Categoria();
+
+                    //Se configura los datos en el objeto cliente de la clase Categoria
+                    categoria.setCategoriaId(Integer.parseInt(vista.getjTCategoriaID().getText().trim()));
+                    categoria.setNombreCategoria(vista.getjTnombreCategoria().getText());
+                    categoria.setUltimaActualizacion(Fecha.crearFechaTimeStamp());
+
+                    if (modelo.modificarCategoria(categoria) == 1) {
+                        vista.gestionMensajes(
+                                "Actualización exitosa",
+                                "Confirmación ",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        vista.nuevaAccion();
 
 //                vista.activarControles(false); 
 //                vista.nuevoAction();
-                    ArrayList<Categoria> listadoCategorias;
-                    listadoCategorias = modelo.listadoCateogoria();
-                    vista.cargarCategoriaTabla(listadoCategorias);
-                    vistaPelicula.cargarCategoriasCombo(listadoCategorias);
-                } else {
-                    vista.gestionMensajes(
-                            "Actualización Falida jajaja",
-                            "Confirmación ",
-                            JOptionPane.ERROR_MESSAGE);
+                        ArrayList<Categoria> listadoCategorias;
+                        listadoCategorias = modelo.listadoCateogoria();
+                        vista.cargarCategoriaTabla(listadoCategorias);
+                        vistaPelicula.cargarCategoriasCombo(listadoCategorias);
+                    } else {
+                        vista.gestionMensajes(
+                                "Actualización Falida jajaja",
+                                "Confirmación ",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
 
         }
+
         //Método borrar categoria
         private void borrar() {
             String codigo;
             codigo = (vista.getjTCategoriaID().getText());
-            
-            if(codigo.equalsIgnoreCase("")){
-                 vista.gestionMensajes(
-                         "Por favor seleccione una Categoría de la tabla",
-                         "Mensaje de Advertencia ", 
-                    JOptionPane.ERROR_MESSAGE);
-            }else{
+
+            if (codigo.equalsIgnoreCase("")) {
+                vista.gestionMensajes(
+                        "Por favor seleccione una Categoría de la tabla",
+                        "Mensaje de Advertencia ",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
                 int respuesta = JOptionPane.showConfirmDialog(null,
                         "¿Desea Eliminar la Categoría: " + vista.getjTableCategoria().getValueAt(
                                 vista.getjTableCategoria().getSelectedRow(), 1),
@@ -189,7 +206,7 @@ public class ControllerCategoria {
 
                 if (respuesta == JOptionPane.YES_OPTION) {
 
-                    if(modelo.borrarCategoria(Integer.parseInt(codigo)) ==  1){
+                    if (modelo.borrarCategoria(Integer.parseInt(codigo)) == 1) {
                         JOptionPane.showMessageDialog(null,
                                 "Registro Borrado con éxtio",
                                 "Confirmación de acción",
@@ -208,19 +225,17 @@ public class ControllerCategoria {
                     }
                 }
             }
-        
+
         }
+
         //Método escucha para seleccionar la tabla y carguen los datos de categoria seleccionado
         @Override
         public void mouseClicked(MouseEvent me) {
-            if (vista.getjTableCategoria().getSelectedRow() == -1) {
-                if (vista.getjTableCategoria().getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "No hay registros");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Seleccione una fila");
-                }
-            } else {
+            if (vista.getjBnuevo().getText().equals("Grabar")) {
 
+            } else {
+ 
+                vista.getjTnombreCategoria().setForeground(Color.BLACK);
                 int indiceTabla = vista.getjTableCategoria().getSelectedRow();
                 ArrayList<Categoria> ListaCategorias = modelo.listadoCateogoria();
                 vista.getjTCategoriaID().setText("" + ListaCategorias.get(indiceTabla).getCategoriaId());

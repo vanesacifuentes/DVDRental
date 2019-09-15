@@ -8,9 +8,12 @@
 package JFrame;
 
 import Modelo.Actor;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,19 +21,18 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-
 public class jFactor extends javax.swing.JFrame {
 
     /**
      * Creates new form jFautor
      */
-    
     public int valor;
+
     public jFactor() {
         initComponents();
         activarCampos(false);
         jTActorID.setEnabled(false);
-        
+
     }
 
     /**
@@ -71,11 +73,6 @@ public class jFactor extends javax.swing.JFrame {
         jTActorID.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTActorID.setForeground(new java.awt.Color(102, 102, 102));
         jTActorID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTActorID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTActorIDActionPerformed(evt);
-            }
-        });
         jPingreso.add(jTActorID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 20));
 
         jLNombreActor.setBackground(new java.awt.Color(238, 112, 82));
@@ -99,9 +96,9 @@ public class jFactor extends javax.swing.JFrame {
         jTnombreActor.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTnombreActor.setForeground(new java.awt.Color(102, 102, 102));
         jTnombreActor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTnombreActor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTnombreActorActionPerformed(evt);
+        jTnombreActor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTnombreActorFocusGained(evt);
             }
         });
         jPingreso.add(jTnombreActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 240, -1));
@@ -116,9 +113,9 @@ public class jFactor extends javax.swing.JFrame {
         jTApellidoActor.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTApellidoActor.setForeground(new java.awt.Color(102, 102, 102));
         jTApellidoActor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTApellidoActor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTApellidoActorActionPerformed(evt);
+        jTApellidoActor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTApellidoActorFocusGained(evt);
             }
         });
         jPingreso.add(jTApellidoActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 240, -1));
@@ -207,21 +204,26 @@ public class jFactor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTActorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTActorIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTActorIDActionPerformed
-
-    private void jTnombreActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreActorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTnombreActorActionPerformed
-
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBnuevoActionPerformed
 
-    private void jTApellidoActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTApellidoActorActionPerformed
+    private void jTApellidoActorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTApellidoActorFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTApellidoActorActionPerformed
+        if (jTApellidoActor.getText().equalsIgnoreCase("Campo Requerido")) {
+            jTApellidoActor.setForeground(Color.BLACK);
+            jTApellidoActor.setText("");
+        }
+    }//GEN-LAST:event_jTApellidoActorFocusGained
+
+    private void jTnombreActorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnombreActorFocusGained
+        // TODO add your handling code here:
+
+        if (jTnombreActor.getText().equalsIgnoreCase("Campo Requerido")) {
+            jTnombreActor.setForeground(Color.BLACK);
+            jTnombreActor.setText("");
+        }
+    }//GEN-LAST:event_jTnombreActorFocusGained
 
     public JButton getjBeliminar() {
         return jBeliminar;
@@ -259,19 +261,18 @@ public class jFactor extends javax.swing.JFrame {
         return jLFechaActu;
     }
 
-
     public void activarCampos(Boolean b) {
-        
+
         jTnombreActor.setEnabled(b);
-        jTApellidoActor.setEnabled(b); 
-       
+        jTApellidoActor.setEnabled(b);
+
     }
 
     public void setearCampos() {
         jTActorID.setText("");
         jTnombreActor.setText("");
         jTApellidoActor.setText("");
-         
+
     }
 
     public void nuevaAccion() {
@@ -281,7 +282,7 @@ public class jFactor extends javax.swing.JFrame {
         jBmodificar.setText("Modificar");
         jBeliminar.setVisible(true);
     }
-    
+
     //Escuchas
     public void addListenerBtnNuevo(ActionListener listenActor) {
 
@@ -300,7 +301,7 @@ public class jFactor extends javax.swing.JFrame {
     public void addMouseListenerTabla(MouseListener listenActor) {
         jTableActores.addMouseListener(listenActor);
     }
-    
+
     public void gestionMensajes(String mensaje, String titulo, int icono) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
@@ -325,11 +326,33 @@ public class jFactor extends javax.swing.JFrame {
         }
 
         valor = Integer.parseInt("" + model_actor.getValueAt(model_actor.getRowCount() - 1, 0)) + 1;
-        
+
     }
-    
-    
-    
+
+    public int validarCampos() {
+        int rtdo = 1;
+
+        if (jTnombreActor.getText().equals("") || jTnombreActor.getText().equals("Campo Requerido")) {
+
+            rtdo = 0;
+            mostrarCamposVacios(jTnombreActor);
+
+        }
+        if (jTApellidoActor.getText().equals("") || jTApellidoActor.getText().equals("Campo Requerido")) {
+            rtdo = 0;
+
+            mostrarCamposVacios(jTApellidoActor);
+        }
+
+        return rtdo;
+    }
+
+    public void mostrarCamposVacios(JTextField jt) {
+        jt.setForeground(Color.red);
+        jt.setText("Campo Requerido");
+
+    }
+
     /**
      * @param args the command line arguments
      */

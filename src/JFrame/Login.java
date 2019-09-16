@@ -133,9 +133,6 @@ public class Login extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTusuarioFocusGained(evt);
             }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTusuarioFocusLost(evt);
-            }
         });
         JPingreso.add(jTusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 170, 30));
 
@@ -363,17 +360,10 @@ public class Login extends javax.swing.JFrame {
 
     private void jTusuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTusuarioFocusGained
         // TODO add your handling code here
-        if(jTusuario.getText().equals("Ingrese su usuario...")){
+       
             jTusuario.setText("");
-        }
+        
     }//GEN-LAST:event_jTusuarioFocusGained
-
-    private void jTusuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTusuarioFocusLost
-        // TODO add your handling code here
-        if(jTusuario.getText().equals("")){
-            jTusuario.setText("Ingrese su usuario...");
-        }
-    }//GEN-LAST:event_jTusuarioFocusLost
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:

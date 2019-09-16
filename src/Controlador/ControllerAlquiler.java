@@ -91,7 +91,7 @@ public class ControllerAlquiler {
 
                 PeliculaDAO modelPelicula = new PeliculaDAO();
                 String buscar = vista.getjTBuscadorPelicula().getText().trim();
-                vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(formatoString(buscar)));
+                vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(formatoString(buscar),"titulo"));
 
             } else if (ke.getSource() == vista.getjTBuscarCliente()) {
 
@@ -117,7 +117,7 @@ public class ControllerAlquiler {
                 PeliculaDAO modelPelicula = new PeliculaDAO();
                 int indice = vista.getjListBusquedaPeliculas().getSelectedIndex();
                 ArrayList<Pelicula> p;
-                p = modelPelicula.buscarPeliculas(vista.getModeloBuscarPeliculas().getElementAt(indice).toString());
+                p = modelPelicula.buscarPeliculas(vista.getModeloBuscarPeliculas().getElementAt(indice).toString(),"allInfo");
                 peliculaSelected = p.get(0);
                 
                 

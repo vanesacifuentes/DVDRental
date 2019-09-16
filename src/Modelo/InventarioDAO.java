@@ -144,7 +144,7 @@ public class InventarioDAO {
             
             con = Fachada.getConnection();
             
-            String sql = " UPDATE inventory SET status_rental= 'true' WHERE inventory_id = '" + inventario_id + "'";
+            String sql = " UPDATE inventory SET status_rental= 'true' WHERE inventory_id = ? ";
        
             pstm = con.prepareStatement(sql);       
             pstm.setInt(1, inventario_id);

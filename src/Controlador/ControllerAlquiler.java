@@ -191,7 +191,7 @@ public class ControllerAlquiler {
         } else {
             Alquiler alquiler = new Alquiler();
 
-            alquiler.setIDalquiler(20000);
+            alquiler.setIDalquiler(Integer.parseInt(vista.getjTIDAlquiler().getText()));
             alquiler.setFechaAlquiler(Fecha.crearFechaTimeStamp());
             alquiler.setIDInventario(listaInventario_PelDisp.get(0).getInventarioID());
             alquiler.setIDCliente(clienteSelected.getClienteID());

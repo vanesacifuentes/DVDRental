@@ -365,8 +365,8 @@ public class PeliculaDAO {
                 } else if (validador.equals("titulo")) {
 
                     sql = "SELECT film.title FROM film, inventory"
-                            + " WHERE film.title like '" + texto + "%' and "
-                            + "film.film_id = inventory.inventory_id and inventory.status_rental ='f'";
+                            + " WHERE film.film_id = inventory.inventory_id and inventory.status_rental ='f'";
+                            
                 }
                 pstm = con.prepareStatement(sql);
 

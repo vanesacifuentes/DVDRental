@@ -19,7 +19,7 @@ public class InventarioDAO {
      * @param inventory_id id del inventario a listar, 0 se listaran todos
      * @return ArrayList, lista de objetos Inventario
      */
-    public ArrayList<Inventario> extraerInventario_IdPelicula(int idPelicula,String s) {
+    public ArrayList<Inventario> extraerInventario_IdPelicula(int idPelicula,String s,int store_id) {
         ArrayList<Inventario> listadoInventario;
         listadoInventario = new ArrayList<>();
 
@@ -32,14 +32,16 @@ public class InventarioDAO {
             String sql = "";
 
             if (s.equals("todos")) {
-                sql = "select * from inventory where film_id = '" + idPelicula + "' order by inventory_id";
+                sql = "select * from inventory where film_id = '" + idPelicula + "' and"
+                        + " store_id = '"+store_id+"' order by inventory_id";
             } else if(s.equals("disponibles")) {
-                sql = "select * from inventory where status_rental = false and film_id = '" + idPelicula + "'";
+                sql = "select * from inventory where status_rental = false and film_id = '" + idPelicula + "' and"
+                        + " store_id = '"+store_id+"' order by inventory_id";
             }
             pstm = con.prepareStatement(sql);
 
             rs = pstm.executeQuery();
-
+            
             Inventario inventario = null;
             while (rs.next()) {
                 inventario = new Inventario();

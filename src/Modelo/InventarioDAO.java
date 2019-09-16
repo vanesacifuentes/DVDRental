@@ -127,7 +127,7 @@ public class InventarioDAO {
         return listadoInventario;
     }
     
-     //Metodo para cambiar estado de inventario de true a false 
+     //Metodo para cambiar estado de inventario de true a false //
     public void actualizarStatusRental(int inventario_id){   
      
        

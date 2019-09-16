@@ -260,7 +260,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
                 jBAlquilarActionPerformed(evt);
             }
         });
-        jPbotones1.add(jBAlquilar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 90, 30));
+        jPbotones1.add(jBAlquilar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 90, 30));
 
         jBmodificar.setBackground(new java.awt.Color(238, 112, 82));
         jBmodificar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
@@ -273,7 +273,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
                 jBmodificarActionPerformed(evt);
             }
         });
-        jPbotones1.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 90, 30));
+        jPbotones1.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 90, 30));
 
         jBeliminar.setBackground(new java.awt.Color(238, 112, 82));
         jBeliminar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
@@ -286,7 +286,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
                 jBeliminarActionPerformed(evt);
             }
         });
-        jPbotones1.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 80, 30));
+        jPbotones1.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 80, 30));
 
         jPanel4.add(jPbotones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 440, 60));
 

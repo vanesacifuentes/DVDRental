@@ -68,7 +68,7 @@ public class ControllerDireccion {
             direccion.setDistrito(vista.getjTDistrito().getText());
             direccion.setTelefono(vista.getjTtelefono().getText());
             direccion.setCiudadID_direccion(vista.getjComboCiudad().getSelectedIndex());
-            direccion.setCodigoPostal(vista.getjTCodigoPostal().getText());
+           // direccion.setCodigoPostal(vista.getjTCodigoPostal().getText()); se cambio a combo 
             direccion.setUltimaActualizacionDireccion(Fecha.crearFechaTimeStamp());
             
             

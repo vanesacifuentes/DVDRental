@@ -226,6 +226,12 @@ public class iFempleado extends javax.swing.JInternalFrame {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -244,7 +250,7 @@ public class iFempleado extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTableEmpleado);
         jTableEmpleado.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        jPtabla.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 660, 140));
+        jPtabla.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 140));
 
         jPanelEmpleado.add(jPtabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 660, 150));
 

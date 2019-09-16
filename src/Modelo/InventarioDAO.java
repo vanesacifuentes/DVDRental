@@ -14,10 +14,6 @@ import javax.swing.JOptionPane;
 
 public class InventarioDAO {
     
-//      UPDATE inventory
-//   SET
-//       status_rental='false'
-// WHERE inventory_id = 1 and status_rental= 'true'      
     /**
      *
      * @param inventory_id id del inventario a listar, 0 se listaran todos
@@ -130,5 +126,48 @@ public class InventarioDAO {
         }
         return listadoInventario;
     }
-
+    
+     //Metodo para cambiar estado de inventario de true a false 
+    public void actualizarStatusRental(int inventario_id){   
+     
+       
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        
+        int rtdo;
+        rtdo = 0;
+        
+        Inventario inventario= null;
+        
+        try{
+            
+            con = Fachada.getConnection();
+            
+            String sql = " UPDATE inventory SET status_rental= 'true' WHERE inventory_id = '" + inventario_id + "'";
+       
+            pstm = con.prepareStatement(sql);       
+            pstm.setInt(1, inventario_id);
+    
+            rtdo = pstm.executeUpdate();
+              
+            
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        } 
+        finally{
+            try{
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+                 
+        }
+   
+    }
+        
 }

@@ -41,11 +41,10 @@ public class ControllerAlquiler {
 
     public ControllerAlquiler(iFalquiler vista, AlquilerDAO modelo) {
 
-        
         this.vista = vista;
         this.modelo = modelo;
 
-        empleadoUsuario =  this.vista.getEmpleadoUsuario();
+        empleadoUsuario = this.vista.getEmpleadoUsuario();
         PeliculaDAO modelPelicula = new PeliculaDAO();
 
         //Se carga en el JList la informacion proveniente de la base de datos
@@ -65,10 +64,14 @@ public class ControllerAlquiler {
         //@Override
         public void actionPerformed(ActionEvent ae) {
             if (ae.getSource() == vista.getjBAlquilar()) {
-                JOptionPane.showMessageDialog(null, "Prueba alquilar");
-                InventarioDAO inventarioModel = new InventarioDAO();
-                registrar();
-                inventarioModel.actualizarStatusRental(listaInventario_PelDisp.get(0).getInventarioID());
+                if (listaInventario_PelDisp.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "Pelicula No disponible en esta Tienda");
+                } else {
+
+                    InventarioDAO inventarioModel = new InventarioDAO();
+                    registrar();
+                    inventarioModel.actualizarStatusRental(listaInventario_PelDisp.get(0).getInventarioID());
+                }
             } else if (ae.getSource() == vista.getjBmodificar()) {
                 //actualizar();
             }
@@ -91,7 +94,7 @@ public class ControllerAlquiler {
 
                 PeliculaDAO modelPelicula = new PeliculaDAO();
                 String buscar = vista.getjTBuscadorPelicula().getText().trim();
-                vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(formatoString(buscar)));
+                vista.cargarPeliculasLista(modelPelicula.buscarPeliculas(formatoString(buscar), "allInfo"));
 
             } else if (ke.getSource() == vista.getjTBuscarCliente()) {
 
@@ -114,31 +117,31 @@ public class ControllerAlquiler {
 
             if (me.getSource() == vista.getjListBusquedaPeliculas()) {
 
-                PeliculaDAO modelPelicula = new PeliculaDAO();
+                
+                
+               
                 int indice = vista.getjListBusquedaPeliculas().getSelectedIndex();
+                
+                
+                PeliculaDAO modelPelicula = new PeliculaDAO(); 
                 ArrayList<Pelicula> p;
-                p = modelPelicula.buscarPeliculas(vista.getModeloBuscarPeliculas().getElementAt(indice).toString());
+                p = modelPelicula.buscarPeliculas(vista.getModeloBuscarPeliculas().getElementAt(indice).toString(), "allInfo");
                 peliculaSelected = p.get(0);
-                
-                
+                vista.getjTBuscadorPelicula().setText(vista.getModeloBuscarPeliculas().getElementAt(indice).toString());
+                vista.getModeloBuscarPeliculas().removeAllElements();
+
                 ArrayList<Inventario> listaInventario;
                 InventarioDAO inventarioModel = new InventarioDAO();
-                listaInventario = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),"todos");
-                
-                listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),"disponibles");
-                
+                listaInventario = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "todos", empleadoUsuario.getTiendaID_Empleado());
+
+                listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "disponibles", empleadoUsuario.getTiendaID_Empleado());
+
                 vista.getjLTitulo().setText(peliculaSelected.getTitulo());
                 vista.getjLPrecio().setText("" + peliculaSelected.getTarifaRenta() + " $US");
                 vista.getjTAreaSinopsis().setText("" + peliculaSelected.getDescripcion());
-                vista.getjLCantTotalnum().setText(""+listaInventario.size());
-                vista.getjLCantidadDisponum().setText(""+listaInventario_PelDisp.size());
-                                
-                
-                
-                
-                
-                
-                
+                vista.getjLCantTotalnum().setText("" + listaInventario.size());
+                vista.getjLCantidadDisponum().setText("" + listaInventario_PelDisp.size());
+
             } else if (me.getSource() == vista.getjListClienteID()) {
 
                 //Obtener el id del cliente
@@ -150,12 +153,11 @@ public class ControllerAlquiler {
                 clienteSelected = c.get(0);
                 vista.getjLNombreCliente().setText(clienteSelected.getNombreCliente() + " " + clienteSelected.getApellidoCliente());
                 vista.getjLIDCliente().setText("" + clienteSelected.getClienteID());
+                vista.getjTBuscarCliente().setText(vista.getModeloBuscarCliente().getElementAt(indice).toString());
+                vista.getModeloBuscarCliente().removeAllElements();
             }
 
         }
-        
-        
-        
 
         @Override
         public void mouseEntered(MouseEvent me) {
@@ -191,12 +193,11 @@ public class ControllerAlquiler {
         } else {
             Alquiler alquiler = new Alquiler();
 
-            alquiler.setIDalquiler(20000);
+            alquiler.setIDalquiler(Integer.parseInt(vista.getjTIDAlquiler().getText()));
             alquiler.setFechaAlquiler(Fecha.crearFechaTimeStamp());
             alquiler.setIDInventario(listaInventario_PelDisp.get(0).getInventarioID());
             alquiler.setIDCliente(clienteSelected.getClienteID());
-            
-            
+
             Date date = vista.getjDateChooserDev().getDate();
             Timestamp times = new Timestamp(date.getTime());
 

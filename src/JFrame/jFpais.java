@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
-public class jFdireccion extends javax.swing.JFrame {
+public class jFpais extends javax.swing.JFrame {
 
     /**
      * Creates new form jFdireccion
      */
-    public jFdireccion() {
+    public jFpais() {
         initComponents();
     }
 
@@ -47,9 +47,12 @@ public class jFdireccion extends javax.swing.JFrame {
         jLDireccion2 = new javax.swing.JLabel();
         jTDireccion2 = new javax.swing.JTextField();
         jLCodigoPostal = new javax.swing.JLabel();
+        jTCodigoPostal = new javax.swing.JTextField();
         jComboCiudad = new javax.swing.JComboBox<>();
+        jButtonIngresoCiudad = new javax.swing.JButton();
+        jButtonIngresoCiudad1 = new javax.swing.JButton();
+        jButtonIngresoCiudad2 = new javax.swing.JButton();
         jButtonIngresoCiudad3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jBeliminar = new javax.swing.JButton();
         jBmodificar = new javax.swing.JButton();
         jBnuevo = new javax.swing.JButton();
@@ -151,19 +154,35 @@ public class jFdireccion extends javax.swing.JFrame {
         jLCodigoPostal.setText("Codigo Postal:");
         jPingreso.add(jLCodigoPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, -1, -1));
 
-        jComboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPingreso.add(jComboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 140, 30));
+        jTCodigoPostal.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTCodigoPostal.setForeground(new java.awt.Color(102, 102, 102));
+        jTCodigoPostal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTCodigoPostal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCodigoPostalActionPerformed(evt);
+            }
+        });
+        jPingreso.add(jTCodigoPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 160, 20));
 
-        jButtonIngresoCiudad3.setText("Ingresar");
+        jComboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPingreso.add(jComboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 160, 20));
+
+        jButtonIngresoCiudad.setText("CRUD");
+        jPingreso.add(jButtonIngresoCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 20, 20));
+
+        jButtonIngresoCiudad1.setText("Ingreso");
+        jPingreso.add(jButtonIngresoCiudad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 20, 20));
+
+        jButtonIngresoCiudad2.setText("CRUD");
+        jPingreso.add(jButtonIngresoCiudad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 20, 20));
+
+        jButtonIngresoCiudad3.setText("ingreso");
         jButtonIngresoCiudad3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIngresoCiudad3ActionPerformed(evt);
             }
         });
-        jPingreso.add(jButtonIngresoCiudad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 80, 30));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPingreso.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 200, 30));
+        jPingreso.add(jButtonIngresoCiudad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 20, 20));
 
         jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 300));
 
@@ -217,6 +236,10 @@ public class jFdireccion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTDireccion2ActionPerformed
 
+    private void jTCodigoPostalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoPostalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTCodigoPostalActionPerformed
+
     private void jButtonIngresoCiudad3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresoCiudad3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonIngresoCiudad3ActionPerformed
@@ -239,6 +262,10 @@ public class jFdireccion extends javax.swing.JFrame {
 
     public JLabel getjLDireccion2() {
         return jLDireccion2;
+    }
+
+    public JTextField getjTCodigoPostal() {
+        return jTCodigoPostal;
     }
 
     public JTextField getjTDireccion1() {
@@ -288,20 +315,21 @@ public class jFdireccion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jFdireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFpais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jFdireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFpais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jFdireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFpais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jFdireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jFpais.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jFdireccion().setVisible(true);
+                new jFpais().setVisible(true);
             }
         });
     }
@@ -310,8 +338,10 @@ public class jFdireccion extends javax.swing.JFrame {
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
+    private javax.swing.JButton jButtonIngresoCiudad;
+    private javax.swing.JButton jButtonIngresoCiudad1;
+    private javax.swing.JButton jButtonIngresoCiudad2;
     private javax.swing.JButton jButtonIngresoCiudad3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboCiudad;
     private javax.swing.JLabel jLCiudad;
     private javax.swing.JLabel jLCodigoPostal;
@@ -322,6 +352,7 @@ public class jFdireccion extends javax.swing.JFrame {
     private javax.swing.JLabel jLTelefono;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPingreso;
+    private javax.swing.JTextField jTCodigoPostal;
     private javax.swing.JTextField jTDireccion1;
     private javax.swing.JTextField jTDireccion2;
     private javax.swing.JTextField jTDireccionID;

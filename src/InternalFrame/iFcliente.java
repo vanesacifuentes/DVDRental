@@ -51,7 +51,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jTCorreoCliente = new javax.swing.JTextField();
         jTDireccion = new javax.swing.JTextField();
         jLfechaActualizacion = new javax.swing.JLabel();
-        jTFechaActualizacion = new javax.swing.JTextField();
         jLCorreo = new javax.swing.JLabel();
         jLDireccion = new javax.swing.JLabel();
         jLApellidos = new javax.swing.JLabel();
@@ -62,6 +61,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLfechaCreacion1 = new javax.swing.JLabel();
         jTFechaCreacion1 = new javax.swing.JTextField();
+        jLFechaActualiza = new javax.swing.JLabel();
         jPtabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCliente = new javax.swing.JTable();
@@ -108,7 +108,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jLactivo.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLactivo.setForeground(new java.awt.Color(51, 51, 51));
         jLactivo.setText("Activo:");
-        jPingreso.add(jLactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
+        jPingreso.add(jLactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, -1, -1));
 
         jTnombreCliente.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTnombreCliente.setForeground(new java.awt.Color(102, 102, 102));
@@ -143,17 +143,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jLfechaActualizacion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLfechaActualizacion.setForeground(new java.awt.Color(51, 51, 51));
         jLfechaActualizacion.setText("Ultima actualización:");
-        jPingreso.add(jLfechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, -1, -1));
-
-        jTFechaActualizacion.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTFechaActualizacion.setForeground(new java.awt.Color(102, 102, 102));
-        jTFechaActualizacion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTFechaActualizacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFechaActualizacionActionPerformed(evt);
-            }
-        });
-        jPingreso.add(jTFechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 240, 20));
+        jPingreso.add(jLfechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, -1));
 
         jLCorreo.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLCorreo.setForeground(new java.awt.Color(51, 51, 51));
@@ -193,7 +183,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jPingreso.add(jBIngresoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, -1, 30));
 
         jCActivoInt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPingreso.add(jCActivoInt, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 160, 20));
+        jPingreso.add(jCActivoInt, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 160, 20));
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 204));
         jPingreso.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 130, 30));
@@ -212,6 +202,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
             }
         });
         jPingreso.add(jTFechaCreacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 240, 20));
+        jPingreso.add(jLFechaActualiza, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 110, 30));
 
         jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 670, 390));
 
@@ -223,6 +214,15 @@ public class iFcliente extends javax.swing.JInternalFrame {
         jTableCliente.setForeground(new java.awt.Color(51, 51, 51));
         jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -330,10 +330,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTDireccionActionPerformed
 
-    private void jTFechaActualizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFechaActualizacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFechaActualizacionActionPerformed
-
     private void jTApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTApellidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTApellidosActionPerformed
@@ -357,7 +353,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
 
         DireccionDAO modeloDireccion = new DireccionDAO();
         jFdireccion DireccionView = new jFdireccion();
-        ControllerDireccion controldor = new ControllerDireccion(DireccionView, modeloDireccion);
+        ControllerDireccion controlador = new ControllerDireccion(DireccionView, modeloDireccion);
 
         DireccionView.setVisible(true);
 
@@ -375,6 +371,7 @@ public class iFcliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLCliente;
     private javax.swing.JLabel jLCorreo;
     private javax.swing.JLabel jLDireccion;
+    private javax.swing.JLabel jLFechaActualiza;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLTienda;
     private javax.swing.JLabel jLabel2;
@@ -390,7 +387,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTClienteID;
     private javax.swing.JTextField jTCorreoCliente;
     private javax.swing.JTextField jTDireccion;
-    private javax.swing.JTextField jTFechaActualizacion;
     private javax.swing.JTextField jTFechaCreacion1;
     private javax.swing.JTable jTableCliente;
     private javax.swing.JTextField jTnombreCliente;
@@ -418,10 +414,6 @@ public class iFcliente extends javax.swing.JInternalFrame {
 
     public JTextField getjTDireccion() {
         return jTDireccion;
-    }
-
-    public JTextField getjTFechaCreacion() {
-        return jTFechaActualizacion;
     }
 
     public JComboBox getjCActivoInt() {

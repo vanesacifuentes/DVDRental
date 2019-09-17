@@ -35,27 +35,19 @@ public class jFpais extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPingreso = new javax.swing.JPanel();
-        jTDireccionID = new javax.swing.JTextField();
-        jLDireccion1 = new javax.swing.JLabel();
-        jLDireccionID = new javax.swing.JLabel();
-        jTDireccion1 = new javax.swing.JTextField();
-        jTDistrito = new javax.swing.JTextField();
-        jLCiudad = new javax.swing.JLabel();
-        jLTelefono = new javax.swing.JLabel();
-        jTtelefono = new javax.swing.JTextField();
-        jLDistrito = new javax.swing.JLabel();
-        jLDireccion2 = new javax.swing.JLabel();
-        jTDireccion2 = new javax.swing.JTextField();
-        jLCodigoPostal = new javax.swing.JLabel();
-        jTCodigoPostal = new javax.swing.JTextField();
-        jComboCiudad = new javax.swing.JComboBox<>();
-        jButtonIngresoCiudad = new javax.swing.JButton();
-        jButtonIngresoCiudad1 = new javax.swing.JButton();
-        jButtonIngresoCiudad2 = new javax.swing.JButton();
-        jButtonIngresoCiudad3 = new javax.swing.JButton();
-        jBeliminar = new javax.swing.JButton();
-        jBmodificar = new javax.swing.JButton();
-        jBnuevo = new javax.swing.JButton();
+        jTPaisID = new javax.swing.JTextField();
+        jLnombrePais = new javax.swing.JLabel();
+        jLPaisID = new javax.swing.JLabel();
+        jTnombrePais = new javax.swing.JTextField();
+        jLFechaActualiza = new javax.swing.JLabel();
+        jLfechaActua2 = new javax.swing.JLabel();
+        jLfechaActua3 = new javax.swing.JLabel();
+        jPbotones = new javax.swing.JPanel();
+        jBnuevo1 = new javax.swing.JButton();
+        jBmodificar1 = new javax.swing.JButton();
+        jBeliminar1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableLenguaje = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -64,239 +56,132 @@ public class jFpais extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPingreso.setBackground(new java.awt.Color(255, 255, 255));
-        jPingreso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Dirección", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
+        jPingreso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "País", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
         jPingreso.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTDireccionID.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTDireccionID.setForeground(new java.awt.Color(102, 102, 102));
-        jTDireccionID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTDireccionID.addActionListener(new java.awt.event.ActionListener() {
+        jTPaisID.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTPaisID.setForeground(new java.awt.Color(102, 102, 102));
+        jTPaisID.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTPaisID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTDireccionIDActionPerformed(evt);
+                jTPaisIDActionPerformed(evt);
             }
         });
-        jPingreso.add(jTDireccionID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 200, 20));
+        jPingreso.add(jTPaisID, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 200, 20));
 
-        jLDireccion1.setBackground(new java.awt.Color(238, 112, 82));
-        jLDireccion1.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
-        jLDireccion1.setForeground(new java.awt.Color(51, 51, 51));
-        jLDireccion1.setText("Dirección: ");
-        jPingreso.add(jLDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
+        jLnombrePais.setBackground(new java.awt.Color(238, 112, 82));
+        jLnombrePais.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLnombrePais.setForeground(new java.awt.Color(51, 51, 51));
+        jLnombrePais.setText("Dirección: ");
+        jPingreso.add(jLnombrePais, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 30));
 
-        jLDireccionID.setBackground(new java.awt.Color(238, 112, 82));
-        jLDireccionID.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
-        jLDireccionID.setForeground(new java.awt.Color(51, 51, 51));
-        jLDireccionID.setText("Direccion ID:");
-        jPingreso.add(jLDireccionID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 20));
+        jLPaisID.setBackground(new java.awt.Color(238, 112, 82));
+        jLPaisID.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLPaisID.setForeground(new java.awt.Color(51, 51, 51));
+        jLPaisID.setText("País ID:");
+        jPingreso.add(jLPaisID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 20));
 
-        jTDireccion1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTDireccion1.setForeground(new java.awt.Color(102, 102, 102));
-        jTDireccion1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTDireccion1.addActionListener(new java.awt.event.ActionListener() {
+        jTnombrePais.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTnombrePais.setForeground(new java.awt.Color(102, 102, 102));
+        jTnombrePais.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTnombrePais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTDireccion1ActionPerformed(evt);
+                jTnombrePaisActionPerformed(evt);
             }
         });
-        jPingreso.add(jTDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 200, -1));
+        jPingreso.add(jTnombrePais, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 200, -1));
 
-        jTDistrito.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTDistrito.setForeground(new java.awt.Color(102, 102, 102));
-        jTDistrito.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTDistrito.addActionListener(new java.awt.event.ActionListener() {
+        jLFechaActualiza.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLFechaActualiza.setForeground(new java.awt.Color(51, 51, 51));
+        jLFechaActualiza.setText("Fecha actualización:");
+        jPingreso.add(jLFechaActualiza, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jPingreso.add(jLfechaActua2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 100, 30));
+        jPingreso.add(jLfechaActua3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 100, 30));
+
+        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 320, 140));
+
+        jPbotones.setBackground(new java.awt.Color(255, 255, 255));
+        jPbotones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPbotones.setForeground(new java.awt.Color(102, 102, 102));
+        jPbotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jBnuevo1.setBackground(new java.awt.Color(238, 112, 82));
+        jBnuevo1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBnuevo1.setForeground(new java.awt.Color(238, 112, 82));
+        jBnuevo1.setText("Nuevo");
+        jBnuevo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBnuevo1.setContentAreaFilled(false);
+        jBnuevo1.setDefaultCapable(false);
+        jBnuevo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTDistritoActionPerformed(evt);
+                jBnuevo1ActionPerformed(evt);
             }
         });
-        jPingreso.add(jTDistrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 200, 20));
+        jPbotones.add(jBnuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 70, 30));
 
-        jLCiudad.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
-        jLCiudad.setText("Ciudad:");
-        jPingreso.add(jLCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, -1, -1));
+        jBmodificar1.setBackground(new java.awt.Color(238, 112, 82));
+        jBmodificar1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBmodificar1.setForeground(new java.awt.Color(238, 112, 82));
+        jBmodificar1.setText("Modificar");
+        jBmodificar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBmodificar1.setContentAreaFilled(false);
+        jPbotones.add(jBmodificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 80, 30));
 
-        jLTelefono.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
-        jLTelefono.setForeground(new java.awt.Color(51, 51, 51));
-        jLTelefono.setText("Telefono:");
-        jPingreso.add(jLTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+        jBeliminar1.setBackground(new java.awt.Color(238, 112, 82));
+        jBeliminar1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBeliminar1.setForeground(new java.awt.Color(238, 112, 82));
+        jBeliminar1.setText("Eliminar");
+        jBeliminar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBeliminar1.setContentAreaFilled(false);
+        jPbotones.add(jBeliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
 
-        jTtelefono.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTtelefono.setForeground(new java.awt.Color(102, 102, 102));
-        jTtelefono.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTtelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTtelefonoActionPerformed(evt);
+        jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 320, 50));
+
+        jTableLenguaje.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTableLenguaje.setForeground(new java.awt.Color(51, 51, 51));
+        jTableLenguaje.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID País", "País"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        jPingreso.add(jTtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 220, 20));
+        jScrollPane3.setViewportView(jTableLenguaje);
 
-        jLDistrito.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
-        jLDistrito.setForeground(new java.awt.Color(51, 51, 51));
-        jLDistrito.setText("Distrito:");
-        jPingreso.add(jLDistrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 320, 90));
 
-        jLDireccion2.setBackground(new java.awt.Color(238, 112, 82));
-        jLDireccion2.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
-        jLDireccion2.setForeground(new java.awt.Color(51, 51, 51));
-        jLDireccion2.setText("Dirección 2:");
-        jPingreso.add(jLDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 20));
-
-        jTDireccion2.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTDireccion2.setForeground(new java.awt.Color(102, 102, 102));
-        jTDireccion2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTDireccion2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTDireccion2ActionPerformed(evt);
-            }
-        });
-        jPingreso.add(jTDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 200, 20));
-
-        jLCodigoPostal.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
-        jLCodigoPostal.setForeground(new java.awt.Color(51, 51, 51));
-        jLCodigoPostal.setText("Codigo Postal:");
-        jPingreso.add(jLCodigoPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, -1, -1));
-
-        jTCodigoPostal.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTCodigoPostal.setForeground(new java.awt.Color(102, 102, 102));
-        jTCodigoPostal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTCodigoPostal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCodigoPostalActionPerformed(evt);
-            }
-        });
-        jPingreso.add(jTCodigoPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 160, 20));
-
-        jComboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPingreso.add(jComboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 160, 20));
-
-        jButtonIngresoCiudad.setText("CRUD");
-        jPingreso.add(jButtonIngresoCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 20, 20));
-
-        jButtonIngresoCiudad1.setText("Ingreso");
-        jPingreso.add(jButtonIngresoCiudad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 20, 20));
-
-        jButtonIngresoCiudad2.setText("CRUD");
-        jPingreso.add(jButtonIngresoCiudad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 20, 20));
-
-        jButtonIngresoCiudad3.setText("ingreso");
-        jButtonIngresoCiudad3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIngresoCiudad3ActionPerformed(evt);
-            }
-        });
-        jPingreso.add(jButtonIngresoCiudad3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 20, 20));
-
-        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 510, 300));
-
-        jBeliminar.setBackground(new java.awt.Color(238, 112, 82));
-        jBeliminar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jBeliminar.setForeground(new java.awt.Color(238, 112, 82));
-        jBeliminar.setText("Eliminar");
-        jBeliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jBeliminar.setContentAreaFilled(false);
-        jPanel1.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, 70, 30));
-
-        jBmodificar.setBackground(new java.awt.Color(238, 112, 82));
-        jBmodificar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jBmodificar.setForeground(new java.awt.Color(238, 112, 82));
-        jBmodificar.setText("Modificar");
-        jBmodificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jBmodificar.setContentAreaFilled(false);
-        jPanel1.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 80, 30));
-
-        jBnuevo.setBackground(new java.awt.Color(238, 112, 82));
-        jBnuevo.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jBnuevo.setForeground(new java.awt.Color(238, 112, 82));
-        jBnuevo.setText("Nuevo");
-        jBnuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jBnuevo.setContentAreaFilled(false);
-        jBnuevo.setDefaultCapable(false);
-        jPanel1.add(jBnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 60, 30));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 370));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTDireccionIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDireccionIDActionPerformed
+    private void jTnombrePaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombrePaisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTDireccionIDActionPerformed
+    }//GEN-LAST:event_jTnombrePaisActionPerformed
 
-    private void jTDireccion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDireccion1ActionPerformed
+    private void jTPaisIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPaisIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTDireccion1ActionPerformed
+    }//GEN-LAST:event_jTPaisIDActionPerformed
 
-    private void jTDistritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDistritoActionPerformed
+    private void jBnuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTDistritoActionPerformed
-
-    private void jTtelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTtelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTtelefonoActionPerformed
-
-    private void jTDireccion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDireccion2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTDireccion2ActionPerformed
-
-    private void jTCodigoPostalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoPostalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTCodigoPostalActionPerformed
-
-    private void jButtonIngresoCiudad3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresoCiudad3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonIngresoCiudad3ActionPerformed
-
-    public JButton getjBeliminar() {
-        return jBeliminar;
-    }
-
-    public JButton getjBmodificar() {
-        return jBmodificar;
-    }
-
-    public JButton getjBnuevo() {
-        return jBnuevo;
-    }
-
-    public JComboBox<String> getjComboCiudad() {
-        return jComboCiudad;
-    }
-
-    public JLabel getjLDireccion2() {
-        return jLDireccion2;
-    }
-
-    public JTextField getjTCodigoPostal() {
-        return jTCodigoPostal;
-    }
-
-    public JTextField getjTDireccion1() {
-        return jTDireccion1;
-    }
-
-    public JTextField getjTDireccion2() {
-        return jTDireccion2;
-    }
-
-    public JTextField getjTDistrito() {
-        return jTDistrito;
-    }
-
-    public JTextField getjTtelefono() {
-        return jTtelefono;
-    }
-
-    public JTextField getjTDireccionID() {
-        return jTDireccionID;
-    }
+    }//GEN-LAST:event_jBnuevo1ActionPerformed
     
     public void gestionMensajes(String mensaje, String titulo, int icono) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
-    
-    //Escuchas
-    public void addListenerBtnNuevo(ActionListener listenCliente) {
-        jBnuevo.addActionListener(listenCliente);
-    }
-    
     
     /**
      * @param args the command line arguments
@@ -335,28 +220,20 @@ public class jFpais extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBeliminar;
-    private javax.swing.JButton jBmodificar;
-    private javax.swing.JButton jBnuevo;
-    private javax.swing.JButton jButtonIngresoCiudad;
-    private javax.swing.JButton jButtonIngresoCiudad1;
-    private javax.swing.JButton jButtonIngresoCiudad2;
-    private javax.swing.JButton jButtonIngresoCiudad3;
-    private javax.swing.JComboBox<String> jComboCiudad;
-    private javax.swing.JLabel jLCiudad;
-    private javax.swing.JLabel jLCodigoPostal;
-    private javax.swing.JLabel jLDireccion1;
-    private javax.swing.JLabel jLDireccion2;
-    private javax.swing.JLabel jLDireccionID;
-    private javax.swing.JLabel jLDistrito;
-    private javax.swing.JLabel jLTelefono;
+    private javax.swing.JButton jBeliminar1;
+    private javax.swing.JButton jBmodificar1;
+    private javax.swing.JButton jBnuevo1;
+    private javax.swing.JLabel jLFechaActualiza;
+    private javax.swing.JLabel jLPaisID;
+    private javax.swing.JLabel jLfechaActua2;
+    private javax.swing.JLabel jLfechaActua3;
+    private javax.swing.JLabel jLnombrePais;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPbotones;
     private javax.swing.JPanel jPingreso;
-    private javax.swing.JTextField jTCodigoPostal;
-    private javax.swing.JTextField jTDireccion1;
-    private javax.swing.JTextField jTDireccion2;
-    private javax.swing.JTextField jTDireccionID;
-    private javax.swing.JTextField jTDistrito;
-    private javax.swing.JTextField jTtelefono;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTPaisID;
+    private javax.swing.JTable jTableLenguaje;
+    private javax.swing.JTextField jTnombrePais;
     // End of variables declaration//GEN-END:variables
 }

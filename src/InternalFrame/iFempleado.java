@@ -7,6 +7,8 @@
  */
 
 package InternalFrame;
+import Controlador.ControllerDireccion;
+import JFrame.jFdireccion;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -61,9 +63,9 @@ public class iFempleado extends javax.swing.JInternalFrame {
         jTEmpleadoID = new javax.swing.JTextField();
         jLTienda1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLUltimaActualizacion = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jBtnIngresoDire = new javax.swing.JButton();
+        jLfechaActualizacion = new javax.swing.JLabel();
+        jLFechaActualiza = new javax.swing.JLabel();
         jPtabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableEmpleado = new javax.swing.JTable();
@@ -193,25 +195,27 @@ public class iFempleado extends javax.swing.JInternalFrame {
         jLTienda1.setText("Tienda:");
         jPingreso.add(jLTienda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, 20));
 
-        jButton1.setText("Select");
+        jButton1.setText("Seleccionar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPingreso.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 80, -1));
+        jPingreso.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 90, -1));
 
-        jLabel2.setText("Ultima Actualización:");
-        jPingreso.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
-        jPingreso.add(jLUltimaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 250, 20));
-
-        jButton3.setText("ingresar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBtnIngresoDire.setText("Ingresar");
+        jBtnIngresoDire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBtnIngresoDireActionPerformed(evt);
             }
         });
-        jPingreso.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 343, -1, 30));
+        jPingreso.add(jBtnIngresoDire, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 343, -1, 30));
+
+        jLfechaActualizacion.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
+        jLfechaActualizacion.setForeground(new java.awt.Color(51, 51, 51));
+        jLfechaActualizacion.setText("Ultima actualización:");
+        jPingreso.add(jLfechaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, -1, -1));
+        jPingreso.add(jLFechaActualiza, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 110, 30));
 
         jPanelEmpleado.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 660, 390));
 
@@ -366,9 +370,15 @@ public class iFempleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBtnIngresoDireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIngresoDireActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        
+        DireccionDAO modeloDireccion = new DireccionDAO();
+        jFdireccion DireccionView = new jFdireccion();
+        ControllerDireccion controlador = new ControllerDireccion(DireccionView, modeloDireccion);
+
+        DireccionView.setVisible(true);
+    }//GEN-LAST:event_jBtnIngresoDireActionPerformed
 
     //Método para cargar las tiendas en un comboBox determinado
     public void cargarTiendasCombo(ArrayList<Tienda> listadoTiendas){ 
@@ -462,10 +472,6 @@ public class iFempleado extends javax.swing.JInternalFrame {
         return jTCorreoEmpleado;
     }
 
-    public JLabel getjLUltimaActualizacion() {
-        return jLUltimaActualizacion;
-    }
-
     public JTextField getjTDireccion() {
         return jTDireccion;
     }
@@ -492,20 +498,20 @@ public class iFempleado extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
+    private javax.swing.JButton jBtnIngresoDire;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jCBTiendaID;
     private javax.swing.JLabel jLApellidos;
     private javax.swing.JLabel jLContrasena;
     private javax.swing.JLabel jLCorreo;
     private javax.swing.JLabel jLDireccion;
     private javax.swing.JLabel jLEmpleadoID;
+    private javax.swing.JLabel jLFechaActualiza;
     private javax.swing.JLabel jLNombreEmpleado;
     private javax.swing.JLabel jLTienda1;
-    private javax.swing.JLabel jLUltimaActualizacion;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLactivo;
+    private javax.swing.JLabel jLfechaActualizacion;
     private javax.swing.JPanel jPanelEmpleado;
     private javax.swing.JPasswordField jPassContrasena;
     private javax.swing.JPanel jPbotones;

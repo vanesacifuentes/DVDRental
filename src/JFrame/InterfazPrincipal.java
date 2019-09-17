@@ -307,7 +307,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new InterfazPrincipal().setVisible(true);
+                Empleado emplea = new Empleado();
+                (new InterfazPrincipal(emplea)).setVisible(true);
             }
         });
     }

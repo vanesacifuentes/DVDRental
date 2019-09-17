@@ -3,25 +3,33 @@
  * Fecha         : Septiembre-2019
  * Objetivo      : Gestionar direccion, mostrar agregar nuevo y borrar
  * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
- * Clase         : jFdireccion- Interfaz
+ * Clase         : jFpais- Interfaz
  */
 package JFrame;
 
+import Modelo.Pais;
+import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
-
+import javax.swing.table.DefaultTableModel;
 
 public class jFpais extends javax.swing.JFrame {
 
     /**
      * Creates new form jFdireccion
      */
+    public int valor;
+
     public jFpais() {
         initComponents();
+        activarCampos(false);
+        jTPaisID.setEnabled(false);
     }
 
     /**
@@ -41,13 +49,13 @@ public class jFpais extends javax.swing.JFrame {
         jTnombrePais = new javax.swing.JTextField();
         jLFechaActualiza = new javax.swing.JLabel();
         jLfechaActua2 = new javax.swing.JLabel();
-        jLfechaActua3 = new javax.swing.JLabel();
+        jLfechaActua = new javax.swing.JLabel();
         jPbotones = new javax.swing.JPanel();
-        jBnuevo1 = new javax.swing.JButton();
-        jBmodificar1 = new javax.swing.JButton();
-        jBeliminar1 = new javax.swing.JButton();
+        jBnuevo = new javax.swing.JButton();
+        jBmodificar = new javax.swing.JButton();
+        jBeliminar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTableLenguaje = new javax.swing.JTable();
+        jTablePais = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,6 +92,11 @@ public class jFpais extends javax.swing.JFrame {
         jTnombrePais.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTnombrePais.setForeground(new java.awt.Color(102, 102, 102));
         jTnombrePais.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTnombrePais.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTnombrePaisFocusGained(evt);
+            }
+        });
         jTnombrePais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTnombrePaisActionPerformed(evt);
@@ -96,7 +109,7 @@ public class jFpais extends javax.swing.JFrame {
         jLFechaActualiza.setText("Fecha actualización:");
         jPingreso.add(jLFechaActualiza, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
         jPingreso.add(jLfechaActua2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 100, 30));
-        jPingreso.add(jLfechaActua3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 100, 30));
+        jPingreso.add(jLfechaActua, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 100, 30));
 
         jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 320, 140));
 
@@ -105,41 +118,41 @@ public class jFpais extends javax.swing.JFrame {
         jPbotones.setForeground(new java.awt.Color(102, 102, 102));
         jPbotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jBnuevo1.setBackground(new java.awt.Color(238, 112, 82));
-        jBnuevo1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jBnuevo1.setForeground(new java.awt.Color(238, 112, 82));
-        jBnuevo1.setText("Nuevo");
-        jBnuevo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jBnuevo1.setContentAreaFilled(false);
-        jBnuevo1.setDefaultCapable(false);
-        jBnuevo1.addActionListener(new java.awt.event.ActionListener() {
+        jBnuevo.setBackground(new java.awt.Color(238, 112, 82));
+        jBnuevo.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBnuevo.setForeground(new java.awt.Color(238, 112, 82));
+        jBnuevo.setText("Nuevo");
+        jBnuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBnuevo.setContentAreaFilled(false);
+        jBnuevo.setDefaultCapable(false);
+        jBnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBnuevo1ActionPerformed(evt);
+                jBnuevoActionPerformed(evt);
             }
         });
-        jPbotones.add(jBnuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 70, 30));
+        jPbotones.add(jBnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 70, 30));
 
-        jBmodificar1.setBackground(new java.awt.Color(238, 112, 82));
-        jBmodificar1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jBmodificar1.setForeground(new java.awt.Color(238, 112, 82));
-        jBmodificar1.setText("Modificar");
-        jBmodificar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jBmodificar1.setContentAreaFilled(false);
-        jPbotones.add(jBmodificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 80, 30));
+        jBmodificar.setBackground(new java.awt.Color(238, 112, 82));
+        jBmodificar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBmodificar.setForeground(new java.awt.Color(238, 112, 82));
+        jBmodificar.setText("Modificar");
+        jBmodificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBmodificar.setContentAreaFilled(false);
+        jPbotones.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 80, 30));
 
-        jBeliminar1.setBackground(new java.awt.Color(238, 112, 82));
-        jBeliminar1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jBeliminar1.setForeground(new java.awt.Color(238, 112, 82));
-        jBeliminar1.setText("Eliminar");
-        jBeliminar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jBeliminar1.setContentAreaFilled(false);
-        jPbotones.add(jBeliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
+        jBeliminar.setBackground(new java.awt.Color(238, 112, 82));
+        jBeliminar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBeliminar.setForeground(new java.awt.Color(238, 112, 82));
+        jBeliminar.setText("Eliminar");
+        jBeliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBeliminar.setContentAreaFilled(false);
+        jPbotones.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
 
         jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 320, 50));
 
-        jTableLenguaje.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTableLenguaje.setForeground(new java.awt.Color(51, 51, 51));
-        jTableLenguaje.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePais.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTablePais.setForeground(new java.awt.Color(51, 51, 51));
+        jTablePais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -158,7 +171,7 @@ public class jFpais extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTableLenguaje);
+        jScrollPane3.setViewportView(jTablePais);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 320, 90));
 
@@ -175,14 +188,130 @@ public class jFpais extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTPaisIDActionPerformed
 
-    private void jBnuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevo1ActionPerformed
+    private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBnuevo1ActionPerformed
-    
+    }//GEN-LAST:event_jBnuevoActionPerformed
+
+    private void jTnombrePaisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnombrePaisFocusGained
+        // TODO add your handling code here:
+
+        if (jTnombrePais.getText().equalsIgnoreCase("Campo Requerido")) {
+            jTnombrePais.setForeground(Color.BLACK);
+            jTnombrePais.setText("");
+        }
+    }//GEN-LAST:event_jTnombrePaisFocusGained
+
+    public void activarCampos(Boolean b) {
+        jTnombrePais.setEnabled(b);
+       
+    }
+
+    public void setearCampos() {
+
+        jTnombrePais.setText("");
+        jTPaisID.setText("");
+        jLFechaActualiza.setText("");
+
+    }
+
+    public void nuevaAccion() {
+        activarCampos(false);
+        setearCampos();
+        jBnuevo.setText("Nuevo");
+        jBmodificar.setText("Modificar");
+        jBeliminar.setVisible(true);
+    }
+
+    public JButton getjBmodificar() {
+        return jBmodificar;
+    }
+
+    public JButton getjBnuevo() {
+        return jBnuevo;
+    }
+
+    public JButton getjBeliminar() {
+        return jBeliminar;
+    }
+
+    public JTextField getjTPaisID() {
+        return jTPaisID;
+    }
+
+    public JTable getjTablePais() {
+        return jTablePais;
+    }
+
+    public void setjTPaisID(JTextField jTPaisID) {
+        this.jTPaisID = jTPaisID;
+    }
+
+    public JLabel getjLfechaActua() {
+        return jLfechaActua;
+    }
+
+    public JTextField getjTnombrePais() {
+        return jTnombrePais;
+    }
+
+    private void limpiarListadoTabla() {
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTablePais.getModel();
+        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
+
+    //Método para cargar los paises a la tabla 
+    public void cargarPaisTabla(ArrayList<Pais> listadoPais) {
+        DefaultTableModel model_pais;
+        model_pais = (DefaultTableModel) jTablePais.getModel();
+        limpiarListadoTabla();
+        for (int i = 0; i < listadoPais.size(); i++) {
+            model_pais.addRow(new Object[]{
+                listadoPais.get(i).getPais_id(),
+                listadoPais.get(i).getPais()});
+        }
+
+        valor = Integer.parseInt("" + model_pais.getValueAt(model_pais.getRowCount() - 1, 0)) + 1;
+
+    }
+
     public void gestionMensajes(String mensaje, String titulo, int icono) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
     }
-    
+
+    public void addListenerBtnNuevo(ActionListener listenpais) {
+        jBnuevo.addActionListener(listenpais);
+    }
+
+    public void addListenerBtnEliminar(ActionListener listenLenguaje) {
+        jBeliminar.addActionListener(listenLenguaje);
+    }
+
+    public void addListenerBtnModificar(ActionListener listenLenguaje) {
+        jBmodificar.addActionListener(listenLenguaje);
+    }
+
+    public void addMouseListenerTabla(MouseListener listenLenguaje) {
+        jTablePais.addMouseListener(listenLenguaje);
+    }
+
+    //Validar y cambiar campos a rojo
+    public int validarCampos() {
+        int rtdo = 1;
+
+        if (jTnombrePais.getText().equals("") || jTnombrePais.getText().equals("Campo Requerido")) {
+
+            rtdo = 0;
+            jTnombrePais.setForeground(Color.red);
+            jTnombrePais.setText("Campo Requerido");
+
+        }
+
+        return rtdo;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -220,20 +349,20 @@ public class jFpais extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBeliminar1;
-    private javax.swing.JButton jBmodificar1;
-    private javax.swing.JButton jBnuevo1;
+    private javax.swing.JButton jBeliminar;
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JButton jBnuevo;
     private javax.swing.JLabel jLFechaActualiza;
     private javax.swing.JLabel jLPaisID;
+    private javax.swing.JLabel jLfechaActua;
     private javax.swing.JLabel jLfechaActua2;
-    private javax.swing.JLabel jLfechaActua3;
     private javax.swing.JLabel jLnombrePais;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPbotones;
     private javax.swing.JPanel jPingreso;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTPaisID;
-    private javax.swing.JTable jTableLenguaje;
+    private javax.swing.JTable jTablePais;
     private javax.swing.JTextField jTnombrePais;
     // End of variables declaration//GEN-END:variables
 }

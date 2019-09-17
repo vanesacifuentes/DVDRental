@@ -25,7 +25,7 @@ public class ControllerLenguaje {
     LenguajeDAO modelo;
     iFpelicula vistaPelicula;
 
-    //Constructor Controlador de lenguaje
+    //Constructor Controlador de conutry
     public ControllerLenguaje(jFlenguaje vista, LenguajeDAO modelo, iFpelicula vistaPelicula) {
 
         this.vista = vista;

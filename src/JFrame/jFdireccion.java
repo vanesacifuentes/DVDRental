@@ -222,7 +222,7 @@ public class jFdireccion extends javax.swing.JFrame {
         // TODO add your handling code here:
         CiudadDAO modeloCiudad = new CiudadDAO();
         jFCiudad CiudadView = new jFCiudad();
-        ControllerCiudad controlador = new ControllerCiudad(CiudadView, modeloCiudad);
+       // ControllerCiudad controlador = new ControllerCiudad(CiudadView, modeloCiudad);
 
         CiudadView.setVisible(true);
     }//GEN-LAST:event_jBtnIngresoCiudadActionPerformed

@@ -5,8 +5,16 @@
  */
 package JFrame;
 
-import Controlador.ControllerPais;
+import Modelo.Ciudad;
+import Modelo.Lenguaje;
 import Modelo.PaisDAO;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javafx.scene.paint.Color;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,10 +23,14 @@ import Modelo.PaisDAO;
 public class jFCiudad extends javax.swing.JFrame {
 
     /**
-     * Creates new form jFrameCiudad
+     * Creates new form jFCiudad2
      */
+    public int valor;
+    
     public jFCiudad() {
         initComponents();
+        activarCampos(false);
+        jTCiudadID.setEnabled(false);
     }
 
     /**
@@ -38,18 +50,18 @@ public class jFCiudad extends javax.swing.JFrame {
         jTnombreciudad = new javax.swing.JTextField();
         jLFechaActualiza = new javax.swing.JLabel();
         jLfechaActua2 = new javax.swing.JLabel();
-        jLfechaActua3 = new javax.swing.JLabel();
+        jLfechaActua = new javax.swing.JLabel();
         jLPais = new javax.swing.JLabel();
         jCBPais = new javax.swing.JComboBox<>();
         jBtnIngresoPais = new javax.swing.JButton();
         jPbotones = new javax.swing.JPanel();
-        jBnuevo1 = new javax.swing.JButton();
-        jBmodificar1 = new javax.swing.JButton();
-        jBeliminar1 = new javax.swing.JButton();
+        jBnuevo = new javax.swing.JButton();
+        jBmodificar = new javax.swing.JButton();
+        jBeliminar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTableLenguaje = new javax.swing.JTable();
+        jTableCiudad = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,6 +95,11 @@ public class jFCiudad extends javax.swing.JFrame {
         jTnombreciudad.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         jTnombreciudad.setForeground(new java.awt.Color(102, 102, 102));
         jTnombreciudad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTnombreciudad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTnombreciudadFocusGained(evt);
+            }
+        });
         jTnombreciudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTnombreciudadActionPerformed(evt);
@@ -95,7 +112,7 @@ public class jFCiudad extends javax.swing.JFrame {
         jLFechaActualiza.setText("Fecha actualización:");
         jPingreso.add(jLFechaActualiza, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
         jPingreso.add(jLfechaActua2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 100, 30));
-        jPingreso.add(jLfechaActua3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 140, 30));
+        jPingreso.add(jLfechaActua, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 140, 30));
 
         jLPais.setBackground(new java.awt.Color(238, 112, 82));
         jLPais.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
@@ -121,41 +138,41 @@ public class jFCiudad extends javax.swing.JFrame {
         jPbotones.setForeground(new java.awt.Color(102, 102, 102));
         jPbotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jBnuevo1.setBackground(new java.awt.Color(238, 112, 82));
-        jBnuevo1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jBnuevo1.setForeground(new java.awt.Color(238, 112, 82));
-        jBnuevo1.setText("Nuevo");
-        jBnuevo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jBnuevo1.setContentAreaFilled(false);
-        jBnuevo1.setDefaultCapable(false);
-        jBnuevo1.addActionListener(new java.awt.event.ActionListener() {
+        jBnuevo.setBackground(new java.awt.Color(238, 112, 82));
+        jBnuevo.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBnuevo.setForeground(new java.awt.Color(238, 112, 82));
+        jBnuevo.setText("Nuevo");
+        jBnuevo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBnuevo.setContentAreaFilled(false);
+        jBnuevo.setDefaultCapable(false);
+        jBnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBnuevo1ActionPerformed(evt);
+                jBnuevoActionPerformed(evt);
             }
         });
-        jPbotones.add(jBnuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 70, 30));
+        jPbotones.add(jBnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 70, 30));
 
-        jBmodificar1.setBackground(new java.awt.Color(238, 112, 82));
-        jBmodificar1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jBmodificar1.setForeground(new java.awt.Color(238, 112, 82));
-        jBmodificar1.setText("Modificar");
-        jBmodificar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jBmodificar1.setContentAreaFilled(false);
-        jPbotones.add(jBmodificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 80, 30));
+        jBmodificar.setBackground(new java.awt.Color(238, 112, 82));
+        jBmodificar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBmodificar.setForeground(new java.awt.Color(238, 112, 82));
+        jBmodificar.setText("Modificar");
+        jBmodificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBmodificar.setContentAreaFilled(false);
+        jPbotones.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 80, 30));
 
-        jBeliminar1.setBackground(new java.awt.Color(238, 112, 82));
-        jBeliminar1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jBeliminar1.setForeground(new java.awt.Color(238, 112, 82));
-        jBeliminar1.setText("Eliminar");
-        jBeliminar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jBeliminar1.setContentAreaFilled(false);
-        jPbotones.add(jBeliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
+        jBeliminar.setBackground(new java.awt.Color(238, 112, 82));
+        jBeliminar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jBeliminar.setForeground(new java.awt.Color(238, 112, 82));
+        jBeliminar.setText("Eliminar");
+        jBeliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBeliminar.setContentAreaFilled(false);
+        jPbotones.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 70, 30));
 
         jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 320, 60));
 
-        jTableLenguaje.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jTableLenguaje.setForeground(new java.awt.Color(51, 51, 51));
-        jTableLenguaje.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCiudad.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTableCiudad.setForeground(new java.awt.Color(51, 51, 51));
+        jTableCiudad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -174,7 +191,7 @@ public class jFCiudad extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTableLenguaje);
+        jScrollPane3.setViewportView(jTableCiudad);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 320, 90));
 
@@ -190,35 +207,143 @@ public class jFCiudad extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTnombreciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreciudadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTnombreciudadActionPerformed
-
     private void jTCiudadIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCiudadIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCiudadIDActionPerformed
 
+    private void jTnombreciudadFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTnombreciudadFocusGained
+        // TODO add your handling code here:
+
+        if (jTnombreciudad.getText().equalsIgnoreCase("Campo Requerido")) {
+            //jTnombreciudad.setForeground(Color.BLACK);
+            jTnombreciudad.setText("");
+        }
+    }//GEN-LAST:event_jTnombreciudadFocusGained
+
+    private void jTnombreciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreciudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTnombreciudadActionPerformed
+
     private void jBtnIngresoPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIngresoPaisActionPerformed
         // TODO add your handling code here:
-        
+
         PaisDAO modeloPais = new PaisDAO();
         jFpais PaisView = new jFpais();
-        ControllerPais controlador = new ControllerPais(PaisView, modeloPais);
+
+        //  ControllerPais controlador = new ControllerPais(PaisView, modeloPais, this);
 
         PaisView.setVisible(true);
     }//GEN-LAST:event_jBtnIngresoPaisActionPerformed
 
-    private void jBnuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevo1ActionPerformed
+    private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBnuevo1ActionPerformed
+    }//GEN-LAST:event_jBnuevoActionPerformed
 
+    public void activarCampos(Boolean b) {
+        jTnombreciudad.setEnabled(b);
+        //jTLenguajeID.setEnabled(b);
+    }
+
+    public void setearCampos() {
+
+        jTnombreciudad.setText("");
+        jTCiudadID.setText("");
+        jLFechaActualiza.setText("");
+        
+    }
+
+    public void nuevaAccion() {
+        activarCampos(false);
+        setearCampos();
+        jBnuevo.setText("Nuevo");
+        jBmodificar.setText("Modificar");
+        jBeliminar.setVisible(true);
+    }
+
+    public JButton getjBeliminar() {
+        return jBeliminar;
+    }
+
+    public JButton getjBmodificar() {
+        return jBmodificar;
+    }
+
+    public JButton getjBnuevo() {
+        return jBnuevo;
+    }
+    
+    public void addListenerBtnNuevo(ActionListener listenCiudad) {
+
+        jBnuevo.addActionListener(listenCiudad);
+    }
+
+    public void addListenerBtnEliminar(ActionListener listenCiudad) {
+
+        jBeliminar.addActionListener(listenCiudad);
+    }
+
+    public void addListenerBtnModificar(ActionListener listenCiudad) {
+        jBmodificar.addActionListener(listenCiudad);
+    }
+
+    public void addMouseListenerTabla(MouseListener listenCiudad) {
+        jTableCiudad.addMouseListener(listenCiudad);
+    }
+    
+    //
+    public void gestionMensajes(String mensaje, String titulo, int icono) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
+    }
+
+    private void limpiarListadoTabla() {
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTableCiudad.getModel();
+        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
+
+    //Método para cargar los ciudades a la tabla 
+    public void cargarLenguajesTabla(ArrayList<Ciudad> listadoCiudad) {
+        DefaultTableModel model_ciudad;
+        model_ciudad = (DefaultTableModel) jTableCiudad.getModel();
+        limpiarListadoTabla();
+        for (int i = 0; i < listadoCiudad.size(); i++) {
+            model_ciudad.addRow(new Object[]{
+                listadoCiudad.get(i).getID_ciudad(),
+                listadoCiudad.get(i).getCiudad()});
+        }
+
+        valor = Integer.parseInt("" + model_ciudad.getValueAt(model_ciudad.getRowCount() - 1, 0)) + 1;
+
+    }
+    
+    
+    public int validarCampos()
+    {
+        int rtdo = 1;
+
+        if (jTnombreciudad.getText().equals("") || jTnombreciudad.getText().equals("Campo Requerido")) {
+
+            rtdo = 0;
+           // jTnombreciudad..setForeground(java.awt.Color.red);
+            jTnombreciudad.setText("Campo Requerido");
+
+        }
+        
+
+        return rtdo;
+    }
+   
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -256,23 +381,23 @@ public class jFCiudad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBeliminar1;
-    private javax.swing.JButton jBmodificar1;
-    private javax.swing.JButton jBnuevo1;
+    private javax.swing.JButton jBeliminar;
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JButton jBnuevo;
     private javax.swing.JButton jBtnIngresoPais;
     private javax.swing.JComboBox<String> jCBPais;
     private javax.swing.JLabel jLCiudadID;
     private javax.swing.JLabel jLFechaActualiza;
     private javax.swing.JLabel jLPais;
+    private javax.swing.JLabel jLfechaActua;
     private javax.swing.JLabel jLfechaActua2;
-    private javax.swing.JLabel jLfechaActua3;
     private javax.swing.JLabel jLnombreCiudad;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPbotones;
     private javax.swing.JPanel jPingreso;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTCiudadID;
-    private javax.swing.JTable jTableLenguaje;
+    private javax.swing.JTable jTableCiudad;
     private javax.swing.JTextField jTnombreciudad;
     // End of variables declaration//GEN-END:variables
 }

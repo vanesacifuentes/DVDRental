@@ -131,46 +131,10 @@ public class InventarioDAO {
     }
 
     //Metodo para cambiar estado de inventario de true a false //
-    public void actualizarStatusRental(int inventario_id) {
+    
+    
 
-        Connection con = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-
-        int rtdo;
-        rtdo = 0;
-
-        Inventario inventario = null;
-
-        try {
-
-            con = Fachada.getConnection();
-
-            String sql = " UPDATE inventory SET status_rental = 'true' WHERE inventory_id = ? ";
-
-            pstm = con.prepareStatement(sql);
-            pstm.setInt(1, inventario_id);
-
-            rtdo = pstm.executeUpdate();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Código : "
-                    + ex.getErrorCode() + "\nError :" + ex.getMessage());
-        } finally {
-            try {
-                if (pstm != null) {
-                    pstm.close();
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Código : "
-                        + ex.getErrorCode() + "\nError :" + ex.getMessage());
-            }
-
-        }
-
-    }
-
-    public ArrayList<ArrayList> extraerinfoAlquiler() {
+    public ArrayList<ArrayList> extraerinfoListaAlquiler() {
 
         Connection con = null;
         PreparedStatement pstm = null;
@@ -189,7 +153,9 @@ public class InventarioDAO {
                     + "customer.first_name, "
                     + "customer.last_name, "
                     + "address.address, "
-                    + "address.phone "
+                    + "address.phone, "
+                    + "film.rental_rate, "
+                    + "rental.return_date "
                     + "FROM "
                     + "public.film, "
                     + "public.rental, "
@@ -223,6 +189,8 @@ public class InventarioDAO {
                 registros.add(rs.getString("last_name"));
                 registros.add(rs.getString("phone"));
                 registros.add(rs.getString("address"));
+                registros.add(rs.getDouble("rental_rate"));
+                registros.add(rs.getTimestamp("return_date"));
                 
                 //registros.add(rs.getBoolean("status_rental"));
 

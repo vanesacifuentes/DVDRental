@@ -28,7 +28,6 @@ import javax.swing.JTextField;
 import java.util.Date;
 import java.sql.Timestamp;
 
-
 public class ControllerAlquiler {
 
     int valor;
@@ -43,9 +42,8 @@ public class ControllerAlquiler {
     private int cantidadpeliculaDisponibles;
     //private ArrayList <Pelicula> listadoPelicula;
 
-    
     ListenerAlquiler escucha = new ListenerAlquiler();
-    
+
     public ControllerAlquiler(iFalquiler vista, AlquilerDAO modelo) {
 
         this.vistaAlquiler = vista;
@@ -55,7 +53,6 @@ public class ControllerAlquiler {
         PeliculaDAO modelPelicula = new PeliculaDAO();
 
         //Se carga en el JList la informacion proveniente de la base de datos
-        
         this.vistaAlquiler.getjTBuscadorPelicula().addKeyListener(escucha);
         this.vistaAlquiler.getjListBusquedaPeliculas().addMouseListener(escucha);
 
@@ -65,17 +62,14 @@ public class ControllerAlquiler {
         this.vistaAlquiler.getjBAlquilar().addActionListener(escucha);
 
     }
-    
-    
-    public void ControllerAlquiler(iFdevolucion vista,AlquilerDAO modelo)
-    {
+
+    public void ControllerAlquiler(iFdevolucion vista, AlquilerDAO modelo) {
         vistaDevolucion = vista;
         this.modelo = modelo;
         vistaDevolucion.getjBdevolucion().addActionListener(escucha);
-        
+        vistaDevolucion.getjBbuscarRenta().addActionListener(escucha);
+
     }
-    
-    
 
     public class ListenerAlquiler implements ActionListener, MouseListener, KeyListener {
 
@@ -86,24 +80,29 @@ public class ControllerAlquiler {
                     JOptionPane.showMessageDialog(null, "Pelicula No disponible en esta Tienda");
                 } else {
 
-                  
-                    
                     registrar();
-                    modelo.modificarStatus_rental_inventory(Integer.parseInt(vistaAlquiler.getjTIDAlquiler().getText()),true);
+                    modelo.modificarStatus_rental_inventory(Integer.parseInt(vistaAlquiler.getjTIDAlquiler().getText()), true);
                 }
-            }else if (ae.getSource() == vistaAlquiler.getjBmodificar()) {
+            } else if (ae.getSource() == vistaAlquiler.getjBmodificar()) {
                 //actualizar();
-            }else if(ae.getSource() == vistaDevolucion.getjBdevolucion())
-            {
-                 actualizarRenta(Integer.parseInt(vistaDevolucion.getjTBuscadorRenta().getText()),false);
-                 //JOptionPane.showMessageDialog(null, Integer.parseInt(vistaDevolucion.getjTBuscadorRenta().getText())+"a");
-                 
+            } else if (ae.getSource() == vistaDevolucion.getjBdevolucion()) {
+                actualizarRenta(Integer.parseInt(vistaDevolucion.getjTBuscadorRenta().getText()), false);
+                //JOptionPane.showMessageDialog(null, Integer.parseInt(vistaDevolucion.getjTBuscadorRenta().getText())+"a");
+
+            } else if (ae.getSource() == vistaDevolucion.getjBbuscarRenta()) {
+                try {
+                    vistaDevolucion.cargarInfoAlquiler(modelo.extraerInfoAlquiler(Integer.parseInt(vistaDevolucion.getjTBuscadorRenta().getText())));
+                } catch (NumberFormatException a) {
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar el Numero de Renta");
+
+                }
+
             }
         }
 
         @Override
         public void keyTyped(KeyEvent ke) {
- 
+
         }
 
         @Override
@@ -141,13 +140,9 @@ public class ControllerAlquiler {
 
             if (me.getSource() == vistaAlquiler.getjListBusquedaPeliculas()) {
 
-                
-                
-               
                 int indice = vistaAlquiler.getjListBusquedaPeliculas().getSelectedIndex();
-                
-                
-                PeliculaDAO modelPelicula = new PeliculaDAO(); 
+
+                PeliculaDAO modelPelicula = new PeliculaDAO();
                 ArrayList<Pelicula> p;
                 p = modelPelicula.buscarPeliculas(vistaAlquiler.getModeloBuscarPeliculas().getElementAt(indice).toString(), "allInfo");
                 peliculaSelected = p.get(0);
@@ -158,8 +153,8 @@ public class ControllerAlquiler {
                 InventarioDAO inventarioModel = new InventarioDAO();
                 listaInventario = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "todos", empleadoUsuario.getTiendaID_Empleado());
 
-                listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId()
-                        , "disponibles", empleadoUsuario.getTiendaID_Empleado());
+                listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(),
+                         "disponibles", empleadoUsuario.getTiendaID_Empleado());
 
                 vistaAlquiler.getjLTitulo().setText(peliculaSelected.getTitulo());
                 vistaAlquiler.getjLPrecio().setText("" + peliculaSelected.getTarifaRenta() + " $US");
@@ -236,10 +231,9 @@ public class ControllerAlquiler {
 
             if (resultado == 1) {
                 vistaAlquiler.gestionMensajes("Registro Grabado con éxito",
-                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);     
-               // InventarioDAO inventarioModel = new InventarioDAO();
-               // listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "disponibles", empleadoUsuario.getTiendaID_Empleado());
-                
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                // InventarioDAO inventarioModel = new InventarioDAO();
+                // listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "disponibles", empleadoUsuario.getTiendaID_Empleado());
 
                 //   ArrayList<Alquiler> listaalquiler;
             } else {
@@ -250,29 +244,24 @@ public class ControllerAlquiler {
             vistaAlquiler.gestionMensajes("Codigo ya está registrado",
                     "Confirmación",
                     JOptionPane.ERROR_MESSAGE);
-        }}
+        }
+    }
 
-    
-        
-        
-        private void actualizarRenta(int idRenta,boolean b ) {
-                    
-                         
-            if(modelo.modificarStatus_rental_inventory(idRenta,b) == 1){
-                modelo.modificarStatus_rental_Rental(idRenta,b); 
-                vistaAlquiler.gestionMensajes(
-                        
-                        "Actualización exitosa",
-                        "Confirmación ", 
-                        JOptionPane.INFORMATION_MESSAGE);
-                                        
-            } else {
-                vistaAlquiler.gestionMensajes(
-                        "Actualización Falida",
-                        "Confirmación ", 
-                        JOptionPane.ERROR_MESSAGE);                 
-            }              
-         
-        
+    private void actualizarRenta(int idRenta, boolean b) {
+
+        if (modelo.modificarStatus_rental_inventory(idRenta, b) == 1) {
+            modelo.modificarStatus_rental_Rental(idRenta, b);
+            vistaAlquiler.gestionMensajes(
+                    "Actualización exitosa",
+                    "Confirmación ",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            vistaAlquiler.gestionMensajes(
+                    "Actualización Falida",
+                    "Confirmación ",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 }

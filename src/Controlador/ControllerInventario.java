@@ -18,7 +18,7 @@ public class ControllerInventario {
         
         
         
-        vista.cargarInfoAlquilerTabla(modelo.extraerinfoAlquiler());
+        vista.cargarInfoAlquilerTabla(modelo.extraerinfoListaAlquiler());
         
         //vista.cargarInfoInventarioTabla(modelo.extraerInfoInventarios());
         

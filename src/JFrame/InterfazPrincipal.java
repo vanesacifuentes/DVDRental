@@ -30,6 +30,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
      * Creates new form InterfazPrincipal
      */
     private Empleado empleadoUsuario;
+    private ControllerAlquiler controlalquiler;
+    
+    
     public InterfazPrincipal(Empleado empleadoUsuario) {
         
         this.empleadoUsuario = empleadoUsuario;
@@ -231,7 +234,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         iFalquiler alquilerView = new iFalquiler(empleadoUsuario);
         AlquilerDAO alquilerModel= new AlquilerDAO();
         
-        ControllerAlquiler alquilerControl = new ControllerAlquiler(alquilerView, alquilerModel);
+        controlalquiler = new ControllerAlquiler(alquilerView, alquilerModel);
         
         jDesktopPane.add(alquilerView);
         alquilerView.setVisible(true);
@@ -279,9 +282,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     private void jMdevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMdevolverActionPerformed
         // TODO add your handling code here:
-        iFdevolucion devolver = new iFdevolucion();
-        jDesktopPane.add(devolver);
-        devolver.setVisible(true); 
+        
+        iFdevolucion vistaDevolucion = new iFdevolucion();
+        AlquilerDAO modelo = new AlquilerDAO();
+        controlalquiler.ControllerAlquiler(vistaDevolucion, modelo);
+        jDesktopPane.add(vistaDevolucion);
+        vistaDevolucion.setVisible(true); 
     }//GEN-LAST:event_jMdevolverActionPerformed
 
     private void jMempladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMempladosActionPerformed

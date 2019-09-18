@@ -8,6 +8,8 @@
 package InternalFrame;
 
 import JFrame.jFPago;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 
 /**
  *
@@ -38,8 +40,9 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
         jTBuscadorPelicula1 = new javax.swing.JTextField();
         jTBuscadorPelicula2 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jTBuscadorPelicula = new javax.swing.JTextField();
+        jTBuscadorRenta = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jBbuscarRenta = new javax.swing.JButton();
         jPinformacionPeliculs2 = new javax.swing.JPanel();
         jLtitulo4 = new javax.swing.JLabel();
         jLCodigoCliente2 = new javax.swing.JLabel();
@@ -47,7 +50,7 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
         jLtitulo5 = new javax.swing.JLabel();
         jLPrecio = new javax.swing.JLabel();
         jLTitulo1 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jBdevolucion = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -101,25 +104,35 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda Película", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTBuscadorPelicula.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTBuscadorPelicula.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTBuscadorPelicula.addActionListener(new java.awt.event.ActionListener() {
+        jTBuscadorRenta.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTBuscadorRenta.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jTBuscadorRenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTBuscadorPeliculaActionPerformed(evt);
+                jTBuscadorRentaActionPerformed(evt);
             }
         });
-        jTBuscadorPelicula.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTBuscadorRenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTBuscadorPeliculaKeyReleased(evt);
+                jTBuscadorRentaKeyReleased(evt);
             }
         });
-        jPanel2.add(jTBuscadorPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 250, 30));
+        jPanel2.add(jTBuscadorRenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 250, 30));
 
         jLabel4.setBackground(new java.awt.Color(238, 112, 82));
         jLabel4.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Ingrese ID Alquiler:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 140, 40));
+
+        jBbuscarRenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscador3.png"))); // NOI18N
+        jBbuscarRenta.setBorder(null);
+        jBbuscarRenta.setContentAreaFilled(false);
+        jBbuscarRenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBbuscarRentaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jBbuscarRenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 40, 50));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 630, 80));
 
@@ -159,18 +172,18 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPinformacionPeliculs2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 630, 150));
 
-        jButton5.setBackground(new java.awt.Color(238, 112, 82));
-        jButton5.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(238, 112, 82));
-        jButton5.setText("Devoución");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jButton5.setContentAreaFilled(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jBdevolucion.setBackground(new java.awt.Color(238, 112, 82));
+        jBdevolucion.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jBdevolucion.setForeground(new java.awt.Color(238, 112, 82));
+        jBdevolucion.setText("Devoución");
+        jBdevolucion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBdevolucion.setContentAreaFilled(false);
+        jBdevolucion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jBdevolucionActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, 90, 40));
+        jPanel1.add(jBdevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, 90, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,14 +205,14 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTBuscadorPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscadorPeliculaActionPerformed
+    private void jTBuscadorRentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscadorRentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTBuscadorPeliculaActionPerformed
+    }//GEN-LAST:event_jTBuscadorRentaActionPerformed
 
-    private void jTBuscadorPeliculaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorPeliculaKeyReleased
+    private void jTBuscadorRentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorRentaKeyReleased
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jTBuscadorPeliculaKeyReleased
+    }//GEN-LAST:event_jTBuscadorRentaKeyReleased
 
     private void jTBuscadorPelicula1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscadorPelicula1ActionPerformed
         // TODO add your handling code here:
@@ -217,13 +230,30 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTBuscadorPelicula2KeyReleased
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jBdevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdevolucionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jBdevolucionActionPerformed
 
+    private void jBbuscarRentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarRentaActionPerformed
+        // TODO add your handling code here:
+
+       
+    }//GEN-LAST:event_jBbuscarRentaActionPerformed
+
+    public JButton getjBdevolucion() {
+        return jBdevolucion;
+    }
+
+    public JTextField getjTBuscadorRenta() {
+        return jTBuscadorRenta;
+    }
+
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jBbuscarRenta;
+    private javax.swing.JButton jBdevolucion;
     private javax.swing.JLabel jLCodigoCliente2;
     private javax.swing.JLabel jLPrecio;
     private javax.swing.JLabel jLTitulo;
@@ -237,8 +267,8 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPdatosCliente;
     private javax.swing.JPanel jPinformacionPeliculs2;
-    private javax.swing.JTextField jTBuscadorPelicula;
     private javax.swing.JTextField jTBuscadorPelicula1;
     private javax.swing.JTextField jTBuscadorPelicula2;
+    private javax.swing.JTextField jTBuscadorRenta;
     // End of variables declaration//GEN-END:variables
 }

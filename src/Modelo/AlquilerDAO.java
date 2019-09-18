@@ -84,6 +84,96 @@ public class AlquilerDAO {
      * @param p Objeto de la clase Alquiler a modificar
      * @return rtdo resultado de la operación modificar
      */
+    
+    
+    public int modificarStatus_rental_inventory(int idRenta,boolean b)
+    {
+        Connection con = null;
+        PreparedStatement pstm;
+        pstm = null;
+        int rtdo;
+        rtdo = 0;
+        try{
+            con = Fachada.getConnection();
+            
+            
+            
+            String sql =  "UPDATE inventory "
+                          +"SET status_rental = ? "
+                          + "WHERE inventory_id = "
+                          + "(select inventory_id from rental where rental_id = ? )";
+                    
+         
+
+            pstm = con.prepareStatement(sql);   
+
+            pstm.setBoolean(1,b);
+            pstm.setInt(2,idRenta);
+            
+  
+            rtdo = pstm.executeUpdate();  
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        finally{
+            try{
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return rtdo;
+    }
+    
+    public int modificarStatus_rental_Rental(int idRenta,boolean b)
+    {
+        Connection con = null;
+        PreparedStatement pstm;
+        pstm = null;
+        int rtdo;
+        rtdo = 0;
+        try{
+            con = Fachada.getConnection();
+            
+            
+            
+            String sql =  "UPDATE rental "
+                          +"SET status_rental = ? "
+                          +"WHERE rental_id = ?";
+                         
+                    
+         
+
+            pstm = con.prepareStatement(sql);   
+
+            pstm.setBoolean(1,b);
+            pstm.setInt(2,idRenta);
+            
+  
+            rtdo = pstm.executeUpdate();  
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "XD");
+        }
+        finally{
+            try{
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+                
+            }
+        }
+        return rtdo;
+    }
+    
     public int modificarAlquiler(Alquiler a){      
         Connection con = null;
         PreparedStatement pstm;

@@ -7,6 +7,10 @@
  */
 package JFrame;
 
+import Modelo.Pelicula;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 
 public class jFinventario extends javax.swing.JFrame {
 
@@ -26,17 +30,24 @@ public class jFinventario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButton1 = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         jPingreso = new javax.swing.JPanel();
         jPtabla1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableinventario = new javax.swing.JTable();
-        jLTienda = new javax.swing.JLabel();
-        jComboBoxTienda = new javax.swing.JComboBox<>();
         jPbotones = new javax.swing.JPanel();
         jBnuevo = new javax.swing.JButton();
         jBmodificar = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
+        jPingreso1 = new javax.swing.JPanel();
+        jPtabla2 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableinventarioRentas = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+
+        jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -55,53 +66,36 @@ public class jFinventario extends javax.swing.JFrame {
         jTableinventario.setForeground(new java.awt.Color(51, 51, 51));
         jTableinventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Cantidad", "ID Ineventario", "ID Película", "Descripcion"
+                "No. Alquiler", "No. Inventario", "Titulo Pelicula", "Cliente", "Telefono", "Direccion"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane3.setViewportView(jTableinventario);
 
-        jPtabla1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 270));
+        jPtabla1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 140));
 
-        jPingreso.add(jPtabla1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 640, 270));
+        jPingreso.add(jPtabla1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 640, 140));
 
-        jLTienda.setBackground(new java.awt.Color(238, 112, 82));
-        jLTienda.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
-        jLTienda.setForeground(new java.awt.Color(51, 51, 51));
-        jLTienda.setText("Tienda:");
-        jPingreso.add(jLTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 20));
-
-        jComboBoxTienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPingreso.add(jComboBoxTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 200, 30));
-
-        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 660, 380));
+        jPanel1.add(jPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 660, 200));
 
         jPbotones.setBackground(new java.awt.Color(255, 255, 255));
         jPbotones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -138,7 +132,56 @@ public class jFinventario extends javax.swing.JFrame {
         jBeliminar.setContentAreaFilled(false);
         jPbotones.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 70, 30));
 
-        jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 660, 50));
+        jPanel1.add(jPbotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 660, 50));
+
+        jPingreso1.setBackground(new java.awt.Color(255, 255, 255));
+        jPingreso1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Inventario de Rentas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
+        jPingreso1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPtabla2.setBackground(new java.awt.Color(255, 255, 255));
+        jPtabla2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(153, 153, 153))); // NOI18N
+        jPtabla2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTableinventarioRentas.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jTableinventarioRentas.setForeground(new java.awt.Color(51, 51, 51));
+        jTableinventarioRentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "No. Alquiler", "No. Inventario", "Titulo Pelicula", "Cliente", "Telefono", "Direccion"
+            }
+        ));
+        jScrollPane4.setViewportView(jTableinventarioRentas);
+
+        jPtabla2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 140));
+
+        jPingreso1.add(jPtabla2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 640, 140));
+
+        jPanel1.add(jPingreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 660, 190));
+
+        jLabel1.setText("Tienda");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 40, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 70, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,7 +196,7 @@ public class jFinventario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -167,6 +210,46 @@ public class jFinventario extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    
+    
+    public void cargarInfoAlquilerTabla(ArrayList<ArrayList> listadoAlquiler)
+    {
+        DefaultTableModel defaultCombo;
+        defaultCombo = (DefaultTableModel) jTableinventarioRentas.getModel();
+        limpiarListadoTabla();
+        for (int i = 0; i < listadoAlquiler.size(); i++) {
+            defaultCombo.addRow(new Object[]{
+                listadoAlquiler.get(i).get(0),
+                listadoAlquiler.get(i).get(1),
+                listadoAlquiler.get(i).get(2),
+                listadoAlquiler.get(i).get(3)+" "+listadoAlquiler.get(i).get(4),
+                listadoAlquiler.get(i).get(5),
+                listadoAlquiler.get(i).get(6),
+                
+                
+     
+            });
+        }
+        
+    }
+    
+     //Limpiar el listado
+    private void limpiarListadoTabla() {
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTableinventarioRentas.getModel();
+        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
+    
+    
+    public void cargarInfoInventarioTabla()
+    {
+        
+    }
+
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -204,13 +287,18 @@ public class jFinventario extends javax.swing.JFrame {
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
-    private javax.swing.JComboBox<String> jComboBoxTienda;
-    private javax.swing.JLabel jLTienda;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPbotones;
     private javax.swing.JPanel jPingreso;
+    private javax.swing.JPanel jPingreso1;
     private javax.swing.JPanel jPtabla1;
+    private javax.swing.JPanel jPtabla2;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTableinventario;
+    private javax.swing.JTable jTableinventarioRentas;
     // End of variables declaration//GEN-END:variables
 }

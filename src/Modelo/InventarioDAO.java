@@ -13,13 +13,14 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class InventarioDAO {
-    
+
     /**
      *
      * @param inventory_id id del inventario a listar, 0 se listaran todos
      * @return ArrayList, lista de objetos Inventario
      */
-    public ArrayList<Inventario> extraerInventario_IdPelicula(int idPelicula,String s,int store_id) {
+    //extrae una lista de inventarios dado el id de una pelicula y filtrado de acuerdo a la tienda (sede) que pertenece
+    public ArrayList<Inventario> extraerInventario_IdPelicula(int idPelicula, String s, int store_id) {
         ArrayList<Inventario> listadoInventario;
         listadoInventario = new ArrayList<>();
 
@@ -33,15 +34,15 @@ public class InventarioDAO {
 
             if (s.equals("todos")) {
                 sql = "select * from inventory where film_id = '" + idPelicula + "' and"
-                        + " store_id = '"+store_id+"' order by inventory_id";
-            } else if(s.equals("disponibles")) {
+                        + " store_id = '" + store_id + "' order by inventory_id";
+            } else if (s.equals("disponibles")) {
                 sql = "select * from inventory where status_rental = false and film_id = '" + idPelicula + "' and"
-                        + " store_id = '"+store_id+"' order by inventory_id";
+                        + " store_id = '" + store_id + "' order by inventory_id";
             }
             pstm = con.prepareStatement(sql);
 
             rs = pstm.executeQuery();
-            
+
             Inventario inventario = null;
             while (rs.next()) {
                 inventario = new Inventario();
@@ -128,48 +129,123 @@ public class InventarioDAO {
         }
         return listadoInventario;
     }
-    
-     //Metodo para cambiar estado de inventario de true a false //
-    public void actualizarStatusRental(int inventario_id){   
-     
-       
+
+    //Metodo para cambiar estado de inventario de true a false //
+    public void actualizarStatusRental(int inventario_id) {
+
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        
+
         int rtdo;
         rtdo = 0;
-        
-        Inventario inventario= null;
-        
-        try{
-            
+
+        Inventario inventario = null;
+
+        try {
+
             con = Fachada.getConnection();
-            
+
             String sql = " UPDATE inventory SET status_rental= 'true' WHERE inventory_id = ? ";
-       
-            pstm = con.prepareStatement(sql);       
+
+            pstm = con.prepareStatement(sql);
             pstm.setInt(1, inventario_id);
-    
+
             rtdo = pstm.executeUpdate();
-              
-            
-        }
-        catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Código : " + 
-                        ex.getErrorCode() + "\nError :" + ex.getMessage());
-        } 
-        finally{
-            try{
-                if(pstm!=null) pstm.close();                
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Código : "
+                    + ex.getErrorCode() + "\nError :" + ex.getMessage());
+        } finally {
+            try {
+                if (pstm != null) {
+                    pstm.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Código : "
+                        + ex.getErrorCode() + "\nError :" + ex.getMessage());
             }
-            catch(SQLException ex){
-                JOptionPane.showMessageDialog(null,"Código : " + 
-                        ex.getErrorCode() + "\nError :" + ex.getMessage());
-            }
-                 
+
         }
-   
+
     }
-        
+
+    public ArrayList<ArrayList> extraerinfoAlquiler() {
+
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        ArrayList<ArrayList> listadoAlquiler = new ArrayList<>();
+        try {
+            con = Fachada.getConnection();
+            String sql = "";
+
+            sql
+                    = "SELECT "
+                    + "rental.rental_id, "
+                    + "inventory.inventory_id, "
+                    + "film.title, "
+                    + "customer.first_name, "
+                    + "customer.last_name, "
+                    + "address.address, "
+                    + "address.phone "
+                    + "FROM "
+                    + "public.film, "
+                    + "public.rental, "
+                    + "public.inventory, "
+                    + "public.customer, "
+                    + "public.address "
+                    + "WHERE "
+                    + "rental.inventory_id = inventory.inventory_id AND "
+                    + "rental.customer_id = customer.customer_id AND "
+                    + "inventory.film_id = film.film_id AND "
+                    + "customer.address_id = address.address_id AND "
+                    + "rental.status_rental = 'true';";
+
+            pstm = con.prepareStatement(sql);
+
+            rs = pstm.executeQuery();
+
+            //Inventario inventario = null;
+            while (rs.next()) {
+//                inventario = new Inventario();
+//
+//                inventario.setInventarioID(rs.getInt("inventario_id"));
+//                inventario.setPeliculaID_inventario(rs.getInt("film_id"));
+//                inventario.setPeliculaID_inventario(rs.getInt("store_id"));
+//                inventario.setUltimaActualizacion(rs.getTimestamp("last_update"));
+                ArrayList registros = new ArrayList();
+                registros.add(rs.getInt("rental_id"));
+                registros.add(rs.getInt("inventory_id"));
+                registros.add(rs.getString("title"));
+                registros.add(rs.getString("first_name"));
+                registros.add(rs.getString("last_name"));
+                registros.add(rs.getString("phone"));
+                registros.add(rs.getString("address"));
+                
+                //registros.add(rs.getBoolean("status_rental"));
+
+                listadoAlquiler.add(registros);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Código : "
+                    + ex.getErrorCode() + "\nError :" + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstm != null) {
+                    pstm.close();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Código : "
+                        + ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return listadoAlquiler;
+
+    }
+
 }

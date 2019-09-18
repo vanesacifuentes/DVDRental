@@ -716,6 +716,15 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jBmodificar.setText("Modificar");
         jBeliminar.setVisible(true);
     }
+    
+    //Limpiar el listado
+    private void limpiarListadoTabla() {
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTable2.getModel();
+        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
 
     //Método para cargar la información de películas a la Tabla
     public void cargarPeliculasTabla(ArrayList<Pelicula> listadoPelicula) {
@@ -754,14 +763,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jCBClasificacion.setModel(model);
 
     }
-    //Limpiar el listado
-    private void limpiarListadoTabla() {
-        DefaultTableModel modelo;
-        modelo = (DefaultTableModel) jTable2.getModel();
-        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
-            modelo.removeRow(i);
-        }
-    }
+    
     
     //Método para cargar categorias a un comboBox
     public void cargarCategoriasCombo(ArrayList<Categoria> listadoCategoria) {

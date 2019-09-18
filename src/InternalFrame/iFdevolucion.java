@@ -164,7 +164,7 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
                 jBdevolucionActionPerformed(evt);
             }
         });
-        jPanel1.add(jBdevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, 90, 40));
+        jPanel1.add(jBdevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 480, 90, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,11 +176,9 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 4, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,18 +239,7 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
         return jLPrecio;
     }
 
-    public JLabel getjLfechaDevolucion() {
-        return jLfechaDevolucion;
-    }
-
-    public JLabel getjLidCliente() {
-        return jLidCliente;
-    }
-
-    public JLabel getjLnombreCliente1() {
-        return jLnombreCliente1;
-    }
-
+   
     public JLabel getjLTitulo1() {
         return jLTitulo1;
     }

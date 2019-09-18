@@ -73,7 +73,7 @@ public class ControllerAlquiler {
 
     public class ListenerAlquiler implements ActionListener, MouseListener, KeyListener {
 
-        //@Override
+        @Override
         public void actionPerformed(ActionEvent ae) {
             if (ae.getSource() == vistaAlquiler.getjBAlquilar()) {
                 if (listaInventario_PelDisp.size() == 0) {
@@ -103,20 +103,24 @@ public class ControllerAlquiler {
                 }
 
             }
-        }
-
-        @Override
-        public void keyTyped(KeyEvent ke) {
 
         }
 
         @Override
-        public void keyPressed(KeyEvent ke) {
+        public void keyTyped(KeyEvent ke
+        ) {
 
         }
 
         @Override
-        public void keyReleased(KeyEvent ke) {
+        public void keyPressed(KeyEvent ke
+        ) {
+
+        }
+
+        @Override
+        public void keyReleased(KeyEvent ke
+        ) {
 
             if (ke.getSource() == vistaAlquiler.getjTBuscadorPelicula()) {
 
@@ -133,15 +137,18 @@ public class ControllerAlquiler {
         }
 
         @Override
-        public void mouseClicked(MouseEvent me) {
+        public void mouseClicked(MouseEvent me
+        ) {
         }
 
         @Override
-        public void mousePressed(MouseEvent me) {
+        public void mousePressed(MouseEvent me
+        ) {
         }
 
         @Override
-        public void mouseReleased(MouseEvent me) {
+        public void mouseReleased(MouseEvent me
+        ) {
 
             if (me.getSource() == vistaAlquiler.getjListBusquedaPeliculas()) {
 
@@ -185,11 +192,13 @@ public class ControllerAlquiler {
         }
 
         @Override
-        public void mouseEntered(MouseEvent me) {
+        public void mouseEntered(MouseEvent me
+        ) {
         }
 
         @Override
-        public void mouseExited(MouseEvent me) {
+        public void mouseExited(MouseEvent me
+        ) {
         }
 
         public String formatoString(String text) {
@@ -241,6 +250,7 @@ public class ControllerAlquiler {
                 // listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "disponibles", empleadoUsuario.getTiendaID_Empleado());
 
                 //   ArrayList<Alquiler> listaalquiler;
+                //vista.nuevaAccion();
             } else {
                 vistaAlquiler.gestionMensajes("Error al grabar",
                         "Confirmación", JOptionPane.ERROR_MESSAGE);

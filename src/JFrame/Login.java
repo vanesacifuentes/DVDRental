@@ -169,7 +169,7 @@ public class Login extends javax.swing.JFrame {
         jBEntrar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         jBEntrar.setForeground(new java.awt.Color(238, 112, 82));
         jBEntrar.setText("Entrar");
-        jBEntrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBEntrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 51, 0), 1, true));
         jBEntrar.setContentAreaFilled(false);
         jBEntrar.setDefaultCapable(false);
         jBEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame {
                 jBEntrarActionPerformed(evt);
             }
         });
-        JPingreso.add(jBEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 100, 40));
+        JPingreso.add(jBEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 100, 40));
 
         getContentPane().add(JPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 510));
 

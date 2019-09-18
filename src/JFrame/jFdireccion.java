@@ -2,20 +2,25 @@
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
  * Objetivo      : Gestionar direccion, mostrar agregar nuevo y borrar
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : jFdireccion- Interfaz
  */
 package JFrame;
 
 import Controlador.ControllerCiudad;
+import Modelo.Ciudad;
 import Modelo.CiudadDAO;
+import Modelo.Direccion;
+import Modelo.Pelicula;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 public class jFdireccion extends javax.swing.JFrame {
 
@@ -222,7 +227,7 @@ public class jFdireccion extends javax.swing.JFrame {
         // TODO add your handling code here:
         CiudadDAO modeloCiudad = new CiudadDAO();
         jFCiudad CiudadView = new jFCiudad();
-       // ControllerCiudad controlador = new ControllerCiudad(CiudadView, modeloCiudad);
+        // ControllerCiudad controlador = new ControllerCiudad(CiudadView, modeloCiudad);
 
         CiudadView.setVisible(true);
     }//GEN-LAST:event_jBtnIngresoCiudadActionPerformed
@@ -274,9 +279,25 @@ public class jFdireccion extends javax.swing.JFrame {
     public JTextField getjTDireccionID() {
         return jTDireccionID;
     }
-    
+
     public void gestionMensajes(String mensaje, String titulo, int icono) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
+    }
+
+
+    //Método para cargar las ciudades a un comboBox
+    public void cargarCiudadesCombo(ArrayList<Ciudad> listadoCiudades) {
+        DefaultComboBoxModel model;
+        String[] arregloCiudades = new String[listadoCiudades.size()];
+
+        for (int a = 0; a < listadoCiudades.size(); a++) {
+            arregloCiudades[a] = listadoCiudades.get(a).getCiudad();
+        }
+
+        model = new DefaultComboBoxModel(arregloCiudades);
+
+        jComboCiudad.setModel(model);
+
     }
 
     /**

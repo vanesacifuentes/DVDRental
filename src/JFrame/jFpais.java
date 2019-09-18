@@ -1,8 +1,8 @@
 /*
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
- * Objetivo      : Gestionar direccion, mostrar agregar nuevo y borrar
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Objetivo      : Gestionar país, mostrar agregar nuevo y borrar
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : jFpais- Interfaz
  */
 package JFrame;

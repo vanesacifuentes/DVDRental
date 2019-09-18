@@ -2,7 +2,7 @@
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
  * Objetivo      : Interfaz Principal, permite realizar el llamado a los internal Frame e interactuar con el programa
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : InterfazPrincipal
  */
 package JFrame;
@@ -72,6 +72,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jMclientes = new javax.swing.JMenuItem();
         jMemplados = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        InfoIntegrantes = new javax.swing.JMenu();
+        jMclientes1 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -153,7 +156,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(Soporte);
 
-        Mantenimiento.setText("Mantenimiento");
+        Mantenimiento.setText("Transacciones");
         Mantenimiento.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         Mantenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +196,29 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         Mantenimiento.add(jMenuItem8);
 
         jMenuBar1.add(Mantenimiento);
+
+        InfoIntegrantes.setText("Acerca de");
+        InfoIntegrantes.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        InfoIntegrantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InfoIntegrantesActionPerformed(evt);
+            }
+        });
+
+        jMclientes1.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jMclientes1.setText("Info");
+        jMclientes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMclientes1ActionPerformed(evt);
+            }
+        });
+        InfoIntegrantes.add(jMclientes1);
+
+        jMenuItem9.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
+        jMenuItem9.setText("Salir");
+        InfoIntegrantes.add(jMenuItem9);
+
+        jMenuBar1.add(InfoIntegrantes);
 
         setJMenuBar(jMenuBar1);
 
@@ -271,6 +297,17 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         empleadoView.setVisible(true); 
     }//GEN-LAST:event_jMempladosActionPerformed
 
+    private void InfoIntegrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoIntegrantesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InfoIntegrantesActionPerformed
+
+    private void jMclientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMclientes1ActionPerformed
+        // TODO add your handling code here:
+        Informacion info = new Informacion();
+        info.setVisible(true);
+        
+    }//GEN-LAST:event_jMclientes1ActionPerformed
+
     public Empleado getEmpleadoUsuario() {
         return empleadoUsuario;
     }
@@ -314,6 +351,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Devolucion;
+    private javax.swing.JMenu InfoIntegrantes;
     private javax.swing.JMenu Mantenimiento;
     private javax.swing.JMenu Soporte;
     private javax.swing.JDesktopPane jDesktopPane;
@@ -321,12 +359,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMalquilar;
     private javax.swing.JMenuItem jMchat;
     private javax.swing.JMenuItem jMclientes;
+    private javax.swing.JMenuItem jMclientes1;
     private javax.swing.JMenuItem jMdevolver;
     private javax.swing.JMenuItem jMemplados;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMpeliculas;
     private javax.swing.JMenuItem jMsalir;
     private javax.swing.JMenu jMtienda;

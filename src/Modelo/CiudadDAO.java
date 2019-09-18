@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Modela el acceso a datos de la tabla city
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : CiudadDAO
  */
 package Modelo;
 

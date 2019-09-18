@@ -1,19 +1,28 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Gestionar ciudad, mostrar agregar nuevo y borrar
+ * Programadores : Cristhian Guzman,  Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : jFciudad- Interfaz
  */
 package JFrame;
 
+//import Controlador.ControllerPais;
 import Modelo.Ciudad;
 import Modelo.Lenguaje;
+import Modelo.Pais;
 import Modelo.PaisDAO;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javafx.scene.paint.Color;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -234,17 +243,35 @@ public class jFCiudad extends javax.swing.JFrame {
     private void jBtnIngresoPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIngresoPaisActionPerformed
         // TODO add your handling code here:
 
-        PaisDAO modeloPais = new PaisDAO();
-        jFpais PaisView = new jFpais();
-
-        //  ControllerPais controlador = new ControllerPais(PaisView, modeloPais, this);
-
-        PaisView.setVisible(true);
     }//GEN-LAST:event_jBtnIngresoPaisActionPerformed
 
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBnuevoActionPerformed
+
+    public JButton getjBtnIngresoPais() {
+        return jBtnIngresoPais;
+    }
+
+    public JComboBox<String> getjCBPais() {
+        return jCBPais;
+    }
+
+    public JTextField getjTCiudadID() {
+        return jTCiudadID;
+    }
+
+    public JTextField getjTnombreciudad() {
+        return jTnombreciudad;
+    }
+
+    public JTable getjTableCiudad() {
+        return jTableCiudad;
+    }
+
+    public JLabel getjLfechaActua() {
+        return jLfechaActua;
+    }
 
     public void activarCampos(Boolean b) {
         jTnombreciudad.setEnabled(b);
@@ -311,7 +338,7 @@ public class jFCiudad extends javax.swing.JFrame {
     }
 
     //Método para cargar los ciudades a la tabla 
-    public void cargarLenguajesTabla(ArrayList<Ciudad> listadoCiudad) {
+    public void cargarCiudadesTabla(ArrayList<Ciudad> listadoCiudad) {
         DefaultTableModel model_ciudad;
         model_ciudad = (DefaultTableModel) jTableCiudad.getModel();
         limpiarListadoTabla();
@@ -322,6 +349,21 @@ public class jFCiudad extends javax.swing.JFrame {
         }
 
         valor = Integer.parseInt("" + model_ciudad.getValueAt(model_ciudad.getRowCount() - 1, 0)) + 1;
+
+    }
+    
+    //Método para cargar paises un combobox
+    public void cargarPaisesCombo(ArrayList<Pais> listadoPaises) {
+        DefaultComboBoxModel model;
+        String[] arregloPaises = new String[listadoPaises.size()];
+
+        for (int a = 0; a < listadoPaises.size(); a++) {
+            arregloPaises[a] = listadoPaises.get(a).getPais();
+        }
+
+        model = new DefaultComboBoxModel(arregloPaises);
+
+        jCBPais.setModel(model);
 
     }
     

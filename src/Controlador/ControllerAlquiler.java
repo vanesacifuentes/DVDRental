@@ -66,7 +66,13 @@ public class ControllerAlquiler {
         //@Override
         public void actionPerformed(ActionEvent ae) {
             if (ae.getSource() == vista.getjBAlquilar()) {
+                
+               
+                
+                
+                
                 if (listaInventario_PelDisp.size() == 0) {
+                    
                     JOptionPane.showMessageDialog(null, "Pelicula No disponible en esta Tienda");
                 } else {
 
@@ -217,7 +223,7 @@ public class ControllerAlquiler {
                 vista.gestionMensajes("Registro Grabado con éxito",
                         "Confirmación", JOptionPane.INFORMATION_MESSAGE);     
                 InventarioDAO inventarioModel = new InventarioDAO();
-                listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "todos", empleadoUsuario.getTiendaID_Empleado());
+               // listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "todos", empleadoUsuario.getTiendaID_Empleado());
                 
 
                 //   ArrayList<Alquiler> listaalquiler;

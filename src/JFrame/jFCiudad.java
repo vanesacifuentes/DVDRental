@@ -119,9 +119,9 @@ public class jFCiudad extends javax.swing.JFrame {
         jLFechaActualiza.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N
         jLFechaActualiza.setForeground(new java.awt.Color(51, 51, 51));
         jLFechaActualiza.setText("Fecha actualización:");
-        jPingreso.add(jLFechaActualiza, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        jPingreso.add(jLFechaActualiza, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
         jPingreso.add(jLfechaActua2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 100, 30));
-        jPingreso.add(jLfechaActua, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 140, 30));
+        jPingreso.add(jLfechaActua, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 140, 30));
 
         jLPais.setBackground(new java.awt.Color(238, 112, 82));
         jLPais.setFont(new java.awt.Font("Decker", 0, 13)); // NOI18N

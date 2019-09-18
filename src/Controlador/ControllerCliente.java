@@ -40,7 +40,7 @@ public class ControllerCliente {
         TiendaDAO modeltienda = new TiendaDAO();
 
         this.vista.cargarClientesTabla(modelo.listadoCliente());
-        this.vista.cargarActivoIntCombo(modelo.listadoCliente());
+//        this.vista.cargarActivoIntCombo(modelo.listadoCliente());
         
         this.vista.cargarTiendasCombo(listaTiendas = modeltienda.listadoTiendas());
        
@@ -104,9 +104,9 @@ public class ControllerCliente {
                             "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
                     //Se carga 
-//                    ArrayList<Cliente> listaClientes;
-//                    listaClientes = modelo.listadoCliente();
-//                    vista.cargarClientesTabla(ListaCliente = listaClientes);
+                    ArrayList<Cliente> listaClientes;
+                    listaClientes = modelo.listadoCliente();
+                    vista.cargarClientesTabla(listaClientes);
 
                     //vista.activarControles(false); 
                     //vista.nuevoAction();

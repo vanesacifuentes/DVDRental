@@ -9,7 +9,6 @@ package Controlador;
 
 import JFrame.jFCiudad;
 import JFrame.jFdireccion;
-import JFrame.jFpais;
 import Modelo.Ciudad;
 import Modelo.CiudadDAO;
 import Modelo.Pais;
@@ -73,11 +72,11 @@ public class ControllerCiudad {
                 } else if (ae.getSource() == vista.getjBtnIngresoPais()) {
 
                     PaisDAO modeloPais = new PaisDAO();
-                    jFpais PaisView = new jFpais();
+                  //  jFpais PaisView = new jFpais();
                     jFCiudad ciudadView = new jFCiudad();
-                   // ControllerPais controlador = new ControllerPais(PaisView, modeloPais, ciudadView);
+                  //  ControllerPais controlador = new ControllerPais(PaisView, modeloPais, ciudadView);
 
-                    PaisView.setVisible(true);
+                  //  PaisView.setVisible(true);
 
                 } else if (ae.getSource() == vista.getjBmodificar()) {
                     if (vista.getjBmodificar().getText().equalsIgnoreCase("Modificar")) {

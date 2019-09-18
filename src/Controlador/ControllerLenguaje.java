@@ -2,7 +2,7 @@
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
  * Objetivo      : Modela el acceso a datos de la tabla language
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : ControllerLenguaje
  */
 package Controlador;
@@ -25,7 +25,7 @@ public class ControllerLenguaje {
     LenguajeDAO modelo;
     iFpelicula vistaPelicula;
 
-    //Constructor Controlador de lenguaje
+    //Constructor Controlador de conutry
     public ControllerLenguaje(jFlenguaje vista, LenguajeDAO modelo, iFpelicula vistaPelicula) {
 
         this.vista = vista;

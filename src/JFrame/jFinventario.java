@@ -2,10 +2,14 @@
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
  * Objetivo      : jFinventario Interfaz inventario
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : jFinventario
  */
 package JFrame;
+
+import Modelo.Pelicula;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 import Modelo.Pelicula;
 import java.util.ArrayList;

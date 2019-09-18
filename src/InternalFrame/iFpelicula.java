@@ -2,7 +2,7 @@
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
  * Objetivo      : Interfaz Pelicula
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : iFpelicula- Interfaz
  */
 package InternalFrame;
@@ -781,13 +781,13 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     //Método para cargar lenguajes a un combobox
     public void cargarLenguajesCombo(ArrayList<Lenguaje> listadoLenguaje) {
         DefaultComboBoxModel model;
-        String[] arregloCategorias = new String[listadoLenguaje.size()];
+        String[] arregloLenguajes = new String[listadoLenguaje.size()];
 
         for (int a = 0; a < listadoLenguaje.size(); a++) {
-            arregloCategorias[a] = listadoLenguaje.get(a).getNombreLenguaje();
+            arregloLenguajes[a] = listadoLenguaje.get(a).getNombreLenguaje();
         }
 
-        model = new DefaultComboBoxModel(arregloCategorias);
+        model = new DefaultComboBoxModel(arregloLenguajes);
 
         jCBlenguaje.setModel(model);
 

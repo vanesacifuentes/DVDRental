@@ -1,14 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Loguin de acceso al usuario
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : Loguin
  */
 package JFrame;
 
 
 
 //import com.sun.awt.AWTUtilities;
-import Controlador.ControllerInterfaz;
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
 import java.awt.Shape;

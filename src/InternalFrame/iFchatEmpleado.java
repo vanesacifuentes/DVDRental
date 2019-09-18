@@ -5,19 +5,77 @@
  */
 package InternalFrame;
 
+import JFrame.Chat_cliente;
+import JPanel.JPEnvioMensaje;
+import JPanel.JPnotificacionMensaje;
+import JPanel.PanelMensaje;
+import Modelo.DatosEnvio;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
+
+//Implementar el empleado como servidor
 /**
  *
  * @author nicol
  */
-public class iFchatEmpleado extends javax.swing.JInternalFrame {
-
+public class iFchatEmpleado extends javax.swing.JInternalFrame implements Runnable {
+    private String nombre;
+    private static boolean variable = true;
     /**
      * Creates new form iFchatEmpleado
      */
     public iFchatEmpleado() {
         initComponents();
+        nombre = JOptionPane.showInputDialog("Ingrese su nombre");
+        AgregarPanel();
+        Thread mihilo = new Thread(this);
+        mihilo.start();
+      
     }
 
+     DefaultListModel dln= new DefaultListModel();
+     
+      public void nuevaPersona(String nick){
+                 
+          jLista.setModel(dln);         
+        //  if(variable == true){
+              dln.addElement(nick);
+            //  variable = false;
+       //   }
+
+    }
+      
+      public void seleccionar(PanelMensaje mensaje,String nick){
+          
+        for (int i = 0 ; i < dln.size() ; i++) {
+        String comparar = (String) dln.getElementAt(i);
+          if(comparar == nick){
+              
+              jPmensajes.add(mensaje);
+              jPmensajes.revalidate();
+              jPmensajes.repaint();
+          }
+      }
+    }
+
+     public void AgregarPanel(){
+              
+          EnviaTexto mievento = new EnviaTexto();
+          jBenviar.addActionListener(mievento);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,11 +88,15 @@ public class iFchatEmpleado extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         JPNotificaciones = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        JPnotiMensajes = new javax.swing.JPanel();
         jPenvio = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jBenviar = new javax.swing.JButton();
         JTMensaje = new javax.swing.JTextField();
-        JPmensajes = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPmensajes = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jLista = new javax.swing.JList();
+
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,43 +112,38 @@ public class iFchatEmpleado extends javax.swing.JInternalFrame {
         jLabel1.setText("Mensajes");
         JPNotificaciones.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
-        JPnotiMensajes.setBackground(new java.awt.Color(255, 255, 255));
-        JPnotiMensajes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        JPNotificaciones.add(JPnotiMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 240, 450));
-
-        jPanel1.add(JPNotificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 240, 510));
+        jPanel1.add(JPNotificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 240, 50));
 
         jPenvio.setBackground(new java.awt.Color(255, 255, 255));
         jPenvio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jPenvio.setForeground(new java.awt.Color(153, 153, 153));
         jPenvio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/send.png"))); // NOI18N
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.setContentAreaFilled(false);
-        jPenvio.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 50, 40));
+        jBenviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/send.png"))); // NOI18N
+        jBenviar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jBenviar.setContentAreaFilled(false);
+        jPenvio.add(jBenviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 50, 40));
 
         JTMensaje.setForeground(new java.awt.Color(153, 153, 153));
         JTMensaje.setText("Escribe un mensaje...");
         JTMensaje.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPenvio.add(JTMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 590, 40));
 
-        jPanel1.add(jPenvio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 720, 80));
+        jPanel1.add(jPenvio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 710, 80));
 
-        JPmensajes.setBackground(new java.awt.Color(255, 255, 255));
-        JPmensajes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        jPanel1.add(JPmensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 480, 510));
+        jScrollPane2.setHorizontalScrollBar(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPmensajes.setBackground(new java.awt.Color(255, 255, 255));
+        jPmensajes.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
+        jScrollPane2.setViewportView(jPmensajes);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 470, 530));
+
+        jScrollPane1.setViewportView(jLista);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 240, 480));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -94,12 +151,106 @@ public class iFchatEmpleado extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPNotificaciones;
-    private javax.swing.JPanel JPmensajes;
-    private javax.swing.JPanel JPnotiMensajes;
     private javax.swing.JTextField JTMensaje;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBenviar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JList jLista;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPenvio;
+    private javax.swing.JPanel jPmensajes;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+            
+        try{
+           
+            ServerSocket servidor = new ServerSocket(9999);
+            
+            //Acepta las conexiones
+            String nick,ip = null,mensaje_ = null;
+            
+            DatosEnvio paquete_recibido;
+                    
+            while(true){
+            Socket misocket = servidor.accept();
+            
+            //Flujo de datos que recoge lo enviado por el cliente
+            ObjectInputStream paquete_datos = new ObjectInputStream(misocket.getInputStream());
+            
+          //  DataInputStream flujo_entrada = new DataInputStream(misocket.getInputStream());
+            
+            //Leemos lo que esta en el flujo
+            paquete_recibido = (DatosEnvio)paquete_datos.readObject();
+            
+            
+            nick = paquete_recibido.getNick();
+            mensaje_ = paquete_recibido.getMensaje();
+            
+               
+                
+                 PanelMensaje mensaje = new PanelMensaje(nick,mensaje_); 
+                   nuevaPersona(nick);     
+                   seleccionar( mensaje,nick);
+                /* jPmensajes.add(mensaje);
+                 jPmensajes.revalidate();
+                 jPmensajes.repaint();*/
+              //  jPmensajes.append("\n"+paqueteRecibido.getNick()+":"+paqueteRecibido.getMensaje());
+                   
+                 misocket.close();              
+            }
+            
+        }catch(Exception  ex){
+            System.out.println(ex.getMessage());
+        }
+        ;
+    }
+ 
+    private class EnviaTexto implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            try {
+                
+            String mensaje_ = JTMensaje.getText();
+                      
+            DatosEnvio datos = new DatosEnvio();
+            
+            datos.setNick_empleado(nombre);
+            datos.setMensaje(JTMensaje.getText());
+            
+            nombre= datos.getNick_empleado();
+            mensaje_ = datos.getMensaje();
+            
+            
+            Socket enviaDestinatario = new Socket("192.168.1.53",9090);
+            
+            JPEnvioMensaje mensaje = new JPEnvioMensaje(nombre,mensaje_); 
+            jPmensajes.setSize(462,92);
+            jPmensajes.add(mensaje);
+            jPmensajes.revalidate();
+            jPmensajes.repaint();
+             
+             ObjectOutputStream paqueteReenvio = new ObjectOutputStream(enviaDestinatario.getOutputStream());
+             paqueteReenvio.writeObject(datos);
+             
+             enviaDestinatario.close();
+             
+            
+         /*   DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());
+            
+            flujo_salida.writeUTF(JTMensaje.getText());
+            flujo_salida.close();*/
+            
+        }catch(UnknownHostException ex){
+            ex.printStackTrace();
+        } catch (IOException ex) {        
+           System.out.println(ex.getMessage());
+        }
+        }
+        
+    }
 }

@@ -3,7 +3,7 @@
  * Fecha         : Septiembre-2019
  * Objetivo      : Modela el acceso a datos de la tabla Rental
  * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
- * Clase         : ControllerAlquiler
+ * Clase         : ControllerAlquiler..
  */
 package Controlador;
 
@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import java.util.Date;
 import java.sql.Timestamp;
 
+
 public class ControllerAlquiler {
 
     int valor;
@@ -34,9 +35,10 @@ public class ControllerAlquiler {
     private AlquilerDAO modelo;
     private Pelicula peliculaSelected;
     private Cliente clienteSelected;
-    private Inventario inventarioSelected;
+    //private Inventario inventarioSelected;
     private ArrayList<Inventario> listaInventario_PelDisp;
     private Empleado empleadoUsuario;
+    private int cantidadpeliculaDisponibles;
     //private ArrayList <Pelicula> listadoPelicula;
 
     public ControllerAlquiler(iFalquiler vista, AlquilerDAO modelo) {
@@ -69,6 +71,7 @@ public class ControllerAlquiler {
                 } else {
 
                     InventarioDAO inventarioModel = new InventarioDAO();
+                    
                     registrar();
                     inventarioModel.actualizarStatusRental(listaInventario_PelDisp.get(0).getInventarioID());
                 }
@@ -134,7 +137,8 @@ public class ControllerAlquiler {
                 InventarioDAO inventarioModel = new InventarioDAO();
                 listaInventario = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "todos", empleadoUsuario.getTiendaID_Empleado());
 
-                listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "disponibles", empleadoUsuario.getTiendaID_Empleado());
+                listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId()
+                        , "disponibles", empleadoUsuario.getTiendaID_Empleado());
 
                 vista.getjLTitulo().setText(peliculaSelected.getTitulo());
                 vista.getjLPrecio().setText("" + peliculaSelected.getTarifaRenta() + " $US");
@@ -211,7 +215,10 @@ public class ControllerAlquiler {
 
             if (resultado == 1) {
                 vista.gestionMensajes("Registro Grabado con éxito",
-                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+                        "Confirmación", JOptionPane.INFORMATION_MESSAGE);     
+                InventarioDAO inventarioModel = new InventarioDAO();
+                listaInventario_PelDisp = inventarioModel.extraerInventario_IdPelicula(peliculaSelected.getPeliculaId(), "todos", empleadoUsuario.getTiendaID_Empleado());
+                
 
                 //   ArrayList<Alquiler> listaalquiler;
             } else {

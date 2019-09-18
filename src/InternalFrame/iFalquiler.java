@@ -7,10 +7,12 @@
  */
 package InternalFrame;
 
+import Controlador.ControllerInventario;
 import Modelo.Cliente;
 import Modelo.Pelicula;
 import JFrame.*;
 import Modelo.Empleado;
+import Modelo.InventarioDAO;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
@@ -370,7 +372,10 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
+        
+        InventarioDAO modeloInventario = new InventarioDAO();
         jFinventario inventarioView = new jFinventario();
+        ControllerInventario inventarioControl = new ControllerInventario(inventarioView,modeloInventario);
         inventarioView.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

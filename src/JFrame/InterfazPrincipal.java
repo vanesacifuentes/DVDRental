@@ -95,6 +95,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.setBackground(new java.awt.Color(238, 112, 82));
         jMenuBar1.setForeground(new java.awt.Color(238, 112, 82));
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jMtienda.setText("Alquiler");
         jMtienda.setActionCommand("sa");

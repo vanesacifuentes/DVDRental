@@ -25,7 +25,7 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
      */
     public iFdevolucion() {
         initComponents();
-        jBdevolucion.setEnabled(false);
+        jBdevolucion.setVisible(false);
     }
 
     /**
@@ -205,21 +205,24 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void cargarInfoAlquiler(ArrayList lista) {
-        try {
+    public void cargarInfoAlquiler(ArrayList lista) throws IndexOutOfBoundsException{
+        
             jLTitulo1.setText(lista.get(0).toString());
             jLnombreCliente1.setText(lista.get(1).toString() + " " + lista.get(2).toString());
             jLPrecio.setText(lista.get(3).toString()+" $US");
             jLfechaDevolucion.setText(lista.get(4).toString());
             jLidCliente.setText(lista.get(5).toString());
 
-        }catch (IndexOutOfBoundsException a)
-        { 
-            JOptionPane.showMessageDialog(null, "No se encontro Ninguna Renta");
-            
-        }
-        
-
+    }
+    
+    public void setearCampos()
+    {
+            jTBuscadorPelicula.setText("");
+            jLTitulo1.setText("");
+            jLnombreCliente1.setText("");
+            jLPrecio.setText("");
+            jLfechaDevolucion.setText("");
+            jLidCliente.setText("");
     }
 
     public JButton getjBdevolucion() {

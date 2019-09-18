@@ -87,14 +87,19 @@ public class ControllerAlquiler {
                 //actualizar();
             } else if (ae.getSource() == vistaDevolucion.getjBdevolucion()) {
                 actualizarRenta(Integer.parseInt(vistaDevolucion.getjTBuscadorRenta().getText()), false);
-                //JOptionPane.showMessageDialog(null, Integer.parseInt(vistaDevolucion.getjTBuscadorRenta().getText())+"a");
+                vistaDevolucion.getjBdevolucion().setVisible(false);
+                vistaDevolucion.setearCampos();
 
             } else if (ae.getSource() == vistaDevolucion.getjBbuscarRenta()) {
                 try {
                     vistaDevolucion.cargarInfoAlquiler(modelo.extraerInfoAlquiler(Integer.parseInt(vistaDevolucion.getjTBuscadorRenta().getText())));
+                    vistaDevolucion.getjBdevolucion().setVisible(true);
                 } catch (NumberFormatException a) {
                     JOptionPane.showMessageDialog(null, "Debe Ingresar el Numero de Renta");
 
+                }catch(IndexOutOfBoundsException e)
+                {
+                    JOptionPane.showMessageDialog(null, "No Se encontro Una Renta Pendiente");
                 }
 
             }

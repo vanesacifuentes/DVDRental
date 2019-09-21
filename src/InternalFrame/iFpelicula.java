@@ -741,7 +741,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
             });
         }
 
-        //Muestra en el campo de texto de la Interfaz el ID cliente Consecutivo
+        //Muestra en el campo de texto de la Interfaz el ID película Consecutivo
         valor = Integer.parseInt("" + defaultCombo.getValueAt(defaultCombo.getRowCount() - 1, 0)) + 1;
         jTid_peli.setText("" + valor);
         jTid_peli.setEnabled(false);

@@ -25,23 +25,24 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-
 public class iFalquiler extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form iFalquiler
      */
+    public int valor;
     DefaultListModel modeloBuscarPelicula;
     DefaultListModel modeloBuscarCliente;
     private Empleado empleadoUsuario;
 
     public iFalquiler(Empleado empleadoUsuario) {
-        
-        this.empleadoUsuario= empleadoUsuario;
+
+        this.empleadoUsuario = empleadoUsuario;
         initComponents();
+         activarCampos(false);
         modeloBuscarPelicula = new DefaultListModel();
         jListBusquedaPeliculas.setModel(modeloBuscarPelicula);
-        
+
         modeloBuscarCliente = new DefaultListModel();
         jListClienteID.setModel(modeloBuscarCliente);
     }
@@ -361,8 +362,8 @@ public class iFalquiler extends javax.swing.JInternalFrame {
 
     private void jTBuscadorPeliculaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorPeliculaKeyReleased
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_jTBuscadorPeliculaKeyReleased
 
     private void jTBuscadorPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscadorPeliculaActionPerformed
@@ -371,11 +372,10 @@ public class iFalquiler extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        
+
         InventarioDAO modeloInventario = new InventarioDAO();
         jFinventario inventarioView = new jFinventario();
-        ControllerInventario inventarioControl = new ControllerInventario(inventarioView,modeloInventario);
+        ControllerInventario inventarioControl = new ControllerInventario(inventarioView, modeloInventario);
         inventarioView.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -391,8 +391,15 @@ public class iFalquiler extends javax.swing.JInternalFrame {
 
         }
         
+        //Muestra en el campo de texto de la Interfaz el ID alquiler Consecutivo
+   //     valor = Integer.parseInt(modeloBuscarPelicula.getElementAt(WIDTH);
+       
+//        valor = Integer.parseInt("" + defaultCombo.getValueAt(defaultCombo.getRowCount() - 1, 0)) + 1;
+//        jTid_peli.setText("" + valor);
+//        jTid_peli.setEnabled(false);
+
     }
-    
+
     //Método para cargar al JList el listado por id de Cliente
     public void cargarClientesLista(ArrayList<Cliente> listaCliente) {
         modeloBuscarCliente.removeAllElements();
@@ -400,9 +407,9 @@ public class iFalquiler extends javax.swing.JInternalFrame {
             modeloBuscarCliente.addElement(listaCliente.get(i).getNombreCliente());
 
         }
-      
+
     }
-    
+
     //Mensajes
     public void gestionMensajes(String mensaje, String titulo, int icono) {
         JOptionPane.showMessageDialog(this, mensaje, titulo, icono);
@@ -427,7 +434,6 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     public JLabel getjLIDCliente() {
         return jLIDCliente;
     }
-    
 
     public JButton getjBAlquilar() {
         return jBAlquilar;
@@ -440,7 +446,6 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     public JButton getjBmodificar() {
         return jBmodificar;
     }
-
 
     public JTextArea getjTAreaSinopsis() {
         return jTAreaSinopsis;
@@ -489,28 +494,51 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     public Empleado getEmpleadoUsuario() {
         return empleadoUsuario;
     }
-    
-    
-    
-    
-    
-    
 
- 
     //Escuchas
-      public void addListenerBtnActualizar(ActionListener listenalquiler) {
+    public void addListenerBtnActualizar(ActionListener listenalquiler) {
         jBAlquilar.addActionListener(listenalquiler);
     }
-    
+
     public void addListenerBtnModificar(ActionListener listenalquiler) {
         jBmodificar.addActionListener(listenalquiler);
     }
-    
+
     public void addListenerBtnEliminar(ActionListener listenalquiler) {
         jBeliminar.addActionListener(listenalquiler);
     }
+
+    public void activarCampos(Boolean b) {
+
+        jTBuscadorPelicula.setEnabled(b);
+        jTIDAlquiler.setEnabled(b);
+        jDateChooserDev.setEnabled(b);
+        jTBuscarCliente.setEnabled(b);
+    }
     
-    
+     public void setearCampos() {
+
+        jTBuscadorPelicula.setActionCommand("Ingrese la pelicula");
+        jTIDAlquiler.setText(""); //"" +valorconsecutivo
+        jDateChooserDev.setDateFormatString("Ingrese la fecha");
+        jTBuscarCliente.setActionCommand("Ingrese cliente");
+         
+        jLCantTotalnum.setText("");
+        jLCantidadDisponum.setText("");
+        jLTitulo.setText("");
+        jLPrecio.setText("");
+        jLNombreCliente.setText("");
+        jLIDCliente.setText("");
+    }
+     
+    public void nuevaAccion() {
+        activarCampos(false);
+        setearCampos();
+        jBAlquilar.setText("Alquilar");
+        jBmodificar.setText("Modificar");
+        jBeliminar.setVisible(true);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAlquilar;

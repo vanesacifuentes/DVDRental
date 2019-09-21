@@ -2,15 +2,17 @@
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
  * Objetivo      : Interfaz Alquiler de película
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : iFalquiler- Interfaz
  */
 package InternalFrame;
 
+import Controlador.ControllerInventario;
 import Modelo.Cliente;
 import Modelo.Pelicula;
 import JFrame.*;
 import Modelo.Empleado;
+import Modelo.InventarioDAO;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
@@ -260,7 +262,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
                 jBAlquilarActionPerformed(evt);
             }
         });
-        jPbotones1.add(jBAlquilar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 90, 30));
+        jPbotones1.add(jBAlquilar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 90, 30));
 
         jBmodificar.setBackground(new java.awt.Color(238, 112, 82));
         jBmodificar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
@@ -273,7 +275,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
                 jBmodificarActionPerformed(evt);
             }
         });
-        jPbotones1.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 90, 30));
+        jPbotones1.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 90, 30));
 
         jBeliminar.setBackground(new java.awt.Color(238, 112, 82));
         jBeliminar.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
@@ -286,7 +288,7 @@ public class iFalquiler extends javax.swing.JInternalFrame {
                 jBeliminarActionPerformed(evt);
             }
         });
-        jPbotones1.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 80, 30));
+        jPbotones1.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 80, 30));
 
         jPanel4.add(jPbotones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 440, 60));
 
@@ -370,7 +372,10 @@ public class iFalquiler extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
+        
+        InventarioDAO modeloInventario = new InventarioDAO();
         jFinventario inventarioView = new jFinventario();
+        ControllerInventario inventarioControl = new ControllerInventario(inventarioView,modeloInventario);
         inventarioView.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

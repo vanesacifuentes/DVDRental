@@ -2,7 +2,7 @@
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
  * Objetivo      : Modela el acceso a datos de la tabla staff
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : ControllerEmpleado
  */
 package Controlador;
@@ -72,7 +72,7 @@ public class ControllerEmpleado {
                 vista.getjTCorreoEmpleado().setText(""+listaEmpleado.get(indiceTabla).getCorreoEmpleado());
                 vista.getjPassContrasena().setText(""+listaEmpleado.get(indiceTabla).getContrasenaEmpleado());
                 vista.getjTNombreUsuario().setText(""+listaEmpleado.get(indiceTabla).getNombreUsuarioEmpleado());
-                vista.getjLUltimaActualizacion().setText(""+listaEmpleado.get(indiceTabla).getUltima_Actualizacion_Empleado());
+//                vista.getjLUltimaActualizacion().setText(""+listaEmpleado.get(indiceTabla).getUltima_Actualizacion_Empleado());
                 vista.getjTDireccion().setText(""+listaEmpleado.get(indiceTabla).getEmpleadoID());
                 vista.getjCBTiendaID().setSelectedItem("Sede no. "+listaEmpleado.get(indiceTabla).getEmpleadoID());
                 //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());

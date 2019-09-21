@@ -2,7 +2,7 @@
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
  * Objetivo      : Modela el acceso a datos de la tabla customer
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : ControllerCliente
  */
 package Controlador;
@@ -40,7 +40,7 @@ public class ControllerCliente {
         TiendaDAO modeltienda = new TiendaDAO();
 
         this.vista.cargarClientesTabla(modelo.listadoCliente());
-        this.vista.cargarActivoIntCombo(modelo.listadoCliente());
+//        this.vista.cargarActivoIntCombo(modelo.listadoCliente());
         
         this.vista.cargarTiendasCombo(listaTiendas = modeltienda.listadoTiendas());
        
@@ -104,9 +104,9 @@ public class ControllerCliente {
                             "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 
                     //Se carga 
-//                    ArrayList<Cliente> listaClientes;
-//                    listaClientes = modelo.listadoCliente();
-//                    vista.cargarClientesTabla(ListaCliente = listaClientes);
+                    ArrayList<Cliente> listaClientes;
+                    listaClientes = modelo.listadoCliente();
+                    vista.cargarClientesTabla(listaClientes);
 
                     //vista.activarControles(false); 
                     //vista.nuevoAction();
@@ -212,7 +212,7 @@ public class ControllerCliente {
                 vista.getjTCorreoCliente().setText(""+ListaClientes.get(indiceTabla).getCorreoCliente());
                 vista.getjTDireccion().setText(""+ListaClientes.get(indiceTabla).getDireccionCliente());
                 vista.getjTApellidos().setText(""+ListaClientes.get(indiceTabla).getApellidoCliente());
-                vista.getjTFechaCreacion().setText(""+ListaClientes.get(indiceTabla).getFechaCreacion());
+//                vista.getjTFechaCreacion().setText(""+ListaClientes.get(indiceTabla).getFechaCreacion());
                 //vista.getjCActivoInt().setsSelectedItem(""+ListaCliente.get(indiceTabla).getActivo());
                 //vista.getjCActivoInt().setText(""+ListaCliente.get(indiceTabla).getActivo());
                 //vista.getjComboBoxTienda().setSelectedIndex(indiceTabla);

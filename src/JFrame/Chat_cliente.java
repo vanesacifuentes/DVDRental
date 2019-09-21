@@ -1,25 +1,61 @@
+package JFrame;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template in the editor....
  */
-package JFrame;
 
+
+
+import InternalFrame.iFchatEmpleado;
+import JPanel.JPEnvioMensaje;
+import JPanel.PanelMensaje;
+
+import Modelo.DatosEnvio;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import java.net.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author nicol
  */
-public class Chat_cliente extends javax.swing.JFrame {
-
+public class Chat_cliente extends javax.swing.JFrame implements Runnable{
+    private String nombre;
+    private int id;
+ 
+   // private ArrayList <String> nombres;
     /**
      * Creates new form Chat_cliente
      */
-    public Chat_cliente() {
+    public Chat_cliente() {      
         initComponents();
+       
+       // nombres = new ArrayList<>();        
+        nombre = JOptionPane.showInputDialog("Ingrese su nombre");   
+        AgregarPanel();
+//        AgregarALista();
+        Thread mihilo = new Thread(this);
+        mihilo.start();
+        
     }
-
+    public String getNombre(){
+        return nombre;
+    }
+    
+    public int getIdCliente(){
+        return id;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,35 +65,19 @@ public class Chat_cliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JLMinimizar = new javax.swing.JLabel();
-        JlCerrar = new javax.swing.JLabel();
+        nick2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jBenviar = new javax.swing.JButton();
         JTMensaje = new javax.swing.JTextField();
-        JPmensajes = new javax.swing.JPanel();
+        scroll = new javax.swing.JScrollPane();
+        jPmensajes = new javax.swing.JPanel();
+
+        nick2.setText("nick");
+        nick2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        JLMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Expand_Arrow_32px.png"))); // NOI18N
-        JLMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        JLMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JLMinimizarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(JLMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 40, -1));
-
-        JlCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8_Multiply_32px.png"))); // NOI18N
-        JlCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        JlCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JlCerrarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(JlCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 30, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -67,77 +87,51 @@ public class Chat_cliente extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(153, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/send.png"))); // NOI18N
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 50, 40));
+        jBenviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/send.png"))); // NOI18N
+        jBenviar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jBenviar.setContentAreaFilled(false);
+        jPanel1.add(jBenviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 50, 40));
 
         JTMensaje.setForeground(new java.awt.Color(153, 153, 153));
         JTMensaje.setText("Escribe un mensaje...");
         JTMensaje.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(JTMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 340, 40));
+        jPanel1.add(JTMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 380, 40));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 430, 60));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 470, 60));
 
-        JPmensajes.setBackground(new java.awt.Color(255, 255, 255));
-        JPmensajes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        jPanel2.add(JPmensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 430, 270));
+        scroll.setHorizontalScrollBar(null);
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 380));
+        jPmensajes.setBackground(new java.awt.Color(255, 255, 255));
+        jPmensajes.setLayout(new java.awt.GridLayout(0, 1, 0, 1));
+        scroll.setViewportView(jPmensajes);
+
+        jPanel2.add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 468, 270));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void JlCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JlCerrarMouseClicked
-        int dialog = JOptionPane.YES_NO_OPTION;
-        int result = JOptionPane.showConfirmDialog(null,"Desea salir del login?","Exit",dialog);
-        if(result == 0)
-        {
-            System.exit(0);
-        }
-    }//GEN-LAST:event_JlCerrarMouseClicked
-
-    private void JLMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLMinimizarMouseClicked
-        this.setState(Login.ICONIFIED);
-    }//GEN-LAST:event_JLMinimizarMouseClicked
-
+    public void AgregarPanel(){
+              
+          EnviaTexto mievento = new EnviaTexto();
+          jBenviar.addActionListener(mievento);
+        
+    }
+   
+   /* public void AgregarALista(){
+        nombres.add(nombre);
+    }
+    
+    public ArrayList<String> getNombres(){
+        return nombres;
+    }*/
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Chat_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Chat_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Chat_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Chat_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
+ 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -147,12 +141,89 @@ public class Chat_cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel JLMinimizar;
-    private javax.swing.JPanel JPmensajes;
     private javax.swing.JTextField JTMensaje;
-    private javax.swing.JLabel JlCerrar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBenviar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPmensajes;
+    private javax.swing.JLabel nick2;
+    private javax.swing.JScrollPane scroll;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+       
+        try{
+            
+         ServerSocket servidor_cliente = new ServerSocket(9090);
+         
+         Socket cliente;
+         
+         DatosEnvio paqueteRecibido;
+         
+         while(true){
+             
+             cliente = servidor_cliente.accept();
+             
+             ObjectInputStream flujoentrada = new ObjectInputStream(cliente.getInputStream());
+             
+             paqueteRecibido = (DatosEnvio) flujoentrada.readObject();
+             
+             PanelMensaje mensaje = new PanelMensaje(paqueteRecibido.getNick_empleado(),paqueteRecibido.getMensaje());
+             
+                 jPmensajes.add(mensaje);
+                 jPmensajes.revalidate();
+                 jPmensajes.repaint();
+         }
+            
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+
+       private class EnviaTexto implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            String mensaje_ = JTMensaje.getText();
+            JPEnvioMensaje mensaje = new JPEnvioMensaje(nombre,mensaje_);
+            jPmensajes.setSize(462,92);
+            jPmensajes.add(mensaje);
+            jPmensajes.revalidate();
+            jPmensajes.repaint();
+            
+            try {
+            //9999
+            
+             Socket misocket = new Socket("192.168.1.53",9999);
+            
+            DatosEnvio datos = new DatosEnvio();
+            
+           datos.setNick(nombre);
+          // datos.setIp(ip.getText());
+           datos.setMensaje(JTMensaje.getText());
+           
+           ObjectOutputStream paquete_datos = new ObjectOutputStream(misocket.getOutputStream());
+           paquete_datos.writeObject(datos);
+           
+           misocket.close();
+           
+            
+         /*   DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());
+            
+            flujo_salida.writeUTF(JTMensaje.getText());
+            flujo_salida.close();*/
+            
+        }catch(UnknownHostException ex){
+            ex.printStackTrace();
+        } catch (IOException ex) {        
+           System.out.println(ex.getMessage());
+        }
+        }
+        
+    }
+        
+       
 }

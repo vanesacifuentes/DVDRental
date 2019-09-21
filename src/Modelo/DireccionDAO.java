@@ -2,7 +2,7 @@
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
  * Objetivo      : Modela el acceso a datos de la tabla address
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : DireccionDAO
  */
 package Modelo;
@@ -41,7 +41,6 @@ public class DireccionDAO {
             pstm.setInt(5, d.getCiudadID_direccion());
             pstm.setString(6, d.getCodigoPostal());
             pstm.setString(7, d.getTelefono());
-            System.err.println(d.getUltimaActualizacionDireccion());
             pstm.setTimestamp(8, d.getUltimaActualizacionDireccion());         
                                                          
             rtdo = pstm.executeUpdate();

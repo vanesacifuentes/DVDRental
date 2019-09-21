@@ -2,7 +2,7 @@
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
  * Objetivo      : Interfaz Pelicula
- * Programadores : Cristhian Guzman, Juan Martinez, Nathalia Riascos, Vanesa Cifuentes
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
  * Clase         : iFpelicula- Interfaz
  */
 package InternalFrame;
@@ -716,6 +716,15 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jBmodificar.setText("Modificar");
         jBeliminar.setVisible(true);
     }
+    
+    //Limpiar el listado
+    private void limpiarListadoTabla() {
+        DefaultTableModel modelo;
+        modelo = (DefaultTableModel) jTable2.getModel();
+        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
 
     //Método para cargar la información de películas a la Tabla
     public void cargarPeliculasTabla(ArrayList<Pelicula> listadoPelicula) {
@@ -754,14 +763,7 @@ public class iFpelicula extends javax.swing.JInternalFrame {
         jCBClasificacion.setModel(model);
 
     }
-    //Limpiar el listado
-    private void limpiarListadoTabla() {
-        DefaultTableModel modelo;
-        modelo = (DefaultTableModel) jTable2.getModel();
-        for (int i = modelo.getRowCount() - 1; i >= 0; i--) {
-            modelo.removeRow(i);
-        }
-    }
+    
     
     //Método para cargar categorias a un comboBox
     public void cargarCategoriasCombo(ArrayList<Categoria> listadoCategoria) {
@@ -779,13 +781,13 @@ public class iFpelicula extends javax.swing.JInternalFrame {
     //Método para cargar lenguajes a un combobox
     public void cargarLenguajesCombo(ArrayList<Lenguaje> listadoLenguaje) {
         DefaultComboBoxModel model;
-        String[] arregloCategorias = new String[listadoLenguaje.size()];
+        String[] arregloLenguajes = new String[listadoLenguaje.size()];
 
         for (int a = 0; a < listadoLenguaje.size(); a++) {
-            arregloCategorias[a] = listadoLenguaje.get(a).getNombreLenguaje();
+            arregloLenguajes[a] = listadoLenguaje.get(a).getNombreLenguaje();
         }
 
-        model = new DefaultComboBoxModel(arregloCategorias);
+        model = new DefaultComboBoxModel(arregloLenguajes);
 
         jCBlenguaje.setModel(model);
 

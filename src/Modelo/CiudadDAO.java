@@ -1,75 +1,29 @@
 /*
  * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
  * Fecha         : Septiembre-2019
- * Objetivo      : Modela el acceso a datos de la tabla actor
+ * Objetivo      : Modela el acceso a datos de la tabla city
  * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
- * Clase         : ActorDAO
+ * Clase         : CiudadDAO
  */
 package Modelo;
+
+import Servicios.Fachada;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import Servicios.Fachada;
 
-
-public class ActorDAO {
+/**
+ *
+ * @author vanes
+ */
+public class CiudadDAO {
     
-    /* 
-     * @param a Objeto de la clase Actor a grabar
-     * @return rtdo resultado de la operación grabar
-     */
-    
-    public int grabarActor (Actor a)
-    {
-        Connection con = null;
-        PreparedStatement pstm;
-        pstm= null;
-        int rtdo;
-        rtdo= 0;
+    //Método para grabar ciudad en la base de datos
+    public int grabarCiudad(Ciudad ciudad){      
         
-        try{
-            con =Fachada.getConnection();
-            String sql = "INSERT INTO actor values(?,?,?,?)";
-            
-            pstm = con.prepareStatement(sql);
-            
-            pstm.setInt(1, a.getActorID());
-            pstm.setString(2,a.getNombreActor());
-            pstm.setString(3, a.getApellidoActor());
-            pstm.setTimestamp(4, a.getUltimaActializacionActor());
-            
-            rtdo = pstm.executeUpdate();
-            
-        }
-        
-        catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Código "+
-                    ex.getErrorCode() + "\n Error" + ex.getMessage());
-        }
-        
-        finally{
-            try{
-                if (pstm != null) pstm.close();
-            }
-            catch(SQLException ex)
-            {
-                JOptionPane.showMessageDialog(null, " Código : "+ 
-                        ex.getErrorCode() + " \n Error : " + ex.getMessage());
-            }
-        }
-        return rtdo;
-    }
-    
- 
-     /**
-     * 
-     * @param l Objeto de la clase Actor a modificar
-     * @return rtdo resultado de la operación modificar
-     */
-    public int modificarActor(Actor a){      
         Connection con = null;
         PreparedStatement pstm;
         pstm = null;
@@ -77,18 +31,57 @@ public class ActorDAO {
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "UPDATE actor " +
-                         "SET actor_id = ?, first_name = ?, last_name= ?, last_update = ?"
-                    +    "WHERE actor_id =?";
+            String sql = "INSERT INTO city values (?,?,?,?)";
+            
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setInt(1,ciudad.getID_ciudad());
+            pstm.setString(2,ciudad.getCiudad());
+            pstm.setInt(3,ciudad.getPais_id());
+            pstm.setTimestamp(4,ciudad.getUltimaActualizacion());
+          
+            
+            rtdo = pstm.executeUpdate();  
+        }
+
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Código: " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        
+        finally{
+            try{
+                if(pstm!=null) pstm.close();                
+            }
+            catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Código : " + 
+                        ex.getErrorCode() + "\nError :" + ex.getMessage());
+            }
+        }
+        return rtdo;
+    }
+    
+    //Modificar Ciudad
+      public int modificarCiudad(Ciudad ciudad){      
+        Connection con = null;
+        PreparedStatement pstm;
+        pstm = null;
+        int rtdo;
+        rtdo = 0;
+        try{
+            con = Fachada.getConnection();
+            String sql = "UPDATE city " +
+                         "SET city_id = ?, city = ?,country_id = ?, last_update= ?"
+                    +    "WHERE city_id=?";
 
             pstm = con.prepareStatement(sql);   
 
-            pstm.setInt(1, a.getActorID());
-            pstm.setString(2,a.getNombreActor());
-            pstm.setString(3, a.getApellidoActor());
-            pstm.setTimestamp(4, a.getUltimaActializacionActor());
-            pstm.setInt(5, a.getActorID());
-
+            pstm.setInt(1,ciudad.getID_ciudad());
+            pstm.setString(2,ciudad.getCiudad());
+            pstm.setInt(3,ciudad.getPais_id());
+            pstm.setTimestamp(4,ciudad.getUltimaActualizacion());
+           
+         
             rtdo = pstm.executeUpdate();  
         }
         catch(SQLException ex){
@@ -106,22 +99,18 @@ public class ActorDAO {
         }
         return rtdo;
     }
-            
-    /**
-     * 
-     * @param actor_id código del actor a borrar
-     * @return rtdo resultado de la operación borrar
-     */
-    public int borrarActor(int actor_id){      
+      
+      //Borrar ciudad
+      public int borrarCiudad(int ciudad_id){      
         Connection con = null;
         PreparedStatement pstm = null;
         int rtdo;
         rtdo = 0;
         try{
             con = Fachada.getConnection();
-            String sql = "DELETE FROM actor WHERE actor_id = ? ";
+            String sql = "DELETE FROM film WHERE city_id = ? ";
             pstm = con.prepareStatement(sql);
-            pstm.setInt(1, actor_id);
+            pstm.setInt(1, ciudad_id);
             rtdo = pstm.executeUpdate(); 
             return rtdo;
         }
@@ -140,40 +129,38 @@ public class ActorDAO {
         }
         return rtdo;
     }
-   
-    
-    /**
-     * 
-    / * @return ArrayList, lista de objetos Actor
-     */
-    public ArrayList <Actor> listadoActores(){   
+      
+   //Listar ciudad   
+   public ArrayList <Ciudad> listaCiudades(){   
         
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
         
-        ArrayList <Actor> listadoActores = new ArrayList<>();
+        ArrayList<Ciudad> listaCiudades = new ArrayList<>();
         try{
-            con = Fachada.getConnection(); 
+            con = Fachada.getConnection();
             String sql="";
+           
+                sql = "SELECT * FROM city ORDER BY city_id";            
             
-            sql = "SELECT * FROM actor ORDER BY actor_id";            
-                                           
+                                   
             pstm = con.prepareStatement(sql);
             
+           
             rs = pstm.executeQuery();
                         
-            Actor actor = null;
+            Ciudad ciudad = null;
             while(rs.next()){
-                actor = new Actor();
-   
-                actor.setActorID(rs.getInt("actor_id"));
-                actor.setNombreActor(rs.getString("first_name"));
-                actor.setApellidoActor(rs.getString("last_name"));
-                actor.setUltimaActializacionActor(rs.getTimestamp("last_update"));
-                
-    
-                listadoActores.add(actor);
+                ciudad = new Ciudad();
+
+                ciudad.setID_ciudad(rs.getInt("city_id"));
+                ciudad.setCiudad(rs.getString("city"));
+                ciudad.setPais_id(rs.getInt("country_id"));
+                ciudad.setUltimaActualizacion(rs.getTimestamp("last_update"));
+;
+            
+                listaCiudades.add(ciudad);
             }
         }
         
@@ -191,7 +178,7 @@ public class ActorDAO {
                         ex.getErrorCode() + "\nError :" + ex.getMessage());
             }
         }
-        return listadoActores;
-    }    
+        return listaCiudades;
+    }
     
 }

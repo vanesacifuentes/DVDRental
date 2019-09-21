@@ -1,9 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Interfaz Devolucion Pelicula
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : iFdevolucion- Interfaz
  */
 package InternalFrame;
+
+import JFrame.jFPago;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,6 +25,7 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
      */
     public iFdevolucion() {
         initComponents();
+        jBdevolucion.setVisible(false);
     }
 
     /**
@@ -27,13 +37,27 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        iFempleado1 = new InternalFrame.iFempleado();
         jPanel1 = new javax.swing.JPanel();
         jPdatosCliente = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPdatosPelicula = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        jLidCliente = new javax.swing.JLabel();
+        jLnombreCliente1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jTBuscadorPelicula = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jPinformacionPeliculs2 = new javax.swing.JPanel();
+        jLtitulo4 = new javax.swing.JLabel();
+        jLCodigoCliente2 = new javax.swing.JLabel();
+        jLfechaDevolucion = new javax.swing.JLabel();
+        jLtitulo5 = new javax.swing.JLabel();
+        jLPrecio = new javax.swing.JLabel();
+        jLTitulo1 = new javax.swing.JLabel();
+        jBdevolucion = new javax.swing.JButton();
+
+        iFempleado1.setVisible(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,42 +76,95 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Nombre:");
         jPdatosCliente.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        jPdatosCliente.add(jLidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 250, 30));
+        jPdatosCliente.add(jLnombreCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 250, 30));
 
-        jLabel3.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Apellidos:");
-        jPdatosCliente.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        jPanel1.add(jPdatosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 630, 130));
 
-        jPanel1.add(jPdatosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 640, 200));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda Película", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPdatosPelicula.setBackground(new java.awt.Color(255, 255, 255));
-        jPdatosPelicula.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos de pelicula", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Decker", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
-
-        javax.swing.GroupLayout jPdatosPeliculaLayout = new javax.swing.GroupLayout(jPdatosPelicula);
-        jPdatosPelicula.setLayout(jPdatosPeliculaLayout);
-        jPdatosPeliculaLayout.setHorizontalGroup(
-            jPdatosPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
-        );
-        jPdatosPeliculaLayout.setVerticalGroup(
-            jPdatosPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 254, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPdatosPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 650, 280));
-
-        jButton4.setBackground(new java.awt.Color(238, 112, 82));
-        jButton4.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(238, 112, 82));
-        jButton4.setText("Devolver");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
-        jButton4.setContentAreaFilled(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jTBuscadorPelicula.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTBuscadorPelicula.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jTBuscadorPelicula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jTBuscadorPeliculaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 60, 30));
+        jTBuscadorPelicula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTBuscadorPeliculaKeyReleased(evt);
+            }
+        });
+        jPanel2.add(jTBuscadorPelicula, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 250, 30));
+
+        jLabel4.setBackground(new java.awt.Color(238, 112, 82));
+        jLabel4.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setText("Ingrese ID Alquiler:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 140, 40));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscador3.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 40, 50));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 630, 80));
+
+        jPinformacionPeliculs2.setBackground(new java.awt.Color(255, 255, 255));
+        jPinformacionPeliculs2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Película", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14), new java.awt.Color(238, 112, 82))); // NOI18N
+        jPinformacionPeliculs2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLtitulo4.setBackground(new java.awt.Color(238, 112, 82));
+        jLtitulo4.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLtitulo4.setForeground(new java.awt.Color(51, 51, 51));
+        jLtitulo4.setText("Precio:");
+        jLtitulo4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPinformacionPeliculs2.add(jLtitulo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 60, 30));
+
+        jLCodigoCliente2.setBackground(new java.awt.Color(238, 112, 82));
+        jLCodigoCliente2.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLCodigoCliente2.setForeground(new java.awt.Color(51, 51, 51));
+        jLCodigoCliente2.setText("Fecha Devolución:");
+        jLCodigoCliente2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPinformacionPeliculs2.add(jLCodigoCliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, 30));
+
+        jLfechaDevolucion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jPinformacionPeliculs2.add(jLfechaDevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 240, 30));
+
+        jLtitulo5.setBackground(new java.awt.Color(238, 112, 82));
+        jLtitulo5.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jLtitulo5.setForeground(new java.awt.Color(51, 51, 51));
+        jLtitulo5.setText("Título:");
+        jLtitulo5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPinformacionPeliculs2.add(jLtitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 40, 30));
+
+        jLPrecio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jPinformacionPeliculs2.add(jLPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 90, 30));
+
+        jLTitulo1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jPinformacionPeliculs2.add(jLTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 240, 30));
+
+        jPanel1.add(jPinformacionPeliculs2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 630, 150));
+
+        jBdevolucion.setBackground(new java.awt.Color(238, 112, 82));
+        jBdevolucion.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        jBdevolucion.setForeground(new java.awt.Color(238, 112, 82));
+        jBdevolucion.setText("Devoución");
+        jBdevolucion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(238, 112, 82)));
+        jBdevolucion.setContentAreaFilled(false);
+        jBdevolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBdevolucionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBdevolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 480, 90, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,26 +176,98 @@ public class iFdevolucion extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jTBuscadorPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTBuscadorPeliculaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jTBuscadorPeliculaActionPerformed
+
+    private void jTBuscadorPeliculaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBuscadorPeliculaKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jTBuscadorPeliculaKeyReleased
+
+    private void jBdevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdevolucionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBdevolucionActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void cargarInfoAlquiler(ArrayList lista) throws IndexOutOfBoundsException{
+        
+            jLTitulo1.setText(lista.get(0).toString());
+            jLnombreCliente1.setText(lista.get(1).toString() + " " + lista.get(2).toString());
+            jLPrecio.setText(lista.get(3).toString()+" $US");
+            jLfechaDevolucion.setText(lista.get(4).toString());
+            jLidCliente.setText(lista.get(5).toString());
+
+    }
+    
+    public void setearCampos()
+    {
+            jTBuscadorPelicula.setText("");
+            jLTitulo1.setText("");
+            jLnombreCliente1.setText("");
+            jLPrecio.setText("");
+            jLfechaDevolucion.setText("");
+            jLidCliente.setText("");
+    }
+
+    public JButton getjBdevolucion() {
+        return jBdevolucion;
+    }
+
+    public JTextField getjTBuscadorRenta() {
+        return jTBuscadorPelicula;
+    }
+
+    public JButton getjBbuscarRenta() {
+        return jButton1;
+    }
+
+    public JLabel getjLPrecio() {
+        return jLPrecio;
+    }
+
+   
+    public JLabel getjLTitulo1() {
+        return jLTitulo1;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
+    private InternalFrame.iFempleado iFempleado1;
+    private javax.swing.JButton jBdevolucion;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLCodigoCliente2;
+    private javax.swing.JLabel jLPrecio;
+    private javax.swing.JLabel jLTitulo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLfechaDevolucion;
+    private javax.swing.JLabel jLidCliente;
+    private javax.swing.JLabel jLnombreCliente1;
+    private javax.swing.JLabel jLtitulo4;
+    private javax.swing.JLabel jLtitulo5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPdatosCliente;
-    private javax.swing.JPanel jPdatosPelicula;
+    private javax.swing.JPanel jPinformacionPeliculs2;
+    private javax.swing.JTextField jTBuscadorPelicula;
     // End of variables declaration//GEN-END:variables
 }

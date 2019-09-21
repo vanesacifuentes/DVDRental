@@ -1,14 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Programa      : PROYECTO PROGRAMACION INTERACTIVA 2019- DVD RENTAL
+ * Fecha         : Septiembre-2019
+ * Objetivo      : Loguin de acceso al usuario
+ * Programadores : Cristhian Guzman, Nathalia Riascos, Vanesa Cifuentes
+ * Clase         : Loguin
  */
 package JFrame;
 
 
 
 //import com.sun.awt.AWTUtilities;
-import Controlador.ControllerInterfaz;
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
 import java.awt.Shape;
@@ -133,9 +134,6 @@ public class Login extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTusuarioFocusGained(evt);
             }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTusuarioFocusLost(evt);
-            }
         });
         JPingreso.add(jTusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 170, 30));
 
@@ -171,7 +169,7 @@ public class Login extends javax.swing.JFrame {
         jBEntrar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         jBEntrar.setForeground(new java.awt.Color(238, 112, 82));
         jBEntrar.setText("Entrar");
-        jBEntrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBEntrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 51, 0), 1, true));
         jBEntrar.setContentAreaFilled(false);
         jBEntrar.setDefaultCapable(false);
         jBEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +177,7 @@ public class Login extends javax.swing.JFrame {
                 jBEntrarActionPerformed(evt);
             }
         });
-        JPingreso.add(jBEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 100, 40));
+        JPingreso.add(jBEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 100, 40));
 
         getContentPane().add(JPingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 510));
 
@@ -363,17 +361,10 @@ public class Login extends javax.swing.JFrame {
 
     private void jTusuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTusuarioFocusGained
         // TODO add your handling code here
-//        if(jTusuario.getText().equals("Ingrese su usuario...")){
-//            jTusuario.setText("");
-//        }
+       
+            jTusuario.setText("");
+        
     }//GEN-LAST:event_jTusuarioFocusGained
-
-    private void jTusuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTusuarioFocusLost
-        // TODO add your handling code here
-//        if(jTusuario.getText().equals("")){
-//            jTusuario.setText("Ingrese su usuario...");
-//        }
-    }//GEN-LAST:event_jTusuarioFocusLost
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
